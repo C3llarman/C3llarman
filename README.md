@@ -1,7 +1,6 @@
 - 👋 Hi, I’m @C3llarman
 - 👀 I’m a professional brewer en route to web developer. 
 - 🌱 I’m currently learning the basics
-- 📫 How to reach me Gainthatgrain666@gmail.com
 
 <!---
 C3llarman/C3llarman is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
