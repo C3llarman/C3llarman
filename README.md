@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @C3llarman
-- 👀 I’m a professional brewer en route to web developer. 
+- 👀 I’m a professional brewer trying to transition into UX / Web Design. 
 - 🌱 I’m currently learning the basics
 
 <!---
