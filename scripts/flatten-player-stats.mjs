@@ -1,0 +1,226 @@
+#!/usr/bin/env node
+// Build-time script: pulls one week of real nflverse player stats and flattens
+// it into the compact per-week JSON the app reads. Run via:
+//   node scripts/flatten-player-stats.mjs --season 2025 --week 1
+//
+// Sources (all from the nflverse-data "player_stats" GitHub release):
+//   player_stats.csv          offense (QB/RB/WR/TE/FB) — Tactician, Hunter, Rogue
+//   player_stats_def.csv      defense — The Breaker
+//   player_stats_kicking.csv  kicking — The Mender
+//
+// The Wall has no player-level O-line data anywhere in nflverse. Its damage
+// input is team sacks allowed, derived here by summing the `sacks` column
+// (sacks taken by the passer) across a team's QB rows in player_stats.csv —
+// no second data source needed.
+
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+
+const SOURCES = {
+  offense: 'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats.csv',
+  defense: 'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_def.csv',
+  kicking: 'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_kicking.csv',
+};
+
+function parseArgs(argv) {
+  const args = { seasonType: 'REG', outDir: 'data/weeks' };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    const next = () => argv[++i];
+    if (a === '--season') args.season = next();
+    else if (a === '--week') args.week = next();
+    else if (a === '--season-type') args.seasonType = next();
+    else if (a === '--out') args.outDir = next();
+    else throw new Error(`Unknown argument: ${a}`);
+  }
+  if (!args.season) throw new Error('--season is required, e.g. --season 2025');
+  if (!args.week) throw new Error('--week is required, e.g. --week 1');
+  args.season = Number(args.season);
+  args.week = Number(args.week);
+  if (!Number.isInteger(args.season)) throw new Error('--season must be an integer');
+  if (!Number.isInteger(args.week)) throw new Error('--week must be an integer');
+  return args;
+}
+
+// Minimal quote-aware CSV parser. nflverse CSVs are well-formed (no embedded
+// newlines inside fields) but a handful of text columns can contain commas,
+// so a naive split(',') is not safe.
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; }
+        else inQuotes = false;
+      } else field += c;
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ',') {
+      row.push(field); field = '';
+    } else if (c === '\n') {
+      if (text[i - 1] !== '\r' || field.length || row.length) {
+        row.push(field); field = '';
+        rows.push(row); row = [];
+      }
+    } else if (c === '\r') {
+      // skip, handled by following \n
+    } else {
+      field += c;
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  if (!rows.length) return [];
+  const header = rows[0];
+  return rows.slice(1)
+    .filter(r => r.length === header.length)
+    .map(r => Object.fromEntries(header.map((h, idx) => [h, r[idx]])));
+}
+
+async function fetchCsv(url, label) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch ${label} from ${url}: HTTP ${res.status}`);
+  const text = await res.text();
+  return parseCsv(text);
+}
+
+const num = v => (v === undefined || v === '' ? 0 : Number(v));
+
+function filterWeek(rows, season, week, seasonType) {
+  return rows.filter(r =>
+    Number(r.season) === season &&
+    Number(r.week) === week &&
+    r.season_type === seasonType
+  );
+}
+
+function buildWallByTeam(offenseRows) {
+  const wall = {};
+  for (const r of offenseRows) {
+    if (r.position !== 'QB') continue;
+    const team = r.recent_team;
+    if (!team) continue;
+    wall[team] = wall[team] || { team, sacksAllowed: 0 };
+    wall[team].sacksAllowed += num(r.sacks);
+  }
+  return wall;
+}
+
+function buildPlayers(offenseRows, defenseRows, kickingRows) {
+  const tactician = offenseRows
+    .filter(r => r.position === 'QB')
+    .map(r => ({
+      playerId: r.player_id,
+      name: r.player_display_name,
+      team: r.recent_team,
+      opponent: r.opponent_team,
+      passYds: num(r.passing_yards),
+      passTd: num(r.passing_tds),
+      sacksTaken: num(r.sacks),
+    }));
+
+  const hunter = offenseRows
+    .filter(r => r.position === 'WR')
+    .map(r => ({
+      playerId: r.player_id,
+      name: r.player_display_name,
+      team: r.recent_team,
+      opponent: r.opponent_team,
+      recYds: num(r.receiving_yards),
+      receptions: num(r.receptions),
+    }));
+
+  const rogue = offenseRows
+    .filter(r => r.position === 'RB')
+    .map(r => ({
+      playerId: r.player_id,
+      name: r.player_display_name,
+      team: r.recent_team,
+      opponent: r.opponent_team,
+      rushYds: num(r.rushing_yards),
+      rushTd: num(r.rushing_tds),
+      carries: num(r.carries),
+    }));
+
+  const breaker = defenseRows
+    .filter(r => r.position_group === 'DL')
+    .map(r => ({
+      playerId: r.player_id,
+      name: r.player_display_name,
+      team: r.team,
+      sacks: num(r.def_sacks),
+      tfl: num(r.def_tackles_for_loss),
+    }));
+
+  const mender = kickingRows
+    .map(r => ({
+      playerId: r.player_id,
+      name: r.player_display_name,
+      team: r.team,
+      fgMade: num(r.fg_made),
+      fgAtt: num(r.fg_att),
+    }));
+
+  return { tactician, hunter, rogue, breaker, mender };
+}
+
+async function main() {
+  const { season, week, seasonType, outDir } = parseArgs(process.argv.slice(2));
+
+  console.log(`Fetching nflverse player stats for season=${season} week=${week} (${seasonType})...`);
+  const [offenseAll, defenseAll, kickingAll] = await Promise.all([
+    fetchCsv(SOURCES.offense, 'offense'),
+    fetchCsv(SOURCES.defense, 'defense'),
+    fetchCsv(SOURCES.kicking, 'kicking'),
+  ]);
+
+  const offenseRows = filterWeek(offenseAll, season, week, seasonType);
+  const defenseRows = filterWeek(defenseAll, season, week, seasonType);
+  const kickingRows = filterWeek(kickingAll, season, week, seasonType);
+
+  if (offenseRows.length === 0) {
+    throw new Error(
+      `No offense rows found for season=${season} week=${week} season_type=${seasonType}. ` +
+      `The nflverse release may not have this week's data yet, or the season/week is wrong.`
+    );
+  }
+
+  const players = buildPlayers(offenseRows, defenseRows, kickingRows);
+  const wall = buildWallByTeam(offenseRows);
+
+  const output = {
+    season,
+    week,
+    seasonType,
+    generatedAt: new Date().toISOString(),
+    sources: SOURCES,
+    counts: {
+      tactician: players.tactician.length,
+      hunter: players.hunter.length,
+      rogue: players.rogue.length,
+      breaker: players.breaker.length,
+      mender: players.mender.length,
+    },
+    wall,
+    players,
+  };
+
+  const weekStr = String(week).padStart(2, '0');
+  const dir = path.join(outDir, String(season));
+  const file = path.join(dir, `week-${weekStr}.json`);
+  await mkdir(dir, { recursive: true });
+  await writeFile(file, JSON.stringify(output, null, 2) + '\n');
+
+  console.log(`Wrote ${file}`);
+  console.log(`  tactician=${players.tactician.length} hunter=${players.hunter.length} ` +
+    `rogue=${players.rogue.length} breaker=${players.breaker.length} mender=${players.mender.length} ` +
+    `teams(wall)=${Object.keys(wall).length}`);
+}
+
+main().catch(err => {
+  console.error(err.message);
+  process.exit(1);
+});
