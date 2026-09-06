@@ -1,0 +1,3903 @@
+{
+  "season": 2025,
+  "week": 1,
+  "seasonType": "REG",
+  "generatedAt": "2026-09-06T04:05:39.425Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv",
+  "counts": {
+    "tactician": 34,
+    "hunter": 150,
+    "rogue": 95,
+    "breaker": 166,
+    "mender": 32
+  },
+  "wall": {
+    "PIT": {
+      "team": "PIT",
+      "sacksAllowed": 4
+    },
+    "CLE": {
+      "team": "CLE",
+      "sacksAllowed": 2
+    },
+    "LA": {
+      "team": "LA",
+      "sacksAllowed": 3
+    },
+    "NYG": {
+      "team": "NYG",
+      "sacksAllowed": 2
+    },
+    "LV": {
+      "team": "LV",
+      "sacksAllowed": 4
+    },
+    "DAL": {
+      "team": "DAL",
+      "sacksAllowed": 0
+    },
+    "DET": {
+      "team": "DET",
+      "sacksAllowed": 4
+    },
+    "KC": {
+      "team": "KC",
+      "sacksAllowed": 2
+    },
+    "BAL": {
+      "team": "BAL",
+      "sacksAllowed": 2
+    },
+    "TB": {
+      "team": "TB",
+      "sacksAllowed": 1
+    },
+    "BUF": {
+      "team": "BUF",
+      "sacksAllowed": 1
+    },
+    "SEA": {
+      "team": "SEA",
+      "sacksAllowed": 1
+    },
+    "ARI": {
+      "team": "ARI",
+      "sacksAllowed": 5
+    },
+    "IND": {
+      "team": "IND",
+      "sacksAllowed": 1
+    },
+    "MIA": {
+      "team": "MIA",
+      "sacksAllowed": 3
+    },
+    "GB": {
+      "team": "GB",
+      "sacksAllowed": 0
+    },
+    "LAC": {
+      "team": "LAC",
+      "sacksAllowed": 3
+    },
+    "PHI": {
+      "team": "PHI",
+      "sacksAllowed": 1
+    },
+    "CIN": {
+      "team": "CIN",
+      "sacksAllowed": 3
+    },
+    "NYJ": {
+      "team": "NYJ",
+      "sacksAllowed": 1
+    },
+    "JAX": {
+      "team": "JAX",
+      "sacksAllowed": 0
+    },
+    "SF": {
+      "team": "SF",
+      "sacksAllowed": 1
+    },
+    "CAR": {
+      "team": "CAR",
+      "sacksAllowed": 1
+    },
+    "HOU": {
+      "team": "HOU",
+      "sacksAllowed": 3
+    },
+    "NO": {
+      "team": "NO",
+      "sacksAllowed": 1
+    },
+    "DEN": {
+      "team": "DEN",
+      "sacksAllowed": 1
+    },
+    "NE": {
+      "team": "NE",
+      "sacksAllowed": 4
+    },
+    "WAS": {
+      "team": "WAS",
+      "sacksAllowed": 3
+    },
+    "ATL": {
+      "team": "ATL",
+      "sacksAllowed": 1
+    },
+    "CHI": {
+      "team": "CHI",
+      "sacksAllowed": 2
+    },
+    "MIN": {
+      "team": "MIN",
+      "sacksAllowed": 3
+    },
+    "TEN": {
+      "team": "TEN",
+      "sacksAllowed": 6
+    }
+  },
+  "players": {
+    "tactician": [
+      {
+        "playerId": "00-0023459",
+        "name": "Aaron Rodgers",
+        "team": "PIT",
+        "opponent": "NYJ",
+        "passYds": 244,
+        "passTd": 4,
+        "sacksTaken": 4
+      },
+      {
+        "playerId": "00-0026158",
+        "name": "Joe Flacco",
+        "team": "CLE",
+        "opponent": "CIN",
+        "passYds": 290,
+        "passTd": 1,
+        "sacksTaken": 2
+      },
+      {
+        "playerId": "00-0026498",
+        "name": "Matthew Stafford",
+        "team": "LA",
+        "opponent": "HOU",
+        "passYds": 245,
+        "passTd": 1,
+        "sacksTaken": 3
+      },
+      {
+        "playerId": "00-0029263",
+        "name": "Russell Wilson",
+        "team": "NYG",
+        "opponent": "WAS",
+        "passYds": 168,
+        "passTd": 0,
+        "sacksTaken": 2
+      },
+      {
+        "playerId": "00-0030565",
+        "name": "Geno Smith",
+        "team": "LV",
+        "opponent": "NE",
+        "passYds": 362,
+        "passTd": 1,
+        "sacksTaken": 4
+      },
+      {
+        "playerId": "00-0033077",
+        "name": "Dak Prescott",
+        "team": "DAL",
+        "opponent": "PHI",
+        "passYds": 188,
+        "passTd": 0,
+        "sacksTaken": 0
+      },
+      {
+        "playerId": "00-0033106",
+        "name": "Jared Goff",
+        "team": "DET",
+        "opponent": "GB",
+        "passYds": 225,
+        "passTd": 1,
+        "sacksTaken": 4
+      },
+      {
+        "playerId": "00-0033873",
+        "name": "Patrick Mahomes",
+        "team": "KC",
+        "opponent": "LAC",
+        "passYds": 258,
+        "passTd": 1,
+        "sacksTaken": 2
+      },
+      {
+        "playerId": "00-0034796",
+        "name": "Lamar Jackson",
+        "team": "BAL",
+        "opponent": "BUF",
+        "passYds": 209,
+        "passTd": 2,
+        "sacksTaken": 2
+      },
+      {
+        "playerId": "00-0034855",
+        "name": "Baker Mayfield",
+        "team": "TB",
+        "opponent": "ATL",
+        "passYds": 167,
+        "passTd": 3,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0034857",
+        "name": "Josh Allen",
+        "team": "BUF",
+        "opponent": "BAL",
+        "passYds": 394,
+        "passTd": 2,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0034869",
+        "name": "Sam Darnold",
+        "team": "SEA",
+        "opponent": "SF",
+        "passYds": 150,
+        "passTd": 0,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0035228",
+        "name": "Kyler Murray",
+        "team": "ARI",
+        "opponent": "NO",
+        "passYds": 163,
+        "passTd": 2,
+        "sacksTaken": 5
+      },
+      {
+        "playerId": "00-0035710",
+        "name": "Daniel Jones",
+        "team": "IND",
+        "opponent": "MIA",
+        "passYds": 272,
+        "passTd": 1,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0036212",
+        "name": "Tua Tagovailoa",
+        "team": "MIA",
+        "opponent": "IND",
+        "passYds": 114,
+        "passTd": 1,
+        "sacksTaken": 3
+      },
+      {
+        "playerId": "00-0036264",
+        "name": "Jordan Love",
+        "team": "GB",
+        "opponent": "DET",
+        "passYds": 188,
+        "passTd": 2,
+        "sacksTaken": 0
+      },
+      {
+        "playerId": "00-0036355",
+        "name": "Justin Herbert",
+        "team": "LAC",
+        "opponent": "KC",
+        "passYds": 318,
+        "passTd": 3,
+        "sacksTaken": 3
+      },
+      {
+        "playerId": "00-0036389",
+        "name": "Jalen Hurts",
+        "team": "PHI",
+        "opponent": "DAL",
+        "passYds": 152,
+        "passTd": 0,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0036442",
+        "name": "Joe Burrow",
+        "team": "CIN",
+        "opponent": "CLE",
+        "passYds": 113,
+        "passTd": 1,
+        "sacksTaken": 3
+      },
+      {
+        "playerId": "00-0036945",
+        "name": "Justin Fields",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "passYds": 218,
+        "passTd": 1,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0036971",
+        "name": "Trevor Lawrence",
+        "team": "JAX",
+        "opponent": "CAR",
+        "passYds": 178,
+        "passTd": 1,
+        "sacksTaken": 0
+      },
+      {
+        "playerId": "00-0037013",
+        "name": "Zach Wilson",
+        "team": "MIA",
+        "opponent": "IND",
+        "passYds": 32,
+        "passTd": 0,
+        "sacksTaken": 0
+      },
+      {
+        "playerId": "00-0037834",
+        "name": "Brock Purdy",
+        "team": "SF",
+        "opponent": "SEA",
+        "passYds": 277,
+        "passTd": 2,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0039150",
+        "name": "Bryce Young",
+        "team": "CAR",
+        "opponent": "JAX",
+        "passYds": 154,
+        "passTd": 1,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0039163",
+        "name": "C.J. Stroud",
+        "team": "HOU",
+        "opponent": "LA",
+        "passYds": 188,
+        "passTd": 0,
+        "sacksTaken": 3
+      },
+      {
+        "playerId": "00-0039376",
+        "name": "Spencer Rattler",
+        "team": "NO",
+        "opponent": "ARI",
+        "passYds": 214,
+        "passTd": 0,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0039732",
+        "name": "Bo Nix",
+        "team": "DEN",
+        "opponent": "TEN",
+        "passYds": 176,
+        "passTd": 1,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0039851",
+        "name": "Drake Maye",
+        "team": "NE",
+        "opponent": "LV",
+        "passYds": 287,
+        "passTd": 1,
+        "sacksTaken": 4
+      },
+      {
+        "playerId": "00-0039910",
+        "name": "Jayden Daniels",
+        "team": "WAS",
+        "opponent": "NYG",
+        "passYds": 233,
+        "passTd": 1,
+        "sacksTaken": 3
+      },
+      {
+        "playerId": "00-0039917",
+        "name": "Michael Penix Jr.",
+        "team": "ATL",
+        "opponent": "TB",
+        "passYds": 298,
+        "passTd": 1,
+        "sacksTaken": 1
+      },
+      {
+        "playerId": "00-0039918",
+        "name": "Caleb Williams",
+        "team": "CHI",
+        "opponent": "MIN",
+        "passYds": 210,
+        "passTd": 1,
+        "sacksTaken": 2
+      },
+      {
+        "playerId": "00-0039923",
+        "name": "J.J. McCarthy",
+        "team": "MIN",
+        "opponent": "CHI",
+        "passYds": 143,
+        "passTd": 2,
+        "sacksTaken": 3
+      },
+      {
+        "playerId": "00-0040673",
+        "name": "Jalen Milroe",
+        "team": "SEA",
+        "opponent": "SF",
+        "passYds": 0,
+        "passTd": 0,
+        "sacksTaken": 0
+      },
+      {
+        "playerId": "00-0040676",
+        "name": "Cam Ward",
+        "team": "TEN",
+        "opponent": "DEN",
+        "passYds": 112,
+        "passTd": 0,
+        "sacksTaken": 6
+      }
+    ],
+    "hunter": [
+      {
+        "playerId": "00-0030035",
+        "name": "Adam Thielen",
+        "team": "MIN",
+        "opponent": "CHI",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0030279",
+        "name": "Keenan Allen",
+        "team": "LAC",
+        "opponent": "KC",
+        "recYds": 68,
+        "receptions": 7
+      },
+      {
+        "playerId": "00-0030564",
+        "name": "DeAndre Hopkins",
+        "team": "BAL",
+        "opponent": "BUF",
+        "recYds": 35,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0031236",
+        "name": "Brandin Cooks",
+        "team": "NO",
+        "opponent": "ARI",
+        "recYds": 26,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0031381",
+        "name": "Davante Adams",
+        "team": "LA",
+        "opponent": "HOU",
+        "recYds": 51,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0031408",
+        "name": "Mike Evans",
+        "team": "TB",
+        "opponent": "ATL",
+        "recYds": 51,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0031588",
+        "name": "Stefon Diggs",
+        "team": "NE",
+        "opponent": "LV",
+        "recYds": 57,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0031763",
+        "name": "DeAndre Carter",
+        "team": "CLE",
+        "opponent": "CIN",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0032211",
+        "name": "Tyler Lockett",
+        "team": "TEN",
+        "opponent": "DEN",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0032385",
+        "name": "Sterling Shepard",
+        "team": "TB",
+        "opponent": "ATL",
+        "recYds": 39,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0032398",
+        "name": "Chris Moore",
+        "team": "WAS",
+        "opponent": "NYG",
+        "recYds": 34,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0032464",
+        "name": "Kalif Raymond",
+        "team": "DET",
+        "opponent": "GB",
+        "recYds": 16,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0033040",
+        "name": "Tyreek Hill",
+        "team": "MIA",
+        "opponent": "IND",
+        "recYds": 40,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0033555",
+        "name": "Mack Hollins",
+        "team": "NE",
+        "opponent": "LV",
+        "recYds": 3,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0033572",
+        "name": "Jamal Agnew",
+        "team": "ATL",
+        "opponent": "TB",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0033589",
+        "name": "David Moore",
+        "team": "CAR",
+        "opponent": "JAX",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0033591",
+        "name": "Noah Brown",
+        "team": "WAS",
+        "opponent": "NYG",
+        "recYds": 27,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0033857",
+        "name": "JuJu Smith-Schuster",
+        "team": "KC",
+        "opponent": "LAC",
+        "recYds": 55,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0033891",
+        "name": "Zay Jones",
+        "team": "ARI",
+        "opponent": "NO",
+        "recYds": 4,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0033908",
+        "name": "Cooper Kupp",
+        "team": "SEA",
+        "opponent": "SF",
+        "recYds": 15,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0033943",
+        "name": "Josh Reynolds",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "recYds": 18,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0034348",
+        "name": "Courtland Sutton",
+        "team": "DEN",
+        "opponent": "TEN",
+        "recYds": 61,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0034386",
+        "name": "Justin Watson",
+        "team": "HOU",
+        "opponent": "LA",
+        "recYds": 27,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0034407",
+        "name": "Ray-Ray McCloud",
+        "team": "ATL",
+        "opponent": "TB",
+        "recYds": 51,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0034487",
+        "name": "Trent Sherfield",
+        "team": "DEN",
+        "opponent": "TEN",
+        "recYds": 3,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0034827",
+        "name": "DJ Moore",
+        "team": "CHI",
+        "opponent": "MIN",
+        "recYds": 68,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0034837",
+        "name": "Calvin Ridley",
+        "team": "TEN",
+        "opponent": "DEN",
+        "recYds": 27,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0034854",
+        "name": "KhaDarel Hodge",
+        "team": "ATL",
+        "opponent": "TB",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0034960",
+        "name": "Jakobi Meyers",
+        "team": "LV",
+        "opponent": "NE",
+        "recYds": 97,
+        "receptions": 8
+      },
+      {
+        "playerId": "00-0034983",
+        "name": "Hunter Renfrow",
+        "team": "CAR",
+        "opponent": "JAX",
+        "recYds": 11,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0035021",
+        "name": "Ashton Dulin",
+        "team": "IND",
+        "opponent": "MIA",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0035208",
+        "name": "Olamide Zaccheaus",
+        "team": "CHI",
+        "opponent": "MIN",
+        "recYds": 42,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0035500",
+        "name": "Greg Dortch",
+        "team": "ARI",
+        "opponent": "NO",
+        "recYds": -2,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0035535",
+        "name": "Darius Slayton",
+        "team": "NYG",
+        "opponent": "WAS",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0035602",
+        "name": "Alex Bachman",
+        "team": "LV",
+        "opponent": "NE",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0035640",
+        "name": "DK Metcalf",
+        "team": "PIT",
+        "opponent": "NYJ",
+        "recYds": 83,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0035645",
+        "name": "Gunner Olszewski",
+        "team": "NYG",
+        "opponent": "WAS",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0035659",
+        "name": "Terry McLaurin",
+        "team": "WAS",
+        "opponent": "NYG",
+        "recYds": 27,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0035662",
+        "name": "Marquise Brown",
+        "team": "KC",
+        "opponent": "LAC",
+        "recYds": 99,
+        "receptions": 10
+      },
+      {
+        "playerId": "00-0035676",
+        "name": "A.J. Brown",
+        "team": "PHI",
+        "opponent": "DAL",
+        "recYds": 8,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0035719",
+        "name": "Deebo Samuel Sr.",
+        "team": "WAS",
+        "opponent": "NYG",
+        "recYds": 77,
+        "receptions": 7
+      },
+      {
+        "playerId": "00-0035891",
+        "name": "Cody White",
+        "team": "SEA",
+        "opponent": "SF",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0036182",
+        "name": "Nick Westbrook-Ikhine",
+        "team": "MIA",
+        "opponent": "IND",
+        "recYds": 7,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0036252",
+        "name": "Michael Pittman",
+        "team": "IND",
+        "opponent": "MIA",
+        "recYds": 80,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0036259",
+        "name": "Jauan Jennings",
+        "team": "SF",
+        "opponent": "SEA",
+        "recYds": 16,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0036322",
+        "name": "Justin Jefferson",
+        "team": "MIN",
+        "opponent": "CHI",
+        "recYds": 44,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0036331",
+        "name": "Devin Duvernay",
+        "team": "CHI",
+        "opponent": "MIN",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0036358",
+        "name": "CeeDee Lamb",
+        "team": "DAL",
+        "opponent": "PHI",
+        "recYds": 110,
+        "receptions": 7
+      },
+      {
+        "playerId": "00-0036407",
+        "name": "Jerry Jeudy",
+        "team": "CLE",
+        "opponent": "CIN",
+        "recYds": 66,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0036410",
+        "name": "Tee Higgins",
+        "team": "CIN",
+        "opponent": "CLE",
+        "recYds": 33,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0036427",
+        "name": "Tyler Johnson",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "recYds": 31,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0036550",
+        "name": "Rashod Bateman",
+        "team": "BAL",
+        "opponent": "BUF",
+        "recYds": 10,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0036554",
+        "name": "Nico Collins",
+        "team": "HOU",
+        "opponent": "LA",
+        "recYds": 25,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0036613",
+        "name": "Jaylen Waddle",
+        "team": "MIA",
+        "opponent": "IND",
+        "recYds": 30,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0036620",
+        "name": "Dee Eskridge",
+        "team": "MIA",
+        "opponent": "IND",
+        "recYds": 9,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0036626",
+        "name": "Dyami Brown",
+        "team": "JAX",
+        "opponent": "CAR",
+        "recYds": 52,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0036630",
+        "name": "Tylan Wallace",
+        "team": "BAL",
+        "opponent": "BUF",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0036849",
+        "name": "Tutu Atwell",
+        "team": "LA",
+        "opponent": "HOU",
+        "recYds": 4,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0036862",
+        "name": "Ben Skowronek",
+        "team": "PIT",
+        "opponent": "NYJ",
+        "recYds": 22,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0036900",
+        "name": "Ja'Marr Chase",
+        "team": "CIN",
+        "opponent": "CLE",
+        "recYds": 26,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0036912",
+        "name": "DeVonta Smith",
+        "team": "PHI",
+        "opponent": "DAL",
+        "recYds": 16,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0036963",
+        "name": "Amon-Ra St. Brown",
+        "team": "DET",
+        "opponent": "GB",
+        "recYds": 45,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0036980",
+        "name": "Elijah Moore",
+        "team": "BUF",
+        "opponent": "BAL",
+        "recYds": 3,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0036988",
+        "name": "Josh Palmer",
+        "team": "BUF",
+        "opponent": "BAL",
+        "recYds": 61,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0037091",
+        "name": "Bo Melton",
+        "team": "GB",
+        "opponent": "DET",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0037238",
+        "name": "Drake London",
+        "team": "ATL",
+        "opponent": "TB",
+        "recYds": 55,
+        "receptions": 8
+      },
+      {
+        "playerId": "00-0037239",
+        "name": "Chris Olave",
+        "team": "NO",
+        "opponent": "ARI",
+        "recYds": 54,
+        "receptions": 7
+      },
+      {
+        "playerId": "00-0037240",
+        "name": "Jameson Williams",
+        "team": "DET",
+        "opponent": "GB",
+        "recYds": 23,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0037247",
+        "name": "George Pickens",
+        "team": "DAL",
+        "opponent": "PHI",
+        "recYds": 30,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0037261",
+        "name": "Khalil Shakir",
+        "team": "BUF",
+        "opponent": "BAL",
+        "recYds": 64,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0037291",
+        "name": "Jalen Nailor",
+        "team": "MIN",
+        "opponent": "CHI",
+        "recYds": 28,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0037545",
+        "name": "Rashid Shaheed",
+        "team": "NO",
+        "opponent": "ARI",
+        "recYds": 33,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0037614",
+        "name": "John Metchie III",
+        "team": "PHI",
+        "opponent": "DAL",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0037664",
+        "name": "Alec Pierce",
+        "team": "IND",
+        "opponent": "MIA",
+        "recYds": 36,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0037666",
+        "name": "Jalen Tolbert",
+        "team": "DAL",
+        "opponent": "PHI",
+        "recYds": 0,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0037740",
+        "name": "Garrett Wilson",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "recYds": 95,
+        "receptions": 7
+      },
+      {
+        "playerId": "00-0037741",
+        "name": "Jahan Dotson",
+        "team": "PHI",
+        "opponent": "DAL",
+        "recYds": 59,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0037745",
+        "name": "Velus Jones Jr.",
+        "team": "NO",
+        "opponent": "ARI",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0037801",
+        "name": "KaVontae Turpin",
+        "team": "DAL",
+        "opponent": "PHI",
+        "recYds": 18,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0037816",
+        "name": "Romeo Doubs",
+        "team": "GB",
+        "opponent": "DET",
+        "recYds": 68,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0037837",
+        "name": "Calvin Austin III",
+        "team": "PIT",
+        "opponent": "NYJ",
+        "recYds": 70,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0038090",
+        "name": "Skyy Moore",
+        "team": "SF",
+        "opponent": "SEA",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038104",
+        "name": "Tyquan Thornton",
+        "team": "KC",
+        "opponent": "LAC",
+        "recYds": 41,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0038117",
+        "name": "Wan'Dale Robinson",
+        "team": "NYG",
+        "opponent": "WAS",
+        "recYds": 55,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0038359",
+        "name": "Xavier Smith",
+        "team": "LA",
+        "opponent": "HOU",
+        "recYds": 36,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0038393",
+        "name": "Dontayvion Wicks",
+        "team": "GB",
+        "opponent": "DET",
+        "recYds": 30,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0038492",
+        "name": "Jason Brownlee",
+        "team": "KC",
+        "opponent": "LAC",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038496",
+        "name": "Xavier Gipson",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038519",
+        "name": "Nikko Remigio",
+        "team": "KC",
+        "opponent": "LAC",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038543",
+        "name": "Jaxon Smith-Njigba",
+        "team": "SEA",
+        "opponent": "SF",
+        "recYds": 124,
+        "receptions": 9
+      },
+      {
+        "playerId": "00-0038544",
+        "name": "Quentin Johnston",
+        "team": "LAC",
+        "opponent": "KC",
+        "recYds": 79,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0038559",
+        "name": "Michael Wilson",
+        "team": "ARI",
+        "opponent": "NO",
+        "recYds": 5,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0038563",
+        "name": "Tre Tucker",
+        "team": "LV",
+        "opponent": "NE",
+        "recYds": 54,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0038573",
+        "name": "Derius Davis",
+        "team": "LAC",
+        "opponent": "KC",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038576",
+        "name": "Charlie Jones",
+        "team": "CIN",
+        "opponent": "CLE",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038606",
+        "name": "Parker Washington",
+        "team": "JAX",
+        "opponent": "CAR",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038608",
+        "name": "Kayshon Boutte",
+        "team": "NE",
+        "opponent": "LV",
+        "recYds": 103,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0038618",
+        "name": "Xavier Hutchinson",
+        "team": "HOU",
+        "opponent": "LA",
+        "recYds": 30,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0038621",
+        "name": "DeMario Douglas",
+        "team": "NE",
+        "opponent": "LV",
+        "recYds": -2,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0038824",
+        "name": "Ryan Miller",
+        "team": "TB",
+        "opponent": "ATL",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038840",
+        "name": "Brycen Tremayne",
+        "team": "CAR",
+        "opponent": "JAX",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0038976",
+        "name": "Marvin Mims Jr.",
+        "team": "DEN",
+        "opponent": "TEN",
+        "recYds": 12,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0038979",
+        "name": "Cedric Tillman",
+        "team": "CLE",
+        "opponent": "CIN",
+        "recYds": 52,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0038997",
+        "name": "Josh Downs",
+        "team": "IND",
+        "opponent": "MIA",
+        "recYds": 12,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0039064",
+        "name": "Zay Flowers",
+        "team": "BAL",
+        "opponent": "BUF",
+        "recYds": 143,
+        "receptions": 7
+      },
+      {
+        "playerId": "00-0039075",
+        "name": "Puka Nacua",
+        "team": "LA",
+        "opponent": "HOU",
+        "recYds": 130,
+        "receptions": 10
+      },
+      {
+        "playerId": "00-0039146",
+        "name": "Jayden Reed",
+        "team": "GB",
+        "opponent": "DET",
+        "recYds": 45,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0039337",
+        "name": "Malik Nabers",
+        "team": "NYG",
+        "opponent": "WAS",
+        "recYds": 71,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0039342",
+        "name": "Xavier Legette",
+        "team": "CAR",
+        "opponent": "JAX",
+        "recYds": 10,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0039355",
+        "name": "Luke McCaffrey",
+        "team": "WAS",
+        "opponent": "NYG",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0039379",
+        "name": "Jamari Thrash",
+        "team": "CLE",
+        "opponent": "CIN",
+        "recYds": 6,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0039394",
+        "name": "Casey Washington",
+        "team": "ATL",
+        "opponent": "TB",
+        "recYds": 33,
+        "receptions": 3
+      },
+      {
+        "playerId": "00-0039424",
+        "name": "Devaughn Vele",
+        "team": "NO",
+        "opponent": "ARI",
+        "recYds": 13,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0039589",
+        "name": "Kameron Johnson",
+        "team": "TB",
+        "opponent": "ATL",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0039650",
+        "name": "Bryce Oliver",
+        "team": "TEN",
+        "opponent": "DEN",
+        "recYds": 8,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0039751",
+        "name": "Jordan Whittington",
+        "team": "LA",
+        "opponent": "HOU",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0039816",
+        "name": "Anthony Gould",
+        "team": "IND",
+        "opponent": "MIA",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0039849",
+        "name": "Marvin Harrison Jr.",
+        "team": "ARI",
+        "opponent": "NO",
+        "recYds": 71,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0039868",
+        "name": "Troy Franklin",
+        "team": "DEN",
+        "opponent": "TEN",
+        "recYds": 44,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0039880",
+        "name": "Malik Washington",
+        "team": "MIA",
+        "opponent": "IND",
+        "recYds": 20,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0039890",
+        "name": "Adonai Mitchell",
+        "team": "IND",
+        "opponent": "MIA",
+        "recYds": 21,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0039893",
+        "name": "Brian Thomas Jr.",
+        "team": "JAX",
+        "opponent": "CAR",
+        "recYds": 11,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0039894",
+        "name": "Xavier Worthy",
+        "team": "KC",
+        "opponent": "LAC",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0039901",
+        "name": "Keon Coleman",
+        "team": "BUF",
+        "opponent": "BAL",
+        "recYds": 112,
+        "receptions": 8
+      },
+      {
+        "playerId": "00-0039915",
+        "name": "Ladd McConkey",
+        "team": "LAC",
+        "opponent": "KC",
+        "recYds": 74,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0039916",
+        "name": "Ricky Pearsall",
+        "team": "SF",
+        "opponent": "SEA",
+        "recYds": 108,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0039919",
+        "name": "Rome Odunze",
+        "team": "CHI",
+        "opponent": "MIN",
+        "recYds": 37,
+        "receptions": 6
+      },
+      {
+        "playerId": "00-0040009",
+        "name": "Savion Williams",
+        "team": "GB",
+        "opponent": "DET",
+        "recYds": 1,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040075",
+        "name": "LaJohntay Wester",
+        "team": "BAL",
+        "opponent": "BUF",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040124",
+        "name": "Tetairoa McMillan",
+        "team": "CAR",
+        "opponent": "JAX",
+        "recYds": 68,
+        "receptions": 5
+      },
+      {
+        "playerId": "00-0040129",
+        "name": "Emeka Egbuka",
+        "team": "TB",
+        "opponent": "ATL",
+        "recYds": 67,
+        "receptions": 4
+      },
+      {
+        "playerId": "00-0040130",
+        "name": "Jayden Higgins",
+        "team": "HOU",
+        "opponent": "LA",
+        "recYds": 32,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0040131",
+        "name": "Kyle Williams",
+        "team": "NE",
+        "opponent": "LV",
+        "recYds": 12,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040138",
+        "name": "Jaylin Noel",
+        "team": "HOU",
+        "opponent": "LA",
+        "recYds": 7,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040154",
+        "name": "Tai Felton",
+        "team": "MIN",
+        "opponent": "CHI",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040164",
+        "name": "Jaylin Lane",
+        "team": "WAS",
+        "opponent": "NYG",
+        "recYds": 11,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040170",
+        "name": "Elic Ayomanor",
+        "team": "TEN",
+        "opponent": "DEN",
+        "recYds": 13,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0040184",
+        "name": "KeAndre Lambert-Smith",
+        "team": "LAC",
+        "opponent": "KC",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040237",
+        "name": "Tez Johnson",
+        "team": "TB",
+        "opponent": "ATL",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040506",
+        "name": "Myles Price",
+        "team": "MIN",
+        "opponent": "CHI",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040581",
+        "name": "Dont'e Thornton Jr.",
+        "team": "LV",
+        "opponent": "NE",
+        "recYds": 45,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0040582",
+        "name": "Arian Smith",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040648",
+        "name": "Tory Horton",
+        "team": "SEA",
+        "opponent": "SF",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040667",
+        "name": "Matthew Golden",
+        "team": "GB",
+        "opponent": "DET",
+        "recYds": 16,
+        "receptions": 2
+      },
+      {
+        "playerId": "00-0040669",
+        "name": "Isaac TeSlaa",
+        "team": "DET",
+        "opponent": "GB",
+        "recYds": 13,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040705",
+        "name": "Chimere Dike",
+        "team": "TEN",
+        "opponent": "DEN",
+        "recYds": 0,
+        "receptions": 0
+      },
+      {
+        "playerId": "00-0040727",
+        "name": "Tre Harris",
+        "team": "LAC",
+        "opponent": "KC",
+        "recYds": 11,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040729",
+        "name": "Jack Bech",
+        "team": "LV",
+        "opponent": "NE",
+        "recYds": 23,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040735",
+        "name": "Luther Burden III",
+        "team": "CHI",
+        "opponent": "MIN",
+        "recYds": -3,
+        "receptions": 1
+      },
+      {
+        "playerId": "00-0040782",
+        "name": "Isaiah Bond",
+        "team": "CLE",
+        "opponent": "CIN",
+        "recYds": 5,
+        "receptions": 1
+      }
+    ],
+    "rogue": [
+      {
+        "playerId": "00-0032764",
+        "name": "Derrick Henry",
+        "team": "BAL",
+        "opponent": "BUF",
+        "rushYds": 169,
+        "rushTd": 2,
+        "carries": 18
+      },
+      {
+        "playerId": "00-0033280",
+        "name": "Christian McCaffrey",
+        "team": "SF",
+        "opponent": "SEA",
+        "rushYds": 69,
+        "rushTd": 0,
+        "carries": 22
+      },
+      {
+        "playerId": "00-0033293",
+        "name": "Aaron Jones",
+        "team": "MIN",
+        "opponent": "CHI",
+        "rushYds": 23,
+        "rushTd": 0,
+        "carries": 8
+      },
+      {
+        "playerId": "00-0033526",
+        "name": "Samaje Perine",
+        "team": "CIN",
+        "opponent": "CLE",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0033553",
+        "name": "James Conner",
+        "team": "ARI",
+        "opponent": "NO",
+        "rushYds": 39,
+        "rushTd": 0,
+        "carries": 12
+      },
+      {
+        "playerId": "00-0033699",
+        "name": "Austin Ekeler",
+        "team": "WAS",
+        "opponent": "NYG",
+        "rushYds": 26,
+        "rushTd": 0,
+        "carries": 6
+      },
+      {
+        "playerId": "00-0033854",
+        "name": "Dare Ogunbowale",
+        "team": "HOU",
+        "opponent": "LA",
+        "rushYds": 9,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0033906",
+        "name": "Alvin Kamara",
+        "team": "NO",
+        "opponent": "ARI",
+        "rushYds": 45,
+        "rushTd": 1,
+        "carries": 11
+      },
+      {
+        "playerId": "00-0033923",
+        "name": "Kareem Hunt",
+        "team": "KC",
+        "opponent": "LAC",
+        "rushYds": 16,
+        "rushTd": 0,
+        "carries": 5
+      },
+      {
+        "playerId": "00-0033955",
+        "name": "Jeremy McNichols",
+        "team": "WAS",
+        "opponent": "NYG",
+        "rushYds": 25,
+        "rushTd": 0,
+        "carries": 4
+      },
+      {
+        "playerId": "00-0034791",
+        "name": "Nick Chubb",
+        "team": "HOU",
+        "opponent": "LA",
+        "rushYds": 60,
+        "rushTd": 0,
+        "carries": 13
+      },
+      {
+        "playerId": "00-0034844",
+        "name": "Saquon Barkley",
+        "team": "PHI",
+        "opponent": "DAL",
+        "rushYds": 60,
+        "rushTd": 1,
+        "carries": 18
+      },
+      {
+        "playerId": "00-0034975",
+        "name": "Justice Hill",
+        "team": "BAL",
+        "opponent": "BUF",
+        "rushYds": -14,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0035243",
+        "name": "Miles Sanders",
+        "team": "DAL",
+        "opponent": "PHI",
+        "rushYds": 53,
+        "rushTd": 0,
+        "carries": 4
+      },
+      {
+        "playerId": "00-0035250",
+        "name": "Devin Singletary",
+        "team": "NYG",
+        "opponent": "WAS",
+        "rushYds": 9,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0035261",
+        "name": "Tony Pollard",
+        "team": "TEN",
+        "opponent": "DEN",
+        "rushYds": 60,
+        "rushTd": 0,
+        "carries": 18
+      },
+      {
+        "playerId": "00-0035537",
+        "name": "Ty Johnson",
+        "team": "BUF",
+        "opponent": "BAL",
+        "rushYds": 24,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0035567",
+        "name": "Craig Reynolds",
+        "team": "DET",
+        "opponent": "GB",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0035685",
+        "name": "David Montgomery",
+        "team": "DET",
+        "opponent": "GB",
+        "rushYds": 25,
+        "rushTd": 0,
+        "carries": 11
+      },
+      {
+        "playerId": "00-0035700",
+        "name": "Josh Jacobs",
+        "team": "GB",
+        "opponent": "DET",
+        "rushYds": 66,
+        "rushTd": 1,
+        "carries": 19
+      },
+      {
+        "playerId": "00-0036139",
+        "name": "Rico Dowdle",
+        "team": "CAR",
+        "opponent": "JAX",
+        "rushYds": 12,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0036158",
+        "name": "J.K. Dobbins",
+        "team": "DEN",
+        "opponent": "TEN",
+        "rushYds": 63,
+        "rushTd": 1,
+        "carries": 16
+      },
+      {
+        "playerId": "00-0036223",
+        "name": "Jonathan Taylor",
+        "team": "IND",
+        "opponent": "MIA",
+        "rushYds": 71,
+        "rushTd": 0,
+        "carries": 18
+      },
+      {
+        "playerId": "00-0036265",
+        "name": "AJ Dillon",
+        "team": "PHI",
+        "opponent": "DAL",
+        "rushYds": 10,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0036275",
+        "name": "D'Andre Swift",
+        "team": "CHI",
+        "opponent": "MIN",
+        "rushYds": 53,
+        "rushTd": 0,
+        "carries": 17
+      },
+      {
+        "playerId": "00-0036328",
+        "name": "Antonio Gibson",
+        "team": "NE",
+        "opponent": "LV",
+        "rushYds": 3,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0036555",
+        "name": "Chuba Hubbard",
+        "team": "CAR",
+        "opponent": "JAX",
+        "rushYds": 57,
+        "rushTd": 0,
+        "carries": 16
+      },
+      {
+        "playerId": "00-0036842",
+        "name": "Kene Nwangwu",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0036875",
+        "name": "Rhamondre Stevenson",
+        "team": "NE",
+        "opponent": "LV",
+        "rushYds": 15,
+        "rushTd": 0,
+        "carries": 7
+      },
+      {
+        "playerId": "00-0036893",
+        "name": "Najee Harris",
+        "team": "LAC",
+        "opponent": "KC",
+        "rushYds": 5,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0036919",
+        "name": "Kenny Gainwell",
+        "team": "PIT",
+        "opponent": "NYJ",
+        "rushYds": 19,
+        "rushTd": 0,
+        "carries": 7
+      },
+      {
+        "playerId": "00-0036973",
+        "name": "Travis Etienne",
+        "team": "JAX",
+        "opponent": "CAR",
+        "rushYds": 143,
+        "rushTd": 0,
+        "carries": 16
+      },
+      {
+        "playerId": "00-0036997",
+        "name": "Javonte Williams",
+        "team": "DAL",
+        "opponent": "PHI",
+        "rushYds": 54,
+        "rushTd": 2,
+        "carries": 15
+      },
+      {
+        "playerId": "00-0037085",
+        "name": "Tyler Badie",
+        "team": "DEN",
+        "opponent": "TEN",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0037197",
+        "name": "Isiah Pacheco",
+        "team": "KC",
+        "opponent": "LAC",
+        "rushYds": 25,
+        "rushTd": 0,
+        "carries": 5
+      },
+      {
+        "playerId": "00-0037228",
+        "name": "Jaylen Warren",
+        "team": "PIT",
+        "opponent": "NYJ",
+        "rushYds": 37,
+        "rushTd": 0,
+        "carries": 11
+      },
+      {
+        "playerId": "00-0037248",
+        "name": "James Cook",
+        "team": "BUF",
+        "opponent": "BAL",
+        "rushYds": 44,
+        "rushTd": 1,
+        "carries": 13
+      },
+      {
+        "playerId": "00-0037256",
+        "name": "Rachaad White",
+        "team": "TB",
+        "opponent": "ATL",
+        "rushYds": 14,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0037258",
+        "name": "Dameon Pierce",
+        "team": "HOU",
+        "opponent": "LA",
+        "rushYds": 5,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0037263",
+        "name": "Tyler Allgeier",
+        "team": "ATL",
+        "opponent": "TB",
+        "rushYds": 24,
+        "rushTd": 0,
+        "carries": 10
+      },
+      {
+        "playerId": "00-0037267",
+        "name": "Jerome Ford",
+        "team": "CLE",
+        "opponent": "CIN",
+        "rushYds": 8,
+        "rushTd": 0,
+        "carries": 6
+      },
+      {
+        "playerId": "00-0037276",
+        "name": "Ty Chandler",
+        "team": "MIN",
+        "opponent": "CHI",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0037525",
+        "name": "Jordan Mason",
+        "team": "MIN",
+        "opponent": "CHI",
+        "rushYds": 68,
+        "rushTd": 0,
+        "carries": 15
+      },
+      {
+        "playerId": "00-0037594",
+        "name": "Julius Chestnut",
+        "team": "TEN",
+        "opponent": "DEN",
+        "rushYds": 2,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0037617",
+        "name": "Hassan Haskins",
+        "team": "LAC",
+        "opponent": "KC",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0037746",
+        "name": "Brian Robinson",
+        "team": "SF",
+        "opponent": "SEA",
+        "rushYds": 33,
+        "rushTd": 0,
+        "carries": 9
+      },
+      {
+        "playerId": "00-0037840",
+        "name": "Kyren Williams",
+        "team": "LA",
+        "opponent": "HOU",
+        "rushYds": 66,
+        "rushTd": 1,
+        "carries": 18
+      },
+      {
+        "playerId": "00-0038040",
+        "name": "Zamir White",
+        "team": "LV",
+        "opponent": "NE",
+        "rushYds": 8,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0038120",
+        "name": "Breece Hall",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "rushYds": 107,
+        "rushTd": 0,
+        "carries": 19
+      },
+      {
+        "playerId": "00-0038134",
+        "name": "Kenneth Walker III",
+        "team": "SEA",
+        "opponent": "SF",
+        "rushYds": 20,
+        "rushTd": 0,
+        "carries": 10
+      },
+      {
+        "playerId": "00-0038488",
+        "name": "Brady Russell",
+        "team": "SEA",
+        "opponent": "SF",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0038542",
+        "name": "Bijan Robinson",
+        "team": "ATL",
+        "opponent": "TB",
+        "rushYds": 24,
+        "rushTd": 0,
+        "carries": 12
+      },
+      {
+        "playerId": "00-0038551",
+        "name": "Kendre Miller",
+        "team": "NO",
+        "opponent": "ARI",
+        "rushYds": 24,
+        "rushTd": 0,
+        "carries": 5
+      },
+      {
+        "playerId": "00-0038555",
+        "name": "Tank Bigsby",
+        "team": "JAX",
+        "opponent": "CAR",
+        "rushYds": 12,
+        "rushTd": 0,
+        "carries": 5
+      },
+      {
+        "playerId": "00-0038597",
+        "name": "Chase Brown",
+        "team": "CIN",
+        "opponent": "CLE",
+        "rushYds": 43,
+        "rushTd": 1,
+        "carries": 21
+      },
+      {
+        "playerId": "00-0038685",
+        "name": "Chris Brooks",
+        "team": "GB",
+        "opponent": "DET",
+        "rushYds": 1,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0038705",
+        "name": "Emari Demercado",
+        "team": "ARI",
+        "opponent": "NO",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0038797",
+        "name": "Emanuel Wilson",
+        "team": "GB",
+        "opponent": "DET",
+        "rushYds": 4,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0038896",
+        "name": "Jacob Saylors",
+        "team": "DET",
+        "opponent": "GB",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0038951",
+        "name": "Sean Tucker",
+        "team": "TB",
+        "opponent": "ATL",
+        "rushYds": 2,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0039040",
+        "name": "De'Von Achane",
+        "team": "MIA",
+        "opponent": "IND",
+        "rushYds": 55,
+        "rushTd": 0,
+        "carries": 7
+      },
+      {
+        "playerId": "00-0039139",
+        "name": "Jahmyr Gibbs",
+        "team": "DET",
+        "opponent": "GB",
+        "rushYds": 19,
+        "rushTd": 0,
+        "carries": 9
+      },
+      {
+        "playerId": "00-0039165",
+        "name": "Zach Charbonnet",
+        "team": "SEA",
+        "opponent": "SF",
+        "rushYds": 47,
+        "rushTd": 1,
+        "carries": 12
+      },
+      {
+        "playerId": "00-0039299",
+        "name": "George Holani",
+        "team": "SEA",
+        "opponent": "SF",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0039361",
+        "name": "Bucky Irving",
+        "team": "TB",
+        "opponent": "ATL",
+        "rushYds": 37,
+        "rushTd": 0,
+        "carries": 14
+      },
+      {
+        "playerId": "00-0039363",
+        "name": "Isaac Guerendo",
+        "team": "SF",
+        "opponent": "SEA",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0039384",
+        "name": "Tyrone Tracy Jr.",
+        "team": "NYG",
+        "opponent": "WAS",
+        "rushYds": 24,
+        "rushTd": 0,
+        "carries": 10
+      },
+      {
+        "playerId": "00-0039407",
+        "name": "Dylan Laube",
+        "team": "LV",
+        "opponent": "NE",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0039738",
+        "name": "Blake Corum",
+        "team": "LA",
+        "opponent": "HOU",
+        "rushYds": 2,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0039746",
+        "name": "Will Shipley",
+        "team": "PHI",
+        "opponent": "DAL",
+        "rushYds": 26,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0039794",
+        "name": "Braelon Allen",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "rushYds": 9,
+        "rushTd": 1,
+        "carries": 6
+      },
+      {
+        "playerId": "00-0039796",
+        "name": "Rasheen Ali",
+        "team": "BAL",
+        "opponent": "BUF",
+        "rushYds": 5,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0039798",
+        "name": "Isaiah Davis",
+        "team": "NYJ",
+        "opponent": "PIT",
+        "rushYds": 18,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0039875",
+        "name": "Ray Davis",
+        "team": "BUF",
+        "opponent": "BAL",
+        "rushYds": 2,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0039921",
+        "name": "Trey Benson",
+        "team": "ARI",
+        "opponent": "NO",
+        "rushYds": 69,
+        "rushTd": 0,
+        "carries": 8
+      },
+      {
+        "playerId": "00-0040078",
+        "name": "Brashard Smith",
+        "team": "KC",
+        "opponent": "LAC",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0040122",
+        "name": "Ashton Jeanty",
+        "team": "LV",
+        "opponent": "NE",
+        "rushYds": 38,
+        "rushTd": 1,
+        "carries": 19
+      },
+      {
+        "playerId": "00-0040142",
+        "name": "Kaleb Johnson",
+        "team": "PIT",
+        "opponent": "NYJ",
+        "rushYds": -2,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0040162",
+        "name": "Dylan Sampson",
+        "team": "CLE",
+        "opponent": "CIN",
+        "rushYds": 29,
+        "rushTd": 0,
+        "carries": 12
+      },
+      {
+        "playerId": "00-0040179",
+        "name": "DJ Giddens",
+        "team": "IND",
+        "opponent": "MIA",
+        "rushYds": 41,
+        "rushTd": 0,
+        "carries": 12
+      },
+      {
+        "playerId": "00-0040198",
+        "name": "Ollie Gordon II",
+        "team": "MIA",
+        "opponent": "IND",
+        "rushYds": 4,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0040202",
+        "name": "Devin Neal",
+        "team": "NO",
+        "opponent": "ARI",
+        "rushYds": 9,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0040208",
+        "name": "Tahj Brooks",
+        "team": "CIN",
+        "opponent": "CLE",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0040236",
+        "name": "Kyle Monangai",
+        "team": "CHI",
+        "opponent": "MIN",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 0
+      },
+      {
+        "playerId": "00-0040238",
+        "name": "LeQuint Allen Jr.",
+        "team": "JAX",
+        "opponent": "CAR",
+        "rushYds": 7,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0040242",
+        "name": "Jacory Croskey-Merritt",
+        "team": "WAS",
+        "opponent": "NYG",
+        "rushYds": 82,
+        "rushTd": 1,
+        "carries": 10
+      },
+      {
+        "playerId": "00-0040466",
+        "name": "Raheim Sanders",
+        "team": "CLE",
+        "opponent": "CIN",
+        "rushYds": 3,
+        "rushTd": 1,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0040476",
+        "name": "Ulysses Bentley IV",
+        "team": "IND",
+        "opponent": "MIA",
+        "rushYds": 0,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0040583",
+        "name": "Woody Marks",
+        "team": "HOU",
+        "opponent": "LA",
+        "rushYds": 3,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0040644",
+        "name": "Trevor Etienne",
+        "team": "CAR",
+        "opponent": "JAX",
+        "rushYds": 4,
+        "rushTd": 0,
+        "carries": 1
+      },
+      {
+        "playerId": "00-0040666",
+        "name": "Omarion Hampton",
+        "team": "LAC",
+        "opponent": "KC",
+        "rushYds": 48,
+        "rushTd": 0,
+        "carries": 15
+      },
+      {
+        "playerId": "00-0040715",
+        "name": "Cam Skattebo",
+        "team": "NYG",
+        "opponent": "WAS",
+        "rushYds": -3,
+        "rushTd": 0,
+        "carries": 2
+      },
+      {
+        "playerId": "00-0040719",
+        "name": "Bhayshul Tuten",
+        "team": "JAX",
+        "opponent": "CAR",
+        "rushYds": 11,
+        "rushTd": 0,
+        "carries": 3
+      },
+      {
+        "playerId": "00-0040730",
+        "name": "RJ Harvey",
+        "team": "DEN",
+        "opponent": "TEN",
+        "rushYds": 70,
+        "rushTd": 0,
+        "carries": 6
+      },
+      {
+        "playerId": "00-0040734",
+        "name": "TreVeyon Henderson",
+        "team": "NE",
+        "opponent": "LV",
+        "rushYds": 27,
+        "rushTd": 0,
+        "carries": 5
+      }
+    ],
+    "breaker": [
+      {
+        "playerId": "00-0026190",
+        "name": "Calais Campbell",
+        "team": "ARI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0027969",
+        "name": "Cameron Heyward",
+        "team": "PIT",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0030757",
+        "name": "Mike Pennel",
+        "team": "CIN",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0031054",
+        "name": "DaQuan Jones",
+        "team": "BUF",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0031270",
+        "name": "Shelby Harris",
+        "team": "CLE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0031551",
+        "name": "Eddie Goldman",
+        "team": "WAS",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0031565",
+        "name": "Danielle Hunter",
+        "team": "HOU",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0031583",
+        "name": "Grady Jarrett",
+        "team": "CHI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0031933",
+        "name": "Leonard Williams",
+        "team": "SEA",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0031957",
+        "name": "Rakeem Nunez-Roches",
+        "team": "NYG",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032052",
+        "name": "Dante Fowler Jr.",
+        "team": "DAL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032164",
+        "name": "Arik Armstead",
+        "team": "JAX",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032378",
+        "name": "DeForest Buckner",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032387",
+        "name": "Jarran Reed",
+        "team": "SEA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032667",
+        "name": "Roy Robertson-Harris",
+        "team": "NYG",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032759",
+        "name": "Sheldon Rankins",
+        "team": "HOU",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032762",
+        "name": "Chris Jones",
+        "team": "KC",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032763",
+        "name": "Austin Johnson",
+        "team": "JAX",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032889",
+        "name": "A'Shawn Robinson",
+        "team": "CAR",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033073",
+        "name": "Emmanuel Ogbah",
+        "team": "JAX",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033109",
+        "name": "Javon Hargrave",
+        "team": "MIN",
+        "sacks": 2,
+        "tfl": 2
+      },
+      {
+        "playerId": "00-0033120",
+        "name": "Kenny Clark",
+        "team": "DAL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033156",
+        "name": "Joey Bosa",
+        "team": "BUF",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033297",
+        "name": "D.J. Jones",
+        "team": "DEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033381",
+        "name": "Adam Butler",
+        "team": "LV",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033523",
+        "name": "Jonathan Allen",
+        "team": "MIN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033860",
+        "name": "Davon Godchaux",
+        "team": "NO",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033868",
+        "name": "Myles Garrett",
+        "team": "CLE",
+        "sacks": 2,
+        "tfl": 4
+      },
+      {
+        "playerId": "00-0033870",
+        "name": "Solomon Thomas",
+        "team": "DAL",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0033876",
+        "name": "Derek Barnett",
+        "team": "HOU",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0033902",
+        "name": "Tanoh Kpassagnon",
+        "team": "CHI",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0033907",
+        "name": "Dawuane Smoot",
+        "team": "JAX",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0033945",
+        "name": "Samson Ebukam",
+        "team": "IND",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0033947",
+        "name": "Deatrich Wise",
+        "team": "WAS",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0033952",
+        "name": "Grover Stewart",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034163",
+        "name": "Jacob Martin",
+        "team": "WAS",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034234",
+        "name": "Poona Ford",
+        "team": "LA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034251",
+        "name": "Daniel Ekuale",
+        "team": "PIT",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034275",
+        "name": "Foley Fatukasi",
+        "team": "HOU",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0034285",
+        "name": "Zach Sieler",
+        "team": "MIA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034333",
+        "name": "Daron Payne",
+        "team": "WAS",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0034344",
+        "name": "Marcus Davenport",
+        "team": "DET",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034359",
+        "name": "Tyquan Lewis",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034371",
+        "name": "Da'Shawn Hand",
+        "team": "LAC",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0034373",
+        "name": "Dorance Armstrong",
+        "team": "WAS",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0034397",
+        "name": "Tim Settle",
+        "team": "HOU",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034760",
+        "name": "Nathan Shepherd",
+        "team": "NO",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034773",
+        "name": "Vita Vea",
+        "team": "TB",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034782",
+        "name": "Harrison Phillips",
+        "team": "NYJ",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034800",
+        "name": "B.J. Hill",
+        "team": "CIN",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0034805",
+        "name": "John Franklin-Myers",
+        "team": "DEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034810",
+        "name": "Sebastian Joseph-Day",
+        "team": "TEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034818",
+        "name": "Derrick Nnadi",
+        "team": "KC",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034825",
+        "name": "Arden Key",
+        "team": "TEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034973",
+        "name": "Maxx Crosby",
+        "team": "LV",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0035230",
+        "name": "Ed Oliver",
+        "team": "BUF",
+        "sacks": 1,
+        "tfl": 3
+      },
+      {
+        "playerId": "00-0035248",
+        "name": "Zach Allen",
+        "team": "DEN",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0035279",
+        "name": "Charles Omenihu",
+        "team": "KC",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035402",
+        "name": "Carl Granderson",
+        "team": "NO",
+        "sacks": 1.5,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0035636",
+        "name": "L.J. Collier",
+        "team": "ARI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035642",
+        "name": "Josh Hines-Allen",
+        "team": "JAX",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035643",
+        "name": "Jeffery Simmons",
+        "team": "TEN",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0035647",
+        "name": "Montez Sweat",
+        "team": "CHI",
+        "sacks": 0,
+        "tfl": 2
+      },
+      {
+        "playerId": "00-0035656",
+        "name": "Khalen Saunders",
+        "team": "JAX",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035667",
+        "name": "Greg Gaines",
+        "team": "TB",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035674",
+        "name": "Jerry Tillery",
+        "team": "KC",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0035683",
+        "name": "Dexter Lawrence",
+        "team": "NYG",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035717",
+        "name": "Nick Bosa",
+        "team": "SF",
+        "sacks": 1,
+        "tfl": 3
+      },
+      {
+        "playerId": "00-0035718",
+        "name": "Quinnen Williams",
+        "team": "NYJ",
+        "sacks": 1,
+        "tfl": 2
+      },
+      {
+        "playerId": "00-0035857",
+        "name": "Chris Williams",
+        "team": "CHI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035890",
+        "name": "Tershawn Wharton",
+        "team": "CAR",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0035944",
+        "name": "Jonah Williams",
+        "team": "NO",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036081",
+        "name": "Broderick Washington",
+        "team": "BAL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036130",
+        "name": "Nnamdi Madubuike",
+        "team": "BAL",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0036151",
+        "name": "Bryce Huff",
+        "team": "SF",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036181",
+        "name": "Teair Tart",
+        "team": "LAC",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036220",
+        "name": "Derrick Brown",
+        "team": "CAR",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036260",
+        "name": "Javon Kinlaw",
+        "team": "WAS",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0036266",
+        "name": "Jordan Elliott",
+        "team": "SF",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036288",
+        "name": "Yetur Gross-Matos",
+        "team": "SF",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036337",
+        "name": "James Lynch",
+        "team": "TEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036366",
+        "name": "Neville Gallimore",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036413",
+        "name": "Darrell Taylor",
+        "team": "HOU",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036479",
+        "name": "Kwity Paye",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0036480",
+        "name": "Dayo Odeyingbo",
+        "team": "CHI",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0036568",
+        "name": "Roy Lopez",
+        "team": "DET",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036642",
+        "name": "Tedarrell Slaton",
+        "team": "CIN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036711",
+        "name": "Charles Snowden",
+        "team": "LV",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036881",
+        "name": "Jay Tufele",
+        "team": "NYJ",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036902",
+        "name": "Joseph Ossai",
+        "team": "CIN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036903",
+        "name": "Bobby Brown III",
+        "team": "CAR",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036909",
+        "name": "Khyiris Tonga",
+        "team": "NE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036916",
+        "name": "Milton Williams",
+        "team": "NE",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0036942",
+        "name": "Osa Odighizuwa",
+        "team": "DAL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036981",
+        "name": "Christian Barmore",
+        "team": "NE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0036989",
+        "name": "Malcolm Koonce",
+        "team": "LV",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0037051",
+        "name": "Elijah Garcia",
+        "team": "NYG",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037073",
+        "name": "Jordan Davis",
+        "team": "PHI",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0037075",
+        "name": "Devonte Wyatt",
+        "team": "GB",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0037192",
+        "name": "George Karlaftis",
+        "team": "KC",
+        "sacks": 1,
+        "tfl": 2
+      },
+      {
+        "playerId": "00-0037235",
+        "name": "Travon Walker",
+        "team": "JAX",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037236",
+        "name": "Aidan Hutchinson",
+        "team": "DET",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037251",
+        "name": "Alex Wright",
+        "team": "CLE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037262",
+        "name": "Thomas Booker",
+        "team": "LV",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037269",
+        "name": "Eric Johnson",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037280",
+        "name": "Matthew Butler",
+        "team": "MIA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037294",
+        "name": "Jordan Jackson",
+        "team": "DEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037602",
+        "name": "Sam Okuayinonu",
+        "team": "SF",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037663",
+        "name": "Jermaine Johnson II",
+        "team": "NYJ",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0037756",
+        "name": "Travis Jones",
+        "team": "BAL",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0037832",
+        "name": "Kalia Davis",
+        "team": "SF",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0037843",
+        "name": "Daniel Hardy",
+        "team": "CHI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038106",
+        "name": "Eyioma Uwazurike",
+        "team": "DEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038127",
+        "name": "Logan Hall",
+        "team": "TB",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038133",
+        "name": "Boye Mafe",
+        "team": "SEA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038386",
+        "name": "Jalen Carter",
+        "team": "PHI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038387",
+        "name": "Colby Wooden",
+        "team": "GB",
+        "sacks": 0,
+        "tfl": 2
+      },
+      {
+        "playerId": "00-0038412",
+        "name": "Moro Ojomo",
+        "team": "PHI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038541",
+        "name": "Tyree Wilson",
+        "team": "LV",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0038546",
+        "name": "Myles Murphy",
+        "team": "CIN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038574",
+        "name": "Isaiah McGuire",
+        "team": "CLE",
+        "sacks": 1,
+        "tfl": 2
+      },
+      {
+        "playerId": "00-0038623",
+        "name": "Dante Stills",
+        "team": "ARI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038653",
+        "name": "Cory Durden",
+        "team": "NE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038778",
+        "name": "Jalen Redmond",
+        "team": "MIN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038978",
+        "name": "Byron Young",
+        "team": "PHI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038980",
+        "name": "Zach Harrison",
+        "team": "ATL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0038995",
+        "name": "Bryan Bresee",
+        "team": "NO",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039009",
+        "name": "Dylan Horton",
+        "team": "HOU",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039031",
+        "name": "Adetomiwa Adebawore",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039070",
+        "name": "Gervon Dexter Sr.",
+        "team": "CHI",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0039108",
+        "name": "Will Anderson Jr.",
+        "team": "HOU",
+        "sacks": 1,
+        "tfl": 3
+      },
+      {
+        "playerId": "00-0039110",
+        "name": "Keeanu Benton",
+        "team": "PIT",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039138",
+        "name": "Kobie Turner",
+        "team": "LA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039142",
+        "name": "Will McDonald IV",
+        "team": "NYJ",
+        "sacks": 2,
+        "tfl": 2
+      },
+      {
+        "playerId": "00-0039148",
+        "name": "Keion White",
+        "team": "NE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039309",
+        "name": "Byron Murphy II",
+        "team": "SEA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039340",
+        "name": "Laiatu Latu",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039421",
+        "name": "Levi Drake Rodriguez",
+        "team": "MIN",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0039423",
+        "name": "Jonah Laulu",
+        "team": "LV",
+        "sacks": 1,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039431",
+        "name": "Jowon Briggs",
+        "team": "NYJ",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039436",
+        "name": "Jaylen Harrell",
+        "team": "TEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039733",
+        "name": "Ruke Orhorhoro",
+        "team": "ATL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039734",
+        "name": "Braden Fiske",
+        "team": "LA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039749",
+        "name": "Tyler Davis",
+        "team": "LA",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0039852",
+        "name": "Jared Verse",
+        "team": "LA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039854",
+        "name": "Darius Robinson",
+        "team": "ARI",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039886",
+        "name": "T'Vondre Sweat",
+        "team": "TEN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0039900",
+        "name": "Marshawn Kneeland",
+        "team": "DAL",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0039906",
+        "name": "Jer'Zhan Newton",
+        "team": "WAS",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0039908",
+        "name": "Kris Jenkins",
+        "team": "CIN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040019",
+        "name": "Jay Toia",
+        "team": "DAL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040041",
+        "name": "Nazir Stackhouse",
+        "team": "GB",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040076",
+        "name": "Aeneas Peebles",
+        "team": "BAL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040127",
+        "name": "Kenneth Grant",
+        "team": "MIA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040171",
+        "name": "Joshua Farmer",
+        "team": "NE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040173",
+        "name": "Tyrion Ingram-Dawkins",
+        "team": "MIN",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040175",
+        "name": "Jordan Phillips",
+        "team": "MIA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040188",
+        "name": "Yahya Black",
+        "team": "PIT",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040255",
+        "name": "Adin Huntington",
+        "team": "CLE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040578",
+        "name": "James Pearce Jr.",
+        "team": "ATL",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040640",
+        "name": "Ashton Gillotte",
+        "team": "KC",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040660",
+        "name": "Mykel Williams",
+        "team": "SF",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040672",
+        "name": "Tyleik Williams",
+        "team": "DET",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040685",
+        "name": "Mason Graham",
+        "team": "CLE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040721",
+        "name": "Alfred Collins",
+        "team": "SF",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0040752",
+        "name": "Oluwafemi Oladejo",
+        "team": "TEN",
+        "sacks": 0,
+        "tfl": 0
+      }
+    ],
+    "mender": [
+      {
+        "playerId": "00-0023853",
+        "name": "Matt Prater",
+        "team": "BUF",
+        "fgMade": 3,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0025565",
+        "name": "Nick Folk",
+        "team": "NYJ",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0026858",
+        "name": "Graham Gano",
+        "team": "NYG",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0029822",
+        "name": "Brandon McManus",
+        "team": "GB",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0031136",
+        "name": "Chris Boswell",
+        "team": "PIT",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0031203",
+        "name": "Cairo Santos",
+        "team": "CHI",
+        "fgMade": 1,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0031492",
+        "name": "Jason Myers",
+        "team": "SEA",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0032569",
+        "name": "Wil Lutz",
+        "team": "DEN",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0032726",
+        "name": "Ka'imi Fairbairn",
+        "team": "HOU",
+        "fgMade": 3,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0033303",
+        "name": "Harrison Butker",
+        "team": "KC",
+        "fgMade": 3,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0033702",
+        "name": "Younghoe Koo",
+        "team": "ATL",
+        "fgMade": 2,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0033787",
+        "name": "Jake Elliott",
+        "team": "PHI",
+        "fgMade": 1,
+        "fgAtt": 1
+      },
+      {
+        "playerId": "00-0034161",
+        "name": "Daniel Carlson",
+        "team": "LV",
+        "fgMade": 2,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0035192",
+        "name": "Joey Slye",
+        "team": "TEN",
+        "fgMade": 4,
+        "fgAtt": 4
+      },
+      {
+        "playerId": "00-0035269",
+        "name": "Matt Gay",
+        "team": "WAS",
+        "fgMade": 0,
+        "fgAtt": 0
+      },
+      {
+        "playerId": "00-0035358",
+        "name": "Chase McLaughlin",
+        "team": "TB",
+        "fgMade": 1,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0036816",
+        "name": "Riley Patterson",
+        "team": "MIA",
+        "fgMade": 0,
+        "fgAtt": 0
+      },
+      {
+        "playerId": "00-0036854",
+        "name": "Evan McPherson",
+        "team": "CIN",
+        "fgMade": 1,
+        "fgAtt": 1
+      },
+      {
+        "playerId": "00-0037224",
+        "name": "Cameron Dicker",
+        "team": "LAC",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0037692",
+        "name": "Brandon Aubrey",
+        "team": "DAL",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0038428",
+        "name": "Andre Szmyt",
+        "team": "CLE",
+        "fgMade": 1,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0038562",
+        "name": "Jake Moody",
+        "team": "SF",
+        "fgMade": 1,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0038567",
+        "name": "Chad Ryland",
+        "team": "ARI",
+        "fgMade": 2,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0038905",
+        "name": "Blake Grupe",
+        "team": "NO",
+        "fgMade": 2,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0039172",
+        "name": "Jake Bates",
+        "team": "DET",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0039404",
+        "name": "Will Reichard",
+        "team": "MIN",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0039409",
+        "name": "Cam Little",
+        "team": "JAX",
+        "fgMade": 4,
+        "fgAtt": 4
+      },
+      {
+        "playerId": "00-0039576",
+        "name": "Spencer Shrader",
+        "team": "IND",
+        "fgMade": 4,
+        "fgAtt": 4
+      },
+      {
+        "playerId": "00-0039750",
+        "name": "Joshua Karty",
+        "team": "LA",
+        "fgMade": 0,
+        "fgAtt": 0
+      },
+      {
+        "playerId": "00-0040074",
+        "name": "Tyler Loop",
+        "team": "BAL",
+        "fgMade": 2,
+        "fgAtt": 2
+      },
+      {
+        "playerId": "00-0040200",
+        "name": "Andy Borregales",
+        "team": "NE",
+        "fgMade": 2,
+        "fgAtt": 3
+      },
+      {
+        "playerId": "00-0040279",
+        "name": "Ryan Fitzgerald",
+        "team": "CAR",
+        "fgMade": 1,
+        "fgAtt": 1
+      }
+    ]
+  }
+}

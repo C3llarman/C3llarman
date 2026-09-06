@@ -3,24 +3,25 @@
 // it into the compact per-week JSON the app reads. Run via:
 //   node scripts/flatten-player-stats.mjs --season 2025 --week 1
 //
-// Sources (all from the nflverse-data "player_stats" GitHub release):
-//   player_stats.csv          offense (QB/RB/WR/TE/FB) — Tactician, Hunter, Rogue
-//   player_stats_def.csv      defense — The Breaker
-//   player_stats_kicking.csv  kicking — The Mender
+// Source: nflverse-data's "stats_player" release (built by nflfastR::calculate_stats()),
+// one combined offense + defense + kicking file per season:
+//   stats_player_week_{season}.csv
 //
-// The Wall has no player-level O-line data anywhere in nflverse. Its damage
-// input is team sacks allowed, derived here by summing the `sacks` column
-// (sacks taken by the passer) across a team's QB rows in player_stats.csv —
-// no second data source needed.
+// This replaced the old "player_stats" release (player_stats.csv / _def.csv /
+// _kicking.csv), which is frozen as of May 2025 and does not cover the 2025
+// season onward. Do not point this script back at that release.
+//
+// The Wall has no player-level O-line box-score data anywhere in nflverse, even
+// in this combined file: OL rows here carry identity + incidental stats only
+// (rare trick-play catches, fumble recoveries, penalties) and nothing about
+// blocking. Its damage input is team sacks allowed, derived by summing
+// `sacks_suffered` across a team's QB rows — no second data source needed.
 
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const SOURCES = {
-  offense: 'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats.csv',
-  defense: 'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_def.csv',
-  kicking: 'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_kicking.csv',
-};
+const sourceUrl = season =>
+  `https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_${season}.csv`;
 
 function parseArgs(argv) {
   const args = { seasonType: 'REG', outDir: 'data/weeks' };
@@ -97,55 +98,55 @@ function filterWeek(rows, season, week, seasonType) {
   );
 }
 
-function buildWallByTeam(offenseRows) {
+function buildWallByTeam(rows) {
   const wall = {};
-  for (const r of offenseRows) {
+  for (const r of rows) {
     if (r.position !== 'QB') continue;
-    const team = r.recent_team;
+    const team = r.team;
     if (!team) continue;
     wall[team] = wall[team] || { team, sacksAllowed: 0 };
-    wall[team].sacksAllowed += num(r.sacks);
+    wall[team].sacksAllowed += num(r.sacks_suffered);
   }
   return wall;
 }
 
-function buildPlayers(offenseRows, defenseRows, kickingRows) {
-  const tactician = offenseRows
+function buildPlayers(rows) {
+  const tactician = rows
     .filter(r => r.position === 'QB')
     .map(r => ({
       playerId: r.player_id,
       name: r.player_display_name,
-      team: r.recent_team,
+      team: r.team,
       opponent: r.opponent_team,
       passYds: num(r.passing_yards),
       passTd: num(r.passing_tds),
-      sacksTaken: num(r.sacks),
+      sacksTaken: num(r.sacks_suffered),
     }));
 
-  const hunter = offenseRows
+  const hunter = rows
     .filter(r => r.position === 'WR')
     .map(r => ({
       playerId: r.player_id,
       name: r.player_display_name,
-      team: r.recent_team,
+      team: r.team,
       opponent: r.opponent_team,
       recYds: num(r.receiving_yards),
       receptions: num(r.receptions),
     }));
 
-  const rogue = offenseRows
+  const rogue = rows
     .filter(r => r.position === 'RB')
     .map(r => ({
       playerId: r.player_id,
       name: r.player_display_name,
-      team: r.recent_team,
+      team: r.team,
       opponent: r.opponent_team,
       rushYds: num(r.rushing_yards),
       rushTd: num(r.rushing_tds),
       carries: num(r.carries),
     }));
 
-  const breaker = defenseRows
+  const breaker = rows
     .filter(r => r.position_group === 'DL')
     .map(r => ({
       playerId: r.player_id,
@@ -155,7 +156,8 @@ function buildPlayers(offenseRows, defenseRows, kickingRows) {
       tfl: num(r.def_tackles_for_loss),
     }));
 
-  const mender = kickingRows
+  const mender = rows
+    .filter(r => r.position === 'K')
     .map(r => ({
       playerId: r.player_id,
       name: r.player_display_name,
@@ -169,34 +171,29 @@ function buildPlayers(offenseRows, defenseRows, kickingRows) {
 
 async function main() {
   const { season, week, seasonType, outDir } = parseArgs(process.argv.slice(2));
+  const url = sourceUrl(season);
 
   console.log(`Fetching nflverse player stats for season=${season} week=${week} (${seasonType})...`);
-  const [offenseAll, defenseAll, kickingAll] = await Promise.all([
-    fetchCsv(SOURCES.offense, 'offense'),
-    fetchCsv(SOURCES.defense, 'defense'),
-    fetchCsv(SOURCES.kicking, 'kicking'),
-  ]);
+  console.log(`  ${url}`);
+  const allRows = await fetchCsv(url, 'stats_player');
+  const rows = filterWeek(allRows, season, week, seasonType);
 
-  const offenseRows = filterWeek(offenseAll, season, week, seasonType);
-  const defenseRows = filterWeek(defenseAll, season, week, seasonType);
-  const kickingRows = filterWeek(kickingAll, season, week, seasonType);
-
-  if (offenseRows.length === 0) {
+  if (rows.length === 0) {
     throw new Error(
-      `No offense rows found for season=${season} week=${week} season_type=${seasonType}. ` +
+      `No rows found for season=${season} week=${week} season_type=${seasonType} in ${url}. ` +
       `The nflverse release may not have this week's data yet, or the season/week is wrong.`
     );
   }
 
-  const players = buildPlayers(offenseRows, defenseRows, kickingRows);
-  const wall = buildWallByTeam(offenseRows);
+  const players = buildPlayers(rows);
+  const wall = buildWallByTeam(rows);
 
   const output = {
     season,
     week,
     seasonType,
     generatedAt: new Date().toISOString(),
-    sources: SOURCES,
+    source: url,
     counts: {
       tactician: players.tactician.length,
       hunter: players.hunter.length,
