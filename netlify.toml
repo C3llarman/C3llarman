@@ -1,0 +1,7 @@
+[build]
+  publish = "reference"
+
+[[redirects]]
+  from = "/"
+  to = "/hff-mobile-v5.html"
+  status = 200
