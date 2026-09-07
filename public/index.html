@@ -85,7 +85,8 @@
   .hpfill{height:100%;background:var(--rule);transition:width .45s ease}
   .hpfill.hurt{background:var(--live)}
   .hpnum{font-family:'Archivo Narrow';font-size:15px;font-weight:600;min-width:52px;text-align:right}
-  .unit.acted{outline:3px solid var(--gild);outline-offset:3px}
+  .unit.acted{outline:3px solid var(--gild);outline-offset:3px;cursor:pointer}
+  .unit.acted:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
   .unit.down{opacity:.5}
 
   .floor p{font-size:16.5px}
@@ -228,7 +229,7 @@
     <div class="trait"><b>Attrition.</b> Every drive costs the party hit points whether the room falls or not.</div>
   </div>
 
-  <button class="go" id="go">ROLL FOR THE WEEK</button>
+  <button class="go" id="go">SIMULATE ARRIVALS</button>
   <button class="reset" id="reset" hidden>Start the run over</button>
   <div id="logwrap"></div>
   <div id="verdict" role="status" aria-live="polite"></div>
@@ -367,44 +368,68 @@ const REAL={
 
 const party=[
  {k:'wall',cls:'THE WALL',type:'Medium construct, lawful immovable',
-  pos:'Offensive Line',who:'',team:REAL.wall.team,ac:18,hp:74,max:74,spd:'—',
+  pos:'Offensive Line',who:'',team:REAL.wall.team,ac:18,hp:74,max:74,spd:'—',state:'traveling',
   ab:[17,9,18,14,12,6],keys:['ANC','MOB','GRT','IQ','AWR','PRS'],
   traits:[['Bulwark.','Absorbs 40% of all damage dealt to the party before it lands.'],
           [`Week 1: Tennessee's offense allowed ${REAL.wall.sacksAllowed} sacks — the only pressure signal nflverse publishes. No player-level pass-block data exists to go further.`,'']]},
  {k:'breaker',cls:'THE BREAKER',type:'Medium fiend, chaotic violent',
-  pos:'Edge Rusher',who:'C. Granderson',team:REAL.breaker.team,ac:15,hp:44,max:44,spd:'4.61',
+  pos:'Edge Rusher',who:'C. Granderson',team:REAL.breaker.team,ac:15,hp:44,max:44,spd:'4.61',state:'traveling',
   ab:[18,14,15,11,12,15],keys:['PWR','BND','SNP','IQ','AWR','WIN'],
   traits:[['Burst damage.','Sacks hit for 70. A quiet week deals nearly nothing.'],
           ['Hit points drain with snap share.','']]},
  {k:'tactician',cls:'THE TACTICIAN',type:'Medium humanoid, lawful calculating',
-  pos:'Quarterback',who:'B. Purdy',team:REAL.tactician.team,ac:12,hp:52,max:52,spd:'4.88',
+  pos:'Quarterback',who:'B. Purdy',team:REAL.tactician.team,ac:12,hp:52,max:52,spd:'4.88',state:'traveling',
   ab:[12,13,11,19,17,18],keys:['ARM','MOB','DUR','IQ','PRC','CMD'],
   traits:[['Command.','Marks targets for the party; every ally deals more.'],
           ['Loses 6 hit points per sack taken. A poor Wall bleeds him dry.','']]},
  {k:'hunter',cls:'THE HUNTER',type:'Medium humanoid, chaotic explosive',
-  pos:'Wide Receiver',who:'C. Lamb',team:REAL.hunter.team,ac:14,hp:48,max:48,spd:'4.42',
+  pos:'Wide Receiver',who:'C. Lamb',team:REAL.hunter.team,ac:14,hp:48,max:48,spd:'4.42',state:'traveling',
   ab:[13,18,12,15,16,17],keys:['CTD','SEP','DUR','RTE','TRK','TGT'],
   traits:[['Volume.','Steady damage every drive. Unreduced against swarms.'],
           ['Hit points tied to target volume and soft-tissue risk.','']]},
  {k:'rogue',cls:'THE ROGUE',type:'Medium humanoid, chaotic hungry',
-  pos:'Running Back',who:'B. Hall',team:REAL.rogue.team,ac:13,hp:46,max:46,spd:'4.48',
+  pos:'Running Back',who:'B. Hall',team:REAL.rogue.team,ac:13,hp:46,max:46,spd:'4.48',state:'traveling',
   ab:[15,17,10,13,14,16],keys:['PWR','ELU','DUR','VIS','PAT','USE'],
   traits:[['Breakaway.','Any run past 110 yards lands as a critical hit.'],
           ['Hit points bleed with every carry. He is worn down by December.','']]},
  {k:'mender',cls:'THE MENDER',type:'Medium humanoid, neutral steady',
-  pos:'Kicker',who:'K. Fairbairn',team:REAL.mender.team,ac:10,hp:36,max:36,spd:'—',
+  pos:'Kicker',who:'K. Fairbairn',team:REAL.mender.team,ac:10,hp:36,max:36,spd:'—',state:'traveling',
   ab:[11,12,14,13,18,9],keys:['LEG','TMP','DUR','IQ','NRV','PRS'],
   traits:[['Restoration.','Each made kick restores 7 hit points across the party.'],
           ['Takes no damage. Misses heal nothing.','']]},
 ];
-let roomMax=840,roomHp=840,step=0,done=false;
+
+// Precomputed per-unit results from REAL (see drives below) so both the
+// arrival card and the commit log read from one source. Wall has no dmg
+// formula (CLAUDE.md: no O-line box score exists) — it commits for 0.
+const RESULTS={};
+const ARRIVAL_ORDER=[0,2,3,4,1,5];
+let roomMax=840,roomHp=840,arrivalIdx=0,done=false;
 const $=id=>document.getElementById(id);
 const mod=v=>{const m=Math.floor((v-10)/2);return (m>=0?'+':'')+m;};
 
 function drawParty(){
   $('party').innerHTML=party.map((u,i)=>{
+    const traveling=u.state==='traveling', arrived=u.state==='arrived';
+    const stateCls=(arrived?' acted':'')+(traveling?' down':'');
+    const tapAttrs=arrived?` role="button" tabindex="0" aria-label="Commit ${u.cls}'s drive"`:'';
+    if(traveling){
+      return `<div class="block unit${stateCls}" id="u${i}">
+        <div class="hd">
+          <div class="sigil"><img src="${SIG[u.k]}" alt=""></div>
+          <div style="flex:1">
+            <h2>${u.cls}</h2>
+            <div class="ident"><span class="pos">${u.pos}</span> <span class="team">· ${u.team}</span></div>
+            <div class="type">${u.type}</div>
+          </div>
+        </div>
+        <div class="bar thin"></div>
+        <div class="trait"><i>Still en route. No line yet this week.</i></div>
+      </div>`;
+    }
     const pct=Math.max(0,u.hp/u.max*100), hpv=Math.max(0,Math.round(u.hp));
-    return `<div class="block unit" id="u${i}">
+    const r=RESULTS[i];
+    return `<div class="block unit${stateCls}" id="u${i}"${tapAttrs}>
       <div class="hd">
         <div class="sigil"><img src="${SIG[u.k]}" alt=""></div>
         <div style="flex:1">
@@ -426,7 +451,15 @@ function drawParty(){
         `<div class="ab"><div class="k">${u.keys[j]}</div><div class="v">${v}</div><div class="m">(${mod(v)})</div></div>`).join('')}</div>
       <div class="bar thin"></div>
       ${u.traits.map(t=>`<div class="trait">${t[1]?`<b>${t[0]}</b> ${t[1]}`:`<i>${t[0]}</i>`}</div>`).join('')}
+      ${r?`<div class="trait">${r.text}</div>`:''}
+      ${arrived?'<div class="trait"><i>Tap to commit.</i></div>':''}
     </div>`;}).join('');
+  party.forEach((u,i)=>{
+    if(u.state!=='arrived')return;
+    const el=$('u'+i);
+    el.addEventListener('click',()=>commit(i));
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();commit(i);}});
+  });
 }
 function drawRoom(){
   const v=Math.max(0,Math.round(roomHp));
@@ -437,6 +470,9 @@ function ev(c,a,t){const d=document.createElement('div');d.className='ev '+c;
   d.innerHTML=`<div class="amt">${a}</div><div>${t}</div>`;$('log').appendChild(d);}
 
 const drives=[
+ {i:0,roll:()=>{
+   return{dmg:0,crit:false,take:0,
+   text:`<b>Held the pocket.</b> No horde damage — the Wall prevents it, it doesn't deal it.`};}},
  {i:2,roll:()=>{const {y,td,sk}=REAL.tactician;
    return{dmg:Math.round(y*0.55)+td*45,crit:td>=2,take:sk*6,
    text:`<b>${y} passing yards, ${td} TD.</b> Marks targets across the floor; the party swings true. Sacked ${sk} time${sk===1?'':'s'}.`};}},
@@ -454,11 +490,30 @@ const drives=[
    return{dmg:fg*14,crit:false,heal:fg*7,miss,
    text:`<b>${fg} of ${att} from distance.</b> Mends the party between waves.`};}},
 ];
-function runDrive(){
-  if(step>=drives.length){finish();return;}
-  const d=drives[step],u=party[d.i],r=d.roll();
+drives.forEach(d=>{RESULTS[d.i]=d.roll();});
+
+function updateGoLabel(){
+  if(done){$('go').textContent='WEEK COMPLETE';$('go').disabled=true;return;}
+  if(arrivalIdx>=ARRIVAL_ORDER.length){$('go').textContent='ALL ARRIVED — TAP CARDS TO COMMIT';$('go').disabled=true;return;}
+  $('go').textContent=arrivalIdx===0?'SIMULATE ARRIVALS':'SIMULATE NEXT ARRIVAL';
+  $('go').disabled=false;
+}
+function arriveNext(){
+  if(done||arrivalIdx>=ARRIVAL_ORDER.length)return;
+  const i=ARRIVAL_ORDER[arrivalIdx],u=party[i];
+  u.state='arrived';
+  arrivalIdx++;
+  drawParty();
+  ev('','→',`${u.cls} — ${u.who||u.team} has arrived.`);
+  $('u'+i).scrollIntoView({block:'center',behavior:'smooth'});
+  updateGoLabel();
+}
+function commit(i){
+  const u=party[i];
+  if(u.state!=='arrived')return;
+  const r=RESULTS[i];
   roomHp-=r.dmg;
-  ev(r.crit?'crit':'dmg','−'+r.dmg,`${u.cls} — ${r.text}${r.crit?' <i>Critical hit.</i>':''}`);
+  ev(r.crit?'crit':(r.dmg?'dmg':''),r.dmg?'−'+r.dmg:'—',`${u.cls} — ${r.text}${r.crit?' <i>Critical hit.</i>':''}`);
   if(r.heal){let pool=r.heal;
     party.forEach(p=>{if(p.hp<p.max){const g=Math.min(pool,p.max-p.hp,9);p.hp+=g;pool-=g;}});
     ev('heal','+'+r.heal,`THE MENDER restores ${r.heal} hit points across the party.`);
@@ -467,12 +522,14 @@ function runDrive(){
     w.hp-=soak;u.hp-=(r.take-soak);
     ev('take','−'+r.take,`Attrition. The Wall absorbs ${soak}; ${u.cls} takes ${r.take-soak}.`);}
   party.forEach(p=>{if(p.hp<0)p.hp=0;});
+  u.state='spent';
   drawParty();drawRoom();
-  party.forEach((p,i)=>{if(p.hp<=0)$('u'+i).classList.add('down');});
-  $('u'+d.i).classList.add('acted');
-  $('u'+d.i).scrollIntoView({block:'center',behavior:'smooth'});
-  step++;
-  if(roomHp<=0||step>=drives.length) setTimeout(finish,600);
+  checkFinish();
+}
+function checkFinish(){
+  if(done)return;
+  if(roomHp<=0||party.every(p=>p.state==='spent')) finish();
+  else updateGoLabel();
 }
 function finish(){
   if(done)return;done=true;
@@ -485,21 +542,21 @@ function finish(){
       :`Cleared, but ${wounded} ${wounded===1?'member carries':'members carry'} wounds into Floor IV. Partial experience.`)
       :`${Math.round(roomHp)} hit points still standing. The party falls back to mend; the floor stays shut.`}</p>
     <div class="xp">+${xp} XP</div></div>`;
-  $('go').disabled=true;$('go').textContent='WEEK COMPLETE';$('reset').hidden=false;
+  updateGoLabel();$('reset').hidden=false;
   const dealt=roomMax-Math.max(0,roomHp);
   $('ranks').querySelector('tr.you').innerHTML=
     `<td>Your party</td><td class="n">${cleared?'IV':'III'}</td><td class="n">${dealt}</td><td class="n">${xp}</td>`;
 }
 $('go').onclick=()=>{
-  if(step===0)$('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
-  $('go').textContent='NEXT DRIVE';runDrive();};
+  if(arrivalIdx===0)$('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
+  arriveNext();};
 $('reset').onclick=()=>location.reload();
 const st=[['Bonecrusher Bootleg','IV',1102,410],['Third & Doom','IV',988,340],['YOU','III',0,0],
           ['Wildcat Wyverns','III',754,180],['Play-Action Paladins','II',701,160]];
 $('ranks').innerHTML=st.map(s=>s[0]==='YOU'
  ?`<tr class="you"><td>Your party</td><td class="n">III</td><td class="n">—</td><td class="n">—</td></tr>`
  :`<tr><td>${s[0]}</td><td class="n">${s[1]}</td><td class="n">${s[2]}</td><td class="n">${s[3]}</td></tr>`).join('');
-drawParty();drawRoom();
+drawParty();drawRoom();updateGoLabel();
 
 /* ---- tab navigation ---- */
 const KICK={week:'WEEK 1 · FLOOR III · THE SUNKEN VAULT',
