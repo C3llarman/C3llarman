@@ -495,7 +495,8 @@ drives.forEach(d=>{RESULTS[d.i]=d.roll();});
 function updateGoLabel(){
   if(done){$('go').textContent='WEEK COMPLETE';$('go').disabled=true;return;}
   if(arrivalIdx>=ARRIVAL_ORDER.length){$('go').textContent='ALL ARRIVED — TAP CARDS TO COMMIT';$('go').disabled=true;return;}
-  $('go').textContent=arrivalIdx===0?'SIMULATE ARRIVALS':'SIMULATE NEXT ARRIVAL';
+  if(arrivalIdx>0){$('go').textContent='ARRIVALS INCOMING…';$('go').disabled=true;return;}
+  $('go').textContent='SIMULATE ARRIVALS';
   $('go').disabled=false;
 }
 function arriveNext(){
@@ -507,6 +508,12 @@ function arriveNext(){
   ev('','→',`${u.cls} — ${u.who||u.team} has arrived.`);
   $('u'+i).scrollIntoView({block:'center',behavior:'smooth'});
   updateGoLabel();
+}
+// Arrivals land 5–15s apart once simulation starts, so this can be watched
+// unfold rather than stepped through click by click.
+function scheduleNextArrival(){
+  if(done||arrivalIdx>=ARRIVAL_ORDER.length)return;
+  setTimeout(()=>{arriveNext();scheduleNextArrival();},5000+Math.random()*10000);
 }
 function commit(i){
   const u=party[i];
@@ -548,8 +555,10 @@ function finish(){
     `<td>Your party</td><td class="n">${cleared?'IV':'III'}</td><td class="n">${dealt}</td><td class="n">${xp}</td>`;
 }
 $('go').onclick=()=>{
-  if(arrivalIdx===0)$('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
-  arriveNext();};
+  if(done||arrivalIdx>0)return;
+  $('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
+  arriveNext();
+  scheduleNextArrival();};
 $('reset').onclick=()=>location.reload();
 const st=[['Bonecrusher Bootleg','IV',1102,410],['Third & Doom','IV',988,340],['YOU','III',0,0],
           ['Wildcat Wyverns','III',754,180],['Play-Action Paladins','II',701,160]];
