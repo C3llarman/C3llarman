@@ -59,14 +59,15 @@ function normalize(name) {
     .replace(/[^a-z0-9]/g, '');
 }
 
-// Every named entry across every party's roster AND bench, flattened for
-// the cross-party duplicate check below.
-function allNamedEntries(parties) {
+// Every entry across every party's roster AND bench, flattened once so
+// both the FOUND/MISSING report and the cross-party duplicate check below
+// walk the same list.
+function allEntries(parties) {
   const entries = [];
   for (const party of parties.parties) {
     for (const [source, slots] of [['roster', party.roster], ['bench', party.bench || {}]]) {
       for (const [slot, entry] of Object.entries(slots)) {
-        if (entry.name) entries.push({ name: entry.name, party: party.name, slot, source });
+        entries.push({ name: entry.name, team: entry.team, party: party.name, slot, source });
       }
     }
   }
@@ -98,18 +99,17 @@ async function main() {
   );
   console.log(`Loaded ${rows.length} rows, ${known.size} distinct players, from stats_player_week_2025.csv.\n`);
 
-  for (const party of parties.parties) {
-    for (const [slot, entry] of Object.entries(party.roster)) {
-      if (!entry.name) {
-        console.log(`N/A     [${party.name}] ${slot}: no player name (team ${entry.team} — no O-line box score exists)`);
-        continue;
-      }
-      const found = known.has(normalize(entry.name));
-      console.log(`${found ? 'FOUND  ' : 'MISSING'} [${party.name}] ${slot}: ${entry.name} (${entry.team})`);
+  const entries = allEntries(parties);
+  for (const e of entries) {
+    if (!e.name) {
+      console.log(`N/A     [${e.party}] ${e.source}.${e.slot}: no player name (team ${e.team} — no O-line box score exists)`);
+      continue;
     }
+    const found = known.has(normalize(e.name));
+    console.log(`${found ? 'FOUND  ' : 'MISSING'} [${e.party}] ${e.source}.${e.slot}: ${e.name} (${e.team})`);
   }
 
-  const duplicates = findCrossPartyDuplicates(allNamedEntries(parties));
+  const duplicates = findCrossPartyDuplicates(entries.filter(e => e.name));
   if (duplicates.length) {
     console.error('\nCROSS-PARTY DUPLICATE PLAYERS:');
     for (const group of duplicates) {
