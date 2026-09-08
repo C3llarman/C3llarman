@@ -2,13 +2,13 @@
   "season": 2025,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-06T04:05:39.425Z",
+  "generatedAt": "2026-09-08T04:36:43.321Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv",
   "counts": {
     "tactician": 34,
     "hunter": 150,
     "rogue": 95,
-    "breaker": 166,
+    "breaker": 181,
     "mender": 32
   },
   "wall": {
@@ -2518,6 +2518,13 @@
         "tfl": 0
       },
       {
+        "playerId": "00-0027940",
+        "name": "Von Miller",
+        "team": "WAS",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
         "playerId": "00-0027969",
         "name": "Cameron Heyward",
         "team": "PIT",
@@ -2525,11 +2532,32 @@
         "tfl": 1
       },
       {
+        "playerId": "00-0029562",
+        "name": "Lavonte David",
+        "team": "TB",
+        "sacks": 0,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0029607",
+        "name": "Demario Davis",
+        "team": "NO",
+        "sacks": 0,
+        "tfl": 2
+      },
+      {
         "playerId": "00-0030757",
         "name": "Mike Pennel",
         "team": "CIN",
         "sacks": 0,
         "tfl": 1
+      },
+      {
+        "playerId": "00-0031040",
+        "name": "Khalil Mack",
+        "team": "LAC",
+        "sacks": 0,
+        "tfl": 0
       },
       {
         "playerId": "00-0031054",
@@ -2542,6 +2570,13 @@
         "playerId": "00-0031270",
         "name": "Shelby Harris",
         "team": "CLE",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0031550",
+        "name": "Shaq Thompson",
+        "team": "BUF",
         "sacks": 0,
         "tfl": 0
       },
@@ -2588,6 +2623,13 @@
         "tfl": 0
       },
       {
+        "playerId": "00-0032146",
+        "name": "Bud Dupree",
+        "team": "LAC",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
         "playerId": "00-0032164",
         "name": "Arik Armstead",
         "team": "JAX",
@@ -2605,6 +2647,20 @@
         "playerId": "00-0032387",
         "name": "Jarran Reed",
         "team": "SEA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032415",
+        "name": "Matthew Judon",
+        "team": "MIA",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0032442",
+        "name": "Elandon Roberts",
+        "team": "LV",
         "sacks": 0,
         "tfl": 0
       },
@@ -2693,6 +2749,13 @@
         "tfl": 0
       },
       {
+        "playerId": "00-0033571",
+        "name": "Matt Milano",
+        "team": "BUF",
+        "sacks": 1,
+        "tfl": 0
+      },
+      {
         "playerId": "00-0033860",
         "name": "Davon Godchaux",
         "team": "NO",
@@ -2714,11 +2777,25 @@
         "tfl": 1
       },
       {
+        "playerId": "00-0033875",
+        "name": "Haason Reddick",
+        "team": "TB",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
         "playerId": "00-0033876",
         "name": "Derek Barnett",
         "team": "HOU",
         "sacks": 0,
         "tfl": 0
+      },
+      {
+        "playerId": "00-0033886",
+        "name": "T.J. Watt",
+        "team": "PIT",
+        "sacks": 0,
+        "tfl": 2
       },
       {
         "playerId": "00-0033902",
@@ -2833,6 +2910,13 @@
         "tfl": 0
       },
       {
+        "playerId": "00-0034431",
+        "name": "Zaire Franklin",
+        "team": "IND",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
         "playerId": "00-0034760",
         "name": "Nathan Shepherd",
         "team": "NO",
@@ -2850,6 +2934,13 @@
         "playerId": "00-0034782",
         "name": "Harrison Phillips",
         "team": "NYJ",
+        "sacks": 0,
+        "tfl": 0
+      },
+      {
+        "playerId": "00-0034797",
+        "name": "Jerome Baker",
+        "team": "CLE",
         "sacks": 0,
         "tfl": 0
       },
@@ -2889,6 +2980,13 @@
         "tfl": 0
       },
       {
+        "playerId": "00-0034832",
+        "name": "Bradley Chubb",
+        "team": "MIA",
+        "sacks": 1,
+        "tfl": 1
+      },
+      {
         "playerId": "00-0034973",
         "name": "Maxx Crosby",
         "team": "LV",
@@ -2907,6 +3005,13 @@
         "name": "Zach Allen",
         "team": "DEN",
         "sacks": 1,
+        "tfl": 1
+      },
+      {
+        "playerId": "00-0035272",
+        "name": "Andrew Van Ginkel",
+        "team": "MIN",
+        "sacks": 0,
         "tfl": 1
       },
       {

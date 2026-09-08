@@ -13,6 +13,11 @@
         "breaker":   { "name": "Micah Parsons", "team": "GB", "pos": "EDGE" },
         "mender":    { "name": "Brandon Aubrey", "team": "DAL", "pos": "K" },
         "wall":      { "team": "PHI" }
+      },
+      "bench": {
+        "tactician": { "name": "Patrick Mahomes", "team": "KC", "pos": "QB" },
+        "rogue":     { "name": "De'Von Achane", "team": "MIA", "pos": "RB" },
+        "hunter":    { "name": "Amon-Ra St. Brown", "team": "DET", "pos": "WR" }
       }
     },
     {
@@ -26,6 +31,11 @@
         "breaker":   { "name": "Myles Garrett", "team": "CLE", "pos": "EDGE" },
         "mender":    { "name": "Cameron Dicker", "team": "LAC", "pos": "K" },
         "wall":      { "team": "DET" }
+      },
+      "bench": {
+        "tactician": { "name": "Jalen Hurts", "team": "PHI", "pos": "QB" },
+        "rogue":     { "name": "Saquon Barkley", "team": "PHI", "pos": "RB" },
+        "hunter":    { "name": "Nico Collins", "team": "HOU", "pos": "WR" }
       }
     },
     {
@@ -39,6 +49,11 @@
         "breaker":   { "name": "T.J. Watt", "team": "PIT", "pos": "EDGE" },
         "mender":    { "name": "Chris Boswell", "team": "PIT", "pos": "K" },
         "wall":      { "team": "KC" }
+      },
+      "bench": {
+        "tactician": { "name": "Joe Burrow", "team": "CIN", "pos": "QB" },
+        "rogue":     { "name": "Ashton Jeanty", "team": "LV", "pos": "RB" },
+        "hunter":    { "name": "Malik Nabers", "team": "NYG", "pos": "WR" }
       }
     }
   ]

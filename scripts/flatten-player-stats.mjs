@@ -146,8 +146,11 @@ function buildPlayers(rows) {
       carries: num(r.carries),
     }));
 
+  // Edge rushers are split across position_group DL (DE/DT) and LB (OLB in a
+  // 3-4 front) - a DL-only filter silently drops real edge rushers like
+  // Micah Parsons and T.J. Watt, who nflverse lists under LB/OLB.
   const breaker = rows
-    .filter(r => r.position_group === 'DL')
+    .filter(r => r.position_group === 'DL' || r.position === 'OLB')
     .map(r => ({
       playerId: r.player_id,
       name: r.player_display_name,

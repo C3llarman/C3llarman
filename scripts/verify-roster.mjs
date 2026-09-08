@@ -59,6 +59,32 @@ function normalize(name) {
     .replace(/[^a-z0-9]/g, '');
 }
 
+// Every named entry across every party's roster AND bench, flattened for
+// the cross-party duplicate check below.
+function allNamedEntries(parties) {
+  const entries = [];
+  for (const party of parties.parties) {
+    for (const [source, slots] of [['roster', party.roster], ['bench', party.bench || {}]]) {
+      for (const [slot, entry] of Object.entries(slots)) {
+        if (entry.name) entries.push({ name: entry.name, party: party.name, slot, source });
+      }
+    }
+  }
+  return entries;
+}
+
+// A player owned by more than one party is a real draft-integrity bug,
+// not a warning - this fails the run rather than just reporting it.
+function findCrossPartyDuplicates(entries) {
+  const byName = new Map();
+  for (const e of entries) {
+    const key = normalize(e.name);
+    if (!byName.has(key)) byName.set(key, []);
+    byName.get(key).push(e);
+  }
+  return [...byName.values()].filter(group => new Set(group.map(e => e.party)).size > 1);
+}
+
 async function main() {
   const parties = JSON.parse(await readFile(PARTIES_PATH, 'utf8'));
 
@@ -82,6 +108,17 @@ async function main() {
       console.log(`${found ? 'FOUND  ' : 'MISSING'} [${party.name}] ${slot}: ${entry.name} (${entry.team})`);
     }
   }
+
+  const duplicates = findCrossPartyDuplicates(allNamedEntries(parties));
+  if (duplicates.length) {
+    console.error('\nCROSS-PARTY DUPLICATE PLAYERS:');
+    for (const group of duplicates) {
+      console.error(`  ${group[0].name} appears in ${group.length} places:`);
+      for (const e of group) console.error(`    - [${e.party}] ${e.source}.${e.slot}`);
+    }
+    throw new Error(`${duplicates.length} player(s) owned by more than one party.`);
+  }
+  console.log('\nNo cross-party duplicates found.');
 }
 
 main().catch(err => {
