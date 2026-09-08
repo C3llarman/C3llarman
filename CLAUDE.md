@@ -109,15 +109,21 @@ Two reds are required: no single red passes on both the light page and the dark 
 
 ## Navigation
 
-Mobile-first bottom tab bar, four tabs, **Week is default** (Sunday is when people open it).
+Mobile-first bottom tab bar. **v1 ships two tabs, Week and Lineup — Week is default**
+(Sunday is when people open it).
 
-- **Week** — this Sunday only: encounter, run, log, result.
-- **Lineup** — the party, the Floor reveal banner, rules, conversion table.
-- **Dungeon** — the tower: floors cleared / current / revealed / sealed. Progression.
-- **Guild** — leaderboard by depth first, damage second.
+- **Week** — this Sunday only: encounter, party row, arrivals, log, result.
+- **Lineup** — the party, substitution, the Floor reveal banner, rules, conversion table.
 
-Week and Dungeon must stay split by time horizon (event vs. progression) or they
-duplicate each other.
+**Dungeon and Guild are deferred, not cut.** Dungeon needs multi-week progression to
+track — v1 only has one week of real data wired up, so "floors cleared / current /
+revealed / sealed" has nothing to show yet. Guild needs authentication and shared state
+— a leaderboard means nothing with one local party and no accounts. Both come back once
+those exist.
+
+When they do, **Week and Dungeon must stay split by time horizon** (event vs.
+progression) or they duplicate each other — that constraint predates the two-tab v1 and
+still holds for whenever Dungeon returns.
 
 Accessibility already in the prototype, keep it: 56px targets,
 `env(safe-area-inset-bottom)`, `tablist`/`tab`/`tabpanel` roles with arrow-key support,
