@@ -367,7 +367,7 @@ let openBench=-1;
 // self-contained pattern as REAL, no runtime fetch. Substitution only:
 // arrivals and commits are never gated on this, before or after kickoff.
 const LOCKED_AT='2026-09-09T20:20:00-04:00';
-const locked=Date.now()>=new Date(LOCKED_AT).getTime();
+let locked=Date.now()>=new Date(LOCKED_AT).getTime();
 const $=id=>document.getElementById(id);
 const mod=v=>{const m=Math.floor((v-10)/2);return (m>=0?'+':'')+m;};
 
@@ -589,6 +589,20 @@ $('go').onclick=()=>{
   arriveNext();
   scheduleNextArrival();};
 $('reset').onclick=()=>location.reload();
+// A page opened before kickoff and left open would otherwise stay
+// unlocked forever - `locked` was only ever computed once, at load.
+// Re-check on an interval and whenever the tab regains visibility; only
+// react to the moment it flips false->true (kickoff doesn't un-happen).
+function checkLock(){
+  if(locked||Date.now()<new Date(LOCKED_AT).getTime())return;
+  locked=true;
+  openBench=-1;
+  drawParty();
+}
+setInterval(checkLock,30000);
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible')checkLock();
+});
 drawParty();drawCompactRow();drawRoom();updateGoLabel();
 
 /* ---- tab navigation ---- */
