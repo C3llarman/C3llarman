@@ -361,14 +361,69 @@ const SIG={wall:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD1CAMAAABOZ
 // Real 2025 week 1 box scores, from data/weeks/2025/week-01.json
 // (nflverse stats_player_week_2025.csv). Hardcoded for now — see
 // scripts/flatten-player-stats.mjs for how this file is produced.
+// Bench: top 4 alternates per slot by this class's own damage formula
+// (not raw fantasy points — ranking by the same number the game displays
+// keeps the projection and the ranking consistent), computed from
+// data/weeks/2025/week-01.json, current starter excluded. Wall has no
+// player-level bench (no O-line box score exists anywhere in nflverse) —
+// its alternates are other teams' O-lines, ranked by fewest sacks
+// allowed instead of a damage number the Wall doesn't produce.
 const REAL={
-  tactician:{name:'Brock Purdy',team:'San Francisco',opp:'SEA',y:277,td:2,sk:1},
-  hunter:{name:'CeeDee Lamb',team:'Dallas',opp:'PHI',y:110,c:7},
-  rogue:{name:'Breece Hall',team:'New York Jets',opp:'PIT',y:107,td:0,car:19},
-  breaker:{name:'Carl Granderson',team:'New Orleans',opp:'ARI',sk:1.5,tfl:1},
-  mender:{name:'Ka’imi Fairbairn',team:'Houston',opp:'LA',fg:3,att:3},
-  wall:{team:'Tennessee',sacksAllowed:6},
+  tactician:{name:'Brock Purdy',team:'San Francisco',opp:'SEA',y:277,td:2,sk:1,
+    bench:[
+      {name:'Aaron Rodgers',team:'Pittsburgh',y:244,td:4,sk:4},
+      {name:'Justin Herbert',team:'LA Chargers',y:318,td:3,sk:3},
+      {name:'Josh Allen',team:'Buffalo',y:394,td:2,sk:1},
+      {name:'Geno Smith',team:'Las Vegas',y:362,td:1,sk:4},
+    ]},
+  hunter:{name:'CeeDee Lamb',team:'Dallas',opp:'PHI',y:110,c:7,
+    bench:[
+      {name:'Puka Nacua',team:'LA Rams',y:130,c:10},
+      {name:'Zay Flowers',team:'Baltimore',y:143,c:7},
+      {name:'Jaxon Smith-Njigba',team:'Seattle',y:124,c:9},
+      {name:'Keon Coleman',team:'Buffalo',y:112,c:8},
+    ]},
+  rogue:{name:'Breece Hall',team:'New York Jets',opp:'PIT',y:107,td:0,car:19,
+    bench:[
+      {name:'Derrick Henry',team:'Baltimore',y:169,td:2,car:18},
+      {name:'Javonte Williams',team:'Dallas',y:54,td:2,car:15},
+      {name:'Travis Etienne',team:'Jacksonville',y:143,td:0,car:16},
+      {name:'Jacory Croskey-Merritt',team:'Washington',y:82,td:1,car:10},
+    ]},
+  breaker:{name:'Carl Granderson',team:'New Orleans',opp:'ARI',sk:1.5,tfl:1,
+    bench:[
+      {name:'Myles Garrett',team:'Cleveland',sk:2,tfl:4},
+      {name:'Javon Hargrave',team:'Minnesota',sk:2,tfl:2},
+      {name:'Will McDonald IV',team:'New York Jets',sk:2,tfl:2},
+      {name:'Ed Oliver',team:'Buffalo',sk:1,tfl:3},
+    ]},
+  mender:{name:'Ka’imi Fairbairn',team:'Houston',opp:'LA',fg:3,att:3,
+    bench:[
+      {name:'Joey Slye',team:'Tennessee',fg:4,att:4},
+      {name:'Cam Little',team:'Jacksonville',fg:4,att:4},
+      {name:'Spencer Shrader',team:'Indianapolis',fg:4,att:4},
+      {name:'Matt Prater',team:'Buffalo',fg:3,att:3},
+    ]},
+  wall:{team:'Tennessee',sacksAllowed:6,
+    bench:[
+      {team:'Dallas',sacksAllowed:0},
+      {team:'Green Bay',sacksAllowed:0},
+      {team:'Jacksonville',sacksAllowed:0},
+      {team:'Tampa Bay',sacksAllowed:1},
+    ]},
 };
+// Same damage formulas as the drives below, factored out so the bench
+// picker's projected range and the actual commit always agree.
+function dmgFor(k,r){
+  switch(k){
+    case 'tactician': return Math.round(r.y*0.55)+r.td*45;
+    case 'hunter': return Math.round(r.y*1.1)+r.c*6;
+    case 'rogue': return Math.round(r.y*1.3)+r.td*60;
+    case 'breaker': return r.sk*70+r.tfl*22;
+    case 'mender': return r.fg*14;
+    default: return 0; // wall — no O-line dmg formula exists
+  }
+}
 
 const party=[
  {k:'wall',cls:'THE WALL',type:'Medium construct, lawful immovable',
@@ -409,14 +464,43 @@ const party=[
 const RESULTS={};
 const ARRIVAL_ORDER=[0,2,3,4,1,5];
 let roomMax=840,roomHp=840,arrivalIdx=0,done=false;
+let locked=false,openBench=-1;
 const $=id=>document.getElementById(id);
 const mod=v=>{const m=Math.floor((v-10)/2);return (m>=0?'+':'')+m;};
 
-// Lineup tab: display-only, always the full stat block regardless of
-// arrival state. Tapping/committing happens on the Week tab's party row.
+// Bench picker for slot i: the 4 embedded alternates minus whoever is
+// currently starting (in case a swap put them back among their own
+// bench). Reuses .floorrow/.num/.nm/.st exactly as the Week tab compact
+// row does — no new classes.
+function renderBench(i){
+  const u=party[i], real=REAL[u.k], bench=real.bench||[];
+  const items=bench
+    .map((b,bi)=>({b,bi}))
+    .filter(({b})=>(b.name||b.team)!==(real.name||real.team));
+  return items.map(({b,bi})=>{
+    const dmg=dmgFor(u.k,b);
+    const range=u.k==='wall'?'0 est.':`${Math.round(dmg*0.7)}–${Math.round(dmg*1.3)} est.`;
+    const sub=u.k==='wall'?`${b.team} · ${b.sacksAllowed} sack${b.sacksAllowed===1?'':'s'} allowed`:b.team;
+    return `<div class="floorrow" role="button" tabindex="0" style="min-height:56px"
+         data-swap-slot="${i}" data-swap-idx="${bi}" aria-label="Start ${b.name||b.team} instead">
+      <div style="flex:1">
+        <div class="nm">${b.name||b.team}</div>
+        <div class="st">${sub}</div>
+      </div>
+      <div class="num">${range}</div>
+    </div>`;
+  }).join('');
+}
+// Lineup tab: full stat block always, plus substitution. Tapping a card's
+// "View bench" toggle opens its 4 alternates; tapping one swaps the
+// starter and re-runs this slot's result so the Week tab row picks it up.
+// Committing damage still only happens from the Week tab's party row.
 function drawParty(){
-  $('party').innerHTML=party.map((u,i)=>{
+  const lockedNotice=locked
+    ?`<div class="trait open" style="margin-bottom:14px"><b>LOCKED.</b> Lineup locked — first kickoff.</div>`:'';
+  $('party').innerHTML=lockedNotice+party.map((u,i)=>{
     const pct=Math.max(0,u.hp/u.max*100), hpv=Math.max(0,Math.round(u.hp));
+    const benchOpen=openBench===i;
     return `<div class="block unit" id="u${i}">
       <div class="hd">
         <div class="sigil"><img src="${SIG[u.k]}" alt=""></div>
@@ -439,7 +523,42 @@ function drawParty(){
         `<div class="ab"><div class="k">${u.keys[j]}</div><div class="v">${v}</div><div class="m">(${mod(v)})</div></div>`).join('')}</div>
       <div class="bar thin"></div>
       ${u.traits.map(t=>`<div class="trait">${t[1]?`<b>${t[0]}</b> ${t[1]}`:`<i>${t[0]}</i>`}</div>`).join('')}
+      ${locked?'':`<div class="bar thin"></div>
+      <button class="reset" style="min-height:56px" data-bench-toggle="${i}">${benchOpen?'Hide bench':'View bench'}</button>
+      ${benchOpen?renderBench(i):''}`}
     </div>`;}).join('');
+  if(locked)return;
+  document.querySelectorAll('[data-bench-toggle]').forEach(btn=>{
+    const i=Number(btn.dataset.benchToggle);
+    btn.addEventListener('click',()=>{openBench=openBench===i?-1:i;drawParty();});
+  });
+  document.querySelectorAll('[data-swap-slot]').forEach(el=>{
+    const i=Number(el.dataset.swapSlot),bi=Number(el.dataset.swapIdx);
+    el.addEventListener('click',()=>swap(i,bi));
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();swap(i,bi);}});
+  });
+}
+function recomputeResults(){drives.forEach(d=>{RESULTS[d.i]=d.roll();});}
+function swap(i,bi){
+  if(locked)return;
+  const u=party[i],real=REAL[u.k],picked=real.bench&&real.bench[bi];
+  if(!picked)return;
+  REAL[u.k]={...picked,bench:real.bench};
+  u.who=picked.name?nameInitial(picked.name):'';
+  u.team=picked.team;
+  u.hp=u.max;
+  u.state='traveling';
+  if(u.k==='wall'){
+    u.traits[1][0]=`Week 1: ${picked.team}'s offense allowed ${picked.sacksAllowed} sacks — the only pressure signal nflverse publishes. No player-level pass-block data exists to go further.`;
+  }
+  recomputeResults();
+  openBench=-1;
+  drawParty();drawCompactRow();
+}
+// "Aaron Rodgers" -> "A. Rodgers", matching how starters are labeled.
+function nameInitial(name){
+  const parts=name.split(' ');
+  return parts.length<2?name:`${parts[0][0]}. ${parts.slice(1).join(' ')}`;
 }
 // Week tab: compact party row. Same three states as before (traveling/
 // arrived/spent), but interaction lives here now, next to the log that
@@ -479,26 +598,26 @@ function ev(c,a,t){const d=document.createElement('div');d.className='ev '+c;
 
 const drives=[
  {i:0,roll:()=>{
-   return{dmg:0,crit:false,take:0,
+   return{dmg:dmgFor('wall',REAL.wall),crit:false,take:0,
    text:`<b>Held the pocket.</b> No horde damage — the Wall prevents it, it doesn't deal it.`};}},
  {i:2,roll:()=>{const {y,td,sk}=REAL.tactician;
-   return{dmg:Math.round(y*0.55)+td*45,crit:td>=2,take:sk*6,
+   return{dmg:dmgFor('tactician',REAL.tactician),crit:td>=2,take:sk*6,
    text:`<b>${y} passing yards, ${td} TD.</b> Marks targets across the floor; the party swings true. Sacked ${sk} time${sk===1?'':'s'}.`};}},
  {i:3,roll:()=>{const {y,c}=REAL.hunter;
-   return{dmg:Math.round(y*1.1)+c*6,crit:false,take:0,
+   return{dmg:dmgFor('hunter',REAL.hunter),crit:false,take:0,
    text:`<b>${c} receptions, ${y} yards.</b> Picks the swarm apart one body at a time. Unreduced.`};}},
  {i:4,roll:()=>{const {y,td,car}=REAL.rogue;
-   return{dmg:Math.round(y*1.3)+td*60,crit:y>110,take:Math.round(car*0.7),
+   return{dmg:dmgFor('rogue',REAL.rogue),crit:y>110,take:Math.round(car*0.7),
    text:`<b>${car} carries, ${y} yards.</b> Every touch costs him.`};}},
  {i:1,roll:()=>{const {sk,tfl}=REAL.breaker;
-   return{dmg:sk*70+tfl*22,crit:sk>=2,take:0,
+   return{dmg:dmgFor('breaker',REAL.breaker),crit:sk>=2,take:0,
    text:sk?`<b>${sk} sack${sk===1?'':'s'}, ${tfl} for loss.</b> Straight through the line.`
           :`<b>No sacks, ${tfl} for loss.</b> <i>Nothing in between with this class.</i>`};}},
  {i:5,roll:()=>{const {fg,att}=REAL.mender,miss=att-fg;
-   return{dmg:fg*14,crit:false,heal:fg*7,miss,
+   return{dmg:dmgFor('mender',REAL.mender),crit:false,heal:fg*7,miss,
    text:`<b>${fg} of ${att} from distance.</b> Mends the party between waves.`};}},
 ];
-drives.forEach(d=>{RESULTS[d.i]=d.roll();});
+recomputeResults();
 
 function updateGoLabel(){
   if(done){$('go').textContent='WEEK COMPLETE';$('go').disabled=true;return;}
