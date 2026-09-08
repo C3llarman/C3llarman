@@ -362,7 +362,12 @@ const party=[
 const RESULTS={};
 const ARRIVAL_ORDER=[0,2,3,4,1,5];
 let roomMax=840,roomHp=840,arrivalIdx=0,done=false;
-let locked=false,openBench=-1;
+let openBench=-1;
+// Embedded from data/parties.json's lockedAt (first kickoff) - same
+// self-contained pattern as REAL, no runtime fetch. Substitution only:
+// arrivals and commits are never gated on this, before or after kickoff.
+const LOCKED_AT='2026-09-09T20:20:00-04:00';
+const locked=Date.now()>=new Date(LOCKED_AT).getTime();
 const $=id=>document.getElementById(id);
 const mod=v=>{const m=Math.floor((v-10)/2);return (m>=0?'+':'')+m;};
 
@@ -390,13 +395,13 @@ function renderBench(i){
   }).join('');
 }
 // Lineup tab: full stat block always, plus substitution. Tapping a card's
-// "View bench" toggle opens its 4 alternates; tapping one swaps the
+// "View bench" toggle opens its alternate(s); tapping one swaps the
 // starter and re-runs this slot's result so the Week tab row picks it up.
+// Past lockedAt, the toggle is replaced by a locked notice instead of
+// just disappearing - swap controls only, arrivals/commits are untouched.
 // Committing damage still only happens from the Week tab's party row.
 function drawParty(){
-  const lockedNotice=locked
-    ?`<div class="trait open" style="margin-bottom:14px"><b>LOCKED.</b> Lineup locked — first kickoff.</div>`:'';
-  $('party').innerHTML=lockedNotice+party.map((u,i)=>{
+  $('party').innerHTML=party.map((u,i)=>{
     const pct=Math.max(0,u.hp/u.max*100), hpv=Math.max(0,Math.round(u.hp));
     const benchOpen=openBench===i;
     return `<div class="block unit" id="u${i}">
@@ -421,9 +426,11 @@ function drawParty(){
         `<div class="ab"><div class="k">${u.keys[j]}</div><div class="v">${v}</div><div class="m">(${mod(v)})</div></div>`).join('')}</div>
       <div class="bar thin"></div>
       ${u.traits.map(t=>`<div class="trait">${t[1]?`<b>${t[0]}</b> ${t[1]}`:`<i>${t[0]}</i>`}</div>`).join('')}
-      ${(!locked&&REAL[u.k].bench)?`<div class="bar thin"></div>
+      ${REAL[u.k].bench?(locked
+        ?`<div class="bar thin"></div><div class="trait"><i>Lineup locked — first kickoff</i></div>`
+        :`<div class="bar thin"></div>
       <button class="reset" style="min-height:56px" data-bench-toggle="${i}">${benchOpen?'Hide bench':'View bench'}</button>
-      ${benchOpen?renderBench(i):''}`:''}
+      ${benchOpen?renderBench(i):''}`):''}
     </div>`;}).join('');
   if(locked)return;
   document.querySelectorAll('[data-bench-toggle]').forEach(btn=>{
