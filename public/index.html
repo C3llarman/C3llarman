@@ -451,7 +451,13 @@ function swap(i,bi){
   if(locked)return;
   const u=party[i],real=REAL[u.k],picked=real.bench&&real.bench[bi];
   if(!picked)return;
-  REAL[u.k]={...picked,bench:real.bench};
+  // The two trade places: incoming starts, outgoing takes their old bench
+  // slot - otherwise whoever just got benched has nowhere to swap back
+  // from and simply vanishes from the roster.
+  const {bench,...outgoing}=real;
+  const newBench=bench.slice();
+  newBench[bi]=outgoing;
+  REAL[u.k]={...picked,bench:newBench};
   u.who=picked.name?nameInitial(picked.name):'';
   u.team=picked.team;
   u.hp=u.max;
