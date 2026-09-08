@@ -1,0 +1,45 @@
+{
+  "season": 2026,
+  "lockedAt": null,
+  "parties": [
+    {
+      "id": "ashen-coalition",
+      "name": "Ashen Coalition",
+      "owner": "Findy",
+      "roster": {
+        "tactician": { "name": "Josh Allen", "team": "BUF", "pos": "QB" },
+        "rogue":     { "name": "Bijan Robinson", "team": "ATL", "pos": "RB" },
+        "hunter":    { "name": "Puka Nacua", "team": "LAR", "pos": "WR" },
+        "breaker":   { "name": "Micah Parsons", "team": "GB", "pos": "EDGE" },
+        "mender":    { "name": "Brandon Aubrey", "team": "DAL", "pos": "K" },
+        "wall":      { "team": "PHI" }
+      }
+    },
+    {
+      "id": "ninth-circle",
+      "name": "Ninth Circle",
+      "owner": "TBD",
+      "roster": {
+        "tactician": { "name": "Lamar Jackson", "team": "BAL", "pos": "QB" },
+        "rogue":     { "name": "Jahmyr Gibbs", "team": "DET", "pos": "RB" },
+        "hunter":    { "name": "Ja'Marr Chase", "team": "CIN", "pos": "WR" },
+        "breaker":   { "name": "Myles Garrett", "team": "CLE", "pos": "EDGE" },
+        "mender":    { "name": "Cameron Dicker", "team": "LAC", "pos": "K" },
+        "wall":      { "team": "DET" }
+      }
+    },
+    {
+      "id": "emberwatch",
+      "name": "Emberwatch",
+      "owner": "TBD",
+      "roster": {
+        "tactician": { "name": "Jayden Daniels", "team": "WAS", "pos": "QB" },
+        "rogue":     { "name": "Christian McCaffrey", "team": "SF", "pos": "RB" },
+        "hunter":    { "name": "Jaxon Smith-Njigba", "team": "SEA", "pos": "WR" },
+        "breaker":   { "name": "T.J. Watt", "team": "PIT", "pos": "EDGE" },
+        "mender":    { "name": "Chris Boswell", "team": "PIT", "pos": "K" },
+        "wall":      { "team": "KC" }
+      }
+    }
+  ]
+}
