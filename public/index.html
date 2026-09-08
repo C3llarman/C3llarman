@@ -229,6 +229,10 @@
     <div class="trait"><b>Attrition.</b> Every drive costs the party hit points whether the room falls or not.</div>
   </div>
 
+  <h3 class="sec">THE PARTY</h3>
+  <div class="bar thin"></div>
+  <div id="wkparty"></div>
+
   <button class="go" id="go">SIMULATE ARRIVALS</button>
   <button class="reset" id="reset" hidden>Start the run over</button>
   <div id="logwrap"></div>
@@ -408,28 +412,12 @@ let roomMax=840,roomHp=840,arrivalIdx=0,done=false;
 const $=id=>document.getElementById(id);
 const mod=v=>{const m=Math.floor((v-10)/2);return (m>=0?'+':'')+m;};
 
+// Lineup tab: display-only, always the full stat block regardless of
+// arrival state. Tapping/committing happens on the Week tab's party row.
 function drawParty(){
   $('party').innerHTML=party.map((u,i)=>{
-    const traveling=u.state==='traveling', arrived=u.state==='arrived';
-    const stateCls=(arrived?' acted':'')+(traveling?' down':'');
-    const tapAttrs=arrived?` role="button" tabindex="0" aria-label="Commit ${u.cls}'s drive"`:'';
-    if(traveling){
-      return `<div class="block unit${stateCls}" id="u${i}">
-        <div class="hd">
-          <div class="sigil"><img src="${SIG[u.k]}" alt=""></div>
-          <div style="flex:1">
-            <h2>${u.cls}</h2>
-            <div class="ident"><span class="pos">${u.pos}</span> <span class="team">· ${u.team}</span></div>
-            <div class="type">${u.type}</div>
-          </div>
-        </div>
-        <div class="bar thin"></div>
-        <div class="trait"><i>Still en route. No line yet this week.</i></div>
-      </div>`;
-    }
     const pct=Math.max(0,u.hp/u.max*100), hpv=Math.max(0,Math.round(u.hp));
-    const r=RESULTS[i];
-    return `<div class="block unit${stateCls}" id="u${i}"${tapAttrs}>
+    return `<div class="block unit" id="u${i}">
       <div class="hd">
         <div class="sigil"><img src="${SIG[u.k]}" alt=""></div>
         <div style="flex:1">
@@ -451,12 +439,32 @@ function drawParty(){
         `<div class="ab"><div class="k">${u.keys[j]}</div><div class="v">${v}</div><div class="m">(${mod(v)})</div></div>`).join('')}</div>
       <div class="bar thin"></div>
       ${u.traits.map(t=>`<div class="trait">${t[1]?`<b>${t[0]}</b> ${t[1]}`:`<i>${t[0]}</i>`}</div>`).join('')}
-      ${r?`<div class="trait">${r.text}</div>`:''}
-      ${arrived?'<div class="trait"><i>Tap to commit.</i></div>':''}
+    </div>`;}).join('');
+}
+// Week tab: compact party row. Same three states as before (traveling/
+// arrived/spent), but interaction lives here now, next to the log that
+// reacts to it. Reuses the Dungeon tower's .floorrow/.num/.nm/.st and the
+// card header's .hd/.sigil - no new classes, no new colors or type.
+function drawCompactRow(){
+  $('wkparty').innerHTML=party.map((u,i)=>{
+    const traveling=u.state==='traveling', arrived=u.state==='arrived';
+    const rowCls=(arrived?' now':'')+(traveling?' sealed':'');
+    const tapAttrs=arrived?` role="button" tabindex="0" aria-label="Commit ${u.cls}'s drive"`:'';
+    const r=RESULTS[i];
+    const dmgText=traveling?'—':(r.dmg?'−'+r.dmg:'—');
+    return `<div class="floorrow${rowCls}" id="wk${i}"${tapAttrs} style="min-height:56px">
+      <div class="hd" style="flex:1">
+        <div class="sigil"><img src="${SIG[u.k]}" alt=""></div>
+        <div style="flex:1">
+          <div class="nm">${u.cls}</div>
+          <div class="st">${u.who||u.team}</div>
+        </div>
+      </div>
+      <div class="num">${dmgText}</div>
     </div>`;}).join('');
   party.forEach((u,i)=>{
     if(u.state!=='arrived')return;
-    const el=$('u'+i);
+    const el=$('wk'+i);
     el.addEventListener('click',()=>commit(i));
     el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();commit(i);}});
   });
@@ -504,9 +512,9 @@ function arriveNext(){
   const i=ARRIVAL_ORDER[arrivalIdx],u=party[i];
   u.state='arrived';
   arrivalIdx++;
-  drawParty();
+  drawCompactRow();
   ev('','→',`${u.cls} — ${u.who||u.team} has arrived.`);
-  $('u'+i).scrollIntoView({block:'center',behavior:'smooth'});
+  $('wk'+i).scrollIntoView({block:'center',behavior:'smooth'});
   updateGoLabel();
 }
 // Arrivals land 5–15s apart once simulation starts, so this can be watched
@@ -530,7 +538,7 @@ function commit(i){
     ev('take','−'+r.take,`Attrition. The Wall absorbs ${soak}; ${u.cls} takes ${r.take-soak}.`);}
   party.forEach(p=>{if(p.hp<0)p.hp=0;});
   u.state='spent';
-  drawParty();drawRoom();
+  drawParty();drawCompactRow();drawRoom();
   checkFinish();
 }
 function checkFinish(){
@@ -565,7 +573,7 @@ const st=[['Bonecrusher Bootleg','IV',1102,410],['Third & Doom','IV',988,340],['
 $('ranks').innerHTML=st.map(s=>s[0]==='YOU'
  ?`<tr class="you"><td>Your party</td><td class="n">III</td><td class="n">—</td><td class="n">—</td></tr>`
  :`<tr><td>${s[0]}</td><td class="n">${s[1]}</td><td class="n">${s[2]}</td><td class="n">${s[3]}</td></tr>`).join('');
-drawParty();drawRoom();updateGoLabel();
+drawParty();drawCompactRow();drawRoom();updateGoLabel();
 
 /* ---- tab navigation ---- */
 const KICK={week:'WEEK 1 · FLOOR III · THE SUNKEN VAULT',
