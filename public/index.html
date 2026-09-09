@@ -648,14 +648,21 @@ function renderFetchError(detail){
 // just that nothing wires up or draws until real data (or a clear
 // failure) is in hand.
 async function boot(){
-  // ?party=<id> picks which roster this visitor sees - each party gets
-  // its own committed file (scripts/flatten-player-stats.mjs writes one
-  // per party in data/parties.json). No accounts in v1: a shareable link
-  // per person stands in for a login.
-  const partyId=(new URLSearchParams(location.search).get('party')||'ashen-coalition').trim();
+  // /<id> in the URL path picks which roster this visitor sees - each
+  // party gets its own committed file (scripts/flatten-player-stats.mjs
+  // writes one per party in data/parties.json) and its own path, rewritten
+  // to this same index.html by a netlify.toml redirect. No accounts in
+  // v1: a shareable link per person stands in for a login. A path (not
+  // ?party=) on purpose - a query string was silently getting dropped
+  // somewhere between some phones and Netlify's edge; a path is the most
+  // ordinary possible URL and isn't special-cased by anything.
+  const partyId=location.pathname.replace(/^\/+|\/+$/g,'')||'ashen-coalition';
   let data;
   try{
-    const res=await fetch(`data/weeks/2026/week-01/${partyId}.json`);
+    // Absolute (leading slash), not relative - this page can now be
+    // reached at /ninth-circle etc. via a netlify.toml rewrite, and a
+    // relative path would resolve differently there than at "/".
+    const res=await fetch(`/data/weeks/2026/week-01/${partyId}.json`);
     if(!res.ok)throw new Error(`HTTP ${res.status} for party "${partyId}"`);
     data=await res.json();
   }catch(err){
