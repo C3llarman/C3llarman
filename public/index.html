@@ -467,21 +467,40 @@ function recomputeResults(){drives.forEach(d=>{RESULTS[d.i]=d.roll();});}
 // Only tactician/rogue/hunter ever reach here - they're the only REAL
 // entries carrying a `bench` (breaker/mender/wall have none, so drawParty
 // never renders a toggle for them in the first place).
-function swap(i,bi){
-  if(locked)return;
-  const u=party[i],real=REAL[u.k],picked=real.bench&&real.bench[bi];
-  if(!picked)return;
+// Split from swap() so boot() can replay a saved substitution (below)
+// without going through the locked check or re-triggering a save - it's
+// restoring a choice that was already made, not making a new one.
+function tradeSlot(slot,bi){
+  const u=party.find(p=>p.k===slot),real=REAL[slot],picked=real&&real.bench&&real.bench[bi];
+  if(!u||!picked)return false;
   // The two trade places: incoming starts, outgoing takes their old bench
   // slot - otherwise whoever just got benched has nowhere to swap back
   // from and simply vanishes from the roster.
   const {bench,...outgoing}=real;
   const newBench=bench.slice();
   newBench[bi]=outgoing;
-  REAL[u.k]={...picked,bench:newBench};
+  REAL[slot]={...picked,bench:newBench};
   u.who=picked.name?nameInitial(picked.name):'';
   u.team=teamName(picked.team);
   u.hp=u.max;
   u.state='traveling';
+  return true;
+}
+// Which slots are currently showing their bench alternate rather than
+// the roster starter - persisted to localStorage (see saveSubs/loadSubs)
+// so a substitution survives closing the tab, not just this sitting.
+let subs={};
+let subsKey=null;
+function saveSubs(){
+  if(!subsKey)return;
+  try{localStorage.setItem(subsKey,JSON.stringify(subs));}catch{}
+}
+function swap(i,bi){
+  if(locked)return;
+  const u=party[i];
+  if(!tradeSlot(u.k,bi))return;
+  subs[u.k]=!subs[u.k];
+  saveSubs();
   recomputeResults();
   openBench=-1;
   drawParty();drawCompactRow();
@@ -672,6 +691,18 @@ async function boot(){
   REAL={tactician:data.tactician,hunter:data.hunter,rogue:data.rogue,
         breaker:data.breaker,mender:data.mender,wall:data.wall};
   party=buildParty(REAL);
+  // Replay any substitution this browser saved earlier for this exact
+  // party+week - otherwise a swap only lasted until the tab closed,
+  // which for a real NFL week (open Sunday, close the tab, open again
+  // Monday) meant it never actually lasted. Keyed by season+week so
+  // next week's fresh roster never inherits this week's swap. Applies
+  // regardless of lock state - it's restoring a choice already made,
+  // not making a new one.
+  subsKey=`hff:subs:${data.season}:${data.week}:${partyId}`;
+  try{
+    subs=JSON.parse(localStorage.getItem(subsKey)||'{}');
+    Object.keys(subs).forEach(slot=>{if(subs[slot])tradeSlot(slot,0);});
+  }catch{subs={};}
   recomputeResults();
   // lockedAt is the earliest real kickoff among this party's six
   // starters (computed at build time from the actual schedule) - never
