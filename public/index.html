@@ -350,15 +350,36 @@ const TEAM_NAMES={ARI:'Arizona',ATL:'Atlanta',BAL:'Baltimore',BUF:'Buffalo',CAR:
 const teamName=code=>TEAM_NAMES[code]||code;
 // Same damage formulas as the drives below, factored out so the bench
 // picker's projected range and the actual commit always agree.
-function dmgFor(k,r){
+// Volume (the grind - yards, catches, TFL, made kicks) vs burst (the
+// single big play - TDs, sacks) kept as separate terms so a floor's
+// mechanic can scale them independently. Hunter and Mender have no
+// burst term at all - matches their existing crit:false everywhere
+// they're rolled (CLAUDE.md: Hunter is "steady volume damage" by
+// design, and Mender's made-kicks formula has no explosive-play
+// concept to isolate). Wall stays 0/0 - no O-line dmg formula exists.
+function dmgParts(k,r){
   switch(k){
-    case 'tactician': return Math.round(r.y*0.55)+r.td*45;
-    case 'hunter': return Math.round(r.y*1.1)+r.c*6;
-    case 'rogue': return Math.round(r.y*1.3)+r.td*60;
-    case 'breaker': return r.sk*70+r.tfl*22;
-    case 'mender': return r.fg*14;
-    default: return 0; // wall — no O-line dmg formula exists
+    case 'tactician': return {volume:Math.round(r.y*0.55),burst:r.td*45};
+    case 'hunter': return {volume:Math.round(r.y*1.1)+r.c*6,burst:0};
+    case 'rogue': return {volume:Math.round(r.y*1.3),burst:r.td*60};
+    case 'breaker': return {volume:r.tfl*22,burst:r.sk*70};
+    case 'mender': return {volume:r.fg*14,burst:0};
+    default: return {volume:0,burst:0};
   }
+}
+// Floor modifiers (CLAUDE.md): Swarm halves the big-play term and
+// leaves volume unreduced; Sentinel halves volume and doubles burst.
+// Defaults to 'swarm' - Floor III, the only floor live right now - so
+// every existing call site (none of which pass a mechanic) keeps
+// working unchanged.
+const FLOOR_MECHANICS={
+  swarm:{vol:1,burst:0.5},
+  sentinel:{vol:0.5,burst:2},
+};
+function dmgFor(k,r,mechanic='swarm'){
+  const {volume,burst}=dmgParts(k,r);
+  const m=FLOOR_MECHANICS[mechanic]||{vol:1,burst:1};
+  return Math.round(volume*m.vol+burst*m.burst);
 }
 // "Thu 5:20p vs DAL" in the viewer's own local time zone (Date parses the
 // embedded ISO offset, then everything below reads back in local time by
