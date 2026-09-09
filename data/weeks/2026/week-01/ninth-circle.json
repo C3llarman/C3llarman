@@ -1,0 +1,111 @@
+{
+  "season": 2026,
+  "week": 1,
+  "seasonType": "REG",
+  "generatedAt": "2026-09-09T01:20:31.577Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
+  "party": {
+    "id": "ninth-circle",
+    "name": "Ninth Circle"
+  },
+  "lockedAt": "2026-09-13T13:00:00-04:00",
+  "tactician": {
+    "team": "BAL",
+    "opponent": "IND",
+    "homeAway": "away",
+    "kickoff": "2026-09-13T13:00:00-04:00",
+    "name": "Lamar Jackson",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "PHI",
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T16:25:00-04:00",
+        "name": "Jalen Hurts",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "rogue": {
+    "team": "DET",
+    "opponent": "NO",
+    "homeAway": "home",
+    "kickoff": "2026-09-13T13:00:00-04:00",
+    "name": "Jahmyr Gibbs",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "PHI",
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T16:25:00-04:00",
+        "name": "Saquon Barkley",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "hunter": {
+    "team": "CIN",
+    "opponent": "TB",
+    "homeAway": "home",
+    "kickoff": "2026-09-13T13:00:00-04:00",
+    "name": "Ja'Marr Chase",
+    "y": 0,
+    "c": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "HOU",
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00",
+        "name": "Nico Collins",
+        "y": 0,
+        "c": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "breaker": {
+    "team": "CLE",
+    "opponent": "JAX",
+    "homeAway": "away",
+    "kickoff": "2026-09-13T13:00:00-04:00",
+    "name": "Myles Garrett",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false
+  },
+  "mender": {
+    "team": "LAC",
+    "opponent": "ARI",
+    "homeAway": "home",
+    "kickoff": "2026-09-13T16:25:00-04:00",
+    "name": "Cameron Dicker",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false
+  },
+  "wall": {
+    "team": "DET",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "NO",
+    "homeAway": "home",
+    "kickoff": "2026-09-13T13:00:00-04:00"
+  }
+}

@@ -2,13 +2,14 @@
   "season": 2026,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-09T00:20:38.059Z",
+  "generatedAt": "2026-09-09T01:20:31.563Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
     "id": "ashen-coalition",
     "name": "Ashen Coalition"
   },
+  "lockedAt": "2026-09-10T20:35:00-04:00",
   "tactician": {
     "team": "BUF",
     "opponent": "HOU",

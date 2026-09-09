@@ -1,0 +1,111 @@
+{
+  "season": 2026,
+  "week": 1,
+  "seasonType": "REG",
+  "generatedAt": "2026-09-09T01:20:31.578Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
+  "party": {
+    "id": "emberwatch",
+    "name": "Emberwatch"
+  },
+  "lockedAt": "2026-09-09T20:20:00-04:00",
+  "tactician": {
+    "team": "WAS",
+    "opponent": "PHI",
+    "homeAway": "away",
+    "kickoff": "2026-09-13T16:25:00-04:00",
+    "name": "Jayden Daniels",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "CIN",
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00",
+        "name": "Joe Burrow",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "rogue": {
+    "team": "SF",
+    "opponent": "LA",
+    "homeAway": "away",
+    "kickoff": "2026-09-10T20:35:00-04:00",
+    "name": "Christian McCaffrey",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "LV",
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T16:25:00-04:00",
+        "name": "Ashton Jeanty",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "hunter": {
+    "team": "SEA",
+    "opponent": "NE",
+    "homeAway": "home",
+    "kickoff": "2026-09-09T20:20:00-04:00",
+    "name": "Jaxon Smith-Njigba",
+    "y": 0,
+    "c": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "NYG",
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T20:20:00-04:00",
+        "name": "Malik Nabers",
+        "y": 0,
+        "c": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "breaker": {
+    "team": "PIT",
+    "opponent": "ATL",
+    "homeAway": "home",
+    "kickoff": "2026-09-13T13:00:00-04:00",
+    "name": "T.J. Watt",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false
+  },
+  "mender": {
+    "team": "PIT",
+    "opponent": "ATL",
+    "homeAway": "home",
+    "kickoff": "2026-09-13T13:00:00-04:00",
+    "name": "Chris Boswell",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false
+  },
+  "wall": {
+    "team": "KC",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "DEN",
+    "homeAway": "home",
+    "kickoff": "2026-09-14T20:15:00-04:00"
+  }
+}

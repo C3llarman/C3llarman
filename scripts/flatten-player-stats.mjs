@@ -1,10 +1,13 @@
 #!/usr/bin/env node
-// Build-time script: resolves one party's roster + bench (data/parties.json)
+// Build-time script: resolves every party's roster + bench (data/parties.json)
 // into the exact REAL shape public/index.html fetches at page load - real
 // stats where they exist, honest zeroes where they don't (a future/empty
 // week never errors, it just produces a file where nobody hasStats yet).
-// Run via:
+// One output file per party, so the site can show each visitor their own
+// roster (public/index.html?party=<id>) instead of a single hardcoded one.
+// Run via (writes every party in data/parties.json):
 //   node scripts/flatten-player-stats.mjs --season 2026 --week 1
+// Or a single party with --party <id>.
 //
 // Stats source: nflverse-data's "stats_player" release (built by
 // nflfastR::calculate_stats()), one combined offense + defense + kicking
@@ -181,15 +184,30 @@ function resolveWall(roster, rows, schedule, week) {
   return { team, sacksAllowed, hasStats: teamRows.length > 0, ...sched };
 }
 
+// The roster locks at the EARLIEST real kickoff among its six starters -
+// standard "can't see how your Thursday guy did before setting Sunday's
+// lineup" fantasy behavior. Derived from the real schedule, never
+// hand-typed, so it can't drift out of sync with the games actually being
+// played (a hand-typed date already had: a lock time on a day with no
+// game in it at all).
+function lockedAtFor(real) {
+  const kickoffs = Object.values(real).map(slot => slot.kickoff).filter(Boolean);
+  if (!kickoffs.length) return null;
+  return kickoffs.reduce((min, k) => (new Date(k) < new Date(min) ? k : min));
+}
+
 async function main() {
   const { season, week, seasonType, outDir, scheduleDir, party: partyId } = parseArgs(process.argv.slice(2));
 
   const partiesPath = path.join(ROOT, 'data', 'parties.json');
   const partiesDoc = JSON.parse(await readFile(partiesPath, 'utf8'));
-  const party = partyId
-    ? partiesDoc.parties.find(p => p.id === partyId)
-    : partiesDoc.parties[0];
-  if (!party) throw new Error(`Party ${partyId ? `"${partyId}"` : '(first)'} not found in ${partiesPath}`);
+  // No --party: every party in the file gets its own output. The site
+  // shows one party per visitor via ?party=<id>, so all of them need to
+  // exist - not just whichever one used to be "first".
+  const parties = partyId
+    ? [partiesDoc.parties.find(p => p.id === partyId)]
+    : partiesDoc.parties;
+  if (!parties[0]) throw new Error(`Party "${partyId}" not found in ${partiesPath}`);
 
   const schedulePath = path.join(ROOT, scheduleDir, `${season}.json`);
   let schedule = null;
@@ -216,37 +234,41 @@ async function main() {
     (rows.length === 0 ? ' - writing empty stat lines for every roster entry, not erroring.' : '.'));
 
   const SWAPPABLE = ['tactician', 'rogue', 'hunter'];
-  const real = {};
-  for (const [slot, rosterEntry] of Object.entries(party.roster)) {
-    real[slot] = slot === 'wall'
-      ? resolveWall(rosterEntry, rows, schedule, week)
-      : resolveEntry(slot, rosterEntry, rows, schedule, week);
-    if (SWAPPABLE.includes(slot) && party.bench?.[slot]) {
-      real[slot].bench = [resolveEntry(slot, party.bench[slot], rows, schedule, week)];
-    }
-  }
-
-  const output = {
-    season,
-    week,
-    seasonType,
-    generatedAt: new Date().toISOString(),
-    source: url,
-    scheduleSource: schedule ? schedulePath : null,
-    party: { id: party.id, name: party.name },
-    ...real,
-  };
-
   const weekStr = String(week).padStart(2, '0');
-  const dir = path.join(outDir, String(season));
-  const file = path.join(dir, `week-${weekStr}.json`);
+  const dir = path.join(outDir, String(season), `week-${weekStr}`);
   await mkdir(dir, { recursive: true });
-  await writeFile(file, JSON.stringify(output, null, 2) + '\n');
 
-  const hasStatsCount = ['tactician', 'hunter', 'rogue', 'breaker', 'mender', 'wall']
-    .filter(slot => real[slot]?.hasStats).length;
-  console.log(`Wrote ${file}`);
-  console.log(`  party=${party.name}  rows=${rows.length}  slots with real stats: ${hasStatsCount}/6`);
+  for (const party of parties) {
+    const real = {};
+    for (const [slot, rosterEntry] of Object.entries(party.roster)) {
+      real[slot] = slot === 'wall'
+        ? resolveWall(rosterEntry, rows, schedule, week)
+        : resolveEntry(slot, rosterEntry, rows, schedule, week);
+      if (SWAPPABLE.includes(slot) && party.bench?.[slot]) {
+        real[slot].bench = [resolveEntry(slot, party.bench[slot], rows, schedule, week)];
+      }
+    }
+
+    const output = {
+      season,
+      week,
+      seasonType,
+      generatedAt: new Date().toISOString(),
+      source: url,
+      scheduleSource: schedule ? schedulePath : null,
+      party: { id: party.id, name: party.name },
+      lockedAt: lockedAtFor(real),
+      ...real,
+    };
+
+    const file = path.join(dir, `${party.id}.json`);
+    await writeFile(file, JSON.stringify(output, null, 2) + '\n');
+
+    const hasStatsCount = ['tactician', 'hunter', 'rogue', 'breaker', 'mender', 'wall']
+      .filter(slot => real[slot]?.hasStats).length;
+    console.log(`Wrote ${file}`);
+    console.log(`  party=${party.name}  rows=${rows.length}  slots with real stats: ${hasStatsCount}/6  lockedAt=${output.lockedAt}`);
+  }
 }
 
 main().catch(err => {
