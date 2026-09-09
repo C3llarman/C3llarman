@@ -114,6 +114,28 @@
   .verdict h2{font-family:'Archivo Narrow';font-weight:700;font-size:23px}
   .xp{font-family:'Archivo Narrow';font-weight:700;font-size:20px;color:var(--gild);margin-top:8px}
 
+  /* A shareable box-score, self-contained on purpose (own border, own
+     header repeating the party/week/floor line already in the masthead)
+     so a screenshot of just this block reads on its own with no other
+     app chrome needed. Same tokens/type as everywhere else - no new
+     colors. */
+  .statcard{border:2px solid var(--rule);padding:16px;margin-top:16px;background:var(--card)}
+  .statcard .sc-head{font-family:'Archivo Narrow';font-weight:600;font-size:12.5px;
+    letter-spacing:.1em;color:var(--faint)}
+  .statcard .sc-result{font-family:'Archivo Narrow';font-weight:700;font-size:22px;margin-top:4px}
+  .statcard .sc-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--hair)}
+  .statcard .sc-row:last-child{border-bottom:0}
+  .statcard .sc-sig{width:26px;height:26px;object-fit:contain;flex:0 0 auto}
+  .statcard .sc-nm{font-family:'Archivo Narrow';font-weight:700;font-size:12.5px;
+    letter-spacing:.05em;flex:0 0 78px}
+  .statcard .sc-stat{flex:1;font-size:14.5px}
+  .statcard .sc-amt{font-family:'Archivo Narrow';font-weight:700;font-size:15px;min-width:52px;text-align:right}
+  .statcard .sc-foot{display:flex;justify-content:space-between;align-items:baseline;
+    margin-top:8px;padding-top:10px;border-top:2px solid var(--rule)}
+  .statcard .sc-hp{font-size:14.5px;color:var(--faint)}
+  .statcard .sc-hp b{color:var(--ink);font-weight:600}
+  .statcard .sc-xp{font-family:'Archivo Narrow';font-weight:700;font-size:18px;color:var(--gild)}
+
   table{width:100%;border-collapse:collapse;font-size:15.5px}
   th{font-family:'Archivo Narrow';font-size:12.5px;letter-spacing:.07em;color:var(--rule);
     text-align:right;border-bottom:2px solid var(--rule);padding:5px 3px}
@@ -231,6 +253,7 @@
   <button class="reset" id="reset" hidden>Start the run over</button>
   <div id="logwrap"></div>
   <div id="verdict" role="status" aria-live="polite"></div>
+  <div id="statcard"></div>
 </section>
 
 <!-- ============ LINEUP ============ -->
@@ -607,6 +630,13 @@ function scheduleNextArrival(){
   setTimeout(()=>{arriveNext();scheduleNextArrival();},5000+Math.random()*10000);
 }
 function commit(i){
+  // Once the floor's already fallen (or held), further taps on any
+  // still-'arrived' card shouldn't keep dealing damage - without this,
+  // a card tapped after finish() already fired would update the live
+  // view but not the saved snapshot (which is only written once, by
+  // finish()), so a reload could show something that never matched what
+  // was on screen a moment before.
+  if(done)return;
   const u=party[i];
   if(u.state!=='arrived')return;
   const r=RESULTS[i];
@@ -629,10 +659,49 @@ function checkFinish(){
   if(roomHp<=0||party.every(p=>p.state==='spent')) finish();
   else updateGoLabel();
 }
-function finish(){
-  if(done)return;done=true;
-  const cleared=roomHp<=0, wounded=party.filter(p=>p.hp/p.max<0.5).length;
-  const xp=cleared?(wounded===0?340:220):60;
+// Short box-score line per class, straight from REAL - same fields the
+// per-unit cards already show, condensed to one line for the stat card.
+function statLine(slot){
+  const r=REAL[slot];
+  switch(slot){
+    case 'wall': return `${r.sacksAllowed} sack${r.sacksAllowed===1?'':'s'} allowed`;
+    case 'tactician': return `${r.y} yds, ${r.td} TD`;
+    case 'hunter': return `${r.c} rec, ${r.y} yds`;
+    case 'rogue': return `${r.car} car, ${r.y} yds${r.td?`, ${r.td} TD`:''}`;
+    case 'breaker': return `${r.sk} sk, ${r.tfl} TFL`;
+    case 'mender': return `${r.fg}/${r.att} FG`;
+  }
+}
+// Recap card built once the week is fully committed - self-contained
+// (repeats the party/week/floor line rather than assuming the header
+// above it is in frame) so a screenshot of just this block is enough to
+// share to a group chat, no cropping required.
+function renderStatCard(cleared,xp){
+  const order=['wall','breaker','tactician','hunter','rogue','mender'];
+  const rows=order.map(slot=>{
+    const i=party.findIndex(p=>p.k===slot),u=party[i],r=RESULTS[i];
+    const amt=slot==='wall'?`<div class="sc-amt" style="color:var(--faint)">soak</div>`
+      :slot==='mender'?`<div class="sc-amt" style="color:var(--mend)">+${r.heal}</div>`
+      :`<div class="sc-amt" style="color:${r.crit?'var(--live)':'var(--rule)'}">−${r.dmg}</div>`;
+    return `<div class="sc-row">
+      <img class="sc-sig" src="${SIG[slot]}" alt="">
+      <div class="sc-nm">${u.cls.toUpperCase()}</div>
+      <div class="sc-stat">${statLine(slot)}</div>
+      ${amt}
+    </div>`;
+  }).join('');
+  $('statcard').innerHTML=`<div class="statcard">
+    <div class="sc-head">${KICK.week}</div>
+    <div class="sc-result" style="color:${cleared?'var(--mend)':'var(--live)'}">${cleared?'THE FLOOR FALLS':'HELD AT THE DOOR'}</div>
+    <div class="bar thin" style="margin:10px 0"></div>
+    ${rows}
+    <div class="sc-foot">
+      <div class="sc-hp">ROOM <b>${Math.max(0,Math.round(roomHp))}</b> / <b>${roomMax}</b> HP</div>
+      <div class="sc-xp">+${xp} XP</div>
+    </div>
+  </div>`;
+}
+function renderVerdict(cleared,wounded,xp){
   $('verdict').innerHTML=`<div class="verdict">
     <h2 style="color:${cleared?'var(--mend)':'var(--live)'}">${cleared?'THE FLOOR FALLS':'HELD AT THE DOOR'}</h2>
     <p>${cleared?(wounded===0
@@ -640,6 +709,25 @@ function finish(){
       :`Cleared, but ${wounded} ${wounded===1?'member carries':'members carry'} wounds into Floor IV. Partial experience.`)
       :`${Math.round(roomHp)} hit points still standing. The party falls back to mend; the floor stays shut.`}</p>
     <div class="xp">+${xp} XP</div></div>`;
+}
+let doneKey=null;
+// Snapshot just the numbers that actually change (room HP, each unit's
+// final HP/state) rather than trying to replay the exact tap sequence -
+// replaying would get the Wall's damage soak wrong if this browser
+// didn't commit cards in the same order it originally did, since later
+// soaks are capped by whatever Wall HP is left at that point.
+function saveDone(){
+  if(!doneKey)return;
+  try{localStorage.setItem(doneKey,JSON.stringify({
+    roomHp,hp:party.map(p=>p.hp),state:party.map(p=>p.state)}));}catch{}
+}
+function finish(){
+  if(done)return;done=true;
+  const cleared=roomHp<=0, wounded=party.filter(p=>p.hp/p.max<0.5).length;
+  const xp=cleared?(wounded===0?340:220):60;
+  renderVerdict(cleared,wounded,xp);
+  renderStatCard(cleared,xp);
+  saveDone();
   updateGoLabel();$('reset').hidden=false;
 }
 $('reset').onclick=()=>location.reload();
@@ -722,6 +810,24 @@ async function boot(){
     ?`${partyLabel} · LINEUP LOCKS ${clockText(new Date(LOCKED_AT)).toUpperCase()}`
     :`${partyLabel} · LINEUP LOCK TIME UNKNOWN`;
   document.querySelector('header .kick').textContent=KICK[currentTab];
+  // If this browser already finished this week's floor, restore that
+  // instantly instead of making them tap through every arrival again to
+  // get back to the recap they came for. After KICK.week is set, since
+  // renderStatCard() reads it for the card's header line.
+  doneKey=`hff:done:${data.season}:${data.week}:${partyId}`;
+  try{
+    const saved=JSON.parse(localStorage.getItem(doneKey)||'null');
+    if(saved){
+      roomHp=saved.roomHp;
+      party.forEach((p,i)=>{p.hp=saved.hp[i];p.state=saved.state[i];});
+      done=true;
+      const cleared=roomHp<=0,wounded=party.filter(p=>p.hp/p.max<0.5).length;
+      const xp=cleared?(wounded===0?340:220):60;
+      renderVerdict(cleared,wounded,xp);
+      renderStatCard(cleared,xp);
+      $('reset').hidden=false;
+    }
+  }catch{}
   $('go').onclick=()=>{
     if(done||arrivalIdx>0)return;
     $('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
