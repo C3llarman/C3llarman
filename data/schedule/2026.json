@@ -1,0 +1,2763 @@
+{
+  "season": 2026,
+  "generatedAt": "2026-09-09T00:18:09.894Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+  "weeks": {
+    "1": {
+      "SEA": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-09-09T20:20:00-04:00"
+      },
+      "NE": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-09-09T20:20:00-04:00"
+      },
+      "LA": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2026-09-10T20:35:00-04:00"
+      },
+      "SF": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-09-10T20:35:00-04:00"
+      },
+      "CAR": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "CHI": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "CIN": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "TB": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "DET": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "NO": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "HOU": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "BUF": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "IND": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "BAL": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "JAX": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "CLE": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "PIT": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "ATL": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "TEN": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "NYJ": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T13:00:00-04:00"
+      },
+      "LAC": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "ARI": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "LV": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "MIA": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "MIN": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "GB": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "PHI": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "WAS": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T16:25:00-04:00"
+      },
+      "NYG": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-09-13T20:20:00-04:00"
+      },
+      "DAL": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-09-13T20:20:00-04:00"
+      },
+      "KC": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-09-14T20:15:00-04:00"
+      },
+      "DEN": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-09-14T20:15:00-04:00"
+      }
+    },
+    "2": {
+      "BUF": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2026-09-17T20:15:00-04:00"
+      },
+      "DET": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-09-17T20:15:00-04:00"
+      },
+      "ATL": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "CAR": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "BAL": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "NO": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "CHI": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "MIN": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "HOU": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "CIN": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "NE": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "PIT": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "NYJ": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "GB": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "TB": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "CLE": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "TEN": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "PHI": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T13:00:00-04:00"
+      },
+      "DEN": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T16:05:00-04:00"
+      },
+      "JAX": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T16:05:00-04:00"
+      },
+      "LAC": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T16:05:00-04:00"
+      },
+      "LV": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T16:05:00-04:00"
+      },
+      "ARI": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T16:25:00-04:00"
+      },
+      "SEA": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T16:25:00-04:00"
+      },
+      "DAL": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T16:25:00-04:00"
+      },
+      "WAS": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T16:25:00-04:00"
+      },
+      "SF": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T16:25:00-04:00"
+      },
+      "MIA": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T16:25:00-04:00"
+      },
+      "KC": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T20:20:00-04:00"
+      },
+      "IND": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T20:20:00-04:00"
+      },
+      "LA": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-09-21T20:15:00-04:00"
+      },
+      "NYG": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-09-21T20:15:00-04:00"
+      }
+    },
+    "3": {
+      "GB": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-09-24T20:15:00-04:00"
+      },
+      "ATL": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2026-09-24T20:15:00-04:00"
+      },
+      "BUF": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "LAC": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "CLE": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "CAR": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "DET": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "NYJ": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "IND": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "HOU": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "JAX": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "NE": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "MIA": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "KC": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "NYG": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "TEN": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "PIT": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "CIN": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "WAS": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "SEA": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00"
+      },
+      "SF": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T16:05:00-04:00"
+      },
+      "ARI": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:05:00-04:00"
+      },
+      "TB": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T16:05:00-04:00"
+      },
+      "MIN": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:05:00-04:00"
+      },
+      "DAL": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T16:25:00-04:00"
+      },
+      "BAL": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:25:00-04:00"
+      },
+      "NO": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T16:25:00-04:00"
+      },
+      "LV": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:25:00-04:00"
+      },
+      "DEN": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T20:20:00-04:00"
+      },
+      "LA": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T20:20:00-04:00"
+      },
+      "CHI": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2026-09-28T20:15:00-04:00"
+      },
+      "PHI": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-09-28T20:15:00-04:00"
+      }
+    },
+    "4": {
+      "CLE": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2026-10-01T20:15:00-04:00"
+      },
+      "PIT": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2026-10-01T20:15:00-04:00"
+      },
+      "WAS": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T09:30:00-04:00"
+      },
+      "IND": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T09:30:00-04:00"
+      },
+      "BAL": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "TEN": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "BUF": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "NE": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "CHI": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "NYJ": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "CIN": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "JAX": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "HOU": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "DAL": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "NYG": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "ARI": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "PHI": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "LA": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "TB": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "GB": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00"
+      },
+      "MIN": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T16:05:00-04:00"
+      },
+      "MIA": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T16:05:00-04:00"
+      },
+      "LV": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T16:25:00-04:00"
+      },
+      "KC": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T16:25:00-04:00"
+      },
+      "SEA": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T16:25:00-04:00"
+      },
+      "LAC": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T16:25:00-04:00"
+      },
+      "SF": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T16:25:00-04:00"
+      },
+      "DEN": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T16:25:00-04:00"
+      },
+      "CAR": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T20:20:00-04:00"
+      },
+      "DET": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T20:20:00-04:00"
+      },
+      "NO": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-10-05T20:15:00-04:00"
+      },
+      "ATL": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-10-05T20:15:00-04:00"
+      }
+    },
+    "5": {
+      "DAL": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-10-08T20:15:00-04:00"
+      },
+      "TB": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-10-08T20:15:00-04:00"
+      },
+      "JAX": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T09:30:00-04:00"
+      },
+      "PHI": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T09:30:00-04:00"
+      },
+      "MIA": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "CIN": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "NE": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "LV": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "NO": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "MIN": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "NYJ": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "CLE": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "PIT": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "IND": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "TEN": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "HOU": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "WAS": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "NYG": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00"
+      },
+      "LAC": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T16:05:00-04:00"
+      },
+      "DEN": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T16:05:00-04:00"
+      },
+      "ARI": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T16:25:00-04:00"
+      },
+      "DET": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T16:25:00-04:00"
+      },
+      "GB": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T16:25:00-04:00"
+      },
+      "CHI": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T16:25:00-04:00"
+      },
+      "SEA": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T16:25:00-04:00"
+      },
+      "SF": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T16:25:00-04:00"
+      },
+      "ATL": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T20:20:00-04:00"
+      },
+      "BAL": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T20:20:00-04:00"
+      },
+      "LA": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-10-12T20:15:00-04:00"
+      },
+      "BUF": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-10-12T20:15:00-04:00"
+      }
+    },
+    "6": {
+      "DEN": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2026-10-15T20:15:00-04:00"
+      },
+      "SEA": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-10-15T20:15:00-04:00"
+      },
+      "JAX": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T09:30:00-04:00"
+      },
+      "HOU": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T09:30:00-04:00"
+      },
+      "ATL": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "CHI": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "CLE": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "BAL": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "IND": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "TEN": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "NE": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "NYJ": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "NYG": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "NO": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "PHI": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "CAR": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "TB": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "PIT": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T13:00:00-04:00"
+      },
+      "LA": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T16:05:00-04:00"
+      },
+      "ARI": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T16:05:00-04:00"
+      },
+      "KC": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T16:25:00-04:00"
+      },
+      "LAC": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T16:25:00-04:00"
+      },
+      "LV": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T16:25:00-04:00"
+      },
+      "BUF": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T16:25:00-04:00"
+      },
+      "GB": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T20:20:00-04:00"
+      },
+      "DAL": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T20:20:00-04:00"
+      },
+      "SF": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-10-19T20:15:00-04:00"
+      },
+      "WAS": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-10-19T20:15:00-04:00"
+      }
+    },
+    "7": {
+      "CHI": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-10-22T20:15:00-04:00"
+      },
+      "NE": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-10-22T20:15:00-04:00"
+      },
+      "NO": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T09:30:00-04:00"
+      },
+      "PIT": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T09:30:00-04:00"
+      },
+      "ATL": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "SF": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "BAL": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "CIN": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "CAR": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "TB": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "HOU": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "NYG": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "MIN": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "IND": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "NYJ": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "MIA": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "TEN": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "CLE": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00"
+      },
+      "ARI": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T16:05:00-04:00"
+      },
+      "DEN": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T16:05:00-04:00"
+      },
+      "DET": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T16:25:00-04:00"
+      },
+      "GB": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T16:25:00-04:00"
+      },
+      "LV": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T16:25:00-04:00"
+      },
+      "LA": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T16:25:00-04:00"
+      },
+      "SEA": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T20:20:00-04:00"
+      },
+      "KC": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T20:20:00-04:00"
+      },
+      "PHI": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-10-26T20:15:00-04:00"
+      },
+      "DAL": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-10-26T20:15:00-04:00"
+      }
+    },
+    "8": {
+      "GB": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-10-29T20:15:00-04:00"
+      },
+      "CAR": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2026-10-29T20:15:00-04:00"
+      },
+      "BUF": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "BAL": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "CIN": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "DAL": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "ARI": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "DET": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "MIN": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "LV": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "PIT": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "ATL": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T13:00:00-05:00"
+      },
+      "LA": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T16:05:00-05:00"
+      },
+      "LAC": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T16:05:00-05:00"
+      },
+      "DEN": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T16:25:00-05:00"
+      },
+      "KC": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T16:25:00-05:00"
+      },
+      "MIA": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T16:25:00-05:00"
+      },
+      "NE": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T16:25:00-05:00"
+      },
+      "WAS": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T20:20:00-05:00"
+      },
+      "PHI": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T20:20:00-05:00"
+      },
+      "SEA": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-11-02T20:15:00-05:00"
+      },
+      "CHI": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-11-02T20:15:00-05:00"
+      }
+    },
+    "9": {
+      "BAL": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-11-05T20:15:00-05:00"
+      },
+      "JAX": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2026-11-05T20:15:00-05:00"
+      },
+      "ATL": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T09:30:00-05:00"
+      },
+      "CIN": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T09:30:00-05:00"
+      },
+      "CAR": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "DEN": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "DAL": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "KC": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "DET": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "PHI": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "NYG": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "WAS": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "LA": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T13:00:00-05:00"
+      },
+      "LAC": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T16:05:00-05:00"
+      },
+      "HOU": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T16:05:00-05:00"
+      },
+      "SF": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T16:05:00-05:00"
+      },
+      "LV": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T16:05:00-05:00"
+      },
+      "NE": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T16:25:00-05:00"
+      },
+      "GB": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T16:25:00-05:00"
+      },
+      "SEA": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T16:25:00-05:00"
+      },
+      "ARI": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T16:25:00-05:00"
+      },
+      "CHI": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-11-08T20:20:00-05:00"
+      },
+      "TB": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-11-08T20:20:00-05:00"
+      },
+      "MIN": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-11-09T20:15:00-05:00"
+      },
+      "BUF": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-11-09T20:15:00-05:00"
+      }
+    },
+    "10": {
+      "NYG": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-11-12T20:15:00-05:00"
+      },
+      "WAS": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-11-12T20:15:00-05:00"
+      },
+      "DET": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T09:30:00-05:00"
+      },
+      "NE": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T09:30:00-05:00"
+      },
+      "ATL": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "KC": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "HOU": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "GB": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "MIN": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "CAR": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "BUF": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T13:00:00-05:00"
+      },
+      "ARI": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T16:05:00-05:00"
+      },
+      "LA": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T16:05:00-05:00"
+      },
+      "LV": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T16:05:00-05:00"
+      },
+      "SEA": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T16:05:00-05:00"
+      },
+      "DAL": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T16:25:00-05:00"
+      },
+      "SF": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T16:25:00-05:00"
+      },
+      "CIN": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2026-11-15T20:20:00-05:00"
+      },
+      "PIT": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2026-11-15T20:20:00-05:00"
+      },
+      "BAL": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-11-16T20:15:00-05:00"
+      },
+      "LAC": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2026-11-16T20:15:00-05:00"
+      }
+    },
+    "11": {
+      "HOU": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-11-19T20:15:00-05:00"
+      },
+      "IND": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2026-11-19T20:15:00-05:00"
+      },
+      "BUF": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "CAR": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "BAL": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "CHI": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "DAL": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "DET": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "KC": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "ARI": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "NYG": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T13:00:00-05:00"
+      },
+      "LAC": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T16:05:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T16:05:00-05:00"
+      },
+      "DEN": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T16:25:00-05:00"
+      },
+      "LV": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T16:25:00-05:00"
+      },
+      "PHI": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T16:25:00-05:00"
+      },
+      "PIT": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T16:25:00-05:00"
+      },
+      "SF": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2026-11-22T20:20:00-05:00"
+      },
+      "MIN": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-11-22T20:20:00-05:00"
+      },
+      "WAS": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-11-23T20:15:00-05:00"
+      },
+      "CIN": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-11-23T20:15:00-05:00"
+      }
+    },
+    "12": {
+      "LA": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-11-25T20:00:00-05:00"
+      },
+      "GB": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-11-25T20:00:00-05:00"
+      },
+      "DET": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-11-26T13:00:00-05:00"
+      },
+      "CHI": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-11-26T13:00:00-05:00"
+      },
+      "DAL": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2026-11-26T16:30:00-05:00"
+      },
+      "PHI": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-11-26T16:30:00-05:00"
+      },
+      "BUF": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-11-26T20:20:00-05:00"
+      },
+      "KC": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-11-26T20:20:00-05:00"
+      },
+      "PIT": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-11-27T15:00:00-05:00"
+      },
+      "DEN": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-11-27T15:00:00-05:00"
+      },
+      "CIN": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "LV": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "HOU": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "BAL": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "NYG": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "MIN": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "ATL": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T16:05:00-05:00"
+      },
+      "TEN": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T16:05:00-05:00"
+      },
+      "ARI": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T16:25:00-05:00"
+      },
+      "WAS": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T16:25:00-05:00"
+      },
+      "SF": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T16:25:00-05:00"
+      },
+      "SEA": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T16:25:00-05:00"
+      },
+      "LAC": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-11-29T20:20:00-05:00"
+      },
+      "NE": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2026-11-29T20:20:00-05:00"
+      },
+      "TB": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-11-30T20:15:00-05:00"
+      },
+      "CAR": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-11-30T20:15:00-05:00"
+      }
+    },
+    "13": {
+      "LA": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-12-03T20:15:00-05:00"
+      },
+      "KC": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-12-03T20:15:00-05:00"
+      },
+      "ATL": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "DET": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "CHI": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "CIN": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "GB": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "NYG": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "SF": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "LAC": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "WAS": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T13:00:00-05:00"
+      },
+      "ARI": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T16:05:00-05:00"
+      },
+      "PHI": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T16:05:00-05:00"
+      },
+      "DEN": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T16:05:00-05:00"
+      },
+      "MIA": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T16:05:00-05:00"
+      },
+      "MIN": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T16:25:00-05:00"
+      },
+      "CAR": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T16:25:00-05:00"
+      },
+      "NE": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T16:25:00-05:00"
+      },
+      "BUF": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T16:25:00-05:00"
+      },
+      "PIT": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-12-06T20:20:00-05:00"
+      },
+      "HOU": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-12-06T20:20:00-05:00"
+      },
+      "SEA": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-12-07T20:15:00-05:00"
+      },
+      "DAL": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-12-07T20:15:00-05:00"
+      }
+    },
+    "14": {
+      "NE": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2026-12-10T20:15:00-05:00"
+      },
+      "MIN": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2026-12-10T20:15:00-05:00"
+      },
+      "BAL": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "CAR": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "ATL": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "DET": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "CHI": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "DEN": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "PHI": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "WAS": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "HOU": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T13:00:00-05:00"
+      },
+      "LV": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T16:05:00-05:00"
+      },
+      "LAC": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T16:05:00-05:00"
+      },
+      "CIN": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T16:25:00-05:00"
+      },
+      "KC": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T16:25:00-05:00"
+      },
+      "SEA": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T16:25:00-05:00"
+      },
+      "NYG": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T16:25:00-05:00"
+      },
+      "SF": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T16:25:00-05:00"
+      },
+      "LA": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T16:25:00-05:00"
+      },
+      "GB": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-12-13T20:20:00-05:00"
+      },
+      "BUF": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2026-12-13T20:20:00-05:00"
+      },
+      "JAX": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2026-12-14T20:15:00-05:00"
+      },
+      "PIT": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-12-14T20:15:00-05:00"
+      }
+    },
+    "15": {
+      "LAC": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2026-12-17T20:15:00-05:00"
+      },
+      "SF": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2026-12-17T20:15:00-05:00"
+      },
+      "PHI": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2026-12-19T17:00:00-05:00"
+      },
+      "SEA": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-12-19T17:00:00-05:00"
+      },
+      "BUF": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-12-19T20:20:00-05:00"
+      },
+      "CHI": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-12-19T20:20:00-05:00"
+      },
+      "CAR": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "CIN": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "GB": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "HOU": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "NYG": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "PIT": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "BAL": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "WAS": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "ATL": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T13:00:00-05:00"
+      },
+      "ARI": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T16:05:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T16:05:00-05:00"
+      },
+      "LA": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T16:25:00-05:00"
+      },
+      "DAL": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T16:25:00-05:00"
+      },
+      "LV": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T16:25:00-05:00"
+      },
+      "DEN": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T16:25:00-05:00"
+      },
+      "MIN": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2026-12-20T20:20:00-05:00"
+      },
+      "DET": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-12-20T20:20:00-05:00"
+      },
+      "KC": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-12-21T20:15:00-05:00"
+      },
+      "NE": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-12-21T20:15:00-05:00"
+      }
+    },
+    "16": {
+      "PHI": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2026-12-24T20:15:00-05:00"
+      },
+      "HOU": {
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-12-24T20:15:00-05:00"
+      },
+      "CHI": {
+        "opponent": "GB",
+        "homeAway": "home",
+        "kickoff": "2026-12-25T13:00:00-05:00"
+      },
+      "GB": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2026-12-25T13:00:00-05:00"
+      },
+      "DEN": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-12-25T16:30:00-05:00"
+      },
+      "BUF": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-12-25T16:30:00-05:00"
+      },
+      "SEA": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-12-25T20:15:00-05:00"
+      },
+      "LA": {
+        "opponent": "SEA",
+        "homeAway": "away",
+        "kickoff": "2026-12-25T20:15:00-05:00"
+      },
+      "ATL": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "BAL": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "CIN": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "LAC": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "MIN": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "WAS": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "ARI": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "NE": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "PIT": {
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "CAR": {
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T13:00:00-05:00"
+      },
+      "LV": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T16:05:00-05:00"
+      },
+      "TEN": {
+        "opponent": "LV",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T16:05:00-05:00"
+      },
+      "KC": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T16:25:00-05:00"
+      },
+      "SF": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T16:25:00-05:00"
+      },
+      "DAL": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2026-12-27T20:20:00-05:00"
+      },
+      "JAX": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-12-27T20:20:00-05:00"
+      },
+      "DET": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-12-28T20:15:00-05:00"
+      },
+      "NYG": {
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-12-28T20:15:00-05:00"
+      }
+    },
+    "17": {
+      "CIN": {
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-12-31T20:15:00-05:00"
+      },
+      "BAL": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2026-12-31T20:15:00-05:00"
+      },
+      "ATL": {
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "CAR": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "SEA": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "CLE",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "DAL": {
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "NYG": {
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "WAS": {
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "LAC": {
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "KC": {
+        "opponent": "LAC",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "BUF": {
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "NE": {
+        "opponent": "DEN",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "DEN": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "MIN",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "MIN": {
+        "opponent": "NYJ",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "LA": {
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "PIT": {
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T13:00:00-05:00"
+      },
+      "ARI": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T16:05:00-05:00"
+      },
+      "LV": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T16:05:00-05:00"
+      },
+      "CHI": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T16:25:00-05:00"
+      },
+      "DET": {
+        "opponent": "CHI",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T16:25:00-05:00"
+      },
+      "SF": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2027-01-03T20:20:00-05:00"
+      },
+      "PHI": {
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2027-01-03T20:20:00-05:00"
+      },
+      "GB": {
+        "opponent": "HOU",
+        "homeAway": "home",
+        "kickoff": "2027-01-04T20:15:00-05:00"
+      },
+      "HOU": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2027-01-04T20:15:00-05:00"
+      }
+    },
+    "18": {
+      "ARI": {
+        "opponent": "SF",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "SF": {
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "BAL": {
+        "opponent": "PIT",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "PIT": {
+        "opponent": "BAL",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "BUF": {
+        "opponent": "NYJ",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "NYJ": {
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "CAR": {
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "ATL": {
+        "opponent": "CAR",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "CIN": {
+        "opponent": "CLE",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "CLE": {
+        "opponent": "CIN",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "DEN": {
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "LAC": {
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "GB": {
+        "opponent": "DET",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "DET": {
+        "opponent": "GB",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "HOU": {
+        "opponent": "TEN",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "TEN": {
+        "opponent": "HOU",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "IND": {
+        "opponent": "JAX",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "JAX": {
+        "opponent": "IND",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "KC": {
+        "opponent": "LV",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "LV": {
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "LA": {
+        "opponent": "SEA",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "SEA": {
+        "opponent": "LA",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "MIN": {
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "CHI": {
+        "opponent": "MIN",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "NE": {
+        "opponent": "MIA",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "MIA": {
+        "opponent": "NE",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "NO": {
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "TB": {
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "NYG": {
+        "opponent": "PHI",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "PHI": {
+        "opponent": "NYG",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "WAS": {
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      },
+      "DAL": {
+        "opponent": "WAS",
+        "homeAway": "away",
+        "kickoff": "2027-01-10T13:00:00-05:00"
+      }
+    }
+  }
+}

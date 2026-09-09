@@ -1,2 +1,3 @@
 [build]
+  command = "mkdir -p public/data && cp -r data/. public/data/"
   publish = "public"
