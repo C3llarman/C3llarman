@@ -132,13 +132,38 @@ rings, `prefers-reduced-motion`.
 
 ---
 
+## Season-progression rules (decided)
+
+Resolved what used to be open questions #1 and #2 below, once multi-week floor
+progression was actually scoped:
+
+- **Off-week recovery: partial.** Each party member regains 15% of max HP per week,
+  capped at max. Not a full heal (attrition still matters over a season), not zero
+  (a single Mender's weekly heal isn't the only thing keeping a party alive).
+- **A bad week costs a floor, never the party.** No permadeath. Party HP clamps at 0
+  and the next week proceeds wounded, not ended.
+- **Overkill doesn't carry to the next floor.** Clearing a floor with HP to spare
+  doesn't splash into the next one — each floor starts at its own full `maxHp`. A
+  party that one-shots a floor doesn't get a head start on one they haven't seen the
+  reveal for yet.
+- **Floor list and per-floor `maxHp` live in `data/floors.json`** (id, name, place,
+  mechanic, maxHp, flavor) — six floors seeded, `maxHp` scaled from real 2025
+  weeks 1–6 damage totals across all three parties (swarm-scaled `dmgFor`, n=18,
+  mean ≈449, range 241–757), not guessed.
+- **Swarm/Sentinel math is implemented, not just flavor text.** `dmgFor()` splits
+  each class's damage into a volume term (yards, catches, TFL, made kicks) and a
+  burst term (TDs, sacks), scaled independently by the active floor's `mechanic`:
+  Swarm halves burst and leaves volume unreduced; Sentinel halves volume and
+  doubles burst. Hunter and Mender have no burst term at all — matches their
+  crit:false everywhere they're rolled.
+- **Formulas live in one place, not duplicated.** When floor-HP/party-HP carryover
+  across weeks is built (replaying committed weekly stat files against
+  `data/floors.json`), it reads the same damage formulas `public/index.html` uses
+  live — not a second copy that can drift out of sync with a tuning change.
+
 ## Open questions — do not silently decide these
 
-1. **Off-week recovery.** If nothing heals between floors, every party grinds to zero by
-   December. If byes heal fully, attrition stops mattering. Unresolved.
-2. **Does a bad week kill the party or just cost a floor?** Permadeath makes Sunday
-   tense and bleeds casual players fast.
-3. **Guild as leaderboard vs. rivalry.** Identical floors for everyone makes it a
+1. **Guild as leaderboard vs. rivalry.** Identical floors for everyone makes it a
    leaderboard, and leaderboards go stale by week 11 when the gap is unbridgeable.
    A weekly "who cleared this floor" comparison may be livelier than a season total.
 
