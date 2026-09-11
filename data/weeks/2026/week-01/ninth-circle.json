@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-11T05:14:28.806Z",
+  "generatedAt": "2026-09-11T05:39:25.043Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -66,6 +66,7 @@
     "name": "Ja'Marr Chase",
     "y": 0,
     "c": 0,
+    "td": 0,
     "hasStats": false,
     "bench": [
       {
@@ -76,6 +77,7 @@
         "name": "Nico Collins",
         "y": 0,
         "c": 0,
+        "td": 0,
         "hasStats": false
       }
     ]

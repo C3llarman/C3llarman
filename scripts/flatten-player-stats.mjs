@@ -138,7 +138,7 @@ function statsForSlot(slot, row) {
   if (!row) {
     switch (slot) {
       case 'tactician': return { y: 0, td: 0, sk: 0 };
-      case 'hunter': return { y: 0, c: 0 };
+      case 'hunter': return { y: 0, c: 0, td: 0 };
       case 'rogue': return { y: 0, td: 0, car: 0 };
       case 'breaker': return { sk: 0, tfl: 0 };
       case 'mender': return { fg: 0, att: 0 };
@@ -146,7 +146,7 @@ function statsForSlot(slot, row) {
   }
   switch (slot) {
     case 'tactician': return { y: num(row.passing_yards), td: num(row.passing_tds), sk: num(row.sacks_suffered) };
-    case 'hunter': return { y: num(row.receiving_yards), c: num(row.receptions) };
+    case 'hunter': return { y: num(row.receiving_yards), c: num(row.receptions), td: num(row.receiving_tds) };
     case 'rogue': return { y: num(row.rushing_yards), td: num(row.rushing_tds), car: num(row.carries) };
     case 'breaker': return { sk: num(row.def_sacks), tfl: num(row.def_tackles_for_loss) };
     case 'mender': return { fg: num(row.fg_made), att: num(row.fg_att) };

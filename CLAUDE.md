@@ -38,7 +38,7 @@ Conversion rates (from the prototype, tune freely):
 | The Wall | Pressure allowed | soaks 40% of incoming party damage |
 | The Breaker | Sacks · TFL | 70 · 22 |
 | The Tactician | Pass yds · TD | 0.55/yd · 45 |
-| The Hunter | Rec yds · catch | 1.1/yd · 6 |
+| The Hunter | Rec yds · catch · TD | 1.1/yd · 6 · 60 |
 | The Rogue | Rush yds · TD | 1.3/yd · 60 |
 | The Mender | Made kicks | 14 dmg · 7 heal (max 9 to one member per drive) |
 
