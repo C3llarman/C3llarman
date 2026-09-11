@@ -601,7 +601,7 @@ const drives=[
  {i:3,roll:()=>{const {y,c,td}=REAL.hunter;
    return{dmg:dmgFor('hunter',REAL.hunter),crit:td>=1,take:0,
    text:`<b>${c} receptions, ${y} yards${td?`, ${td} TD`:''}.</b> ${td
-     ?'Even the volume class breaks one loose sometimes.'
+     ?'He looses volley after volley into the swarm. Most fall short. The last one finds the end zone and stays.'
      :'Picks the swarm apart one body at a time. Unreduced.'}`};}},
  {i:4,roll:()=>{const {y,td,car}=REAL.rogue;
    return{dmg:dmgFor('rogue',REAL.rogue),crit:td>=1,take:Math.round(car*0.7),
