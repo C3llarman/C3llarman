@@ -170,7 +170,7 @@
     border-radius:9px;background:var(--live);color:#fff;font-family:'Archivo Narrow';
     font-size:11px;font-weight:700;line-height:17px;text-align:center;padding:0 4px}
 
-  /* ---- compact rows (Week party row, Lineup bench picker) ---- */
+  /* ---- compact rows (Week party row, Tavern bench picker) ---- */
   .floorrow{display:flex;gap:11px;align-items:flex-start;padding:10px 0;
     border-bottom:1px solid var(--hair)}
   .floorrow .num{font-family:'Archivo Narrow';font-weight:700;font-size:19px;
@@ -303,7 +303,7 @@
   <button class="tab" role="tab" id="t-week"    aria-controls="p-week"    aria-selected="true">
     <svg viewBox="0 0 28 28" aria-hidden="true"><use href="#ic-week"/></svg><span class="lbl">Week</span></button>
   <button class="tab" role="tab" id="t-lineup"  aria-controls="p-lineup"  aria-selected="false" tabindex="-1">
-    <svg viewBox="0 0 28 28" aria-hidden="true"><use href="#ic-lineup"/></svg><span class="lbl">Lineup</span>
+    <svg viewBox="0 0 28 28" aria-hidden="true"><use href="#ic-lineup"/></svg><span class="lbl">Tavern</span>
     <span class="badge" aria-label="one slot needs attention">1</span></button>
 </nav>
 
@@ -464,7 +464,7 @@ function renderBench(i){
     </div>`;
   }).join('');
 }
-// Lineup tab: full stat block always, plus substitution. Tapping a card's
+// Tavern tab: full stat block always, plus substitution. Tapping a card's
 // "View bench" toggle opens its alternate(s); tapping one swaps the
 // starter and re-runs this slot's result so the Week tab row picks it up.
 // Past lockedAt, the toggle is replaced by a locked notice instead of
@@ -498,7 +498,7 @@ function drawParty(){
       <div class="bar thin"></div>
       ${u.traits.map(t=>`<div class="trait">${t[1]?`<b>${t[0]}</b> ${t[1]}`:`<i>${t[0]}</i>`}</div>`).join('')}
       ${REAL[u.k].bench?(locked
-        ?`<div class="bar thin"></div><div class="trait"><i>Lineup locked — first kickoff</i></div>`
+        ?`<div class="bar thin"></div><div class="trait"><i>The tavern's closed — first kickoff</i></div>`
         :`<div class="bar thin"></div>
       <button class="reset" style="min-height:56px" data-bench-toggle="${i}">${benchOpen?'Hide bench':'View bench'}</button>
       ${benchOpen?renderBench(i):''}`):''}
@@ -837,8 +837,8 @@ async function boot(){
   const partyLabel=(data.party&&data.party.name||'').toUpperCase();
   KICK.week=`${partyLabel} · WEEK ${data.week} · FLOOR I · THE SUNKEN VAULT`;
   KICK.lineup=LOCKED_AT
-    ?`${partyLabel} · LINEUP LOCKS ${clockText(new Date(LOCKED_AT)).toUpperCase()}`
-    :`${partyLabel} · LINEUP LOCK TIME UNKNOWN`;
+    ?`${partyLabel} · TAVERN LOCKS ${clockText(new Date(LOCKED_AT)).toUpperCase()}`
+    :`${partyLabel} · TAVERN LOCK TIME UNKNOWN`;
   document.querySelector('header .kick').textContent=KICK[currentTab];
   // If this browser already finished this week's floor, restore that
   // instantly instead of making them tap through every arrival again to
@@ -903,7 +903,7 @@ renderTowerAhead();
 // Placeholder text shown until boot() resolves and fills in the real
 // party name and real lock time (computed from the actual schedule).
 const KICK={week:'WEEK 1 · FLOOR I · THE SUNKEN VAULT',
-            lineup:'WEEK 1 · LINEUP LOCKS AT FIRST KICKOFF'};
+            lineup:'WEEK 1 · TAVERN LOCKS AT FIRST KICKOFF'};
 const TABS=['week','lineup'];
 let currentTab='week';
 function show(name,focus){

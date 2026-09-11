@@ -109,11 +109,11 @@ Two reds are required: no single red passes on both the light page and the dark 
 
 ## Navigation
 
-Mobile-first bottom tab bar. **v1 ships two tabs, Week and Lineup — Week is default**
+Mobile-first bottom tab bar. **v1 ships two tabs, Week and Tavern — Week is default**
 (Sunday is when people open it).
 
 - **Week** — this Sunday only: encounter, party row, arrivals, log, result.
-- **Lineup** — the party, substitution, the Floor reveal banner, rules, conversion table.
+- **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
 
 **Dungeon and Guild are deferred, not cut.** Dungeon needs multi-week progression to
 track — v1 only has one week of real data wired up, so "floors cleared / current /
