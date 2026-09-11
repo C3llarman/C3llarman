@@ -180,6 +180,9 @@
   .floorrow.now{background:var(--card);margin:0 -8px;padding:10px 8px}
   .floorrow.now .nm{color:var(--live)}
   .floorrow.sealed{opacity:.62}
+  .tag{font-family:'Archivo Narrow';font-size:11.5px;font-weight:700;letter-spacing:.06em;
+    padding:2px 6px;border:1px solid currentColor;white-space:nowrap}
+  .tag.sealed{color:var(--faint)}
 </style>
 </head>
 <body>
@@ -283,11 +286,15 @@
       <tr><td>The Wall</td><td>Pressure allowed</td><td class="n">soaks 40%</td></tr>
       <tr><td>The Breaker</td><td>Sacks &middot; TFL</td><td class="n">70 &middot; 22</td></tr>
       <tr><td>The Tactician</td><td>Pass yds &middot; TD</td><td class="n">0.55 &middot; 45</td></tr>
-      <tr><td>The Hunter</td><td>Rec yds &middot; catch</td><td class="n">1.1 &middot; 6</td></tr>
+      <tr><td>The Hunter</td><td>Rec yds &middot; catch &middot; TD</td><td class="n">1.1 &middot; 6 &middot; 60</td></tr>
       <tr><td>The Rogue</td><td>Rush yds &middot; TD</td><td class="n">1.3 &middot; 60</td></tr>
       <tr><td>The Mender</td><td>Made kicks</td><td class="n">14 dmg &middot; 7 heal</td></tr>
     </tbody>
   </table>
+
+  <h3 class="sec">THE TOWER AHEAD</h3>
+  <div class="bar"></div>
+  <div id="towerahead"></div>
 </section>
 
 </div>
@@ -864,6 +871,33 @@ async function boot(){
   drawParty();drawCompactRow();drawRoom();updateGoLabel();
 }
 boot();
+
+// A teaser, not a reveal - name, place, and tagline only. No maxHp, no
+// mechanic (swarm/sentinel): CLAUDE.md's design is that the floor's
+// mechanic is revealed only right before that floor's own lineups
+// lock, so showing it here for a floor nobody's reached yet would
+// leak the one piece of information the strategy layer depends on
+// staying hidden until it matters. Independent of party/REAL - static
+// content, safe to render whether or not boot() succeeds.
+async function renderTowerAhead(){
+  try{
+    const res=await fetch('/data/floors.json');
+    if(!res.ok)return;
+    const floors=await res.json();
+    const numerals=['','I','II','III','IV','V','VI'];
+    $('towerahead').innerHTML=floors.filter(f=>f.id>1).map(f=>`
+      <div class="floorrow sealed">
+        <div class="num">${numerals[f.id]||f.id}</div>
+        <div style="flex:1">
+          <div class="nm">${f.name}</div>
+          <div class="st">${f.place}</div>
+          <div class="st">${f.tagline}</div>
+        </div>
+        <span class="tag sealed">SEALED</span>
+      </div>`).join('');
+  }catch{}
+}
+renderTowerAhead();
 
 /* ---- tab navigation ---- */
 // Placeholder text shown until boot() resolves and fills in the real
