@@ -594,16 +594,16 @@ const drives=[
    return{dmg:dmgFor('wall',REAL.wall),crit:false,take:0,
    text:`<b>Held the pocket.</b> No horde damage — the Wall prevents it, it doesn't deal it.`};}},
  {i:2,roll:()=>{const {y,td,sk}=REAL.tactician;
-   return{dmg:dmgFor('tactician',REAL.tactician),crit:td>=2,take:sk*6,
+   return{dmg:dmgFor('tactician',REAL.tactician),crit:td>=1,take:sk*6,
    text:`<b>${y} passing yards, ${td} TD.</b> Marks targets across the floor; the party swings true. Sacked ${sk} time${sk===1?'':'s'}.`};}},
  {i:3,roll:()=>{const {y,c}=REAL.hunter;
    return{dmg:dmgFor('hunter',REAL.hunter),crit:false,take:0,
    text:`<b>${c} receptions, ${y} yards.</b> Picks the swarm apart one body at a time. Unreduced.`};}},
  {i:4,roll:()=>{const {y,td,car}=REAL.rogue;
-   return{dmg:dmgFor('rogue',REAL.rogue),crit:y>110,take:Math.round(car*0.7),
+   return{dmg:dmgFor('rogue',REAL.rogue),crit:td>=1,take:Math.round(car*0.7),
    text:`<b>${car} carries, ${y} yards.</b> Every touch costs him.`};}},
  {i:1,roll:()=>{const {sk,tfl}=REAL.breaker;
-   return{dmg:dmgFor('breaker',REAL.breaker),crit:sk>=2,take:0,
+   return{dmg:dmgFor('breaker',REAL.breaker),crit:sk>=1,take:0,
    text:sk?`<b>${sk} sack${sk===1?'':'s'}, ${tfl} for loss.</b> Straight through the line.`
           :`<b>No sacks, ${tfl} for loss.</b> <i>Nothing in between with this class.</i>`};}},
  {i:5,roll:()=>{const {fg,att}=REAL.mender,miss=att-fg;
