@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-09T01:20:31.578Z",
+  "generatedAt": "2026-09-11T05:14:28.807Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -64,9 +64,9 @@
     "homeAway": "home",
     "kickoff": "2026-09-09T20:20:00-04:00",
     "name": "Jaxon Smith-Njigba",
-    "y": 0,
-    "c": 0,
-    "hasStats": false,
+    "y": 122,
+    "c": 8,
+    "hasStats": true,
     "bench": [
       {
         "team": "NYG",
