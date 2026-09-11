@@ -1,25 +1,31 @@
 [
   { "id": 1, "name": "The Chittering Horde", "place": "The Cistern Steps",
     "mechanic": "swarm", "maxHp": 900,
+    "tagline": "That's not a feature, that's a bug!",
     "flavor": "They come up through the drains in a single thin body, numberless. A blade meant for one great foe finds nothing here. What clears this floor is not the thunderclap but the grind — the possession drive, the check-down, the nine-catch afternoon nobody writes about." },
 
   { "id": 2, "name": "The Sentinel", "place": "The Long Colonnade",
     "mechanic": "sentinel", "maxHp": 1000,
+    "tagline": "That's not high availability, that's a single point of failure!",
     "flavor": "One figure, helmed, standing the length of the hall. It has stood there long enough that the floor beneath it is worn to a bowl. Volume means nothing to a thing this patient. It falls to the single enormous moment — the sixty-yard break, the strip-sack, the throw nobody should have made." },
 
   { "id": 3, "name": "The Ash Rooks", "place": "The Rookery",
     "mechanic": "swarm", "maxHp": 1150,
+    "tagline": "That's not an attack, that's horizontal scaling!",
     "flavor": "Birds the color of spent fire, roosting in the vaulting. They do not attack so much as accumulate — one, then forty, then the ceiling itself moving. Every ordinary carry, every routine completion, thins them by one. There is no shortcut through a rookery." },
 
   { "id": 4, "name": "The Keeper of Tides", "place": "The Drowned Gallery",
     "mechanic": "sentinel", "maxHp": 1300,
+    "tagline": "That's not stalling, that's rate limiting!",
     "flavor": "Waist-deep and unbothered, it has been letting the water in for a long time. Small hurts close over before they land. Only the strike that changes the shape of the room registers at all." },
 
   { "id": 5, "name": "The Gnawing Choir", "place": "The Bone Orchard",
     "mechanic": "swarm", "maxHp": 1450,
+    "tagline": "That's not a chorus, that's a DDoS!",
     "flavor": "Something is singing in the branches, and there are more voices than there are throats. The choir is not defeated, it is outlasted. Bring the party that shows up on the ordinary Sunday, not the one that wins the highlight." },
 
   { "id": 6, "name": "The Warden", "place": "The Vault Door",
     "mechanic": "sentinel", "maxHp": 1650,
+    "tagline": "That's not a lockout, that's a zero-day!",
     "flavor": "It does not guard the door. It is what the door was built to keep in. Nothing incremental reaches it. Whatever is going to bring the Warden down will happen in a single afternoon, or it will not happen at all." }
 ]
