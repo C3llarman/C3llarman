@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-11T05:39:25.043Z",
+  "generatedAt": "2026-09-11T23:32:54.182Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -40,10 +40,10 @@
     "homeAway": "away",
     "kickoff": "2026-09-10T20:35:00-04:00",
     "name": "Christian McCaffrey",
-    "y": 0,
+    "y": 68,
     "td": 0,
-    "car": 0,
-    "hasStats": false,
+    "car": 10,
+    "hasStats": true,
     "bench": [
       {
         "team": "LV",

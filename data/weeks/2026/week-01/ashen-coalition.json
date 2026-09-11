@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-11T05:39:25.041Z",
+  "generatedAt": "2026-09-11T23:32:54.161Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -64,10 +64,10 @@
     "homeAway": "home",
     "kickoff": "2026-09-10T20:35:00-04:00",
     "name": "Puka Nacua",
-    "y": 0,
-    "c": 0,
+    "y": 74,
+    "c": 5,
     "td": 0,
-    "hasStats": false,
+    "hasStats": true,
     "bench": [
       {
         "team": "DET",
