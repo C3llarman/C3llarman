@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-11T23:32:54.182Z",
+  "generatedAt": "2026-09-15T02:29:39.177Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -16,10 +16,10 @@
     "homeAway": "away",
     "kickoff": "2026-09-13T16:25:00-04:00",
     "name": "Jayden Daniels",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
-    "hasStats": false,
+    "y": 164,
+    "td": 2,
+    "sk": 1,
+    "hasStats": true,
     "bench": [
       {
         "team": "CIN",
@@ -27,10 +27,10 @@
         "homeAway": "home",
         "kickoff": "2026-09-13T13:00:00-04:00",
         "name": "Joe Burrow",
-        "y": 0,
-        "td": 0,
-        "sk": 0,
-        "hasStats": false
+        "y": 254,
+        "td": 1,
+        "sk": 1,
+        "hasStats": true
       }
     ]
   },
@@ -51,10 +51,10 @@
         "homeAway": "home",
         "kickoff": "2026-09-13T16:25:00-04:00",
         "name": "Ashton Jeanty",
-        "y": 0,
+        "y": 102,
         "td": 0,
-        "car": 0,
-        "hasStats": false
+        "car": 23,
+        "hasStats": true
       }
     ]
   },
@@ -75,10 +75,10 @@
         "homeAway": "home",
         "kickoff": "2026-09-13T20:20:00-04:00",
         "name": "Malik Nabers",
-        "y": 0,
-        "c": 0,
+        "y": 69,
+        "c": 6,
         "td": 0,
-        "hasStats": false
+        "hasStats": true
       }
     ]
   },
@@ -88,9 +88,9 @@
     "homeAway": "home",
     "kickoff": "2026-09-13T13:00:00-04:00",
     "name": "T.J. Watt",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false
+    "sk": 2,
+    "tfl": 3,
+    "hasStats": true
   },
   "mender": {
     "team": "PIT",
@@ -98,9 +98,9 @@
     "homeAway": "home",
     "kickoff": "2026-09-13T13:00:00-04:00",
     "name": "Chris Boswell",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false
+    "fg": 2,
+    "att": 3,
+    "hasStats": true
   },
   "wall": {
     "team": "KC",

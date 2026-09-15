@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 1,
   "seasonType": "REG",
-  "generatedAt": "2026-09-11T23:32:54.161Z",
+  "generatedAt": "2026-09-15T02:29:39.159Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -16,10 +16,10 @@
     "homeAway": "away",
     "kickoff": "2026-09-13T13:00:00-04:00",
     "name": "Josh Allen",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
-    "hasStats": false,
+    "y": 334,
+    "td": 2,
+    "sk": 2,
+    "hasStats": true,
     "bench": [
       {
         "team": "KC",
@@ -40,10 +40,10 @@
     "homeAway": "away",
     "kickoff": "2026-09-13T13:00:00-04:00",
     "name": "Bijan Robinson",
-    "y": 0,
+    "y": 83,
     "td": 0,
-    "car": 0,
-    "hasStats": false,
+    "car": 21,
+    "hasStats": true,
     "bench": [
       {
         "team": "MIA",
@@ -51,10 +51,10 @@
         "homeAway": "away",
         "kickoff": "2026-09-13T16:25:00-04:00",
         "name": "De'Von Achane",
-        "y": 0,
+        "y": 36,
         "td": 0,
-        "car": 0,
-        "hasStats": false
+        "car": 11,
+        "hasStats": true
       }
     ]
   },
@@ -75,10 +75,10 @@
         "homeAway": "home",
         "kickoff": "2026-09-13T13:00:00-04:00",
         "name": "Amon-Ra St. Brown",
-        "y": 0,
-        "c": 0,
-        "td": 0,
-        "hasStats": false
+        "y": 67,
+        "c": 10,
+        "td": 2,
+        "hasStats": true
       }
     ]
   },
@@ -100,12 +100,12 @@
     "name": "Brandon Aubrey",
     "fg": 0,
     "att": 0,
-    "hasStats": false
+    "hasStats": true
   },
   "wall": {
     "team": "PHI",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 3,
+    "hasStats": true,
     "opponent": "WAS",
     "homeAway": "home",
     "kickoff": "2026-09-13T16:25:00-04:00"
