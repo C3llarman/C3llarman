@@ -538,13 +538,21 @@ function tradeSlot(slot,bi){
   return true;
 }
 // Which slots are currently showing their bench alternate rather than
-// the roster starter - persisted to localStorage (see saveSubs/loadSubs)
-// so a substitution survives closing the tab, not just this sitting.
+// the roster starter - persisted two ways. localStorage first (instant,
+// works offline) and the /api/subs function second (so the choice shows
+// up the same on a different device, not just the one that made it) -
+// write-through to both, read from the server first and fall back to
+// localStorage if that fetch fails, so a slow/unreachable function
+// degrades to "this device only" instead of breaking.
 let subs={};
 let subsKey=null;
+let subsApiUrl=null;
 function saveSubs(){
   if(!subsKey)return;
   try{localStorage.setItem(subsKey,JSON.stringify(subs));}catch{}
+  if(subsApiUrl){
+    fetch(subsApiUrl,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(subs)}).catch(()=>{});
+  }
 }
 function swap(i,bi){
   if(locked)return;
@@ -816,18 +824,25 @@ async function boot(){
   REAL={tactician:data.tactician,hunter:data.hunter,rogue:data.rogue,
         breaker:data.breaker,mender:data.mender,wall:data.wall};
   party=buildParty(REAL);
-  // Replay any substitution this browser saved earlier for this exact
-  // party+week - otherwise a swap only lasted until the tab closed,
-  // which for a real NFL week (open Sunday, close the tab, open again
-  // Monday) meant it never actually lasted. Keyed by season+week so
+  // Replay any substitution saved earlier for this exact party+week -
+  // otherwise a swap only lasted until the tab closed (or only showed
+  // up on the one device that made it), which for a real NFL week
+  // (swap Sunday morning, check back Monday, maybe on a different
+  // phone) meant it never actually lasted. Keyed by season+week so
   // next week's fresh roster never inherits this week's swap. Applies
   // regardless of lock state - it's restoring a choice already made,
-  // not making a new one.
+  // not making a new one. Server first (shows up the same on any
+  // device), localStorage if that fetch fails - see saveSubs().
   subsKey=`hff:subs:${data.season}:${data.week}:${partyId}`;
+  subsApiUrl=`/api/subs?party=${encodeURIComponent(partyId)}&season=${data.season}&week=${data.week}`;
   try{
-    subs=JSON.parse(localStorage.getItem(subsKey)||'{}');
-    Object.keys(subs).forEach(slot=>{if(subs[slot])tradeSlot(slot,0);});
-  }catch{subs={};}
+    const subsRes=await fetch(subsApiUrl);
+    subs=subsRes.ok?await subsRes.json():JSON.parse(localStorage.getItem(subsKey)||'{}');
+  }catch{
+    try{subs=JSON.parse(localStorage.getItem(subsKey)||'{}');}catch{subs={};}
+  }
+  try{localStorage.setItem(subsKey,JSON.stringify(subs));}catch{}
+  Object.keys(subs).forEach(slot=>{if(subs[slot])tradeSlot(slot,0);});
   recomputeResults();
   // lockedAt is the earliest real kickoff among this party's six
   // starters (computed at build time from the actual schedule) - never

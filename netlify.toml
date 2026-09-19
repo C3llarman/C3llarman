@@ -2,6 +2,9 @@
   command = "mkdir -p public/data && cp -r data/. public/data/"
   publish = "public"
 
+[functions]
+  directory = "netlify/functions"
+
 # One real URL path per party (public/index.html reads location.pathname
 # to pick which roster to fetch) - kept as rewrites (status 200, not a
 # redirect) so the address bar still shows /ninth-circle etc. Add a line
