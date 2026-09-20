@@ -547,6 +547,24 @@ function tradeSlot(slot,bi){
 let subs={};
 let subsKey=null;
 let subsApiUrl=null;
+let runKey=null;
+let runApiUrl=null;
+// Checkpoint of the run itself - room HP, each unit's HP/state, how many
+// arrivals have landed, whether the floor's resolved - saved the same
+// two-tier way as subs (localStorage instantly, the server so a
+// different device sees the same thing). Called after every arrival and
+// every commit, not just once at the end, because a reload rebuilds the
+// party from scratch (buildParty() below) - without a running
+// checkpoint, closing the tab mid-run threw the whole run away, not just
+// an unsaved tail end of it.
+function saveRun(){
+  if(!runKey)return;
+  const snap={arrivalIdx,roomHp,hp:party.map(p=>p.hp),state:party.map(p=>p.state),done};
+  try{localStorage.setItem(runKey,JSON.stringify(snap));}catch{}
+  if(runApiUrl){
+    fetch(runApiUrl,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(snap)}).catch(()=>{});
+  }
+}
 function saveSubs(){
   if(!subsKey)return;
   try{localStorage.setItem(subsKey,JSON.stringify(subs));}catch{}
@@ -660,6 +678,7 @@ function arriveNext(){
     ev('','—',`${u.cls} — ${u.who||u.team} hasn't played yet.`);
   }
   updateGoLabel();
+  saveRun();
 }
 // Arrivals land 5–15s apart once simulation starts, so this can be watched
 // unfold rather than stepped through click by click.
@@ -671,9 +690,7 @@ function commit(i){
   // Once the floor's already fallen (or held), further taps on any
   // still-'arrived' card shouldn't keep dealing damage - without this,
   // a card tapped after finish() already fired would update the live
-  // view but not the saved snapshot (which is only written once, by
-  // finish()), so a reload could show something that never matched what
-  // was on screen a moment before.
+  // view and get checkpointed over the real final snapshot.
   if(done)return;
   const u=party[i];
   if(u.state!=='arrived')return;
@@ -691,6 +708,7 @@ function commit(i){
   u.state='spent';
   drawParty();drawCompactRow();drawRoom();
   checkFinish();
+  saveRun();
 }
 function checkFinish(){
   if(done)return;
@@ -748,27 +766,24 @@ function renderVerdict(cleared,wounded,xp){
       :`${Math.round(roomHp)} hit points still standing. The party falls back to mend; the floor stays shut.`}</p>
     <div class="xp">+${xp} XP</div></div>`;
 }
-let doneKey=null;
-// Snapshot just the numbers that actually change (room HP, each unit's
-// final HP/state) rather than trying to replay the exact tap sequence -
-// replaying would get the Wall's damage soak wrong if this browser
-// didn't commit cards in the same order it originally did, since later
-// soaks are capped by whatever Wall HP is left at that point.
-function saveDone(){
-  if(!doneKey)return;
-  try{localStorage.setItem(doneKey,JSON.stringify({
-    roomHp,hp:party.map(p=>p.hp),state:party.map(p=>p.state)}));}catch{}
-}
 function finish(){
   if(done)return;done=true;
   const cleared=roomHp<=0, wounded=party.filter(p=>p.hp/p.max<0.5).length;
   const xp=cleared?(wounded===0?340:220):60;
   renderVerdict(cleared,wounded,xp);
   renderStatCard(cleared,xp);
-  saveDone();
   updateGoLabel();$('reset').hidden=false;
+  saveRun();
 }
-$('reset').onclick=()=>location.reload();
+// "Start the run over" has to actually clear the checkpoint first, not
+// just reload - reloading alone would immediately restore this same
+// finished run from saveRun()'s checkpoint (local and server), so the
+// button would look like it did nothing.
+$('reset').onclick=async()=>{
+  try{localStorage.removeItem(runKey);}catch{}
+  if(runApiUrl){try{await fetch(runApiUrl,{method:'DELETE'});}catch{}}
+  location.reload();
+};
 // A page opened before kickoff and left open would otherwise stay
 // unlocked forever - `locked` was only ever computed once, at load.
 // Re-check on an interval and whenever the tab regains visibility; only
@@ -855,24 +870,43 @@ async function boot(){
     ?`${partyLabel} · TAVERN LOCKS ${clockText(new Date(LOCKED_AT)).toUpperCase()}`
     :`${partyLabel} · TAVERN LOCK TIME UNKNOWN`;
   document.querySelector('header .kick').textContent=KICK[currentTab];
-  // If this browser already finished this week's floor, restore that
-  // instantly instead of making them tap through every arrival again to
-  // get back to the recap they came for. After KICK.week is set, since
+  // Restore this week's run - arrivals landed, cards committed, room/party
+  // HP - whether it finished or was left mid-run. Same server-first,
+  // localStorage-fallback pattern as subs above, so a run started on one
+  // device resumes the same way on another. After KICK.week is set, since
   // renderStatCard() reads it for the card's header line.
-  doneKey=`hff:done:${data.season}:${data.week}:${partyId}`;
+  runKey=`hff:run:${data.season}:${data.week}:${partyId}`;
+  runApiUrl=`/api/run?party=${encodeURIComponent(partyId)}&season=${data.season}&week=${data.week}`;
+  let savedRun=null;
   try{
-    const saved=JSON.parse(localStorage.getItem(doneKey)||'null');
-    if(saved){
-      roomHp=saved.roomHp;
-      party.forEach((p,i)=>{p.hp=saved.hp[i];p.state=saved.state[i];});
+    const runRes=await fetch(runApiUrl);
+    savedRun=runRes.ok?await runRes.json():null;
+    if(!savedRun)savedRun=JSON.parse(localStorage.getItem(runKey)||'null');
+  }catch{
+    try{savedRun=JSON.parse(localStorage.getItem(runKey)||'null');}catch{savedRun=null;}
+  }
+  if(savedRun){
+    roomHp=savedRun.roomHp;
+    party.forEach((p,i)=>{p.hp=savedRun.hp[i];p.state=savedRun.state[i];});
+    arrivalIdx=savedRun.arrivalIdx;
+    if(savedRun.done){
       done=true;
       const cleared=roomHp<=0,wounded=party.filter(p=>p.hp/p.max<0.5).length;
       const xp=cleared?(wounded===0?340:220):60;
       renderVerdict(cleared,wounded,xp);
       renderStatCard(cleared,xp);
       $('reset').hidden=false;
+    } else if(arrivalIdx>0){
+      // Picked back up mid-run: the log itself isn't replayed (only the
+      // numbers a fresh commit() needs are checkpointed - see saveRun()),
+      // but RESULTS is deterministic from REAL+subs, already recomputed
+      // above, so remaining arrivals and any already-'arrived' card still
+      // resolve to exactly the same numbers they would have originally.
+      $('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
+      ev('','','Picking back up this run where it left off.');
+      scheduleNextArrival();
     }
-  }catch{}
+  }
   $('go').onclick=()=>{
     if(done||arrivalIdx>0)return;
     $('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
