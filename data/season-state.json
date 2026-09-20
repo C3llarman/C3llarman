@@ -1,0 +1,49 @@
+{
+  "season": 2026,
+  "computedThroughWeek": 1,
+  "generatedAt": "2026-09-20T19:31:16.913Z",
+  "parties": {
+    "ashen-coalition": {
+      "floorId": 1,
+      "cleared": false,
+      "roomHp": 452,
+      "hp": {
+        "wall": 74,
+        "breaker": 44,
+        "tactician": 52,
+        "hunter": 48,
+        "rogue": 44,
+        "mender": 36
+      },
+      "weeksPlayed": 1
+    },
+    "ninth-circle": {
+      "floorId": 1,
+      "cleared": false,
+      "roomHp": 411,
+      "hp": {
+        "wall": 72,
+        "breaker": 44,
+        "tactician": 52,
+        "hunter": 48,
+        "rogue": 41,
+        "mender": 36
+      },
+      "weeksPlayed": 1
+    },
+    "emberwatch": {
+      "floorId": 1,
+      "cleared": false,
+      "roomHp": 301,
+      "hp": {
+        "wall": 74,
+        "breaker": 44,
+        "tactician": 52,
+        "hunter": 48,
+        "rogue": 46,
+        "mender": 36
+      },
+      "weeksPlayed": 1
+    }
+  }
+}

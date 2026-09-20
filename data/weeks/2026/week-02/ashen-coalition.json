@@ -1,0 +1,113 @@
+{
+  "season": 2026,
+  "week": 2,
+  "seasonType": "REG",
+  "generatedAt": "2026-09-20T19:33:03.376Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
+  "party": {
+    "id": "ashen-coalition",
+    "name": "Ashen Coalition"
+  },
+  "lockedAt": "2026-09-17T20:15:00-04:00",
+  "tactician": {
+    "team": "BUF",
+    "opponent": "DET",
+    "homeAway": "home",
+    "kickoff": "2026-09-17T20:15:00-04:00",
+    "name": "Josh Allen",
+    "y": 248,
+    "td": 3,
+    "sk": 2,
+    "hasStats": true,
+    "bench": [
+      {
+        "team": "KC",
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T20:20:00-04:00",
+        "name": "Patrick Mahomes",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "rogue": {
+    "team": "ATL",
+    "opponent": "CAR",
+    "homeAway": "home",
+    "kickoff": "2026-09-20T13:00:00-04:00",
+    "name": "Bijan Robinson",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "MIA",
+        "opponent": "SF",
+        "homeAway": "away",
+        "kickoff": "2026-09-20T16:25:00-04:00",
+        "name": "De'Von Achane",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "hunter": {
+    "team": "LA",
+    "opponent": "NYG",
+    "homeAway": "home",
+    "kickoff": "2026-09-21T20:15:00-04:00",
+    "name": "Puka Nacua",
+    "y": 0,
+    "c": 0,
+    "td": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "DET",
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-09-17T20:15:00-04:00",
+        "name": "Amon-Ra St. Brown",
+        "y": 142,
+        "c": 9,
+        "td": 2,
+        "hasStats": true
+      }
+    ]
+  },
+  "breaker": {
+    "team": "GB",
+    "opponent": "NYJ",
+    "homeAway": "away",
+    "kickoff": "2026-09-20T13:00:00-04:00",
+    "name": "Micah Parsons",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false
+  },
+  "mender": {
+    "team": "DAL",
+    "opponent": "WAS",
+    "homeAway": "home",
+    "kickoff": "2026-09-20T16:25:00-04:00",
+    "name": "Brandon Aubrey",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false
+  },
+  "wall": {
+    "team": "PHI",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "TEN",
+    "homeAway": "away",
+    "kickoff": "2026-09-20T13:00:00-04:00"
+  }
+}
