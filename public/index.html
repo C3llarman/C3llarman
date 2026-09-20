@@ -395,14 +395,19 @@ let party=[];
 function buildParty(real){
   return SLOT_ORDER.map(k=>{
     const f=FLAVOR[k],r=real[k];
-    const traits=f.traits.map(t=>t.slice());
-    if(k==='wall'){
-      traits.push([`Week 1: ${teamName(r.team)}'s offense allowed ${r.sacksAllowed} sack${r.sacksAllowed===1?'':'s'} — the only pressure signal nflverse publishes. No player-level pass-block data exists to go further.`,'']);
-    }
     return {k,cls:f.cls,type:f.type,pos:f.pos,ac:f.ac,max:f.max,hp:f.max,spd:f.spd,
-      ab:f.ab,keys:f.keys,traits,state:'traveling',
+      ab:f.ab,keys:f.keys,traits:f.traits.map(t=>t.slice()),state:'traveling',
       who:r.name?nameInitial(r.name):'',team:teamName(r.team)};
   });
+}
+// The Wall is now swappable (a second team's O-line, not a second
+// player), so its "who's actually allowing the pressure" line has to be
+// read fresh off REAL.wall at render time, not baked into party[] once
+// at boot - otherwise it would keep describing whichever team started
+// the week after a swap to the bench team.
+function wallPressureTrait(){
+  const r=REAL.wall;
+  return `<div class="trait">${teamName(r.team)}'s offense has allowed ${r.sacksAllowed} sack${r.sacksAllowed===1?'':'s'} this week — the only pressure signal nflverse publishes. No player-level pass-block data exists to go further.</div>`;
 }
 
 // Precomputed per-unit results from REAL (see drives below) so both the
@@ -484,6 +489,7 @@ function drawParty(){
         `<div class="ab"><div class="k">${u.keys[j]}</div><div class="v">${v}</div><div class="m">(${mod(v)})</div></div>`).join('')}</div>
       <div class="bar thin"></div>
       ${u.traits.map(t=>`<div class="trait">${t[1]?`<b>${t[0]}</b> ${t[1]}`:`<i>${t[0]}</i>`}</div>`).join('')}
+      ${u.k==='wall'?wallPressureTrait():''}
       ${REAL[u.k].bench?(locked
         ?`<div class="bar thin"></div><div class="trait"><i>The tavern's closed — first kickoff</i></div>`
         :`<div class="bar thin"></div>
@@ -502,9 +508,9 @@ function drawParty(){
   });
 }
 function recomputeResults(){drives.forEach(d=>{RESULTS[d.i]=d.roll();});}
-// Only tactician/rogue/hunter ever reach here - they're the only REAL
-// entries carrying a `bench` (breaker/mender/wall have none, so drawParty
-// never renders a toggle for them in the first place).
+// Only reaches here for a slot whose REAL entry actually carries a
+// `bench` (data/parties.json has an entry for it) - drawParty only
+// renders the "View bench" toggle for those in the first place.
 // Split from swap() so boot() can replay a saved substitution (below)
 // without going through the locked check or re-triggering a save - it's
 // restoring a choice that was already made, not making a new one.

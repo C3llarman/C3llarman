@@ -233,13 +233,11 @@ async function main() {
   console.log(`${rows.length} rows found for season=${season} week=${week}` +
     (rows.length === 0 ? ' - writing empty stat lines for every roster entry, not erroring.' : '.'));
 
-  // Wall is the one slot that can't have a bench pick - it represents
-  // the whole O-line, not one player, so there's no single alternate to
-  // swap in. Every other slot can have a real, injured/inactive starter
-  // (Micah Parsons on Reserve/PUP was the case that surfaced this) -
-  // testers need to be able to bench any of them, not just the three
-  // this originally covered.
-  const SWAPPABLE = ['tactician', 'rogue', 'hunter', 'breaker', 'mender'];
+  // Every slot can have a bench alternate now, Wall included - a second
+  // team's O-line, not a second player, which public/index.html's bench
+  // UI already rendered generically for (renderBench()'s u.k==='wall'
+  // branches were already there, just never fed real data).
+  const SWAPPABLE = ['tactician', 'rogue', 'hunter', 'breaker', 'mender', 'wall'];
   const weekStr = String(week).padStart(2, '0');
   const dir = path.join(outDir, String(season), `week-${weekStr}`);
   await mkdir(dir, { recursive: true });
@@ -251,7 +249,9 @@ async function main() {
         ? resolveWall(rosterEntry, rows, schedule, week)
         : resolveEntry(slot, rosterEntry, rows, schedule, week);
       if (SWAPPABLE.includes(slot) && party.bench?.[slot]) {
-        real[slot].bench = [resolveEntry(slot, party.bench[slot], rows, schedule, week)];
+        real[slot].bench = [slot === 'wall'
+          ? resolveWall(party.bench[slot], rows, schedule, week)
+          : resolveEntry(slot, party.bench[slot], rows, schedule, week)];
       }
     }
 
