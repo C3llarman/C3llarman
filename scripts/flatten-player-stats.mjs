@@ -137,17 +137,23 @@ function findRow(rows, slot, name, team) {
 function statsForSlot(slot, row) {
   if (!row) {
     switch (slot) {
-      case 'tactician': return { y: 0, td: 0, sk: 0 };
-      case 'hunter': return { y: 0, c: 0, td: 0 };
-      case 'rogue': return { y: 0, td: 0, car: 0 };
+      case 'tactician': return { y: 0, td: 0, sk: 0, int: 0, fumblesLost: 0, firstDowns: 0 };
+      case 'hunter': return { y: 0, c: 0, td: 0, fumblesLost: 0, firstDowns: 0 };
+      case 'rogue': return { y: 0, td: 0, car: 0, fumblesLost: 0, firstDowns: 0 };
       case 'breaker': return { sk: 0, tfl: 0 };
       case 'mender': return { fg: 0, att: 0 };
     }
   }
   switch (slot) {
-    case 'tactician': return { y: num(row.passing_yards), td: num(row.passing_tds), sk: num(row.sacks_suffered) };
-    case 'hunter': return { y: num(row.receiving_yards), c: num(row.receptions), td: num(row.receiving_tds) };
-    case 'rogue': return { y: num(row.rushing_yards), td: num(row.rushing_tds), car: num(row.carries) };
+    // int/fumblesLost/firstDowns feed Floor II's Horde Mother (soldiers
+    // born on a turnover, killed on a first down) - not used by any
+    // Floor I math, only added where a real column exists for it.
+    case 'tactician': return { y: num(row.passing_yards), td: num(row.passing_tds), sk: num(row.sacks_suffered),
+      int: num(row.passing_interceptions), fumblesLost: num(row.sack_fumbles_lost), firstDowns: num(row.passing_first_downs) };
+    case 'hunter': return { y: num(row.receiving_yards), c: num(row.receptions), td: num(row.receiving_tds),
+      fumblesLost: num(row.receiving_fumbles_lost), firstDowns: num(row.receiving_first_downs) };
+    case 'rogue': return { y: num(row.rushing_yards), td: num(row.rushing_tds), car: num(row.carries),
+      fumblesLost: num(row.rushing_fumbles_lost), firstDowns: num(row.rushing_first_downs) };
     case 'breaker': return { sk: num(row.def_sacks), tfl: num(row.def_tackles_for_loss) };
     case 'mender': return { fg: num(row.fg_made), att: num(row.fg_att) };
   }

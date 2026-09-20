@@ -4,10 +4,10 @@
     "tagline": "That's not a feature, that's a bug!",
     "flavor": "They come up through the drains in a single thin body, numberless. A blade meant for one great foe finds nothing here. What clears this floor is not the thunderclap but the grind — the possession drive, the check-down, the nine-catch afternoon nobody writes about." },
 
-  { "id": 2, "name": "The Sentinel", "place": "The Long Colonnade",
-    "mechanic": "sentinel", "maxHp": 1000,
-    "tagline": "No failover configured.",
-    "flavor": "One figure, helmed, standing the length of the hall. It has stood there long enough that the floor beneath it is worn to a bowl. Volume means nothing to a thing this patient. It falls to the single enormous moment — the sixty-yard break, the strip-sack, the throw nobody should have made." },
+  { "id": 2, "name": "The Horde Mother", "place": "The Broodwarren",
+    "mechanic": "horde-mother", "maxHp": 3,
+    "tagline": "Autoscaling. Nobody told it to stop.",
+    "flavor": "She does not stand and take it like the thing on the floor below. Every ball turned over splits off another body to stand between you and her; every drive that dies at the sticks costs her one of them back. She herself only bleeds in the clear — a possession that costs nothing at all, and it takes three of those, not one, to finish her." },
 
   { "id": 3, "name": "The Ash Rooks", "place": "The Rookery",
     "mechanic": "swarm", "maxHp": 1150,

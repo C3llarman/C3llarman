@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 2,
   "seasonType": "REG",
-  "generatedAt": "2026-09-20T19:33:03.388Z",
+  "generatedAt": "2026-09-20T23:00:41.631Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -19,6 +19,9 @@
     "y": 0,
     "td": 0,
     "sk": 0,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
     "hasStats": false,
     "bench": [
       {
@@ -27,10 +30,13 @@
         "homeAway": "away",
         "kickoff": "2026-09-20T13:00:00-04:00",
         "name": "Joe Burrow",
-        "y": 0,
-        "td": 0,
-        "sk": 0,
-        "hasStats": false
+        "y": 207,
+        "td": 2,
+        "sk": 5,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 9,
+        "hasStats": true
       }
     ]
   },
@@ -43,6 +49,8 @@
     "y": 0,
     "td": 0,
     "car": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
     "hasStats": false,
     "bench": [
       {
@@ -54,6 +62,8 @@
         "y": 0,
         "td": 0,
         "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
         "hasStats": false
       }
     ]
@@ -67,6 +77,8 @@
     "y": 0,
     "c": 0,
     "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
     "hasStats": false,
     "bench": [
       {
@@ -78,6 +90,8 @@
         "y": 0,
         "c": 0,
         "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
         "hasStats": false
       }
     ]
@@ -88,9 +102,9 @@
     "homeAway": "away",
     "kickoff": "2026-09-20T13:00:00-04:00",
     "name": "T.J. Watt",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false
+    "sk": 1.5,
+    "tfl": 1,
+    "hasStats": true
   },
   "mender": {
     "team": "PIT",
@@ -98,9 +112,9 @@
     "homeAway": "away",
     "kickoff": "2026-09-20T13:00:00-04:00",
     "name": "Chris Boswell",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false
+    "fg": 1,
+    "att": 2,
+    "hasStats": true
   },
   "wall": {
     "team": "KC",

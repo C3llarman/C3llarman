@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 2,
   "seasonType": "REG",
-  "generatedAt": "2026-09-20T19:33:03.376Z",
+  "generatedAt": "2026-09-20T23:00:41.618Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -19,6 +19,9 @@
     "y": 248,
     "td": 3,
     "sk": 2,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 14,
     "hasStats": true,
     "bench": [
       {
@@ -30,6 +33,9 @@
         "y": 0,
         "td": 0,
         "sk": 0,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
         "hasStats": false
       }
     ]
@@ -40,10 +46,12 @@
     "homeAway": "home",
     "kickoff": "2026-09-20T13:00:00-04:00",
     "name": "Bijan Robinson",
-    "y": 0,
+    "y": 72,
     "td": 0,
-    "car": 0,
-    "hasStats": false,
+    "car": 16,
+    "fumblesLost": 0,
+    "firstDowns": 2,
+    "hasStats": true,
     "bench": [
       {
         "team": "MIA",
@@ -54,6 +62,8 @@
         "y": 0,
         "td": 0,
         "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
         "hasStats": false
       }
     ]
@@ -67,6 +77,8 @@
     "y": 0,
     "c": 0,
     "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
     "hasStats": false,
     "bench": [
       {
@@ -78,6 +90,8 @@
         "y": 142,
         "c": 9,
         "td": 2,
+        "fumblesLost": 0,
+        "firstDowns": 7,
         "hasStats": true
       }
     ]
@@ -104,8 +118,8 @@
   },
   "wall": {
     "team": "PHI",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 3,
+    "hasStats": true,
     "opponent": "TEN",
     "homeAway": "away",
     "kickoff": "2026-09-20T13:00:00-04:00"

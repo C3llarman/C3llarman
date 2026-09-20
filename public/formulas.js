@@ -105,3 +105,54 @@ export function regenHp(hp, pct=0.15){
   for(const k of SLOT_ORDER) next[k]=Math.min(MAX_HP[k], next[k]+Math.round(MAX_HP[k]*pct));
   return next;
 }
+
+// Floor II - The Horde Mother: a shielded boss, not a yards/TD damage
+// pool like Floor I's swarm/sentinel math. A turnover births a soldier;
+// a first down kills one; a touchdown only reaches the Horde Mother
+// herself once no soldiers are standing between the party and her.
+// Only tactician/rogue/hunter generate any of these three events - the
+// three roles who can carry the ball, throw a turnover, or convert a
+// down. Wall and Mender have no turnover/first-down/touchdown of their
+// own to contribute to this fight.
+export const HORDE_MOTHER_MAX_HP = 3;
+
+// A turnover, from whichever of the two ways these three slots can
+// commit one - thrown (Tactician) or lost on a fumble (any of the
+// three).
+function bossTurnovers(r){ return (r.int||0) + (r.fumblesLost||0); }
+
+// Known data-granularity gap, same spirit as the Wall's documented one
+// (CLAUDE.md): nflverse credits a single completed pass's first down to
+// BOTH the passer and the targeted receiver, so summing Tactician's
+// passing_first_downs and Hunter's receiving_first_downs can occasionally
+// double-count one real conversion as two dead soldiers when that
+// specific completion went to this roster's Hunter. Not fixable without
+// play-by-play data, which this app deliberately doesn't use anywhere -
+// noted, not hidden, and coarse enough (killing an extra soldier that
+// was going to die anyway, most weeks) not to change who clears the
+// floor.
+//
+// Resolves one week's Horde Mother state from a starting {soldiers,
+// bossHp}. Only weekly-aggregate stats exist, not the real order events
+// happened in-game, so this nets the WHOLE week's turnovers and first
+// downs first (order-independent - a turnover and a first down from
+// different plays days apart can't be sequenced from this data anyway),
+// then checks the week's total touchdowns against that single resulting
+// soldier count. The alternative - resolving slot by slot - would make
+// a player's own touchdown depend on whether their OWN first down
+// happened to be processed before it, an artifact this data has no real
+// answer for either way, so the simpler, order-independent version is
+// the more honest one.
+export function resolveHordeMotherWeek(startState, weekReal){
+  let turnovers=0, firstDowns=0, touchdowns=0;
+  for(const slot of ['tactician','hunter','rogue']){
+    const r=weekReal[slot];
+    if(!r||!r.hasStats)continue;
+    turnovers+=bossTurnovers(r);
+    firstDowns+=r.firstDowns||0;
+    touchdowns+=r.td||0;
+  }
+  const soldiers=Math.max(0,startState.soldiers+turnovers-firstDowns);
+  const bossHp=soldiers===0?Math.max(0,startState.bossHp-touchdowns):startState.bossHp;
+  return {soldiers,bossHp,defeated:bossHp<=0};
+}

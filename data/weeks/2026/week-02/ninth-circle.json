@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 2,
   "seasonType": "REG",
-  "generatedAt": "2026-09-20T19:33:03.383Z",
+  "generatedAt": "2026-09-20T23:00:41.630Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -16,10 +16,13 @@
     "homeAway": "home",
     "kickoff": "2026-09-20T13:00:00-04:00",
     "name": "Lamar Jackson",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
-    "hasStats": false,
+    "y": 235,
+    "td": 1,
+    "sk": 3,
+    "int": 1,
+    "fumblesLost": 0,
+    "firstDowns": 11,
+    "hasStats": true,
     "bench": [
       {
         "team": "PHI",
@@ -27,10 +30,13 @@
         "homeAway": "away",
         "kickoff": "2026-09-20T13:00:00-04:00",
         "name": "Jalen Hurts",
-        "y": 0,
-        "td": 0,
-        "sk": 0,
-        "hasStats": false
+        "y": 264,
+        "td": 2,
+        "sk": 3,
+        "int": 2,
+        "fumblesLost": 0,
+        "firstDowns": 16,
+        "hasStats": true
       }
     ]
   },
@@ -43,6 +49,8 @@
     "y": 52,
     "td": 0,
     "car": 16,
+    "fumblesLost": 0,
+    "firstDowns": 2,
     "hasStats": true,
     "bench": [
       {
@@ -51,10 +59,12 @@
         "homeAway": "away",
         "kickoff": "2026-09-20T13:00:00-04:00",
         "name": "Saquon Barkley",
-        "y": 0,
+        "y": 9,
         "td": 0,
-        "car": 0,
-        "hasStats": false
+        "car": 4,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": true
       }
     ]
   },
@@ -64,10 +74,12 @@
     "homeAway": "away",
     "kickoff": "2026-09-20T13:00:00-04:00",
     "name": "Ja'Marr Chase",
-    "y": 0,
-    "c": 0,
-    "td": 0,
-    "hasStats": false,
+    "y": 75,
+    "c": 7,
+    "td": 2,
+    "fumblesLost": 0,
+    "firstDowns": 3,
+    "hasStats": true,
     "bench": [
       {
         "team": "HOU",
@@ -78,6 +90,8 @@
         "y": 0,
         "c": 0,
         "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
         "hasStats": false
       }
     ]
