@@ -11,9 +11,11 @@
 // that was actually broken: a choice not surviving a different device.
 import { getStore } from '@netlify/blobs';
 
-// Matches SWAPPABLE in public/index.html exactly - the only slots that
-// ever have a bench to swap from.
-const SWAPPABLE = ['tactician', 'rogue', 'hunter'];
+// Matches SWAPPABLE in scripts/flatten-player-stats.mjs - every slot
+// that can have a bench pick. Wall represents the whole O-line, not one
+// player, so it's the one slot that can never have an alternate to swap
+// in from.
+const SWAPPABLE = ['tactician', 'rogue', 'hunter', 'breaker', 'mender'];
 
 function cleanSubs(body) {
   const out = {};

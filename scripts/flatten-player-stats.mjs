@@ -233,7 +233,13 @@ async function main() {
   console.log(`${rows.length} rows found for season=${season} week=${week}` +
     (rows.length === 0 ? ' - writing empty stat lines for every roster entry, not erroring.' : '.'));
 
-  const SWAPPABLE = ['tactician', 'rogue', 'hunter'];
+  // Wall is the one slot that can't have a bench pick - it represents
+  // the whole O-line, not one player, so there's no single alternate to
+  // swap in. Every other slot can have a real, injured/inactive starter
+  // (Micah Parsons on Reserve/PUP was the case that surfaced this) -
+  // testers need to be able to bench any of them, not just the three
+  // this originally covered.
+  const SWAPPABLE = ['tactician', 'rogue', 'hunter', 'breaker', 'mender'];
   const weekStr = String(week).padStart(2, '0');
   const dir = path.join(outDir, String(season), `week-${weekStr}`);
   await mkdir(dir, { recursive: true });
