@@ -1,7 +1,7 @@
 {
   "season": 2026,
   "computedThroughWeek": 1,
-  "generatedAt": "2026-09-20T19:31:16.913Z",
+  "generatedAt": "2026-09-20T23:12:33.807Z",
   "parties": {
     "ashen-coalition": {
       "floorId": 1,
@@ -15,7 +15,8 @@
         "rogue": 44,
         "mender": 36
       },
-      "weeksPlayed": 1
+      "weeksOnFloor": 1,
+      "totalWeeksPlayed": 1
     },
     "ninth-circle": {
       "floorId": 1,
@@ -29,7 +30,8 @@
         "rogue": 41,
         "mender": 36
       },
-      "weeksPlayed": 1
+      "weeksOnFloor": 1,
+      "totalWeeksPlayed": 1
     },
     "emberwatch": {
       "floorId": 1,
@@ -43,7 +45,8 @@
         "rogue": 46,
         "mender": 36
       },
-      "weeksPlayed": 1
+      "weeksOnFloor": 1,
+      "totalWeeksPlayed": 1
     }
   }
 }

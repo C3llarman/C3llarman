@@ -156,3 +156,21 @@ export function resolveHordeMotherWeek(startState, weekReal){
   const bossHp=soldiers===0?Math.max(0,startState.bossHp-touchdowns):startState.bossHp;
   return {soldiers,bossHp,defeated:bossHp<=0};
 }
+
+// Per-commit version for live play, where a real tap order exists (the
+// order the party's cards get committed) - unlike the weekly replay
+// above, which has no real order to respect and nets the whole week at
+// once for exactly that reason. Resolves ONE slot's drive against the
+// state as it stands at that moment: its own turnovers/first-downs
+// update the soldier count first, then its own touchdowns are checked
+// against the count as it now stands - the same "does a shield still
+// stand in the way right now" question the season-state replay can't
+// answer per-event but a live commit genuinely can.
+export function resolveHordeMotherDrive(state, r){
+  const bornSoldiers=bossTurnovers(r);
+  const killedSoldiers=Math.min(state.soldiers+bornSoldiers,r.firstDowns||0);
+  const soldiers=Math.max(0,state.soldiers+bornSoldiers-killedSoldiers);
+  const bossDamage=soldiers===0?Math.min(state.bossHp,r.td||0):0;
+  const bossHp=state.bossHp-bossDamage;
+  return {soldiers,bossHp,bornSoldiers,killedSoldiers,bossDamage,defeated:bossHp<=0};
+}

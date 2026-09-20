@@ -15,13 +15,18 @@ const STATES = ['traveling', 'arrived', 'spent'];
 
 function cleanRun(body) {
   if (!body || typeof body !== 'object') return null;
-  const { arrivalIdx, roomHp, hp, state, done } = body;
+  const { arrivalIdx, roomHp, soldiers, bossHp, hp, state, done } = body;
   if (!Number.isInteger(arrivalIdx) || arrivalIdx < 0 || arrivalIdx > 6) return null;
   if (typeof roomHp !== 'number' || !Number.isFinite(roomHp)) return null;
+  // soldiers/bossHp - the Horde Mother's pool (formulas.js) - ride along
+  // unconditionally, same shape whichever floor mechanic is actually
+  // live client-side, so this validator never has to branch per floor.
+  if (typeof soldiers !== 'number' || !Number.isFinite(soldiers)) return null;
+  if (typeof bossHp !== 'number' || !Number.isFinite(bossHp)) return null;
   if (!Array.isArray(hp) || hp.length !== 6 || !hp.every((n) => typeof n === 'number' && Number.isFinite(n))) return null;
   if (!Array.isArray(state) || state.length !== 6 || !state.every((s) => STATES.includes(s))) return null;
   if (typeof done !== 'boolean') return null;
-  return { arrivalIdx, roomHp, hp, state, done };
+  return { arrivalIdx, roomHp, soldiers, bossHp, hp, state, done };
 }
 
 export default async (req) => {
