@@ -51,6 +51,13 @@
   header h1 em{font-style:normal;color:var(--live-dark)}
   header h1 .logo-mark{display:block;height:108px;width:auto}
   header .sub{font-size:15.5px;font-style:italic;color:#C9B893;margin-top:5px}
+  /* Party crest banner - the landing-screen "hype" treatment: this
+     party's own emblem plus its name, emboldened, above the fold. */
+  .party-banner{display:flex;align-items:center;gap:14px;margin-top:14px;
+    padding-top:14px;border-top:1px solid rgba(228,217,190,.28)}
+  .party-banner img{width:60px;height:60px;flex-shrink:0}
+  .party-banner .party-name{font-family:'Archivo Narrow';font-weight:800;
+    font-size:27px;letter-spacing:.015em;line-height:1.05;color:var(--live-dark)}
 
   .block{background:var(--card);border-top:3px solid var(--rule);
     border-bottom:3px solid var(--rule);padding:12px 14px;margin-bottom:16px}
@@ -226,6 +233,10 @@
   <div class="kick">WEEK 1 &middot; FLOOR I &middot; THE SUNKEN VAULT</div>
   <h1><img src="/assets/masthead.webp" alt="High Fantasy Football" class="logo-mark"></h1>
   <div class="sub">Six classes. One party. The dungeon doesn&rsquo;t care about your bye week.</div>
+  <div class="party-banner" id="partyBanner" hidden>
+    <img id="partyCrest" src="" alt="">
+    <div class="party-name" id="partyNameBanner"></div>
+  </div>
 </header>
 <div class="frame">
   <svg class="corner tl" viewBox="0 0 64 64" aria-hidden="true"><use href="#fil"/></svg>
@@ -1060,6 +1071,19 @@ async function boot(){
   LOCKED_AT=data.lockedAt;
   locked=LOCKED_AT?Date.now()>=new Date(LOCKED_AT).getTime():false;
   const partyLabel=(data.party&&data.party.name||'').toUpperCase();
+  // Landing-screen hype: this party's own crest, not a generic one - only
+  // exists for the three parties actually in data/parties.json today
+  // (public/assets/crest-<id>.webp), so a party without one just doesn't
+  // show the banner rather than showing a wrong or blank crest.
+  const CREST={'ashen-coalition':'/assets/crest-ashen-coalition.webp',
+    'ninth-circle':'/assets/crest-ninth-circle.webp',
+    'emberwatch':'/assets/crest-emberwatch.webp'};
+  if(CREST[partyId]){
+    $('partyCrest').src=CREST[partyId];
+    $('partyCrest').alt=`${data.party.name} crest`;
+    $('partyNameBanner').textContent=partyLabel;
+    $('partyBanner').hidden=false;
+  }
   KICK.week=CURRENT_FLOOR
     ?`${partyLabel} · WEEK ${data.week} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)} · ${CURRENT_FLOOR.place.toUpperCase()}`
     :`${partyLabel} · WEEK ${data.week}`;
