@@ -1,0 +1,139 @@
+{
+  "season": 2026,
+  "week": 3,
+  "seasonType": "REG",
+  "generatedAt": "2026-09-25T01:44:44.864Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
+  "party": {
+    "id": "ashen-coalition",
+    "name": "Ashen Coalition"
+  },
+  "lockedAt": "2026-09-24T20:15:00-04:00",
+  "tactician": {
+    "team": "BUF",
+    "opponent": "LAC",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Josh Allen",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "KC",
+        "opponent": "MIA",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00",
+        "name": "Patrick Mahomes",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "rogue": {
+    "team": "ATL",
+    "opponent": "GB",
+    "homeAway": "away",
+    "kickoff": "2026-09-24T20:15:00-04:00",
+    "name": "Bijan Robinson",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "MIA",
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T13:00:00-04:00",
+        "name": "De'Von Achane",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "hunter": {
+    "team": "DET",
+    "opponent": "NYJ",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Amon-Ra St. Brown",
+    "y": 0,
+    "c": 0,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "LA",
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T20:20:00-04:00",
+        "name": "Puka Nacua",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "breaker": {
+    "team": "BUF",
+    "opponent": "LAC",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Greg Rousseau",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "GB",
+        "opponent": "ATL",
+        "homeAway": "home",
+        "kickoff": "2026-09-24T20:15:00-04:00",
+        "name": "Micah Parsons",
+        "sk": 0,
+        "tfl": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "mender": {
+    "team": "DAL",
+    "opponent": "BAL",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T16:25:00-04:00",
+    "name": "Brandon Aubrey",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false
+  },
+  "wall": {
+    "team": "PHI",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "CHI",
+    "homeAway": "away",
+    "kickoff": "2026-09-28T20:15:00-04:00"
+  }
+}

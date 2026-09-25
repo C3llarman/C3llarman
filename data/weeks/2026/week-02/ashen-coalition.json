@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 2,
   "seasonType": "REG",
-  "generatedAt": "2026-09-20T23:00:41.618Z",
+  "generatedAt": "2026-09-25T01:42:31.995Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -30,13 +30,13 @@
         "homeAway": "home",
         "kickoff": "2026-09-20T20:20:00-04:00",
         "name": "Patrick Mahomes",
-        "y": 0,
-        "td": 0,
-        "sk": 0,
+        "y": 382,
+        "td": 3,
+        "sk": 2,
         "int": 0,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false
+        "firstDowns": 19,
+        "hasStats": true
       }
     ]
   },
@@ -59,12 +59,12 @@
         "homeAway": "away",
         "kickoff": "2026-09-20T16:25:00-04:00",
         "name": "De'Von Achane",
-        "y": 0,
+        "y": 74,
         "td": 0,
-        "car": 0,
+        "car": 20,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false
+        "firstDowns": 2,
+        "hasStats": true
       }
     ]
   },
@@ -112,9 +112,9 @@
     "homeAway": "home",
     "kickoff": "2026-09-20T16:25:00-04:00",
     "name": "Brandon Aubrey",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false
+    "fg": 3,
+    "att": 3,
+    "hasStats": true
   },
   "wall": {
     "team": "PHI",

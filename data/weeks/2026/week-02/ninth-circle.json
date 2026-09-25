@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 2,
   "seasonType": "REG",
-  "generatedAt": "2026-09-20T23:00:41.630Z",
+  "generatedAt": "2026-09-25T01:42:31.998Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -113,8 +113,8 @@
     "kickoff": "2026-09-20T16:05:00-04:00",
     "name": "Cameron Dicker",
     "fg": 0,
-    "att": 0,
-    "hasStats": false
+    "att": 1,
+    "hasStats": true
   },
   "wall": {
     "team": "DET",

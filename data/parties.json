@@ -9,15 +9,16 @@
       "roster": {
         "tactician": { "name": "Josh Allen", "team": "BUF", "pos": "QB" },
         "rogue":     { "name": "Bijan Robinson", "team": "ATL", "pos": "RB" },
-        "hunter":    { "name": "Puka Nacua", "team": "LAR", "pos": "WR" },
-        "breaker":   { "name": "Micah Parsons", "team": "GB", "pos": "EDGE" },
+        "hunter":    { "name": "Amon-Ra St. Brown", "team": "DET", "pos": "WR" },
+        "breaker":   { "name": "Greg Rousseau", "team": "BUF", "pos": "EDGE" },
         "mender":    { "name": "Brandon Aubrey", "team": "DAL", "pos": "K" },
         "wall":      { "team": "PHI" }
       },
       "bench": {
         "tactician": { "name": "Patrick Mahomes", "team": "KC", "pos": "QB" },
         "rogue":     { "name": "De'Von Achane", "team": "MIA", "pos": "RB" },
-        "hunter":    { "name": "Amon-Ra St. Brown", "team": "DET", "pos": "WR" }
+        "hunter":    { "name": "Puka Nacua", "team": "LAR", "pos": "WR" },
+        "breaker":   { "name": "Micah Parsons", "team": "GB", "pos": "EDGE" }
       }
     },
     {
@@ -28,14 +29,15 @@
         "tactician": { "name": "Lamar Jackson", "team": "BAL", "pos": "QB" },
         "rogue":     { "name": "Jahmyr Gibbs", "team": "DET", "pos": "RB" },
         "hunter":    { "name": "Ja'Marr Chase", "team": "CIN", "pos": "WR" },
-        "breaker":   { "name": "Myles Garrett", "team": "CLE", "pos": "EDGE" },
+        "breaker":   { "name": "Alex Highsmith", "team": "PIT", "pos": "EDGE" },
         "mender":    { "name": "Cameron Dicker", "team": "LAC", "pos": "K" },
         "wall":      { "team": "DET" }
       },
       "bench": {
         "tactician": { "name": "Jalen Hurts", "team": "PHI", "pos": "QB" },
         "rogue":     { "name": "Saquon Barkley", "team": "PHI", "pos": "RB" },
-        "hunter":    { "name": "Nico Collins", "team": "HOU", "pos": "WR" }
+        "hunter":    { "name": "Nico Collins", "team": "HOU", "pos": "WR" },
+        "breaker":   { "name": "Myles Garrett", "team": "LAR", "pos": "EDGE" }
       }
     },
     {

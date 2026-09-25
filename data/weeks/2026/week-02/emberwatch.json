@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 2,
   "seasonType": "REG",
-  "generatedAt": "2026-09-20T23:00:41.631Z",
+  "generatedAt": "2026-09-25T01:42:32.000Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "away",
     "kickoff": "2026-09-20T16:25:00-04:00",
     "name": "Jayden Daniels",
-    "y": 0,
-    "td": 0,
+    "y": 96,
+    "td": 1,
     "sk": 0,
     "int": 0,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 4,
+    "hasStats": true,
     "bench": [
       {
         "team": "CIN",
@@ -46,12 +46,12 @@
     "homeAway": "home",
     "kickoff": "2026-09-20T16:25:00-04:00",
     "name": "Christian McCaffrey",
-    "y": 0,
-    "td": 0,
-    "car": 0,
+    "y": 23,
+    "td": 2,
+    "car": 10,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 2,
+    "hasStats": true,
     "bench": [
       {
         "team": "LV",
@@ -59,12 +59,12 @@
         "homeAway": "away",
         "kickoff": "2026-09-20T16:05:00-04:00",
         "name": "Ashton Jeanty",
-        "y": 0,
+        "y": 48,
         "td": 0,
-        "car": 0,
+        "car": 21,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false
+        "firstDowns": 1,
+        "hasStats": true
       }
     ]
   },
@@ -74,12 +74,12 @@
     "homeAway": "away",
     "kickoff": "2026-09-20T16:25:00-04:00",
     "name": "Jaxon Smith-Njigba",
-    "y": 0,
-    "c": 0,
-    "td": 0,
+    "y": 155,
+    "c": 9,
+    "td": 3,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 8,
+    "hasStats": true,
     "bench": [
       {
         "team": "NYG",
@@ -87,12 +87,12 @@
         "homeAway": "away",
         "kickoff": "2026-09-21T20:15:00-04:00",
         "name": "Malik Nabers",
-        "y": 0,
-        "c": 0,
+        "y": 1,
+        "c": 1,
         "td": 0,
         "fumblesLost": 0,
         "firstDowns": 0,
-        "hasStats": false
+        "hasStats": true
       }
     ]
   },
@@ -118,8 +118,8 @@
   },
   "wall": {
     "team": "KC",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 2,
+    "hasStats": true,
     "opponent": "IND",
     "homeAway": "home",
     "kickoff": "2026-09-20T20:20:00-04:00"
