@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 3,
   "seasonType": "REG",
-  "generatedAt": "2026-09-25T01:44:44.866Z",
+  "generatedAt": "2026-09-30T01:11:08.627Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "away",
     "kickoff": "2026-09-27T16:25:00-04:00",
     "name": "Lamar Jackson",
-    "y": 0,
-    "td": 0,
+    "y": 186,
+    "td": 2,
     "sk": 0,
     "int": 0,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 11,
+    "hasStats": true,
     "bench": [
       {
         "team": "PHI",
@@ -30,13 +30,13 @@
         "homeAway": "away",
         "kickoff": "2026-09-28T20:15:00-04:00",
         "name": "Jalen Hurts",
-        "y": 0,
+        "y": 153,
         "td": 0,
-        "sk": 0,
-        "int": 0,
+        "sk": 2,
+        "int": 1,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false
+        "firstDowns": 6,
+        "hasStats": true
       }
     ]
   },
@@ -46,12 +46,12 @@
     "homeAway": "home",
     "kickoff": "2026-09-27T13:00:00-04:00",
     "name": "Jahmyr Gibbs",
-    "y": 0,
-    "td": 0,
-    "car": 0,
+    "y": 99,
+    "td": 2,
+    "car": 20,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 7,
+    "hasStats": true,
     "bench": [
       {
         "team": "PHI",
@@ -59,12 +59,12 @@
         "homeAway": "away",
         "kickoff": "2026-09-28T20:15:00-04:00",
         "name": "Saquon Barkley",
-        "y": 0,
+        "y": 82,
         "td": 0,
-        "car": 0,
+        "car": 15,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false
+        "firstDowns": 4,
+        "hasStats": true
       }
     ]
   },
@@ -74,12 +74,12 @@
     "homeAway": "away",
     "kickoff": "2026-09-27T13:00:00-04:00",
     "name": "Ja'Marr Chase",
-    "y": 0,
-    "c": 0,
-    "td": 0,
+    "y": 98,
+    "c": 9,
+    "td": 1,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 6,
+    "hasStats": true,
     "bench": [
       {
         "team": "HOU",
@@ -124,14 +124,14 @@
     "homeAway": "away",
     "kickoff": "2026-09-27T13:00:00-04:00",
     "name": "Cameron Dicker",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false
+    "fg": 3,
+    "att": 4,
+    "hasStats": true
   },
   "wall": {
     "team": "DET",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 2,
+    "hasStats": true,
     "opponent": "NYJ",
     "homeAway": "home",
     "kickoff": "2026-09-27T13:00:00-04:00"

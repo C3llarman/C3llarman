@@ -1,39 +1,25 @@
 {
   "season": 2026,
-  "computedThroughWeek": 2,
-  "generatedAt": "2026-09-25T01:42:32.047Z",
+  "computedThroughWeek": 3,
+  "generatedAt": "2026-09-30T01:11:08.698Z",
   "parties": {
     "ashen-coalition": {
-      "floorId": 1,
+      "floorId": 2,
       "cleared": false,
-      "roomHp": 112,
+      "soldiers": 0,
+      "bossHp": 3,
       "hp": {
         "wall": 74,
         "breaker": 44,
         "tactician": 52,
         "hunter": 48,
-        "rogue": 46,
+        "rogue": 44,
         "mender": 36
       },
-      "weeksOnFloor": 2,
-      "totalWeeksPlayed": 2
+      "weeksOnFloor": 0,
+      "totalWeeksPlayed": 3
     },
     "ninth-circle": {
-      "floorId": 1,
-      "cleared": false,
-      "roomHp": 6,
-      "hp": {
-        "wall": 72,
-        "breaker": 44,
-        "tactician": 49,
-        "hunter": 48,
-        "rogue": 41,
-        "mender": 36
-      },
-      "weeksOnFloor": 2,
-      "totalWeeksPlayed": 2
-    },
-    "emberwatch": {
       "floorId": 2,
       "cleared": false,
       "soldiers": 0,
@@ -47,7 +33,22 @@
         "mender": 36
       },
       "weeksOnFloor": 0,
-      "totalWeeksPlayed": 2
+      "totalWeeksPlayed": 3
+    },
+    "emberwatch": {
+      "floorId": 3,
+      "cleared": false,
+      "roomHp": 1150,
+      "hp": {
+        "wall": 74,
+        "breaker": 44,
+        "tactician": 52,
+        "hunter": 48,
+        "rogue": 46,
+        "mender": 36
+      },
+      "weeksOnFloor": 0,
+      "totalWeeksPlayed": 3
     }
   }
 }

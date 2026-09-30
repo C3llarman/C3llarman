@@ -1,0 +1,139 @@
+{
+  "season": 2026,
+  "week": 4,
+  "seasonType": "REG",
+  "generatedAt": "2026-09-30T01:12:01.857Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
+  "party": {
+    "id": "ninth-circle",
+    "name": "Ninth Circle"
+  },
+  "lockedAt": "2026-10-04T13:00:00-04:00",
+  "tactician": {
+    "team": "BAL",
+    "opponent": "TEN",
+    "homeAway": "home",
+    "kickoff": "2026-10-04T13:00:00-04:00",
+    "name": "Lamar Jackson",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "PHI",
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00",
+        "name": "Jalen Hurts",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "rogue": {
+    "team": "DET",
+    "opponent": "CAR",
+    "homeAway": "away",
+    "kickoff": "2026-10-04T20:20:00-04:00",
+    "name": "Jahmyr Gibbs",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "PHI",
+        "opponent": "LA",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00",
+        "name": "Saquon Barkley",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "hunter": {
+    "team": "CIN",
+    "opponent": "JAX",
+    "homeAway": "home",
+    "kickoff": "2026-10-04T13:00:00-04:00",
+    "name": "Ja'Marr Chase",
+    "y": 0,
+    "c": 0,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "HOU",
+        "opponent": "DAL",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00",
+        "name": "Nico Collins",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "breaker": {
+    "team": "HOU",
+    "opponent": "DAL",
+    "homeAway": "home",
+    "kickoff": "2026-10-04T13:00:00-04:00",
+    "name": "Will Anderson Jr.",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "LA",
+        "opponent": "PHI",
+        "homeAway": "away",
+        "kickoff": "2026-10-04T13:00:00-04:00",
+        "name": "Myles Garrett",
+        "sk": 0,
+        "tfl": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "mender": {
+    "team": "LAC",
+    "opponent": "SEA",
+    "homeAway": "away",
+    "kickoff": "2026-10-04T16:25:00-04:00",
+    "name": "Cameron Dicker",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false
+  },
+  "wall": {
+    "team": "DET",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "CAR",
+    "homeAway": "away",
+    "kickoff": "2026-10-04T20:20:00-04:00"
+  }
+}

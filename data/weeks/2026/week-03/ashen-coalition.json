@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 3,
   "seasonType": "REG",
-  "generatedAt": "2026-09-25T01:44:44.864Z",
+  "generatedAt": "2026-09-30T01:11:08.614Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "home",
     "kickoff": "2026-09-27T13:00:00-04:00",
     "name": "Josh Allen",
-    "y": 0,
+    "y": 204,
     "td": 0,
-    "sk": 0,
-    "int": 0,
-    "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "sk": 4,
+    "int": 2,
+    "fumblesLost": 1,
+    "firstDowns": 10,
+    "hasStats": true,
     "bench": [
       {
         "team": "KC",
@@ -30,13 +30,13 @@
         "homeAway": "away",
         "kickoff": "2026-09-27T13:00:00-04:00",
         "name": "Patrick Mahomes",
-        "y": 0,
-        "td": 0,
+        "y": 246,
+        "td": 2,
         "sk": 0,
-        "int": 0,
+        "int": 1,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false
+        "firstDowns": 11,
+        "hasStats": true
       }
     ]
   },
@@ -46,12 +46,12 @@
     "homeAway": "away",
     "kickoff": "2026-09-24T20:15:00-04:00",
     "name": "Bijan Robinson",
-    "y": 0,
-    "td": 0,
-    "car": 0,
+    "y": 194,
+    "td": 2,
+    "car": 29,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 11,
+    "hasStats": true,
     "bench": [
       {
         "team": "MIA",
@@ -59,12 +59,12 @@
         "homeAway": "home",
         "kickoff": "2026-09-27T13:00:00-04:00",
         "name": "De'Von Achane",
-        "y": 0,
+        "y": 17,
         "td": 0,
-        "car": 0,
+        "car": 3,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false
+        "firstDowns": 1,
+        "hasStats": true
       }
     ]
   },
@@ -74,12 +74,12 @@
     "homeAway": "home",
     "kickoff": "2026-09-27T13:00:00-04:00",
     "name": "Amon-Ra St. Brown",
-    "y": 0,
-    "c": 0,
-    "td": 0,
+    "y": 19,
+    "c": 4,
+    "td": 1,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 2,
+    "hasStats": true,
     "bench": [
       {
         "team": "LA",
@@ -102,9 +102,9 @@
     "homeAway": "home",
     "kickoff": "2026-09-27T13:00:00-04:00",
     "name": "Greg Rousseau",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false,
+    "sk": 2,
+    "tfl": 4,
+    "hasStats": true,
     "bench": [
       {
         "team": "GB",
@@ -124,14 +124,14 @@
     "homeAway": "home",
     "kickoff": "2026-09-27T16:25:00-04:00",
     "name": "Brandon Aubrey",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false
+    "fg": 3,
+    "att": 4,
+    "hasStats": true
   },
   "wall": {
     "team": "PHI",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 2,
+    "hasStats": true,
     "opponent": "CHI",
     "homeAway": "away",
     "kickoff": "2026-09-28T20:15:00-04:00"

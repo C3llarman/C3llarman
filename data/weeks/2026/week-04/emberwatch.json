@@ -1,0 +1,127 @@
+{
+  "season": 2026,
+  "week": 4,
+  "seasonType": "REG",
+  "generatedAt": "2026-09-30T01:12:01.859Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
+  "party": {
+    "id": "emberwatch",
+    "name": "Emberwatch"
+  },
+  "lockedAt": "2026-10-01T20:15:00-04:00",
+  "tactician": {
+    "team": "CIN",
+    "opponent": "JAX",
+    "homeAway": "home",
+    "kickoff": "2026-10-04T13:00:00-04:00",
+    "name": "Joe Burrow",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "WAS",
+        "opponent": "IND",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T09:30:00-04:00",
+        "name": "Jayden Daniels",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "rogue": {
+    "team": "SF",
+    "opponent": "DEN",
+    "homeAway": "home",
+    "kickoff": "2026-10-04T16:25:00-04:00",
+    "name": "Christian McCaffrey",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "LV",
+        "opponent": "KC",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T16:25:00-04:00",
+        "name": "Ashton Jeanty",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "hunter": {
+    "team": "SEA",
+    "opponent": "LAC",
+    "homeAway": "home",
+    "kickoff": "2026-10-04T16:25:00-04:00",
+    "name": "Jaxon Smith-Njigba",
+    "y": 0,
+    "c": 0,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "bench": [
+      {
+        "team": "NYG",
+        "opponent": "ARI",
+        "homeAway": "home",
+        "kickoff": "2026-10-04T13:00:00-04:00",
+        "name": "Malik Nabers",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false
+      }
+    ]
+  },
+  "breaker": {
+    "team": "PIT",
+    "opponent": "CLE",
+    "homeAway": "away",
+    "kickoff": "2026-10-01T20:15:00-04:00",
+    "name": "T.J. Watt",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false
+  },
+  "mender": {
+    "team": "PIT",
+    "opponent": "CLE",
+    "homeAway": "away",
+    "kickoff": "2026-10-01T20:15:00-04:00",
+    "name": "Chris Boswell",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false
+  },
+  "wall": {
+    "team": "KC",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "LV",
+    "homeAway": "away",
+    "kickoff": "2026-10-04T16:25:00-04:00"
+  }
+}

@@ -29,7 +29,7 @@
         "tactician": { "name": "Lamar Jackson", "team": "BAL", "pos": "QB" },
         "rogue":     { "name": "Jahmyr Gibbs", "team": "DET", "pos": "RB" },
         "hunter":    { "name": "Ja'Marr Chase", "team": "CIN", "pos": "WR" },
-        "breaker":   { "name": "Alex Highsmith", "team": "PIT", "pos": "EDGE" },
+        "breaker":   { "name": "Will Anderson Jr.", "team": "HOU", "pos": "EDGE" },
         "mender":    { "name": "Cameron Dicker", "team": "LAC", "pos": "K" },
         "wall":      { "team": "DET" }
       },
@@ -45,7 +45,7 @@
       "name": "Emberwatch",
       "owner": "TBD",
       "roster": {
-        "tactician": { "name": "Jayden Daniels", "team": "WAS", "pos": "QB" },
+        "tactician": { "name": "Joe Burrow", "team": "CIN", "pos": "QB" },
         "rogue":     { "name": "Christian McCaffrey", "team": "SF", "pos": "RB" },
         "hunter":    { "name": "Jaxon Smith-Njigba", "team": "SEA", "pos": "WR" },
         "breaker":   { "name": "T.J. Watt", "team": "PIT", "pos": "EDGE" },
@@ -53,7 +53,7 @@
         "wall":      { "team": "KC" }
       },
       "bench": {
-        "tactician": { "name": "Joe Burrow", "team": "CIN", "pos": "QB" },
+        "tactician": { "name": "Jayden Daniels", "team": "WAS", "pos": "QB" },
         "rogue":     { "name": "Ashton Jeanty", "team": "LV", "pos": "RB" },
         "hunter":    { "name": "Malik Nabers", "team": "NYG", "pos": "WR" }
       }
