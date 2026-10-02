@@ -4,8 +4,9 @@ A fantasy football league where your roster is a D&D party and you crawl a dunge
 instead of playing head-to-head. Everyone in a guild faces the same floors, so every
 run is directly comparable.
 
-`reference/hff-mobile-v5.html` is a working visual prototype. **Treat it as the design
-spec.** Do not redesign it. Port its look, structure, and copy into the real app.
+`reference/hff-mobile-v5.html` is the original visual prototype. Its structure, copy and
+accessibility still hold, but its **look has been superseded by the iron reskin** (see
+Design system below): a dark page with steel-framed cards, built from a cut asset kit.
 
 ---
 
@@ -83,47 +84,60 @@ invent a pressure stat.
 
 ## Design system
 
-Every colour pair below was verified against WCAG 2.1 AA. **Re-verify with a contrast
-calculation, not by eye, if you change any of them.**
+**The iron reskin.** Dark blackened-stone page; the cards are physical objects on it.
+Material roles, keep them strict or the page turns to noise:
 
-```
---page  #E4D9BE   --card      #DCCFAF   --ink   #17120D
---rule  #7A2718   --live      #B00C26   (small text on light)
-                  --live-dark #F72446   (on the near-black masthead)
---faint #635541   --hair      #7B715A   --gild  #6D541A   --mend #2A5735
-```
+- **Red** = active / dangerous / important (selected tab, section pennants, HP, live)
+- **Gold** = ornament / hierarchy (rules, labels, stat keys)
+- **Steel** = interface structure (card frames, tab bar)
+- **Parchment** = readable information (ability text, data notes)
+- **Black iron** = stats / game mechanics (HP + the six ability scores)
 
-Two reds are required: no single red passes on both the light page and the dark masthead.
+**Player card anatomy:** armour frame → pale identity plate (emblem overlapping the
+upper-left, class name in small caps, **position · player · team** with position in red,
+creature-type line italic, AC / Speed / Kickoff / Projection) → black-iron strip (Hit
+Points, red bar, six stats with brass separators) → parchment (bold-italic red trait name,
+mechanics, then the NFL/data explanation smaller). Game numbers live on the iron, football
+facts on the plates. `data-k` on each card is the hook for per-class ornaments (spikes for
+the Breaker, filigree for the Tactician...) — use ornaments sparingly, as characterisation.
 
-- **Type:** EB Garamond (body) + Archivo Narrow (numerals, labels, headings).
-  Both free via Google Fonts. Licensed type is the biggest available upgrade and has
-  not been bought yet.
-- **Look:** a D&D Monster Manual page crossed with an ESPN box score. Players are
-  rendered as stat blocks; the six ability scores are combine numbers (the Hunter's
-  DEX is separation, CTD is contested-catch rate). Tapered red-brown rules, drop caps,
-  hand-drawn SVG filigree at the frame corners, seamless paper grain.
-- **Hierarchy on a card:** class name, then **position · player · team** (position in
-  red), then the creature-type line small and italic. The real player must be obvious.
-- **Art:** `reference/assets/` — engraved ink PNGs, transparent, red-brown. These do
-  NOT read below ~40px; the tab icons are separate hand-drawn line glyphs.
+**No text baked into art.** Every name, number and label is HTML over the artwork.
+
+**Assets:** frames are built from pieces (corners fixed-size, rails repeat, emblems and
+cloth absolutely positioned), never one finished frame image — those don't scale across
+phones. Until the cut kit lands in `reference/assets/ui/`, the frame/rails/rivets are CSS
+stand-ins in `public/index.html`; swapping in the art is a CSS change, not a markup one.
+The concept sheet (one flattened image on a brown ground) is reference only.
+
+Colours are three token sets in `public/index.html`: `:root` (dark page), the light set
+re-declared on `.block`/`.verdict`/`.statcard`/`.plate-id`/`.plate-lore`, and the iron set on
+`.plate-iron`. Every pair is checked by **`node scripts/check-contrast.mjs`** — run it after
+any colour change and keep its pair list in step with the tokens. Notable results: red
+text needs a different value on each ground (`#F72446` page, `#A60B23` light, `#FF5A6E`
+iron); edge vignettes on plates are capped at 6% because darker edges failed AA; dim
+rows by colour, never `opacity` (opacity drops text under 4.5:1).
+
+- **Type:** EB Garamond (body, small-caps class names) + Archivo Narrow (numerals, labels,
+  headings). Both free via Google Fonts. Licensed type is still the biggest available upgrade.
+- **Art:** `public/assets/` — the class emblems are full-colour painted crests; the
+  encounter/tower engravings are red-brown ink and read fine on the dark page.
 
 ## Navigation
 
-Mobile-first bottom tab bar. **v1 ships two tabs, Week and Tavern — Week is default**
-(Sunday is when people open it).
+Mobile-first bottom tab bar, **three tabs: Week, Tavern, Dungeon — Week is default**
+(Sunday is when people open it). One continuous blackened-steel bar; the selected tab is
+a red enamel inset with brass edging.
 
 - **Week** — this Sunday only: encounter, party row, arrivals, log, result.
 - **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
+- **Dungeon** — floor progression from `data/floors.json` + `data/season-state.json`:
+  cleared / current / sealed.
 
-**Dungeon and Guild are deferred, not cut.** Dungeon needs multi-week progression to
-track — v1 only has one week of real data wired up, so "floors cleared / current /
-revealed / sealed" has nothing to show yet. Guild needs authentication and shared state
-— a leaderboard means nothing with one local party and no accounts. Both come back once
-those exist.
+**Guild is deferred, not cut.** It needs authentication and shared state — a leaderboard
+means nothing with one local party and no accounts.
 
-When they do, **Week and Dungeon must stay split by time horizon** (event vs.
-progression) or they duplicate each other — that constraint predates the two-tab v1 and
-still holds for whenever Dungeon returns.
+**Week and Dungeon must stay split by time horizon** (event vs. progression) or they
+duplicate each other.
 
 Accessibility already in the prototype, keep it: 56px targets,
 `env(safe-area-inset-bottom)`, `tablist`/`tab`/`tabpanel` roles with arrow-key support,
