@@ -143,8 +143,8 @@ import json
 import numpy as np
 
 TINTS = {  # surface: (file, inset px, tint hex, tint alpha, text is 'dark'|'light')
-    'plate':  ('plate-metal', 34, '#DED6C4', 0.90, 'dark'),
-    'parch':  ('plate-parch', 34, '#E2D5B5', 0.80, 'dark'),
+    'plate':  ('plate-metal', 34, '#DED6C4', 0.75, 'dark'),
+    'parch':  ('plate-parch', 34, '#E2D5B5', 0.50, 'dark'),
     'iron':   ('plate-iron',  30, '#1E1B18', 0.85, 'light'),
     'page':   ('stone',        0, '#14110D', 0.55, 'light'),
     'velvet': ('velvet',       0, '#5A0C16', 0.55, 'light'),

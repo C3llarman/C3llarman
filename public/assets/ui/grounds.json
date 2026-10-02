@@ -1,17 +1,17 @@
 {
  "plate": {
   "tint": "#DED6C4",
-  "alpha": 0.9,
+  "alpha": 0.75,
   "text": "dark",
-  "worst": "#D3C9B7",
-  "median": "#DBD2C1"
+  "worst": "#C2B6A5",
+  "median": "#D6CDBC"
  },
  "parch": {
   "tint": "#E2D5B5",
-  "alpha": 0.8,
+  "alpha": 0.5,
   "text": "dark",
-  "worst": "#D9C6A3",
-  "median": "#E1D0AE"
+  "worst": "#CCB089",
+  "median": "#E0C9A4"
  },
  "iron": {
   "tint": "#1E1B18",

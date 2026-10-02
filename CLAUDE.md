@@ -125,7 +125,7 @@ Colours are three token sets in `public/index.html`: `:root` (dark page), the li
 re-declared on `.block`/`.verdict`/`.statcard`/`.plate-id`/`.plate-lore`, and the iron set on
 `.plate-iron`. Every pair is checked by **`node scripts/check-contrast.mjs`** — run it after
 any colour change and keep its pair list in step with the tokens. Notable results: red
-text needs a different value on each ground (`#FF6B7D` stone page, `#A60B23` light plates,
+text needs a different value on each ground (`#FF6B7D` stone page, `#8E0A1E` light plates,
 `#FF5A6E` iron, `#F72446` masthead); dim rows by colour, never `opacity` (opacity drops text
 under 4.5:1).
 

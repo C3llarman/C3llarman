@@ -14,9 +14,9 @@ const ratio=(a,b)=>{const[x,y]=[lum(a),lum(b)].sort((p,q)=>q-p);return (x+.05)/(
 const TEXT=4.5, UI=3; // 1.4.3 small text, 1.4.11 non-text
 
 const dark ={ink:'#EAE0C8',faint:'#B5A684',rule:'#D2A85A',live:'#FF6B7D',gild:'#D9B460',mend:'#7CC48B'};
-const light={ink:'#17120D',faint:'#5C4F3C',rule:'#7A2718',live:'#A60B23',gild:'#5E4815',mend:'#2A5735'};
+const light={ink:'#17120D',faint:'#4A3F30',rule:'#6A2014',live:'#8E0A1E',gild:'#4C3A0E',mend:'#22482C'};
 const iron ={ink:'#EFE6D2',faint:'#B5A684',rule:'#D2A85A',live:'#FF5A6E'};
-const hair ={dark:'#9A8C70',light:'#6E6450'};
+const hair ={dark:'#9A8C70',light:'#5E5544'};
 
 const pairs=[];
 const set=(name,tokens,ground)=>{for(const[k,v]of Object.entries(tokens))pairs.push([`${name} ${k}`,v,ground,TEXT]);};
