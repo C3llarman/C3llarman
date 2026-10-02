@@ -161,6 +161,17 @@ progression was actually scoped:
   `data/floors.json`), it reads the same damage formulas `public/index.html` uses
   live — not a second copy that can drift out of sync with a tuning change.
 
+## Projections
+
+Each player's projection is their own completed games this season (`form.lines`,
+attached by the flatten script — never the projected week's own line) run through
+`projectSlot()` in `public/formulas.js` under the current floor's mechanic, so the same
+player can project higher on one floor than another. Shown as a mean plus the
+low–high range and the number of games. No vendor projections and no matchup
+adjustment. Injury tags come from nflverse's weekly injury report. Players on IR/PUP
+drop off that report rather than being listed as Out, so "No games yet this season"
+is what flags them.
+
 ## Open questions — do not silently decide these
 
 1. **Guild as leaderboard vs. rivalry.** Identical floors for everyone makes it a

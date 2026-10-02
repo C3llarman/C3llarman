@@ -174,3 +174,35 @@ export function resolveHordeMotherDrive(state, r){
   const bossHp=state.bossHp-bossDamage;
   return {soldiers,bossHp,bornSoldiers,killedSoldiers,bossDamage,defeated:bossHp<=0};
 }
+
+// Projections - what a player is likely to do THIS week, read off their
+// own completed games earlier this season (the `form.lines` the build
+// script attaches - never this week's own line, so a projection can't
+// leak a result). Each past game runs through the exact formula the
+// live floor uses, so the same receiver projects differently on a Swarm
+// floor (volume) than a Sentinel one (burst) - the strategy layer
+// CLAUDE.md asks for ("starting the lower projection is sometimes
+// correct"). No vendor projections, no matchup adjustment: just this
+// player, this season, this floor's rules. A small sample by design -
+// `games` rides along so the UI can say how small.
+//
+//   {kind:'dmg', games, mean, low, high}           yards-damage floors
+//   {kind:'horde', games, firstDowns, td, turnovers} per-game means, Horde Mother
+//   {kind:'none'}                                   slot can't touch this floor
+export function hordeEvents(r){
+  return {turnovers:bossTurnovers(r), firstDowns:r.firstDowns||0, td:r.td||0};
+}
+const HORDE_SLOTS=['tactician','hunter','rogue'];
+export function projectSlot(k, lines, mechanic='swarm'){
+  lines=lines||[];
+  if(k==='wall')return {kind:'none'};
+  if(mechanic==='horde-mother'){
+    if(!HORDE_SLOTS.includes(k))return {kind:'none'};
+    const n=lines.length, avg=f=>n?lines.reduce((s,r)=>s+hordeEvents(r)[f],0)/n:0;
+    return {kind:'horde', games:n, firstDowns:avg('firstDowns'), td:avg('td'), turnovers:avg('turnovers')};
+  }
+  const d=lines.map(r=>dmgFor(k,r,mechanic));
+  if(!d.length)return {kind:'dmg', games:0, mean:0, low:0, high:0};
+  return {kind:'dmg', games:d.length, mean:Math.round(d.reduce((a,b)=>a+b,0)/d.length),
+    low:Math.min(...d), high:Math.max(...d)};
+}

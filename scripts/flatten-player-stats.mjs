@@ -32,6 +32,13 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sourceUrl = season =>
   `https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_${season}.csv`;
+// Official weekly injury report (game status Out/Doubtful/Questionable,
+// plus the latest practice participation) - same release family, free,
+// updated through the week. Players on IR/PUP drop off this report
+// entirely rather than being listed Out, so a missing entry is not a
+// clean bill of health - form.games (below) is what catches those.
+const injuriesUrl = season =>
+  `https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_${season}.csv`;
 
 function parseArgs(argv) {
   const args = { seasonType: 'REG', outDir: 'data/weeks', scheduleDir: 'data/schedule', party: null };
@@ -172,22 +179,60 @@ function scheduleFor(schedule, week, team) {
   return entry;
 }
 
-function resolveEntry(slot, roster, rows, schedule, week) {
+function wallLine(rows, team) {
+  const teamRows = rows.filter(r => r.position === 'QB' && r.team === team);
+  return { sacksAllowed: teamRows.reduce((sum, r) => sum + num(r.sacks_suffered), 0), hasStats: teamRows.length > 0 };
+}
+
+// Every game this player actually played EARLIER this season - never
+// this week's own (public/formulas.js projectSlot() turns these into a
+// projection, and a projection built from the result it's projecting
+// would just be the answer). Weeks with no row (bye, inactive, IR) are
+// skipped, not counted as zeroes: a projection is "what they do when
+// they play"; whether they'll play is the injury tag's job.
+function formFor(slot, roster, priorWeeks) {
+  const lines = [];
+  for (const rows of priorWeeks) {
+    if (slot === 'wall') {
+      const w = wallLine(rows, canonicalTeam(roster.team));
+      if (w.hasStats) lines.push({ sacksAllowed: w.sacksAllowed });
+    } else {
+      const row = findRow(rows, slot, roster.name, canonicalTeam(roster.team));
+      if (row) lines.push(statsForSlot(slot, row));
+    }
+  }
+  return { games: lines.length, lines };
+}
+
+function injuryFor(slot, roster, injuries) {
+  if (slot === 'wall' || !injuries) return null;
+  const target = normalize(roster.name);
+  const team = canonicalTeam(roster.team);
+  const hit = injuries.find(r => normalize(r.full_name) === target && r.team === team)
+    || injuries.find(r => normalize(r.full_name) === target);
+  if (!hit) return null;
+  return {
+    status: hit.report_status || null,
+    practice: hit.practice_status || null,
+    injury: hit.report_primary_injury || hit.practice_primary_injury || null,
+  };
+}
+
+function resolveEntry(slot, roster, rows, schedule, week, priorWeeks, injuries) {
   const rosterTeam = canonicalTeam(roster.team);
   const row = slot === 'wall' ? null : findRow(rows, slot, roster.name, rosterTeam);
   const team = row ? row.team : rosterTeam;
   const sched = scheduleFor(schedule, week, team);
   const base = { team, ...sched };
   if (slot !== 'wall') base.name = roster.name;
-  return { ...base, ...statsForSlot(slot, row), hasStats: !!row };
+  return { ...base, ...statsForSlot(slot, row), hasStats: !!row,
+    form: formFor(slot, roster, priorWeeks), injury: injuryFor(slot, roster, injuries) };
 }
 
-function resolveWall(roster, rows, schedule, week) {
+function resolveWall(roster, rows, schedule, week, priorWeeks) {
   const team = canonicalTeam(roster.team);
-  const teamRows = rows.filter(r => r.position === 'QB' && r.team === team);
-  const sacksAllowed = teamRows.reduce((sum, r) => sum + num(r.sacks_suffered), 0);
   const sched = scheduleFor(schedule, week, team);
-  return { team, sacksAllowed, hasStats: teamRows.length > 0, ...sched };
+  return { team, ...wallLine(rows, team), ...sched, form: formFor('wall', roster, priorWeeks) };
 }
 
 // The roster locks at the EARLIEST real kickoff among its six starters -
@@ -236,6 +281,17 @@ async function main() {
     console.log(`${err.message} - treating as zero rows (season/week not played yet).`);
   }
   const rows = filterWeek(allRows, season, week, seasonType);
+  const priorWeeks = [];
+  for (let w = 1; w < week; w++) priorWeeks.push(filterWeek(allRows, season, w, seasonType));
+
+  let injuries = null;
+  try {
+    injuries = (await fetchCsv(injuriesUrl(season), 'injuries'))
+      .filter(r => Number(r.week) === week && r.season_type === seasonType);
+    console.log(`${injuries.length} injury-report rows for week ${week}.`);
+  } catch (err) {
+    console.log(`${err.message} - no injury tags this run.`);
+  }
   console.log(`${rows.length} rows found for season=${season} week=${week}` +
     (rows.length === 0 ? ' - writing empty stat lines for every roster entry, not erroring.' : '.'));
 
@@ -252,12 +308,12 @@ async function main() {
     const real = {};
     for (const [slot, rosterEntry] of Object.entries(party.roster)) {
       real[slot] = slot === 'wall'
-        ? resolveWall(rosterEntry, rows, schedule, week)
-        : resolveEntry(slot, rosterEntry, rows, schedule, week);
+        ? resolveWall(rosterEntry, rows, schedule, week, priorWeeks)
+        : resolveEntry(slot, rosterEntry, rows, schedule, week, priorWeeks, injuries);
       if (SWAPPABLE.includes(slot) && party.bench?.[slot]) {
         real[slot].bench = [slot === 'wall'
-          ? resolveWall(party.bench[slot], rows, schedule, week)
-          : resolveEntry(slot, party.bench[slot], rows, schedule, week)];
+          ? resolveWall(party.bench[slot], rows, schedule, week, priorWeeks)
+          : resolveEntry(slot, party.bench[slot], rows, schedule, week, priorWeeks, injuries)];
       }
     }
 

@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 4,
   "seasonType": "REG",
-  "generatedAt": "2026-10-01T01:30:28.875Z",
+  "generatedAt": "2026-10-02T02:15:38.247Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -23,6 +23,36 @@
     "fumblesLost": 0,
     "firstDowns": 0,
     "hasStats": false,
+    "form": {
+      "games": 3,
+      "lines": [
+        {
+          "y": 254,
+          "td": 1,
+          "sk": 1,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 14
+        },
+        {
+          "y": 207,
+          "td": 2,
+          "sk": 5,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 9
+        },
+        {
+          "y": 282,
+          "td": 3,
+          "sk": 1,
+          "int": 0,
+          "fumblesLost": 1,
+          "firstDowns": 14
+        }
+      ]
+    },
+    "injury": null,
     "bench": [
       {
         "team": "WAS",
@@ -36,7 +66,33 @@
         "int": 0,
         "fumblesLost": 0,
         "firstDowns": 0,
-        "hasStats": false
+        "hasStats": false,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "y": 164,
+              "td": 2,
+              "sk": 1,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 10
+            },
+            {
+              "y": 96,
+              "td": 1,
+              "sk": 0,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 4
+            }
+          ]
+        },
+        "injury": {
+          "status": null,
+          "practice": "Limited Participation in Practice",
+          "injury": "Elbow"
+        }
       }
     ]
   },
@@ -52,6 +108,37 @@
     "fumblesLost": 0,
     "firstDowns": 0,
     "hasStats": false,
+    "form": {
+      "games": 3,
+      "lines": [
+        {
+          "y": 68,
+          "td": 0,
+          "car": 10,
+          "fumblesLost": 0,
+          "firstDowns": 2
+        },
+        {
+          "y": 23,
+          "td": 2,
+          "car": 10,
+          "fumblesLost": 0,
+          "firstDowns": 2
+        },
+        {
+          "y": 75,
+          "td": 1,
+          "car": 15,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Did Not Participate In Practice",
+      "injury": "Not injury related - resting player"
+    },
     "bench": [
       {
         "team": "LV",
@@ -64,7 +151,38 @@
         "car": 0,
         "fumblesLost": 0,
         "firstDowns": 0,
-        "hasStats": false
+        "hasStats": false,
+        "form": {
+          "games": 3,
+          "lines": [
+            {
+              "y": 102,
+              "td": 0,
+              "car": 23,
+              "fumblesLost": 0,
+              "firstDowns": 7
+            },
+            {
+              "y": 48,
+              "td": 0,
+              "car": 21,
+              "fumblesLost": 0,
+              "firstDowns": 1
+            },
+            {
+              "y": 56,
+              "td": 0,
+              "car": 19,
+              "fumblesLost": 0,
+              "firstDowns": 1
+            }
+          ]
+        },
+        "injury": {
+          "status": null,
+          "practice": "Full Participation in Practice",
+          "injury": "Ankle"
+        }
       }
     ]
   },
@@ -80,6 +198,33 @@
     "fumblesLost": 0,
     "firstDowns": 0,
     "hasStats": false,
+    "form": {
+      "games": 3,
+      "lines": [
+        {
+          "y": 122,
+          "c": 8,
+          "td": 1,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        },
+        {
+          "y": 155,
+          "c": 9,
+          "td": 3,
+          "fumblesLost": 0,
+          "firstDowns": 8
+        },
+        {
+          "y": 128,
+          "c": 10,
+          "td": 2,
+          "fumblesLost": 0,
+          "firstDowns": 9
+        }
+      ]
+    },
+    "injury": null,
     "bench": [
       {
         "team": "NYG",
@@ -92,7 +237,34 @@
         "td": 0,
         "fumblesLost": 0,
         "firstDowns": 0,
-        "hasStats": false
+        "hasStats": false,
+        "form": {
+          "games": 3,
+          "lines": [
+            {
+              "y": 69,
+              "c": 6,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            },
+            {
+              "y": 1,
+              "c": 1,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 0
+            },
+            {
+              "y": 26,
+              "c": 5,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            }
+          ]
+        },
+        "injury": null
       }
     ]
   },
@@ -104,7 +276,25 @@
     "name": "T.J. Watt",
     "sk": 0,
     "tfl": 0,
-    "hasStats": false
+    "hasStats": false,
+    "form": {
+      "games": 3,
+      "lines": [
+        {
+          "sk": 2,
+          "tfl": 3
+        },
+        {
+          "sk": 1.5,
+          "tfl": 1
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        }
+      ]
+    },
+    "injury": null
   },
   "mender": {
     "team": "PIT",
@@ -114,7 +304,25 @@
     "name": "Chris Boswell",
     "fg": 0,
     "att": 0,
-    "hasStats": false
+    "hasStats": false,
+    "form": {
+      "games": 3,
+      "lines": [
+        {
+          "fg": 2,
+          "att": 3
+        },
+        {
+          "fg": 1,
+          "att": 2
+        },
+        {
+          "fg": 3,
+          "att": 3
+        }
+      ]
+    },
+    "injury": null
   },
   "wall": {
     "team": "KC",
@@ -122,6 +330,20 @@
     "hasStats": false,
     "opponent": "LV",
     "homeAway": "away",
-    "kickoff": "2026-10-04T16:25:00-04:00"
+    "kickoff": "2026-10-04T16:25:00-04:00",
+    "form": {
+      "games": 3,
+      "lines": [
+        {
+          "sacksAllowed": 2
+        },
+        {
+          "sacksAllowed": 2
+        },
+        {
+          "sacksAllowed": 0
+        }
+      ]
+    }
   }
 }
