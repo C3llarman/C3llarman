@@ -64,12 +64,17 @@
   .corner.br{bottom:-2px;right:-2px;transform:scale(-1,-1)}
   .pad{padding:0 12px}
 
-  /* divider: the kit's brass rule - hairline, centre diamond, tapered ends */
-  .bar{position:relative;height:11px;margin:4px 0 10px;
-    background:linear-gradient(90deg,transparent,var(--rule) 12% 88%,transparent) center/100% 1.5px no-repeat}
-  .bar::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;
-    background:var(--rule);transform:translate(-50%,-50%) rotate(45deg)}
-  .bar.thin{height:9px;opacity:.85}
+  /* divider: the concept sheet's brass rod - spiked caps and centre
+     diamond fixed, the plain rod between them repeats (clipped to the
+     content box so it never pokes out past the caps) */
+  .bar{height:16px;margin:4px 0 10px;padding:0 8px;
+    background:
+      url("/assets/ui/rod-cap-l.webp") left center/auto 100% no-repeat,
+      url("/assets/ui/rod-cap-r.webp") right center/auto 100% no-repeat,
+      url("/assets/ui/rod-diamond.webp") center/auto 100% no-repeat,
+      url("/assets/ui/rod-mid.webp") left center/auto 100% repeat-x;
+    background-clip:border-box,border-box,border-box,content-box}
+  .bar.thin{height:12px;margin:3px 0 8px}
 
   header{background-color:#17120D;border-bottom:2px solid var(--brass);background-image:url("/assets/header-grain.webp");
     background-repeat:repeat;background-size:256px 256px;
@@ -298,6 +303,10 @@
     right:4px;bottom:6px;width:34px;height:56px;opacity:.9}
   .card[data-k="breaker"] .plate-id::after{background-image:url("/assets/ui/spike.webp");
     right:-30px;top:30%;width:26px;height:46px;transform:rotate(90deg)}
+  .card[data-k="rogue"] .plate-id::after{background-image:url("/assets/ui/bracket-tall.webp");
+    right:-10px;top:44px;width:28px;height:54px;transform:scaleX(-1)}
+  .card[data-k="hunter"] .plate-id::after{background-image:url("/assets/ui/bracket-wing.webp");
+    right:-8px;bottom:-8px;width:40px;height:38px;transform:scaleY(-1) scaleX(-1)}
   .card[data-k="mender"] .plate-id::after{background-image:url("/assets/ui/fleur.webp");
     right:6px;bottom:8px;width:28px;height:42px;opacity:.85}
   /* narrow phones: emblem floats so the lines below it get the full width */

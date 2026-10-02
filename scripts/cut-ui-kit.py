@@ -112,6 +112,27 @@ for name, box in {
 banners = crop((1166, 7, 1531, 416))
 save(banners.crop((0, 0, 250, banners.height)).crop(banners.crop((0, 0, 250, banners.height)).getbbox()), 'banner-lion')
 
+# ---- pieces only the concept sheet has (it has true alpha too) -----------
+# Its finished frames bake the shield and cloth into the corner, so they
+# can't 9-slice - reference only. The divider rod and the angular steel
+# brackets are clean, separate pieces.
+concept = Image.open(ROOT / 'reference/assets/ui/concept-sheet.png').convert('RGBA')
+def ccrop(box):
+    c = concept.crop(box)
+    return c.crop(c.getbbox())
+
+rod = ccrop((847, 432, 1515, 482))        # brass rod: spiked caps + centre diamond
+rh = rod.height
+# caps and diamond kept whole; the plain rod between them repeats
+save(rod.crop((0, 0, 50, rh)), 'rod-cap-l')
+save(rod.crop((rod.width - 50, 0, rod.width, rh)), 'rod-cap-r')
+mid = rod.width // 2
+save(rod.crop((mid - 26, 0, mid + 26, rh)), 'rod-diamond')
+save(rod.crop((120, 0, 220, rh)), 'rod-mid')
+
+save(ccrop((863, 669, 964, 865)), 'bracket-tall')    # Rogue: narrow pointed corner
+save(ccrop((1314, 753, 1439, 873)), 'bracket-wing')  # Hunter
+
 # ---- measured grounds for the contrast check ------------------------------
 # Text never sits on raw texture: CSS lays a flat tint over each one (values
 # below MUST match public/index.html). For each tinted surface we record the

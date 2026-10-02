@@ -112,6 +112,9 @@ corner mirrored to all four (the sheet's four corners are painted differently), 
 rusty edges stay put, the centre is the texture under a flat tint. The tab-bar pieces
 are stitched from the plain metal either side of the sheet's painted icons — icons and
 labels stay HTML. Per-class ornaments hang off `.card[data-k=...] .plate-id::after`.
+`reference/assets/ui/concept-sheet.png` (also true alpha) supplies the brass divider rod
+(`.bar`) and the angular steel brackets (Rogue, Hunter); its finished frames bake the
+shield and cloth into the corner, so they can't 9-slice and stay reference only.
 
 **Text never sits on raw texture.** Each textured surface gets a tint whose alpha lives in
 `TINTS` in `scripts/cut-ui-kit.py` and must match the CSS. The script writes each tinted
