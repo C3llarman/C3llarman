@@ -1,0 +1,51 @@
+{
+ "plate": {
+  "tint": "#DED6C4",
+  "alpha": 0.9,
+  "text": "dark",
+  "worst": "#D3C9B7",
+  "median": "#DBD2C1"
+ },
+ "parch": {
+  "tint": "#E2D5B5",
+  "alpha": 0.8,
+  "text": "dark",
+  "worst": "#D9C6A3",
+  "median": "#E1D0AE"
+ },
+ "iron": {
+  "tint": "#1E1B18",
+  "alpha": 0.85,
+  "text": "light",
+  "worst": "#322A21",
+  "median": "#211F1C"
+ },
+ "page": {
+  "tint": "#14110D",
+  "alpha": 0.55,
+  "text": "light",
+  "worst": "#373028",
+  "median": "#221B14"
+ },
+ "velvet": {
+  "tint": "#5A0C16",
+  "alpha": 0.55,
+  "text": "light",
+  "worst": "#902227",
+  "median": "#6C0C12"
+ },
+ "tabbar": {
+  "tint": "#000000",
+  "alpha": 0.0,
+  "text": "light",
+  "worst": "#46453F",
+  "median": "#2A2925"
+ },
+ "tabon": {
+  "tint": "#000000",
+  "alpha": 0.0,
+  "text": "light",
+  "worst": "#6A1612",
+  "median": "#520C08"
+ }
+}

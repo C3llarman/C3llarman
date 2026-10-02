@@ -103,22 +103,31 @@ the Breaker, filigree for the Tactician...) — use ornaments sparingly, as char
 
 **No text baked into art.** Every name, number and label is HTML over the artwork.
 
-**Assets:** frames are built from pieces (corners fixed-size, rails repeat, emblems and
-cloth absolutely positioned), never one finished frame image — those don't scale across
-phones. Until the cut kit lands in `reference/assets/ui/`, the frame/rails/rivets are CSS
-stand-ins in `public/index.html`; swapping in the art is a CSS change, not a markup one.
-The concept sheet (one flattened image on a brown ground) is reference only.
+**Assets:** the kit is `reference/assets/ui/kit-sheet.png` (one RGBA sheet, true alpha).
+`scripts/cut-ui-kit.py` cuts it into `public/assets/ui/` — never hand-edit those outputs,
+re-run the script (`pip install pillow numpy`). Frames are 9-slice `border-image`s
+(corners fixed, rails stretch), never one finished frame image. The card frame is one
+corner mirrored to all four (the sheet's four corners are painted differently), drawn on
+`::after` above the plates with the emblem above that. Plates are 9-slice too: painted
+rusty edges stay put, the centre is the texture under a flat tint. The tab-bar pieces
+are stitched from the plain metal either side of the sheet's painted icons — icons and
+labels stay HTML. Per-class ornaments hang off `.card[data-k=...] .plate-id::after`.
+
+**Text never sits on raw texture.** Each textured surface gets a tint whose alpha lives in
+`TINTS` in `scripts/cut-ui-kit.py` and must match the CSS. The script writes each tinted
+surface's worst-case pixel to `public/assets/ui/grounds.json`, and the contrast check
+tests every text colour against that — so it covers the texture, not a flat guess.
 
 Colours are three token sets in `public/index.html`: `:root` (dark page), the light set
 re-declared on `.block`/`.verdict`/`.statcard`/`.plate-id`/`.plate-lore`, and the iron set on
 `.plate-iron`. Every pair is checked by **`node scripts/check-contrast.mjs`** — run it after
 any colour change and keep its pair list in step with the tokens. Notable results: red
-text needs a different value on each ground (`#F72446` page, `#A60B23` light, `#FF5A6E`
-iron); edge vignettes on plates are capped at 6% because darker edges failed AA; dim
-rows by colour, never `opacity` (opacity drops text under 4.5:1).
+text needs a different value on each ground (`#FF6B7D` stone page, `#A60B23` light plates,
+`#FF5A6E` iron, `#F72446` masthead); dim rows by colour, never `opacity` (opacity drops text
+under 4.5:1).
 
-- **Type:** EB Garamond (body, small-caps class names) + Archivo Narrow (numerals, labels,
-  headings). Both free via Google Fonts. Licensed type is still the biggest available upgrade.
+- **Type:** Cinzel (class names, section pennants, tab labels) + EB Garamond (body) +
+  Archivo Narrow (numerals, labels). All free via Google Fonts. Licensed type is still the biggest available upgrade.
 - **Art:** `public/assets/` — the class emblems are full-colour painted crests; the
   encounter/tower engravings are red-brown ink and read fine on the dark page.
 
