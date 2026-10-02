@@ -357,7 +357,7 @@
   .grow img,.grow .nocrest{width:34px;height:34px;flex:0 0 34px;object-fit:contain}
   .grow .gmain{flex:1;min-width:0}
   .grow .gnm{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:16.5px;line-height:1.2}
-  .grow .youtag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--live);
+  .youtag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--live);
     border:1px solid currentColor;padding:0 4px;vertical-align:2px;margin-left:4px}
   .grow .gst{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:500;font-size:14.5px;line-height:1.3;color:var(--faint)}
   /* same framed track + velvet fill as the HP bar */
@@ -367,7 +367,43 @@
   .grow .gnum{min-width:56px;font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:23px;line-height:1;
     color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
   .grow .gnum small{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--faint);margin-top:3px}
-  .guild .gnote{font-size:13.5px;font-style:italic;color:var(--faint);margin-top:4px}
+  .gnote{font-size:13.5px;font-style:italic;color:var(--faint);margin-top:4px}
+  /* ---- Guild: campaign small multiples ---- */
+  .hrow{padding:8px 0 10px;border-bottom:1px solid var(--hair)}
+  .hrow:last-of-type{border-bottom:0}
+  .hhead{display:flex;align-items:center;gap:8px}
+  .hhead img{width:28px;height:28px;object-fit:contain}
+  .hnm{flex:1;font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:16px}
+  .hlast{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:18px;color:var(--ink)}
+  .hlast small{font-size:12px;font-weight:600;color:var(--faint)}
+  .hplot{position:relative;display:flex;align-items:flex-end;gap:2px;height:52px;margin-top:10px;
+    border-bottom:2px solid var(--ink)}
+  .hfull{position:absolute;left:0;right:0;border-top:1px dashed var(--faint);pointer-events:none}
+  .hbar{position:relative;flex:1;max-width:22px;min-height:2px;background:#C0102A;border-radius:3px 3px 0 0;cursor:pointer}
+  .hbar.none{background:none;cursor:default}
+  .hbar.on{background:#8E0A1E}
+  .hbar.clr::before{content:'';position:absolute;left:50%;top:-11px;width:7px;height:7px;
+    background:var(--ink);transform:translateX(-50%) rotate(45deg)}
+  .haxis{display:flex;justify-content:space-between;font-family:'Archivo Narrow',Arial,sans-serif;
+    font-size:12px;font-weight:600;color:var(--faint);margin-top:3px}
+  .hread{min-height:1.3em;font-size:14px;color:var(--ink)}
+  .ghist .dia{display:inline-block;width:7px;height:7px;background:var(--ink);transform:rotate(45deg);margin:0 2px}
+  /* ---- Guild: rival lineups ---- */
+  .lparty+.lparty{border-top:1px solid var(--hair)}
+  .lhead{display:flex;align-items:center;gap:10px;width:100%;min-height:56px;background:none;border:0;
+    cursor:pointer;font:inherit;color:var(--ink);text-align:left;padding:4px 0}
+  .lhead img{width:34px;height:34px;object-fit:contain}
+  .lhead span:first-of-type{flex:1;font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:17px}
+  .lhead .chev{font-size:13px;color:var(--rule);transition:transform .2s}
+  .lhead[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .lhead:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .lsix{list-style:none;margin:0 0 10px}
+  .lsix li{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-top:1px dashed var(--hair)}
+  .lcls{flex:0 0 104px;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:13px;color:var(--rule)}
+  .lwho{flex:1;font-size:15.5px}
+  .lteam{color:var(--faint)}
+  .lsub{font-family:'Archivo Narrow',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--live);border:1px solid currentColor;padding:0 4px;margin-left:4px}
   /* ---- compact rows (Week party row, Tavern bench picker) ---- */
   .floorrow{display:flex;gap:11px;align-items:flex-start;padding:10px 0;
     border-bottom:1px solid var(--hair)}
@@ -418,6 +454,9 @@
   <g id="ic-dungeon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M5 6h6v5h6v5h6v6"/>
     <circle cx="23" cy="22" r="2.1" fill="currentColor" stroke="none"/></g>
+  <g id="ic-guild" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 25V4M22 25V4"/>
+    <path d="M6 5h9l-2.5 3.5L15 12H6M22 5h-9l2.5 3.5L13 12h9"/></g>
 </defs>
 </svg>
 
@@ -493,10 +532,6 @@
   <div class="bar"></div>
   <div id="party"></div>
 
-  <h3 class="sec">THE GUILD</h3>
-  <div class="bar"></div>
-  <div id="guild"></div>
-
   <h3 class="sec">RULES OF THE DELVE</h3>
   <div class="bar"></div>
   <figure class="plate narrow">
@@ -528,6 +563,21 @@
   <div id="towerahead"></div>
 </section>
 
+<!-- ============ GUILD ============ -->
+<section class="pad" id="p-guild" role="tabpanel" aria-labelledby="t-guild" tabindex="0" hidden>
+  <h3 class="sec" style="margin-top:0">THE GUILD</h3>
+  <div class="bar"></div>
+  <div id="guild"></div>
+
+  <h3 class="sec">THE CAMPAIGN</h3>
+  <div class="bar"></div>
+  <div id="guildhistory"></div>
+
+  <h3 class="sec">RIVAL LINEUPS</h3>
+  <div class="bar"></div>
+  <div id="guildlineups"></div>
+</section>
+
 <!-- ============ DUNGEON ============ -->
 <section class="pad" id="p-dungeon" role="tabpanel" aria-labelledby="t-dungeon" tabindex="0" hidden>
   <h3 class="sec" style="margin-top:0">THE DUNGEON</h3>
@@ -548,6 +598,8 @@
     <span class="badge" aria-label="one slot needs attention">1</span></button>
   <button class="tab" role="tab" id="t-dungeon" aria-controls="p-dungeon" aria-selected="false" tabindex="-1">
     <svg viewBox="0 0 28 28" aria-hidden="true"><use href="#ic-dungeon"/></svg><span class="lbl">Dungeon</span></button>
+  <button class="tab" role="tab" id="t-guild"   aria-controls="p-guild"   aria-selected="false" tabindex="-1">
+    <svg viewBox="0 0 28 28" aria-hidden="true"><use href="#ic-guild"/></svg><span class="lbl">Guild</span></button>
 </nav>
 
 <script type="module">
@@ -1384,6 +1436,7 @@ async function boot(){
   KICK.dungeon=CURRENT_FLOOR
     ?`${partyLabel} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)} OF 6`
     :`${partyLabel} · THE DUNGEON`;
+  KICK.guild=`${partyLabel} · THE GUILD`;
   document.querySelector('header .kick').textContent=KICK[currentTab];
   // Restore this week's run - arrivals landed, cards committed, room/party
   // HP - whether it finished or was left mid-run. Same server-first,
@@ -1559,6 +1612,98 @@ async function renderGuild(){
       <ol class="grows" aria-label="Season standings">${seasonHtml}</ol>
       <p class="gnote">Results land once a week is final, the same for every party.</p>
     </div>`;
+    renderGuildHistory(standing,floorOf,me);
+    renderRivalLineups(standing,me);
+  }catch{}
+}
+
+// The campaign so far: small multiples, one row per party, one bar per
+// completed week - bar height is that week's `progress` (share of its
+// own floor) on ONE shared scale, so rows compare directly. One hue for
+// magnitude; identity comes from the row's crest and name, never colour.
+// A dark diamond marks a week a floor fell. Each row carries a full
+// text alternative (role="img" aria-label); tapping a bar reads it out.
+function renderGuildHistory(rows,floorOf,me){
+  const all=rows.flatMap(r=>r.s.history||[]);
+  if(!all.length){$('guildhistory').innerHTML='';return;}
+  const top=Math.max(1,...all.map(h=>h.progress));     // 1 = a full floor
+  const weeks=Math.max(...all.map(h=>h.week));
+  const say=(h)=>{const f=floorOf(h.floorId);
+    const what='hits' in h?`${h.hits} of ${f.maxHp} hits`:`${h.dmg.toLocaleString()} dmg`;
+    return `Week ${h.week} · ${what} · ${Math.round(h.progress*100)}% of Floor ${floorNumeral(f.id)}${h.cleared?' · cleared':''}`;};
+  $('guildhistory').innerHTML=`<div class="block ghist">
+    ${rows.map(r=>{
+      const hs=(r.s.history||[]);
+      const last=hs[hs.length-1];
+      const label=`${r.p.name}: `+hs.map(say).join('; ');
+      return `<div class="hrow${r.p.id===me?' you':''}">
+        <div class="hhead">${CREST[r.p.id]?`<img src="${CREST[r.p.id]}" alt="">`:''}
+          <span class="hnm">${r.p.name}${r.p.id===me?' <span class="youtag">you</span>':''}</span>
+          ${last?`<span class="hlast">${Math.round(last.progress*100)}%<small> wk ${last.week}</small></span>`:''}</div>
+        <div class="hplot" role="img" aria-label="${label.replace(/"/g,'&quot;')}">
+          <div class="hfull" style="bottom:${100/top}%" aria-hidden="true"></div>
+          ${Array.from({length:weeks},(_,i)=>{const h=hs.find(x=>x.week===i+1);
+            return h?`<span class="hbar${h.cleared?' clr':''}" data-say="${say(h)}" title="${say(h)}"
+              style="height:${Math.max(2,h.progress/top*100)}%"></span>`:'<span class="hbar none"></span>';}).join('')}
+        </div>
+        <div class="haxis" aria-hidden="true"><span>Wk 1</span><span>Wk ${weeks}</span></div>
+        <div class="hread" aria-hidden="true"></div>
+      </div>`;}).join('')}
+    <p class="gnote">Bar height is that week's damage as a share of the party's own floor; the
+      line is one full floor. <span class="dia" aria-hidden="true"></span> marks a week a floor fell.</p>
+  </div>`;
+  document.querySelectorAll('#guildhistory .hbar[data-say]').forEach(b=>b.addEventListener('click',()=>{
+    const row=b.closest('.hrow');
+    row.querySelectorAll('.hbar.on').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');row.querySelector('.hread').textContent=b.dataset.say;
+  }));
+}
+
+// Rival lineups: each other party's real starting six for the current
+// week - their week file's starters with their saved bench swaps applied
+// (subs[slot] === true starts bench[0], same as tradeSlot()). Sealed until
+// the week locks, so nobody copies a pick before kickoff.
+async function renderRivalLineups(rows,me){
+  try{
+    const cw=await (await fetch('/data/current-week.json')).json();
+    const ww=String(cw.week).padStart(2,'0');
+    const rivals=rows.filter(r=>r.p.id!==me);
+    const files=await Promise.all(rivals.map(async r=>{
+      const res=await fetch(`/data/weeks/${cw.season}/week-${ww}/${r.p.id}.json`);
+      if(!res.ok)return null;
+      const wk=await res.json();
+      let subs={},subsKnown=true;
+      try{const sr=await fetch(`/api/subs?party=${encodeURIComponent(r.p.id)}&season=${cw.season}&week=${cw.week}`);
+        if(sr.ok)subs=await sr.json();else subsKnown=false;}catch{subsKnown=false;}
+      return {r,wk,subs,subsKnown};
+    }));
+    const lockedAt=(files.find(Boolean)||{}).wk?.lockedAt;
+    const isLocked=lockedAt&&Date.now()>=new Date(lockedAt).getTime();
+    if(!isLocked){
+      $('guildlineups').innerHTML=`<div class="block"><p class="gnote" style="margin:0">Sealed until first kickoff${
+        lockedAt?` — ${clockText(new Date(lockedAt))}`:''}. Nobody sees anyone's six before then.</p></div>`;
+      return;
+    }
+    const titleCase=t=>t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+    $('guildlineups').innerHTML=`<div class="block glineups">${files.filter(Boolean).map(({r,wk,subs,subsKnown},n)=>{
+      const six=SLOT_ORDER.map(k=>{
+        const slot=wk[k]||{},swapped=subs[k]&&slot.bench&&slot.bench[0];
+        const who=swapped?slot.bench[0]:slot;
+        return `<li><span class="lcls">${titleCase(FLAVOR[k].cls)}</span>
+          <span class="lwho">${k==='wall'?`${teamName(who.team)} line`:(who.name||'—')}${k!=='wall'&&who.team?` <span class="lteam">· ${who.team}</span>`:''}${swapped?' <span class="lsub">bench swap</span>':''}</span></li>`;}).join('');
+      return `<div class="lparty">
+        <button class="lhead" aria-expanded="false" aria-controls="lu${n}">
+          ${CREST[r.p.id]?`<img src="${CREST[r.p.id]}" alt="">`:''}<span>${r.p.name}</span><span class="chev" aria-hidden="true">▼</span></button>
+        <ul class="lsix" id="lu${n}" hidden>${six}</ul>
+        ${subsKnown?'':`<p class="gnote" hidden data-for="lu${n}">Couldn't reach their saved swaps — showing their roster starters.</p>`}
+      </div>`;}).join('')}</div>`;
+    document.querySelectorAll('#guildlineups .lhead').forEach(b=>b.addEventListener('click',()=>{
+      const open=b.getAttribute('aria-expanded')!=='true';
+      b.setAttribute('aria-expanded',open);
+      const id=b.getAttribute('aria-controls');
+      $(id).hidden=!open;
+      const note=document.querySelector(`#guildlineups [data-for="${id}"]`);if(note)note.hidden=!open;
+    }));
   }catch{}
 }
 renderGuild();
@@ -1615,8 +1760,9 @@ renderDungeon();
 // party name and real lock time (computed from the actual schedule).
 const KICK={week:'WEEK 1 · FLOOR I · THE SUNKEN VAULT',
             lineup:'WEEK 1 · TAVERN LOCKS AT FIRST KICKOFF',
-            dungeon:'THE DUNGEON · SIX FLOORS, ONE PARTY'};
-const TABS=['week','lineup','dungeon'];
+            dungeon:'THE DUNGEON · SIX FLOORS, ONE PARTY',
+            guild:'THE GUILD · EVERY PARTY, SAME FLOORS'};
+const TABS=['week','lineup','dungeon','guild'];
 let currentTab='week';
 function show(name,focus){
   currentTab=name;
