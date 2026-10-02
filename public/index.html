@@ -321,6 +321,26 @@
     .plate-id .emblem{position:relative;float:left;left:auto;top:auto;width:80px;height:88px;margin:-18px 8px 0 -24px}
     .plate-id h2{font-size:27px}
     .plate-id .bar{clear:left}}
+  /* ---- Tavern guild view (light plate tokens, inside a framed .block) ---- */
+  .guild .gsub{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:17px;color:var(--rule);margin:2px 0 2px}
+  .guild .gsub span{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:14.5px;color:var(--faint)}
+  .grows{list-style:none;margin:0 0 6px}
+  .grow{display:flex;align-items:center;gap:8px;min-height:56px;padding:8px 0;border-bottom:1px solid var(--hair)}
+  .grow:last-child{border-bottom:0}
+  .grow.you{box-shadow:inset 3px 0 0 var(--live);padding-left:9px}
+  .grow .rk{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:18px;color:var(--rule);min-width:14px;text-align:center}
+  .grow img,.grow .nocrest{width:34px;height:34px;flex:0 0 34px;object-fit:contain}
+  .grow .gmain{flex:1;min-width:0}
+  .grow .gnm{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:16.5px;line-height:1.2}
+  .grow .youtag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--live);
+    border:1px solid currentColor;padding:0 4px;vertical-align:2px;margin-left:4px}
+  .grow .gst{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:500;font-size:14.5px;line-height:1.3;color:var(--faint)}
+  .grow .gbar{height:6px;margin-top:5px;background:rgba(23,18,13,.16)}
+  .grow .gbar i{display:block;height:100%;background:var(--live)}
+  .grow .gnum{min-width:56px;font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:23px;line-height:1;
+    color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+  .grow .gnum small{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--faint);margin-top:3px}
+  .guild .gnote{font-size:13.5px;font-style:italic;color:var(--faint);margin-top:4px}
   /* ---- compact rows (Week party row, Tavern bench picker) ---- */
   .floorrow{display:flex;gap:11px;align-items:flex-start;padding:10px 0;
     border-bottom:1px solid var(--hair)}
@@ -446,6 +466,10 @@
   <div class="bar"></div>
   <div id="party"></div>
 
+  <h3 class="sec">THE GUILD</h3>
+  <div class="bar"></div>
+  <div id="guild"></div>
+
   <h3 class="sec">RULES OF THE DELVE</h3>
   <div class="bar"></div>
   <figure class="plate narrow">
@@ -546,6 +570,13 @@ const TEAM_NAMES={ARI:'Arizona',ATL:'Atlanta',BAL:'Baltimore',BUF:'Buffalo',CAR:
   NO:'New Orleans',NYG:'New York Giants',NYJ:'New York Jets',PHI:'Philadelphia',
   PIT:'Pittsburgh',SEA:'Seattle',SF:'San Francisco',TB:'Tampa Bay',TEN:'Tennessee',WAS:'Washington'};
 const teamName=code=>TEAM_NAMES[code]||code;
+// Party crests - only the parties actually in data/parties.json today
+// have one (public/assets/crest-<id>.webp); a party without one shows no
+// crest rather than a wrong or blank one. Used by the masthead banner
+// and the Tavern's guild view.
+const CREST={'ashen-coalition':'/assets/crest-ashen-coalition.webp',
+  'ninth-circle':'/assets/crest-ninth-circle.webp',
+  'emberwatch':'/assets/crest-emberwatch.webp'};
 // Damage/HP formulas live in formulas.js now (imported above), shared
 // with scripts/compute-season-state.mjs - see that file for the volume/
 // burst/mechanic rationale. dmgFor here is only ever called with the
@@ -1303,9 +1334,6 @@ async function boot(){
   // exists for the three parties actually in data/parties.json today
   // (public/assets/crest-<id>.webp), so a party without one just doesn't
   // show the banner rather than showing a wrong or blank crest.
-  const CREST={'ashen-coalition':'/assets/crest-ashen-coalition.webp',
-    'ninth-circle':'/assets/crest-ninth-circle.webp',
-    'emberwatch':'/assets/crest-emberwatch.webp'};
   if(CREST[partyId]){
     $('partyCrest').src=CREST[partyId];
     $('partyCrest').alt=`${data.party.name} crest`;
@@ -1417,6 +1445,88 @@ async function renderTowerAhead(){
   }catch{}
 }
 renderTowerAhead();
+
+// Tavern guild view: how the other parties in data/parties.json are
+// doing, from data/season-state.json (scripts/compute-season-state.mjs
+// replays every party's committed weeks, so this needs no accounts or
+// shared state - it's the same static data for everyone). Decided with
+// the user (CLAUDE.md open question #1): BOTH, week first - last
+// completed week's head-to-head on top, season standings underneath, so
+// it stays worth opening once the season gap is too big to close.
+//
+// Parties can be on different floors with different mechanics, so the
+// weekly comparison is `progress`: that week's damage (or Horde Mother
+// hits) as a share of the floor it was dealt to. Season standings rank
+// by floors cleared, then how much of the current floor is left; party
+// HP only orders a true tie, which shares its rank.
+async function renderGuild(){
+  try{
+    const [partiesRes,floorsRes,seasonRes]=await Promise.all(
+      [fetch('/data/parties.json'),fetch('/data/floors.json'),fetch('/data/season-state.json')]);
+    if(!partiesRes.ok||!floorsRes.ok||!seasonRes.ok)return;
+    const parties=(await partiesRes.json()).parties||[];
+    const floors=await floorsRes.json();
+    const season=await seasonRes.json();
+    const me=location.pathname.replace(/^\/+|\/+$/g,'')||'ashen-coalition';
+    const floorOf=id=>floors.find(f=>f.id===id);
+    const hpPct=hp=>{const t=Object.keys(MAX_HP).reduce((a,k)=>a+Math.max(0,hp[k]||0),0),
+      m=Object.values(MAX_HP).reduce((a,b)=>a+b,0);return Math.round(t/m*100);};
+    const rows=parties.map(p=>({p,s:season.parties&&season.parties[p.id]})).filter(r=>r.s);
+    if(!rows.length)return;
+    const wk=season.computedThroughWeek;
+    // shared rank when the sort key ties
+    const ranked=(list,key)=>{let prev=null,rank=0;
+      return list.map((r,i)=>{const k=key(r);if(k!==prev){rank=i+1;prev=k;}return {...r,rank};});};
+    const row=(r,main,sub,right,label,bar)=>`
+      <li class="grow${r.p.id===me?' you':''}">
+        <span class="rk">${r.rank}</span>
+        ${CREST[r.p.id]?`<img src="${CREST[r.p.id]}" alt="">`:'<span class="nocrest"></span>'}
+        <div class="gmain">
+          <div class="gnm">${r.p.name}${r.p.id===me?' <span class="youtag">you</span>':''}</div>
+          ${sub.map(t=>`<div class="gst">${t}</div>`).join('')}
+          ${bar!=null?`<div class="gbar" aria-hidden="true"><i style="width:${Math.min(100,bar)}%"></i></div>`:''}
+        </div>
+        <div class="gnum">${right}<small>${label}</small></div>
+      </li>`;
+
+    // ---- last completed week ----
+    const weekly=rows.map(r=>({...r,h:(r.s.history||[]).find(h=>h.week===wk)})).filter(r=>r.h)
+      .sort((a,b)=>b.h.progress-a.h.progress);
+    const weekHtml=ranked(weekly,r=>r.h.progress).map(r=>{
+      const f=floorOf(r.h.floorId),pct=Math.round(r.h.progress*100);
+      const what='hits' in r.h
+        ?`${r.h.hits} of ${f.maxHp} hit${f.maxHp===1?'':'s'}${!r.h.cleared&&r.h.soldiers?` · ${r.h.soldiers} soldier${r.h.soldiers===1?'':'s'} standing`:''}`
+        :`${r.h.dmg.toLocaleString()} dmg`;
+      const sub=[`${what} · ${r.h.cleared?`cleared Floor ${floorNumeral(f.id)}`:`on Floor ${floorNumeral(f.id)}`}`,
+        `party HP ${Math.round(r.h.hpPct*100)}%`];
+      return row(r,null,sub,`${pct}%`,'of floor',pct);
+    }).join('');
+
+    // ---- season standings ----
+    const left=s=>{const f=floorOf(s.floorId);if(s.cleared)return 0;
+      return 'bossHp' in s?s.bossHp/f.maxHp:s.roomHp/f.maxHp;};
+    const standing=rows.slice().sort((a,b)=>(b.s.floorsCleared-a.s.floorsCleared)||(left(a.s)-left(b.s))||(hpPct(b.s.hp)-hpPct(a.s.hp)));
+    const seasonHtml=ranked(standing,r=>`${r.s.floorsCleared}:${left(r.s)}`).map(r=>{
+      const f=floorOf(r.s.floorId);
+      const pool=r.s.cleared?''
+        :'bossHp' in r.s?`${r.s.bossHp}/${f.maxHp} hits left${r.s.soldiers?` · ${r.s.soldiers} soldier${r.s.soldiers===1?'':'s'}`:''} · `
+        :`${r.s.roomHp.toLocaleString()}/${f.maxHp.toLocaleString()} HP left · `;
+      const sub=[r.s.cleared?'Every floor cleared':`Floor ${floorNumeral(f.id)} · ${f.name}`,
+        `${pool}party HP ${hpPct(r.s.hp)}%`];
+      return row(r,null,sub,String(r.s.floorsCleared),'cleared',null);
+    }).join('');
+
+    $('guild').innerHTML=`<div class="block guild">
+      ${weekHtml?`<h4 class="gsub">Week ${wk} <span>· how hard each party hit its own floor</span></h4>
+      <ol class="grows" aria-label="Week ${wk} results">${weekHtml}</ol>
+      <div class="bar thin"></div>`:''}
+      <h4 class="gsub">The season <span>· through week ${wk}</span></h4>
+      <ol class="grows" aria-label="Season standings">${seasonHtml}</ol>
+      <p class="gnote">Results land once a week is final, the same for every party.</p>
+    </div>`;
+  }catch{}
+}
+renderGuild();
 
 // Dungeon tab: the whole climb, not just this Sunday - CLAUDE.md's "Week
 // and Dungeon must stay split by time horizon" rule. Independent of

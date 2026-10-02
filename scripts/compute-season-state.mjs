@@ -104,6 +104,13 @@ async function replayParty(partyId, season, throughWeek, floors) {
   let hp = { ...MAX_HP };
   let weeksOnFloor = 0;
   let totalWeeksPlayed = 0;
+  // One entry per replayed week, for the Tavern's guild view. Parties can
+  // sit on different floors with different mechanics, so `progress` (the
+  // week's damage/hits as a share of that floor's own maxHp/boss HP) is the
+  // number that compares across them; dmg/hits are the raw figures.
+  // progress is NOT capped at what was left of the floor: a clearing week
+  // that finished off a sliver still hit as hard as it hit.
+  const history = [];
 
   for (let week = 1; week <= throughWeek; week++) {
     if (floorIdx >= floors.length) {
@@ -124,9 +131,26 @@ async function replayParty(partyId, season, throughWeek, floors) {
     weeksOnFloor++;
 
     hp = applyWeekToParty(hp, weekData, floor);
+    const before = pool;
     pool = applyWeekToFloor(floor, pool, weekData);
+    const clearedThisWeek = isFloorCleared(floor, pool);
+    const entry = { week, floorId: floor.id, cleared: clearedThisWeek };
+    if (floor.mechanic === 'horde-mother') {
+      entry.hits = before.bossHp - pool.bossHp;
+      entry.soldiers = pool.soldiers;
+      entry.progress = entry.hits / floor.maxHp;
+    } else {
+      entry.dmg = before.roomHp - pool.roomHp;   // overkill included
+      entry.progress = entry.dmg / floor.maxHp;
+    }
+    entry.progress = Math.round(entry.progress * 1000) / 1000;
+    // party HP as a share of max, measured before the off-week regen -
+    // how beaten up the party actually came out of that week
+    const maxTotal = Object.values(MAX_HP).reduce((a, b) => a + b, 0);
+    entry.hpPct = Math.round(Object.values(hp).reduce((a, b) => a + Math.max(0, b), 0) / maxTotal * 1000) / 1000;
+    history.push(entry);
 
-    if (isFloorCleared(floor, pool)) {
+    if (clearedThisWeek) {
       console.log(`${partyId}: cleared Floor ${floor.id} (${floor.name}) after week ${week}.`);
       floorIdx++;
       weeksOnFloor = 0;
@@ -149,6 +173,8 @@ async function replayParty(partyId, season, throughWeek, floors) {
     hp,
     weeksOnFloor,
     totalWeeksPlayed,
+    floorsCleared: floorIdx,
+    history,
   };
 }
 

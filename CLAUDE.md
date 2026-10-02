@@ -141,12 +141,15 @@ Mobile-first bottom tab bar, **three tabs: Week, Tavern, Dungeon — Week is def
 a red enamel inset with brass edging.
 
 - **Week** — this Sunday only: encounter, party row, arrivals, log, result.
-- **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
+- **Tavern** — the party, substitution, the guild view, the Floor reveal banner, rules,
+  conversion table.
 - **Dungeon** — floor progression from `data/floors.json` + `data/season-state.json`:
   cleared / current / sealed.
 
-**Guild is deferred, not cut.** It needs authentication and shared state — a leaderboard
-means nothing with one local party and no accounts.
+**The guild view lives in the Tavern** and needs no accounts: every party in
+`data/parties.json` is replayed into `data/season-state.json` (each party's `history`, one
+entry per completed week), so it's the same static data for everyone. A Guild *tab* —
+guild codes, joining, shared live runs — is still deferred until authentication exists.
 
 **Week and Dungeon must stay split by time horizon** (event vs. progression) or they
 duplicate each other.
@@ -198,11 +201,23 @@ adjustment. Injury tags come from nflverse's weekly injury report. Players on IR
 drop off that report rather than being listed as Out, so "No games yet this season"
 is what flags them.
 
+## Guild comparison (decided)
+
+**Both, week first.** The Tavern's guild view shows the last completed week's head-to-head
+on top and season standings underneath — a pure season leaderboard goes stale by week 11
+once the gap is unbridgeable; the weekly comparison resets every Sunday.
+
+- Parties can be on different floors with different mechanics, so the weekly number is
+  `progress`: that week's damage (or Horde Mother hits) as a share of the floor it was
+  dealt to, **uncapped** — a week that finished off a sliver still counts what it hit for.
+- Season standings: floors cleared, then how much of the current floor is left. Party HP
+  only orders a true tie, and a tie shares its rank.
+- Results appear once a week is final (the replay only runs on completed weeks), so a
+  live Sunday run is never compared against someone else's.
+
 ## Open questions — do not silently decide these
 
-1. **Guild as leaderboard vs. rivalry.** Identical floors for everyone makes it a
-   leaderboard, and leaderboards go stale by week 11 when the gap is unbridgeable.
-   A weekly "who cleared this floor" comparison may be livelier than a season total.
+None open right now.
 
 ## Naming / legal
 
