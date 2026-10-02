@@ -183,7 +183,7 @@ progression was actually scoped:
   party that one-shots a floor doesn't get a head start on one they haven't seen the
   reveal for yet.
 - **Floor list and per-floor `maxHp` live in `data/floors.json`** (id, name, place,
-  mechanic, maxHp, flavor) — six floors seeded, `maxHp` scaled from real 2025
+  mechanic, maxHp, flavor) — seven floors seeded, `maxHp` scaled from real 2025
   weeks 1–6 damage totals across all three parties (swarm-scaled `dmgFor`, n=18,
   mean ≈449, range 241–757), not guessed.
 - **Swarm/Sentinel math is implemented, not just flavor text.** `dmgFor()` splits
@@ -196,6 +196,16 @@ progression was actually scoped:
   across weeks is built (replaying committed weekly stat files against
   `data/floors.json`), it reads the same damage formulas `public/index.html` uses
   live — not a second copy that can drift out of sync with a tuning change.
+
+- **Plated floor (Floor IV, Old Scaleback — a bear armored like a pangolin).**
+  `mechanic: "plated"`, with `scales` and `armorPerScale` on the floor in
+  `data/floors.json`. Every drive loses `scales × armorPerScale` off the top (flat damage
+  reduction, no swarm/sentinel scaling), so small drives glance off and a two-kick Mender
+  deals nothing. Each TD (Tactician/Hunter/Rogue) or whole sack (Breaker) strips one
+  scale, **effective next week**. Armor is fixed for the whole week, so commit order never
+  matters and the live run matches the replay. Tuned to 8 scales × 8 and 1250 HP: against
+  real 2026 weeks 1–3, all three parties take three weeks to clear it.
+  Art isn't in yet, so the plate stays hidden until `FLOOR_ART[4]` points at it.
 
 ## Projections
 

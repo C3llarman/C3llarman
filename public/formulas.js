@@ -41,7 +41,31 @@ export function dmgParts(k,r){
 export const FLOOR_MECHANICS={
   swarm:{vol:1,burst:0.5},
   sentinel:{vol:0.5,burst:2},
+  // Plated floors (the scaled bear) don't rescale volume vs burst at all -
+  // they take a flat bite out of every drive instead (plateArmor below).
+  plated:{vol:1,burst:1},
 };
+
+// Plated floor - a beast armored in overlapping scales, like a pangolin.
+// Damage reduction, D&D-style: every drive loses a flat `armor` off the
+// top before it reaches the room's HP, so a spread of small drives
+// (a 2-kick Mender, a quiet pass rusher) glances off entirely and only
+// a big single performance gets through. Crits crack the armor: each
+// touchdown (Tactician/Hunter/Rogue) or sack (Breaker) strips one scale.
+// A cracked scale falls away BEFORE NEXT WEEK, not mid-week - armor is
+// fixed for the whole week at whatever the scales were when it started,
+// so the result never depends on the order cards get committed in, and
+// the live run and the season replay always agree. Scale count and
+// armor per scale live on the floor in data/floors.json.
+export function plateArmor(floor, scales){
+  return Math.max(0, scales) * (floor.armorPerScale || 0);
+}
+export function scaleStrips(slot, r){
+  if(slot==='tactician'||slot==='hunter'||slot==='rogue') return r.td||0;
+  // whole sacks only - a split sack doesn't pry a scale loose
+  if(slot==='breaker') return Math.floor(r.sk||0);
+  return 0;
+}
 export function dmgFor(k,r,mechanic='swarm'){
   const {volume,burst}=dmgParts(k,r);
   const m=FLOOR_MECHANICS[mechanic]||{vol:1,burst:1};
@@ -52,16 +76,20 @@ export function dmgFor(k,r,mechanic='swarm'){
 // and what it costs the party (take, before the Wall's soak; or heal for
 // the Mender). Flavor text lives with the caller (index.html's `drives`)
 // since it's presentation, not a formula.
-export function resolveDrive(slot, r, mechanic='swarm'){
-  const dmg = dmgFor(slot, r, mechanic);
+// `armor` is a plated floor's flat per-drive reduction (0 everywhere
+// else); `blocked` is how much of the drive it ate.
+export function resolveDrive(slot, r, mechanic='swarm', armor=0){
+  const raw = dmgFor(slot, r, mechanic);
+  const dmg = Math.max(0, raw - armor);
+  const blocked = raw - dmg;
   switch(slot){
-    case 'wall': return {dmg,crit:false,take:0};
-    case 'tactician': return {dmg,crit:r.td>=1,take:r.sk*6};
-    case 'hunter': return {dmg,crit:r.td>=1,take:0};
-    case 'rogue': return {dmg,crit:r.td>=1,take:Math.round(r.car*0.7)};
-    case 'breaker': return {dmg,crit:r.sk>=1,take:0};
-    case 'mender': return {dmg,crit:false,heal:r.fg*7,miss:r.att-r.fg};
-    default: return {dmg,crit:false,take:0};
+    case 'wall': return {dmg,blocked,crit:false,take:0};
+    case 'tactician': return {dmg,blocked,crit:r.td>=1,take:r.sk*6};
+    case 'hunter': return {dmg,blocked,crit:r.td>=1,take:0};
+    case 'rogue': return {dmg,blocked,crit:r.td>=1,take:Math.round(r.car*0.7)};
+    case 'breaker': return {dmg,blocked,crit:r.sk>=1,take:0};
+    case 'mender': return {dmg,blocked,crit:false,heal:r.fg*7,miss:r.att-r.fg};
+    default: return {dmg,blocked,crit:false,take:0};
   }
 }
 
@@ -193,7 +221,9 @@ export function hordeEvents(r){
   return {turnovers:bossTurnovers(r), firstDowns:r.firstDowns||0, td:r.td||0};
 }
 const HORDE_SLOTS=['tactician','hunter','rogue'];
-export function projectSlot(k, lines, mechanic='swarm'){
+// `armor` (plated floors only) comes off every past game the same way it
+// would come off this week's drive; `strips` is scales cracked a game.
+export function projectSlot(k, lines, mechanic='swarm', armor=0){
   lines=lines||[];
   if(k==='wall')return {kind:'none'};
   if(mechanic==='horde-mother'){
@@ -201,8 +231,9 @@ export function projectSlot(k, lines, mechanic='swarm'){
     const n=lines.length, avg=f=>n?lines.reduce((s,r)=>s+hordeEvents(r)[f],0)/n:0;
     return {kind:'horde', games:n, firstDowns:avg('firstDowns'), td:avg('td'), turnovers:avg('turnovers')};
   }
-  const d=lines.map(r=>dmgFor(k,r,mechanic));
-  if(!d.length)return {kind:'dmg', games:0, mean:0, low:0, high:0};
+  const d=lines.map(r=>Math.max(0,dmgFor(k,r,mechanic)-armor));
+  if(!d.length)return {kind:'dmg', games:0, mean:0, low:0, high:0, strips:0};
   return {kind:'dmg', games:d.length, mean:Math.round(d.reduce((a,b)=>a+b,0)/d.length),
-    low:Math.min(...d), high:Math.max(...d)};
+    low:Math.min(...d), high:Math.max(...d),
+    strips:lines.reduce((s,r)=>s+scaleStrips(k,r),0)/lines.length};
 }
