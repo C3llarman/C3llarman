@@ -115,6 +115,13 @@ labels stay HTML. Per-class ornaments hang off `.card[data-k=...] .plate-id::aft
 `reference/assets/ui/concept-sheet.png` (also true alpha) supplies the brass divider rod
 (`.bar`) and the angular steel brackets (Rogue, Hunter); its finished frames bake the
 shield and cloth into the corner, so they can't 9-slice and stay reference only.
+`reference/assets/ui/button-sheet.png` supplies the plaque buttons (spiked caps 9-slice,
+body stretches): **red = the primary action** (Roll for the week, bench "Start" chips),
+**dark iron = everything else** (bench toggle, start over, disabled), plus the round
+medallions behind guild ranks. Labels sit on plaque art the CSS can't tint (border-image
+`fill` paints above backgrounds), so the cut script pre-darkens each plaque's label area
+and measures it like any other ground. Buttons set `display:flex`, so `[hidden]` needs
+its own `display:none` rule.
 
 **Text never sits on raw texture.** Each textured surface gets a tint whose alpha lives in
 `TINTS` in `scripts/cut-ui-kit.py` and must match the CSS. The script writes each tinted

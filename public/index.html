@@ -168,15 +168,26 @@
     clip-path:polygon(0 0,100% 0,calc(100% - 12px) 50%,100% 100%,0 100%);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
 
-  .go{width:100%;background:linear-gradient(#B01229,#9E0E22 55%,#7A0A1A);color:#fff;border:2px solid var(--brass);
-    border-radius:4px;box-shadow:0 0 0 1px #0A0908,inset 0 1px 0 rgba(255,255,255,.2),0 6px 14px rgba(0,0,0,.5);
-    font-family:'Archivo Narrow';
-    font-weight:700;font-size:19px;letter-spacing:.05em;padding:15px;margin-top:18px;cursor:pointer}
-  .go:hover{background:#8F0A1F}
-  .go:disabled{background:#4A4136;color:#E8DFC9;border-color:var(--steel);cursor:default}
-  .reset{width:100%;background:none;border:1px solid var(--faint);color:var(--faint);
-    font-family:'EB Garamond';font-style:italic;font-size:15px;padding:10px;margin-top:8px;cursor:pointer}
-  .go:focus-visible,.reset:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  /* ---- plaque buttons (button-sheet.png, cut by scripts/cut-ui-kit.py) ----
+     9-slice: the spiked caps stay fixed, the body stretches to any width.
+     Red = the primary action (Roll), dark iron = everything else. The
+     label area of each plaque is pre-darkened by the cut script so gold
+     text clears AA on its worst pixel (grounds.json btnred/btndark). */
+  .go,.reset{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    min-height:58px;padding:0 4px;margin-top:18px;cursor:pointer;background:none;
+    border-style:solid;border-width:0 56px;border-image:url("/assets/ui/btn-red.webp") 0 150 fill / 0 56px stretch;
+    font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:18px;letter-spacing:.06em;line-height:1.1;
+    color:#F3D892;text-shadow:0 1px 2px rgba(0,0,0,.8);
+    filter:drop-shadow(0 6px 8px rgba(0,0,0,.55));transition:filter .15s}
+  .go:hover,.reset:hover{filter:drop-shadow(0 6px 8px rgba(0,0,0,.55)) brightness(1.12)}
+  .go:active,.reset:active{filter:drop-shadow(0 2px 3px rgba(0,0,0,.6)) brightness(.95)}
+  .go:disabled{border-image-source:url("/assets/ui/btn-dark.webp");color:#C9BFA8;cursor:default;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55))}
+  .reset{border-image-source:url("/assets/ui/btn-dark.webp");margin-top:10px;font-size:15px}
+  .reset .chev{font-family:'Archivo Narrow',Arial,sans-serif;font-size:13px;transition:transform .2s}
+  .reset[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .go[hidden],.reset[hidden]{display:none}
+  .go:focus-visible,.reset:focus-visible{outline:3px solid #F3D892;outline-offset:3px}
+  .plate-lore .reset:focus-visible{outline-color:#17120D}
 
   .ev{display:flex;gap:11px;padding:7px 0;border-bottom:1px solid var(--hair);font-size:16px}
   .ev .amt{font-family:'Archivo Narrow';font-weight:700;font-size:17px;min-width:52px;text-align:right}
@@ -295,6 +306,16 @@
   .plate-lore .data-note .trait{font-size:13.5px;line-height:1.32;color:var(--ink);opacity:1;margin-top:8px;
     padding-top:7px;border-top:1px solid var(--hair)}
   .plate-lore .floorrow .num{color:var(--rule)}
+  /* bench rows are the swap control: the whole row is the button (its
+     aria-label says so); the red plaque chip is the visible cue */
+  .plate-lore .floorrow[data-swap-slot]{cursor:pointer;align-items:center}
+  .plate-lore .floorrow[data-swap-slot]:focus-visible{outline:3px solid #17120D;outline-offset:2px}
+  .benchact{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+  .chip{display:inline-flex;align-items:center;justify-content:center;height:34px;min-width:96px;padding:0 2px;
+    border-style:solid;border-width:0 24px;border-image:url("/assets/ui/btn-red.webp") 0 150 fill / 0 24px stretch;
+    font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:13px;letter-spacing:.06em;color:#F3D892;
+    text-shadow:0 1px 2px rgba(0,0,0,.8);filter:drop-shadow(0 3px 4px rgba(0,0,0,.4))}
+  .floorrow[data-swap-slot]:hover .chip{filter:drop-shadow(0 3px 4px rgba(0,0,0,.4)) brightness(1.12)}
   .plate-lore .floorrow.now{background:#CDBE98}
   /* class characterisation hooks - ornaments per archetype attach here */
   /* class characterisation - kit ornaments, used sparingly (CLAUDE.md) */
@@ -328,15 +349,21 @@
   .grow{display:flex;align-items:center;gap:8px;min-height:56px;padding:8px 0;border-bottom:1px solid var(--hair)}
   .grow:last-child{border-bottom:0}
   .grow.you{box-shadow:inset 3px 0 0 var(--live);padding-left:9px}
-  .grow .rk{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:18px;color:var(--rule);min-width:14px;text-align:center}
+  /* rank on the kit's iron medallion - red for your own party */
+  .grow .rk{flex:0 0 36px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+    background:url("/assets/ui/medal-dark.webp") center/contain no-repeat;
+    font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:16px;color:#F3D892;text-shadow:0 1px 2px #000}
+  .grow.you .rk{background-image:url("/assets/ui/medal-red.webp")}
   .grow img,.grow .nocrest{width:34px;height:34px;flex:0 0 34px;object-fit:contain}
   .grow .gmain{flex:1;min-width:0}
   .grow .gnm{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:16.5px;line-height:1.2}
   .grow .youtag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--live);
     border:1px solid currentColor;padding:0 4px;vertical-align:2px;margin-left:4px}
   .grow .gst{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:500;font-size:14.5px;line-height:1.3;color:var(--faint)}
-  .grow .gbar{height:6px;margin-top:5px;background:rgba(23,18,13,.16)}
-  .grow .gbar i{display:block;height:100%;background:var(--live)}
+  /* same framed track + velvet fill as the HP bar */
+  .grow .gbar{height:13px;margin-top:5px;background:#0E0C0A;border-style:solid;border-width:3px 7px;
+    border-image:url("/assets/ui/hp-track.webp") 16 40 fill / 3px 7px stretch}
+  .grow .gbar i{display:block;height:100%;background:#C0102A url("/assets/ui/hp-fill.webp") left center/320px 100% no-repeat}
   .grow .gnum{min-width:56px;font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:23px;line-height:1;
     color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
   .grow .gnum small{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--faint);margin-top:3px}
@@ -732,6 +759,11 @@ function projectionSummary(){
 // whoever is currently starting (in case a swap put them back among their
 // own bench). Reuses .floorrow/.num/.nm/.st exactly as the Week tab
 // compact row does — no new classes.
+// How many alternates the bench toggle offers - same filter renderBench uses.
+function benchCount(i){
+  const real=REAL[party[i].k],bench=real.bench||[];
+  return bench.filter(b=>(b.name||b.team)!==(real.name||real.team)).length;
+}
 function renderBench(i){
   const u=party[i], real=REAL[u.k], bench=real.bench||[];
   const items=bench
@@ -748,7 +780,10 @@ function renderBench(i){
         ${inj?`<div class="st">${inj}</div>`:''}
         ${ko?`<div class="st">${ko}</div>`:''}
       </div>
-      <div class="num">${pr.num}</div>
+      <div class="benchact">
+        <div class="num">${pr.num}</div>
+        <span class="chip" aria-hidden="true">Start</span>
+      </div>
     </div>`;
   }).join('');
 }
@@ -792,7 +827,7 @@ function drawParty(){
       ${REAL[u.k].bench?(locked
         ?`<div class="bar thin"></div><div class="trait"><i>The tavern's closed — first kickoff</i></div>`
         :`<div class="bar thin"></div>
-      <button class="reset" style="min-height:56px" data-bench-toggle="${i}">${benchOpen?'Hide bench':'View bench'}</button>
+      <button class="reset" data-bench-toggle="${i}" aria-expanded="${benchOpen}">${benchOpen?'Hide bench':`View bench · ${benchCount(i)}`} <span class="chev" aria-hidden="true">▼</span></button>
       ${benchOpen?renderBench(i):''}`):''}
       </div>
     </article>`;}).join('');

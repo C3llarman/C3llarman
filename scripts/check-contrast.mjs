@@ -40,6 +40,11 @@ pairs.push(
   ['your guild row',dark.ink,'#2B2518',TEXT],
   ['bench current row (lore)',light.ink,'#CDBE98',TEXT],
   ['masthead live','#F72446','#17120D',TEXT],
+  ['plaque button label (red)','#F3D892',G.btnred.worst,TEXT],
+  ['plaque button label (dark)','#F3D892',G.btndark.worst,TEXT],
+  ['plaque disabled label','#C9BFA8',G.btndark.worst,TEXT],
+  ['guild rank medallion','#F3D892',G.medaldark.worst,TEXT],
+  ['guild rank medallion (you)','#F3D892',G.medalred.worst,TEXT],
 );
 let bad=0;
 for(const[l,f,b,m]of pairs){const r=ratio(f,b);if(r<m)bad++;

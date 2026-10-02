@@ -22,6 +22,7 @@ Re-run after replacing the sheet:  pip install pillow numpy && python3 scripts/c
 """
 from pathlib import Path
 from PIL import Image, ImageOps
+import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 SHEET = ROOT / 'reference/assets/ui/kit-sheet.png'
@@ -133,6 +134,46 @@ save(rod.crop((120, 0, 220, rh)), 'rod-mid')
 save(ccrop((863, 669, 964, 865)), 'bracket-tall')    # Rogue: narrow pointed corner
 save(ccrop((1314, 753, 1439, 873)), 'bracket-wing')  # Hunter
 
+# ---- buttons (button-sheet.png, true alpha) --------------------------------
+# The sheet carries a faint red haze in its nearly-transparent edge pixels;
+# alpha under 40 is dropped so it doesn't ring the buttons on a dark page.
+buttons = Image.open(ROOT / 'reference/assets/ui/button-sheet.png').convert('RGBA')
+def bcrop(box):
+    c = buttons.crop(box)
+    a = np.asarray(c).copy()
+    a[a[..., 3] < 40, 3] = 0
+    c = Image.fromarray(a)
+    return c.crop(c.getbbox())
+# Labels sit on the plaque body, and border-image `fill` paints above any
+# CSS background, so a CSS tint can't reach it: the label area is darkened
+# here instead (mixed toward `tint` by `alpha`), caps and brass edge untouched.
+def calm(img, x0, y0, x1, y1, tint, alpha, ellipse=False):
+    a = np.asarray(img, float).copy()
+    t = np.array([int(tint[i:i + 2], 16) for i in (1, 3, 5)], float)
+    h, w, _ = a.shape
+    yy, xx = np.mgrid[0:h, 0:w]
+    if ellipse:
+        cx, cy, rx, ry = (x0 + x1) / 2, (y0 + y1) / 2, (x1 - x0) / 2, (y1 - y0) / 2
+        m = ((xx - cx) / rx) ** 2 + ((yy - cy) / ry) ** 2 <= 1
+    else:
+        m = (xx >= x0) & (xx < x1) & (yy >= y0) & (yy < y1)
+    a[..., :3][m] = alpha * t + (1 - alpha) * a[..., :3][m]
+    return Image.fromarray(a.astype(np.uint8))
+
+# Large plaques with spiked caps: 9-slice horizontally, caps 150px.
+BTN_CALM = {'dark': ('#24201B', 0.55), 'red': ('#5E0A12', 0.55)}
+for name, box in {'dark': (1205, 16, 2140, 168), 'red': (1201, 170, 2143, 323),
+                  'silver': (1190, 331, 2154, 484)}.items():
+    img = bcrop(box)
+    if name in BTN_CALM:
+        img = calm(img, 150, 30, img.width - 150, img.height - 30, *BTN_CALM[name])
+    save(img, f'btn-{name}')
+# Round medallions (guild rank): calm the face inside the rivet ring.
+for name, box, tint in [('dark', (1221, 496, 1407, 684), '#24201B'),
+                        ('red', (1416, 496, 1603, 684), '#5E0A12')]:
+    img = bcrop(box)
+    save(calm(img, 38, 38, img.width - 38, img.height - 38, tint, 0.55, ellipse=True), f'medal-{name}')
+
 # ---- measured grounds for the contrast check ------------------------------
 # Text never sits on raw texture: CSS lays a flat tint over each one (values
 # below MUST match public/index.html). For each tinted surface we record the
@@ -150,6 +191,11 @@ TINTS = {  # surface: (file, inset px, tint hex, tint alpha, text is 'dark'|'lig
     'velvet': ('velvet',       0, '#5A0C16', 0.55, 'light'),
     'tabbar': ('tab-body',    40, '#000000', 0.00, 'light'),
     'tabon':  ('tab-active',  40, '#000000', 0.00, 'light'),
+    # button labels sit between the caps, inside the brass edge
+    'btndark':  ('btn-dark',   38, '#000000', 0.00, 'light'),
+    'btnred':   ('btn-red',    38, '#000000', 0.00, 'light'),
+    'medaldark':('medal-dark', 62, '#000000', 0.00, 'light'),
+    'medalred': ('medal-red',  62, '#000000', 0.00, 'light'),
 }
 
 def _lum(rgb):
@@ -161,7 +207,7 @@ grounds = {}
 for surf, (f, inset, tint, alpha, text) in TINTS.items():
     a = np.asarray(Image.open(OUT / f'{f}.webp').convert('RGB'), float)
     h, w, _ = a.shape
-    xi = 120 if f.startswith('tab') else inset   # tab pieces: skip the end caps
+    xi = 120 if f.startswith('tab') else 175 if f.startswith('btn') else inset   # skip end caps
     px = a[inset:h - inset, xi:w - xi].reshape(-1, 3)
     t = np.array([int(tint[i:i + 2], 16) for i in (1, 3, 5)], float)
     mixed = alpha * t + (1 - alpha) * px            # CSS blends in sRGB

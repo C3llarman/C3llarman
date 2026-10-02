@@ -47,5 +47,33 @@
   "text": "light",
   "worst": "#6A1612",
   "median": "#520C08"
+ },
+ "btndark": {
+  "tint": "#000000",
+  "alpha": 0.0,
+  "text": "light",
+  "worst": "#46423E",
+  "median": "#282622"
+ },
+ "btnred": {
+  "tint": "#000000",
+  "alpha": 0.0,
+  "text": "light",
+  "worst": "#881722",
+  "median": "#68080D"
+ },
+ "medaldark": {
+  "tint": "#000000",
+  "alpha": 0.0,
+  "text": "light",
+  "worst": "#5C574D",
+  "median": "#292824"
+ },
+ "medalred": {
+  "tint": "#000000",
+  "alpha": 0.0,
+  "text": "light",
+  "worst": "#871D25",
+  "median": "#66070C"
  }
 }
