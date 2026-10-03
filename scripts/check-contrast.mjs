@@ -45,6 +45,7 @@ pairs.push(
   ['plaque disabled label','#C9BFA8',G.btndark.worst,TEXT],
   ['guild rank medallion','#F3D892',G.medaldark.worst,TEXT],
   ['guild rank medallion (you)','#F3D892',G.medalred.worst,TEXT],
+  ['guild history bar vs plate','#C0102A',G.plate.worst,UI],
 );
 let bad=0;
 for(const[l,f,b,m]of pairs){const r=ratio(f,b);if(r<m)bad++;

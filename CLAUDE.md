@@ -143,23 +143,30 @@ under 4.5:1).
 
 ## Navigation
 
-Mobile-first bottom tab bar, **three tabs: Week, Tavern, Dungeon — Week is default**
+Mobile-first bottom tab bar, **four tabs: Week, Tavern, Dungeon, Guild — Week is default**
 (Sunday is when people open it). One continuous blackened-steel bar; the selected tab is
 a red enamel inset with brass edging.
 
 - **Week** — this Sunday only: encounter, party row, arrivals, log, result.
-- **Tavern** — the party, substitution, the guild view, the Floor reveal banner, rules,
-  conversion table.
+- **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
 - **Dungeon** — floor progression from `data/floors.json` + `data/season-state.json`:
   cleared / current / sealed.
 
-**The guild view lives in the Tavern** and needs no accounts: every party in
-`data/parties.json` is replayed into `data/season-state.json` (each party's `history`, one
-entry per completed week), so it's the same static data for everyone. A Guild *tab* —
-guild codes, joining, shared live runs — is still deferred until authentication exists.
+- **Guild** — the other parties: last week's head-to-head + season standings, the
+  campaign so far (small multiples, one bar per completed week per party), and rival
+  lineups (their real six with saved bench swaps applied). **Each party locks at its own
+  first kickoff**, so each rival is sealed separately until both that rival and the viewer
+  have locked — nobody sees a lineup that could still change, or while their own could.
 
-**Week and Dungeon must stay split by time horizon** (event vs. progression) or they
-duplicate each other.
+The Guild tab needs no accounts: every party in `data/parties.json` is replayed into
+`data/season-state.json` (each party's `history`, one entry per completed week), so it's
+the same static data for everyone; rival lineups read each party's week file plus its
+`/api/subs`. Real guilds — sign-in, guild codes, joining, private leagues — are still
+deferred until authentication exists (today a party's identity is just its URL). Live
+Sunday progress of rivals is deliberately not shown (see Guild comparison below).
+
+**Week, Dungeon and Guild must stay split** — Week is this Sunday (event), Dungeon is your
+climb (progression), Guild is everyone else — or they duplicate each other.
 
 Accessibility already in the prototype, keep it: 56px targets,
 `env(safe-area-inset-bottom)`, `tablist`/`tab`/`tabpanel` roles with arrow-key support,
@@ -221,7 +228,7 @@ is what flags them.
 
 ## Guild comparison (decided)
 
-**Both, week first.** The Tavern's guild view shows the last completed week's head-to-head
+**Both, week first.** The Guild tab shows the last completed week's head-to-head
 on top and season standings underneath — a pure season leaderboard goes stale by week 11
 once the gap is unbridgeable; the weekly comparison resets every Sunday.
 
