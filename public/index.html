@@ -395,6 +395,8 @@
   .lhead img{width:34px;height:34px;object-fit:contain}
   .lhead span:first-of-type{flex:1;font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;font-size:17px}
   .lhead .chev{font-size:13px;color:var(--rule);transition:transform .2s}
+  .lhead.lsealed{cursor:default}
+  .lhead .lwhen{font-size:14px;font-style:italic;color:var(--faint);text-align:right}
   .lhead[aria-expanded="true"] .chev{transform:rotate(180deg)}
   .lhead:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
   .lsix{list-style:none;margin:0 0 10px}
@@ -1628,7 +1630,7 @@ async function renderGuild(){
       const f=floorOf(r.s.floorId);
       const pool=r.s.cleared?''
         :'bossHp' in r.s?`${r.s.bossHp}/${f.maxHp} hits left${r.s.soldiers?` · ${r.s.soldiers} soldier${r.s.soldiers===1?'':'s'}`:''} · `
-        :`${r.s.roomHp.toLocaleString()}/${f.maxHp.toLocaleString()} HP left · `;
+        :`${r.s.roomHp.toLocaleString()}/${f.maxHp.toLocaleString()} HP left${'scales' in r.s?` · ${r.s.scales} scale${r.s.scales===1?'':'s'}`:''} · `;
       const sub=[r.s.cleared?'Every floor cleared':`Floor ${floorNumeral(f.id)} · ${f.name}`,
         `${pool}party HP ${hpPct(r.s.hp)}%`];
       return row(r,null,sub,String(r.s.floorsCleared),'cleared',null);
@@ -1691,8 +1693,11 @@ function renderGuildHistory(rows,floorOf,me){
 
 // Rival lineups: each other party's real starting six for the current
 // week - their week file's starters with their saved bench swaps applied
-// (subs[slot] === true starts bench[0], same as tradeSlot()). Sealed until
-// the week locks, so nobody copies a pick before kickoff.
+// (subs[slot] === true starts bench[0], same as tradeSlot()).
+// Each party locks at ITS OWN first kickoff (a Thursday-night starter
+// locks a party days early), so each rival is sealed separately, until
+// both that rival AND the viewer have locked - no one sees a lineup that
+// could still change, or while their own could, so no one copies a pick.
 async function renderRivalLineups(rows,me){
   try{
     const cw=await (await fetch('/data/current-week.json')).json();
@@ -1707,15 +1712,15 @@ async function renderRivalLineups(rows,me){
         if(sr.ok)subs=await sr.json();else subsKnown=false;}catch{subsKnown=false;}
       return {r,wk,subs,subsKnown};
     }));
-    const lockedAt=(files.find(Boolean)||{}).wk?.lockedAt;
-    const isLocked=lockedAt&&Date.now()>=new Date(lockedAt).getTime();
-    if(!isLocked){
-      $('guildlineups').innerHTML=`<div class="block"><p class="gnote" style="margin:0">Sealed until first kickoff${
-        lockedAt?` — ${clockText(new Date(lockedAt))}`:''}. Nobody sees anyone's six before then.</p></div>`;
-      return;
-    }
+    let myLock=null;
+    try{const mr=await fetch(`/data/weeks/${cw.season}/week-${ww}/${me}.json`);if(mr.ok)myLock=(await mr.json()).lockedAt;}catch{}
+    const t=x=>x?new Date(x).getTime():NaN;
     const titleCase=t=>t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
     $('guildlineups').innerHTML=`<div class="block glineups">${files.filter(Boolean).map(({r,wk,subs,subsKnown},n)=>{
+      const opensAt=Math.max(t(wk.lockedAt),t(myLock));
+      if(!(Date.now()>=opensAt))return `<div class="lparty"><div class="lhead lsealed">
+          ${CREST[r.p.id]?`<img src="${CREST[r.p.id]}" alt="">`:''}<span>${r.p.name}</span>
+          <span class="lwhen">Sealed until ${Number.isFinite(opensAt)?clockText(new Date(opensAt)):'both parties lock'}</span></div></div>`;
       const six=SLOT_ORDER.map(k=>{
         const slot=wk[k]||{},swapped=subs[k]&&slot.bench&&slot.bench[0];
         const who=swapped?slot.bench[0]:slot;

@@ -154,7 +154,9 @@ a red enamel inset with brass edging.
 
 - **Guild** — the other parties: last week's head-to-head + season standings, the
   campaign so far (small multiples, one bar per completed week per party), and rival
-  lineups (their real six with saved bench swaps applied, **sealed until the week locks**).
+  lineups (their real six with saved bench swaps applied). **Each party locks at its own
+  first kickoff**, so each rival is sealed separately until both that rival and the viewer
+  have locked — nobody sees a lineup that could still change, or while their own could.
 
 The Guild tab needs no accounts: every party in `data/parties.json` is replayed into
 `data/season-state.json` (each party's `history`, one entry per completed week), so it's
