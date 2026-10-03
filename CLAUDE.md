@@ -140,6 +140,9 @@ under 4.5:1).
   Archivo Narrow (numerals, labels). All free via Google Fonts. Licensed type is still the biggest available upgrade.
 - **Art:** `public/assets/` — the class emblems are full-colour painted crests; the
   encounter/tower engravings are red-brown ink and read fine on the dark page.
+  Encounter art per floor is `FLOOR_ART` in `public/index.html` (II Horde Mother,
+  III Ash Rooks, IV Old Scaleback); sources live in `reference/assets/`. Landscape art
+  (wider than 1.25:1) gets the full-width `.plate.wide` treatment automatically.
 
 ## Navigation
 
