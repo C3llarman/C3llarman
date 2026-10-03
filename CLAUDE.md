@@ -205,7 +205,8 @@ progression was actually scoped:
   scale, **effective next week**. Armor is fixed for the whole week, so commit order never
   matters and the live run matches the replay. Tuned to 8 scales × 8 and 1250 HP: against
   real 2026 weeks 1–3, all three parties take three weeks to clear it.
-  Art isn't in yet, so the plate stays hidden until `FLOOR_ART[4]` points at it.
+  Art: `public/assets/scaleback.webp` (cleaned from the supplied sheet). The scale counter
+  icons (`scale-full`/`scale-cracked.webp`) are cut from one of its back spikes.
 
 ## Projections
 

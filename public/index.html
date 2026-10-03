@@ -241,6 +241,8 @@
   .iconrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0}
   .iconrow img{height:38px;width:auto}
   .iconrow .dim{opacity:.35}
+  #scaleIcons{gap:4px;flex-wrap:nowrap}
+  #scaleIcons img{height:28px}
 
   /* ---- bottom tab bar (mobile-first) ---- */
   body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
@@ -459,7 +461,10 @@
       <div class="hprow"><div class="hpbar" role="progressbar" aria-label="Horde hit points"
         aria-valuemin="0" aria-valuemax="900" aria-valuenow="900" id="rprog">
         <div class="hpfill" id="rfill" style="width:100%"></div></div></div>
-      <div class="line" id="encScales" hidden><b>Scales</b> <span class="cond" id="rscales"></span></div>
+      <div id="encScales" hidden>
+        <div class="line"><b>Scales</b> <span class="cond" id="rscales"></span></div>
+        <div id="scaleIcons" class="iconrow" aria-hidden="true"></div>
+      </div>
       <div class="bar thin" style="margin-top:10px"></div>
       <div class="trait" id="encMechTrait"><b>Swarm.</b> Damage from a single big play is halved. Volume production is unreduced.</div>
       <div class="trait"><b>Attrition.</b> Every drive costs the party hit points whether the room falls or not.</div>
@@ -986,7 +991,7 @@ function floorNumeral(id){return FLOOR_NUMERALS[id]||String(id);}
 // its single-file art pattern for every floor from here on. Floors III
 // - VI still have no art at all (reference/assets/ per CLAUDE.md, none
 // commissioned yet) - the plate stays hidden for those, same as before.
-const FLOOR_ART={2:'/assets/horde-mother.webp'};
+const FLOOR_ART={2:'/assets/horde-mother.webp',4:'/assets/scaleback.webp'};
 function renderEncounter(floor){
   $('encName').textContent=floor.name.toUpperCase();
   $('encFloorNum').textContent=`Floor ${floorNumeral(floor.id)}`;
@@ -1042,6 +1047,11 @@ function drawRoom(){
     const c=crackedThisWeek();
     $('rscales').textContent=`${scales} / ${CURRENT_FLOOR.scales} · armor ${armorNow()} a drive`+
       (c?` · ${c} cracked this week, gone by next`:'');
+    // Decorative (aria-hidden) - the text above is the source of truth.
+    // Cracked = lost in an earlier week or pried loose by a drive this week.
+    const whole=Math.max(0,scales-c);
+    $('scaleIcons').innerHTML=Array.from({length:CURRENT_FLOOR.scales},(_,i)=>
+      `<img src="/assets/${i<whole?'scale-full':'scale-cracked'}.webp" alt="">`).join('');
   }
 }
 function ev(c,a,t){const d=document.createElement('div');d.className='ev '+c;
