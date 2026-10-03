@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 4,
   "seasonType": "REG",
-  "generatedAt": "2026-10-02T02:15:38.247Z",
+  "generatedAt": "2026-10-02T13:17:46.562Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -274,9 +274,9 @@
     "homeAway": "away",
     "kickoff": "2026-10-01T20:15:00-04:00",
     "name": "T.J. Watt",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false,
+    "sk": 1,
+    "tfl": 2,
+    "hasStats": true,
     "form": {
       "games": 3,
       "lines": [
@@ -302,9 +302,9 @@
     "homeAway": "away",
     "kickoff": "2026-10-01T20:15:00-04:00",
     "name": "Chris Boswell",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 1,
+    "att": 2,
+    "hasStats": true,
     "form": {
       "games": 3,
       "lines": [

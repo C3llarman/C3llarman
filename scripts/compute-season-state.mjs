@@ -28,7 +28,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MAX_HP, resolveDrive, applyDrive, regenHp, resolveHordeMotherWeek } from '../public/formulas.js';
+import { MAX_HP, resolveDrive, applyDrive, regenHp, resolveHordeMotherWeek, plateArmor, scaleStrips } from '../public/formulas.js';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
@@ -55,7 +55,9 @@ function parseArgs(argv) {
 const DRIVE_ORDER = ['wall', 'tactician', 'hunter', 'rogue', 'breaker', 'mender'];
 
 function freshFloorPool(floor) {
-  return floor.mechanic === 'horde-mother' ? { soldiers: 0, bossHp: floor.maxHp } : { roomHp: floor.maxHp };
+  if (floor.mechanic === 'horde-mother') return { soldiers: 0, bossHp: floor.maxHp };
+  if (floor.mechanic === 'plated') return { roomHp: floor.maxHp, scales: floor.scales };
+  return { roomHp: floor.maxHp };
 }
 
 function isFloorCleared(floor, pool) {
@@ -88,14 +90,20 @@ function applyWeekToFloor(floor, pool, weekData) {
   if (floor.mechanic === 'horde-mother') {
     return resolveHordeMotherWeek(pool, weekData);
   }
+  // Plated: armor is fixed for the week at the scales it started with;
+  // scales cracked this week fall away for NEXT week (formulas.js).
+  const plated = floor.mechanic === 'plated';
+  const armor = plated ? plateArmor(floor, pool.scales) : 0;
   let roomHp = pool.roomHp;
+  let strips = 0;
   for (const slot of DRIVE_ORDER) {
     const r = weekData[slot];
     if (!r || !r.hasStats) continue;
-    const result = resolveDrive(slot, r, floor.mechanic);
+    const result = resolveDrive(slot, r, floor.mechanic, armor);
     roomHp -= result.dmg;
+    strips += scaleStrips(slot, r);
   }
-  return { roomHp };
+  return plated ? { roomHp, scales: Math.max(0, pool.scales - strips) } : { roomHp };
 }
 
 async function replayParty(partyId, season, throughWeek, floors) {
@@ -141,6 +149,7 @@ async function replayParty(partyId, season, throughWeek, floors) {
       entry.progress = entry.hits / floor.maxHp;
     } else {
       entry.dmg = before.roomHp - pool.roomHp;   // overkill included
+      if ('scales' in pool) entry.scales = pool.scales;
       entry.progress = entry.dmg / floor.maxHp;
     }
     entry.progress = Math.round(entry.progress * 1000) / 1000;
