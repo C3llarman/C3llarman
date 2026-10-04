@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 4,
   "seasonType": "REG",
-  "generatedAt": "2026-10-03T13:17:16.576Z",
+  "generatedAt": "2026-10-04T23:25:25.117Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "home",
     "kickoff": "2026-10-04T13:00:00-04:00",
     "name": "Josh Allen",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
-    "int": 0,
+    "y": 253,
+    "td": 1,
+    "sk": 1,
+    "int": 1,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 9,
+    "hasStats": true,
     "form": {
       "games": 3,
       "lines": [
@@ -232,12 +232,12 @@
         "homeAway": "away",
         "kickoff": "2026-10-04T13:00:00-04:00",
         "name": "Puka Nacua",
-        "y": 0,
-        "c": 0,
+        "y": 125,
+        "c": 9,
         "td": 0,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 5,
+        "hasStats": true,
         "form": {
           "games": 1,
           "lines": [
@@ -266,7 +266,7 @@
     "name": "Greg Rousseau",
     "sk": 0,
     "tfl": 0,
-    "hasStats": false,
+    "hasStats": true,
     "form": {
       "games": 3,
       "lines": [
@@ -309,9 +309,9 @@
     "homeAway": "away",
     "kickoff": "2026-10-04T13:00:00-04:00",
     "name": "Brandon Aubrey",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 2,
+    "att": 4,
+    "hasStats": true,
     "form": {
       "games": 3,
       "lines": [
@@ -333,8 +333,8 @@
   },
   "wall": {
     "team": "PHI",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 4,
+    "hasStats": true,
     "opponent": "LA",
     "homeAway": "home",
     "kickoff": "2026-10-04T13:00:00-04:00",
