@@ -2,9 +2,9 @@
   "season": 2026,
   "week": 4,
   "seasonType": "REG",
-  "generatedAt": "2026-10-05T05:38:34.686Z",
+  "generatedAt": "2026-10-05T05:53:36.267Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
-  "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
+  "scheduleSource": "/home/runner/work/C3llarman/C3llarman/data/schedule/2026.json",
   "party": {
     "id": "emberwatch",
     "name": "Emberwatch"
