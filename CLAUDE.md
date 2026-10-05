@@ -246,9 +246,9 @@ throws `public/assets/d20.webp` center-screen. It tumbles about 0.9s while rando
 flicker, then lands on the real face. A natural 20 gilds and bursts, a natural 1 goes gray,
 cracks and shakes, and both buzz on Android. Then the unchanged commit math runs. Room HP
 counts down while a gold trail catches up. The log, the party row and the stat card keep a
-small die. Tap or Esc skips; reduced motion shows the face with no tumble or shake. The
-gilded and cracked dice are CSS filters plus an inline SVG crack for now, standing in until
-the dedicated art lands.
+small die. Tap or Esc skips; reduced motion shows the face with no tumble or shake. The gilded and cracked dice are their own art (`d20-nat20.webp`, `d20-nat1.webp`), cut in
+the same frame as `d20.webp` so the swap on landing doesn't jump. Sources are in
+`reference/assets/`.
 
 ## Guild comparison (decided)
 

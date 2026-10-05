@@ -246,27 +246,26 @@
     opacity:0;transition:opacity .18s}
   .dice-stage.on{opacity:1}
   .dice-stage[hidden]{display:none}
-  .die{position:relative;width:150px;height:168px}
+  .die{position:relative;width:180px;height:176px}
   .die img{width:100%;height:100%;display:block;filter:drop-shadow(0 12px 16px rgba(0,0,0,.75))}
   .die .face{position:absolute;left:50%;top:53.4%;transform:translate(-50%,-50%);
     width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
     background:radial-gradient(circle,rgba(10,8,6,.86) 62%,rgba(10,8,6,0) 72%);
     font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:34px;color:#F3D892;
     font-variant-numeric:tabular-nums;text-shadow:0 2px 3px #000}
-  .die .crack{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
   .die.tumble{animation:hff-tumble .9s cubic-bezier(.2,.75,.3,1)}
   @keyframes hff-tumble{0%{transform:translateY(-55vh) rotate(-620deg) scale(.55)}
     68%{transform:translateY(8px) rotate(14deg) scale(1.06)}84%{transform:translateY(-5px) rotate(-5deg) scale(.99)}
     100%{transform:none}}
-  .die.nat20 img{filter:sepia(1) saturate(2.4) brightness(1.18) hue-rotate(-6deg) drop-shadow(0 0 22px rgba(255,196,80,.95))}
+  /* gilded / cracked dice are their own art (d20-nat20 / d20-nat1.webp, same
+     frame as d20.webp), swapped in by rollStage() on landing */
+  .die.nat20 img{filter:drop-shadow(0 0 18px rgba(255,196,80,.8))}
   .die.nat20 .face{color:#FFF4CC}
   .die.nat20::before{content:'';position:absolute;inset:-60px;border-radius:50%;z-index:-1;
     background:radial-gradient(circle,rgba(255,200,90,.55),rgba(192,16,42,.25) 45%,rgba(0,0,0,0) 70%);
     animation:hff-burst .9s ease-out}
   @keyframes hff-burst{0%{transform:scale(.3);opacity:0}30%{opacity:1}100%{transform:scale(1.25);opacity:.85}}
-  .die.nat1 img{filter:grayscale(1) brightness(.5) contrast(1.15) drop-shadow(0 12px 16px rgba(0,0,0,.75))}
-  .die.nat1 .face{color:#FF5A6E}
-  .die.nat1 .crack{opacity:1}
+  .die.nat1 .face{color:#FF5A6E;width:50px;height:50px;font-size:28px}
   .die-label{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:20px;letter-spacing:.1em;
     min-height:1px;padding:0 14px;border-radius:3px;background:rgba(10,8,6,.85);color:#F3D892}
   .die-label:empty{display:none}
@@ -276,14 +275,14 @@
     45%{transform:translate(-5px,3px)}60%{transform:translate(4px,-2px)}75%{transform:translate(-2px,1px)}}
   /* small die for the log, party row and stat card */
   /* the art sits on ::before so the gilded/dead filters never touch the number */
-  .mini-d20{position:relative;display:inline-flex;align-items:center;justify-content:center;width:30px;height:33px;
+  .mini-d20{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:33px;
     vertical-align:middle;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:12px;color:#F3D892}
   .mini-d20::before{content:'';position:absolute;inset:0;background:url("/assets/d20.webp") center/contain no-repeat}
   .mini-d20 b{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;
     border-radius:50%;background:rgba(10,8,6,.85);margin-top:3px}
-  .mini-d20.nat20::before{filter:sepia(1) saturate(2.4) brightness(1.15) drop-shadow(0 0 5px rgba(255,196,80,.9))}
+  .mini-d20.nat20::before{background-image:url("/assets/d20-nat20.webp")}
   .mini-d20.nat20 b{color:#FFF4CC}
-  .mini-d20.nat1::before{filter:grayscale(1) brightness(.6)}
+  .mini-d20.nat1::before{background-image:url("/assets/d20-nat1.webp")}
   .mini-d20.nat1 b{color:#FF6B7D}
   .ev.roll .amt{min-width:52px;display:flex;justify-content:flex-end}
   .ev.roll.nat20{background:#2A2110}
@@ -1279,6 +1278,9 @@ function scheduleNextArrival(){
 // no shake - the die just appears on its face.
 const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const TIER_LABEL={nat20:'NATURAL 20',nat1:'NATURAL 1'};
+const DIE_ART={nat20:'/assets/d20-nat20.webp',nat1:'/assets/d20-nat1.webp'};
+// warm the cache so the gilded/cracked die swaps in on the landing frame
+Object.values(DIE_ART).forEach(src=>{const im=new Image();im.src=src;});
 let rolling=false,skipRoll=null;
 const miniDie=roll=>roll?`<span class="mini-d20 ${roll.tier}"><span class="vh">Rolled </span><b>${roll.face}</b></span>`:'';
 function countTo(el,to){
@@ -1298,6 +1300,7 @@ function rollStage(roll){
     const land=()=>{
       if(landed)return;landed=true;clearInterval(spin);
       die.classList.remove('tumble');die.classList.add(roll.tier);
+      if(DIE_ART[roll.tier])$('dieImg').src=DIE_ART[roll.tier];
       face.textContent=roll.face;
       lab.textContent=TIER_LABEL[roll.tier]||'';lab.className='die-label '+roll.tier;
       if(big&&navigator.vibrate)try{navigator.vibrate(roll.tier==='nat20'?[30,40,30,40,140]:[260]);}catch{}
@@ -1308,7 +1311,7 @@ function rollStage(roll){
       st.classList.remove('on');st.onclick=null;
       setTimeout(()=>{st.hidden=true;resolve();},REDUCED?0:180);
     };
-    die.className='die';face.textContent='';lab.textContent='';
+    die.className='die';face.textContent='';lab.textContent='';$('dieImg').src='/assets/d20.webp';
     st.hidden=false;void st.offsetWidth;st.classList.add('on');
     st.onclick=finish;skipRoll=finish;
     if(REDUCED){land();timers.push(setTimeout(finish,big?1400:900));return;}
@@ -1987,12 +1990,7 @@ show('week');
 </script>
 <div class="dice-stage" id="diceStage" hidden aria-hidden="true">
   <div class="die" id="dieBody">
-    <img src="/assets/d20.webp" alt="">
-    <svg class="crack" viewBox="0 0 150 168" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M58 18 L70 52 L60 70 L78 96 L66 122 L84 150" stroke="#0A0806" stroke-width="5"/>
-      <path d="M58 18 L70 52 L60 70 L78 96 L66 122 L84 150" stroke="#9A8C70" stroke-width="1.4"/>
-      <path d="M78 96 L104 104 L118 128" stroke="#0A0806" stroke-width="4"/>
-      <path d="M78 96 L104 104 L118 128" stroke="#9A8C70" stroke-width="1.2"/></g></svg>
+    <img src="/assets/d20.webp" alt="" id="dieImg">
     <div class="face" id="dieFace"></div>
   </div>
   <div class="die-label" id="dieLabel"></div>
