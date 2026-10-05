@@ -35,6 +35,15 @@ pairs.push(
   ['go button','#FFFFFF','#9E0E22',TEXT],
   ['go disabled','#E8DFC9','#4A4136',TEXT],
   ['badge','#FFFFFF','#B00C26',TEXT],
+  // d20 reveal: number on a rgba(10,8,6,.86) disc over the die's brightest
+  // highlight (#FEFDF9) composites to #2C2A28; the label and the log's
+  // mini die sit on rgba(10,8,6,.85) over white at worst -> #2F2D2B
+  ['die face','#F3D892','#2C2A28',TEXT],['die face nat20','#FFF4CC','#2C2A28',TEXT],
+  ['die face nat1','#FF5A6E','#2C2A28',TEXT],
+  ['die label','#F3D892','#2F2D2B',TEXT],['die label nat1','#FF6B7D','#2F2D2B',TEXT],
+  ['mini die','#F3D892','#2F2D2B',TEXT],['mini die nat1','#FF6B7D','#2F2D2B',TEXT],
+  ['roll row nat20',dark.ink,'#2A2110',TEXT],['roll row nat1',dark.ink,'#1A1716',TEXT],
+  ['roll row nat1 faint',dark.faint,'#1A1716',TEXT],['roll row nat20 faint',dark.faint,'#2A2110',TEXT],
   ['crit row',dark.ink,'#231012',TEXT],['crit amount',dark.live,'#231012',TEXT],
   ['current floor row name',dark.live,'#231012',TEXT],
   ['your guild row',dark.ink,'#2B2518',TEXT],

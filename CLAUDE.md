@@ -241,6 +241,15 @@ with chances to make some. Against 2026 weeks 1–4: 8 natural 20s and 3 natural
 61 games. Flavor text for each class and tier lives in `public/roll-copy.js`, picked
 deterministically per player and week.
 
+The reveal (`commit()` → `rollStage()` in `public/index.html`): tapping an arrived card
+throws `public/assets/d20.webp` center-screen. It tumbles about 0.9s while random faces
+flicker, then lands on the real face. A natural 20 gilds and bursts, a natural 1 goes gray,
+cracks and shakes, and both buzz on Android. Then the unchanged commit math runs. Room HP
+counts down while a gold trail catches up. The log, the party row and the stat card keep a
+small die. Tap or Esc skips; reduced motion shows the face with no tumble or shake. The
+gilded and cracked dice are CSS filters plus an inline SVG crack for now, standing in until
+the dedicated art lands.
+
 ## Guild comparison (decided)
 
 **Both, week first.** The Guild tab shows the last completed week's head-to-head

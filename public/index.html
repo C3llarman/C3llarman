@@ -235,6 +235,67 @@
   .skip{position:absolute;left:-9999px;background:#000;color:#fff;padding:10px}
   .skip:focus{left:8px;top:8px;z-index:9}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+  /* ---- the d20 reveal (rollFor() in formulas.js decides the face; this is
+     only the theatre). Number sits on a dark disc so it clears AA over the
+     die's brightest highlight (check-contrast.mjs: die face / die label). ---- */
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .dice-stage{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:14px;cursor:pointer;
+    background:radial-gradient(circle at 50% 46%,rgba(0,0,0,.72),rgba(0,0,0,.35) 45%,rgba(0,0,0,0) 75%);
+    opacity:0;transition:opacity .18s}
+  .dice-stage.on{opacity:1}
+  .dice-stage[hidden]{display:none}
+  .die{position:relative;width:150px;height:168px}
+  .die img{width:100%;height:100%;display:block;filter:drop-shadow(0 12px 16px rgba(0,0,0,.75))}
+  .die .face{position:absolute;left:50%;top:53.4%;transform:translate(-50%,-50%);
+    width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle,rgba(10,8,6,.86) 62%,rgba(10,8,6,0) 72%);
+    font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:34px;color:#F3D892;
+    font-variant-numeric:tabular-nums;text-shadow:0 2px 3px #000}
+  .die .crack{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
+  .die.tumble{animation:hff-tumble .9s cubic-bezier(.2,.75,.3,1)}
+  @keyframes hff-tumble{0%{transform:translateY(-55vh) rotate(-620deg) scale(.55)}
+    68%{transform:translateY(8px) rotate(14deg) scale(1.06)}84%{transform:translateY(-5px) rotate(-5deg) scale(.99)}
+    100%{transform:none}}
+  .die.nat20 img{filter:sepia(1) saturate(2.4) brightness(1.18) hue-rotate(-6deg) drop-shadow(0 0 22px rgba(255,196,80,.95))}
+  .die.nat20 .face{color:#FFF4CC}
+  .die.nat20::before{content:'';position:absolute;inset:-60px;border-radius:50%;z-index:-1;
+    background:radial-gradient(circle,rgba(255,200,90,.55),rgba(192,16,42,.25) 45%,rgba(0,0,0,0) 70%);
+    animation:hff-burst .9s ease-out}
+  @keyframes hff-burst{0%{transform:scale(.3);opacity:0}30%{opacity:1}100%{transform:scale(1.25);opacity:.85}}
+  .die.nat1 img{filter:grayscale(1) brightness(.5) contrast(1.15) drop-shadow(0 12px 16px rgba(0,0,0,.75))}
+  .die.nat1 .face{color:#FF5A6E}
+  .die.nat1 .crack{opacity:1}
+  .die-label{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:20px;letter-spacing:.1em;
+    min-height:1px;padding:0 14px;border-radius:3px;background:rgba(10,8,6,.85);color:#F3D892}
+  .die-label:empty{display:none}
+  .die-label.nat1{color:#FF6B7D}
+  .shake{animation:hff-shake .42s linear}
+  @keyframes hff-shake{0%,100%{transform:none}15%{transform:translate(-7px,2px)}30%{transform:translate(6px,-3px)}
+    45%{transform:translate(-5px,3px)}60%{transform:translate(4px,-2px)}75%{transform:translate(-2px,1px)}}
+  /* small die for the log, party row and stat card */
+  /* the art sits on ::before so the gilded/dead filters never touch the number */
+  .mini-d20{position:relative;display:inline-flex;align-items:center;justify-content:center;width:30px;height:33px;
+    vertical-align:middle;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:12px;color:#F3D892}
+  .mini-d20::before{content:'';position:absolute;inset:0;background:url("/assets/d20.webp") center/contain no-repeat}
+  .mini-d20 b{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;
+    border-radius:50%;background:rgba(10,8,6,.85);margin-top:3px}
+  .mini-d20.nat20::before{filter:sepia(1) saturate(2.4) brightness(1.15) drop-shadow(0 0 5px rgba(255,196,80,.9))}
+  .mini-d20.nat20 b{color:#FFF4CC}
+  .mini-d20.nat1::before{filter:grayscale(1) brightness(.6)}
+  .mini-d20.nat1 b{color:#FF6B7D}
+  .ev.roll .amt{min-width:52px;display:flex;justify-content:flex-end}
+  .ev.roll.nat20{background:#2A2110}
+  .ev.roll.nat1{background:#1A1716}
+  /* the party row remembers how each member rolled */
+  .floorrow.t-nat20{box-shadow:inset 3px 0 0 #D9B460}
+  .floorrow.t-nat20 .sigil img{filter:drop-shadow(0 0 6px rgba(255,196,80,.85))}
+  .floorrow.t-nat1{box-shadow:inset 3px 0 0 #6B6359}
+  .floorrow.t-nat1 .sigil img{filter:grayscale(1) brightness(.7)}
+  .hpbar .hpfill{position:relative;z-index:1}
+  .hpghost{position:absolute;left:0;top:0;bottom:0;background:#E9C77B;opacity:.6;transition:width .7s ease .5s}
+  @media (prefers-reduced-motion:reduce){.die.tumble,.die.nat20::before,.shake{animation:none}}
   @media (max-width:440px){ .plate,.plate.narrow{float:none;width:74%;margin:0 auto 10px} .frame{margin:0 4px} }
   /* landscape encounter art (a whole flock, not one figure) gets the full width */
   .plate.wide{float:none;width:100%;margin:0 0 10px}
@@ -503,6 +564,7 @@
       <div class="line"><b>Hit Points</b> <span class="cond" id="rhp">900</span> <span class="cond" style="color:var(--faint)">/ <span id="rmax">900</span></span></div>
       <div class="hprow"><div class="hpbar" role="progressbar" aria-label="Horde hit points"
         aria-valuemin="0" aria-valuemax="900" aria-valuenow="900" id="rprog">
+        <div class="hpghost" id="rghost" style="width:100%"></div>
         <div class="hpfill" id="rfill" style="width:100%"></div></div></div>
       <div id="encScales" hidden>
         <div class="line"><b>Scales</b> <span class="cond" id="rscales"></span></div>
@@ -1014,7 +1076,8 @@ function nameInitial(name){
 function drawCompactRow(){
   $('wkparty').innerHTML=party.map((u,i)=>{
     const traveling=u.state==='traveling', arrived=u.state==='arrived';
-    const rowCls=(arrived?' now':'')+(traveling?' sealed':'');
+    const spent=u.state==='spent',roll=RESULTS[i]&&RESULTS[i].roll;
+    const rowCls=(arrived?' now':'')+(traveling?' sealed':'')+(spent&&roll?' t-'+roll.tier:'');
     const tapAttrs=arrived?` role="button" tabindex="0" aria-label="Commit ${u.cls}'s drive"`:'';
     const r=RESULTS[i];
     const dmgText=traveling?'—':(r.dmg?'−'+r.dmg:'—');
@@ -1028,7 +1091,7 @@ function drawCompactRow(){
           ${ko?`<div class="st">${ko}</div>`:''}
         </div>
       </div>
-      <div class="num">${dmgText}</div>
+      <div class="num">${spent?miniDie(roll)+' ':''}${dmgText}</div>
     </div>`;}).join('');
   party.forEach((u,i)=>{
     if(u.state!=='arrived')return;
@@ -1106,8 +1169,10 @@ function drawRoom(){
     return;
   }
   const v=Math.max(0,Math.round(roomHp));
-  $('rhp').textContent=v; $('rmax').textContent=roomMax;
+  countTo($('rhp'),v); $('rmax').textContent=roomMax;
   $('rfill').style.width=Math.max(0,roomHp/roomMax*100)+'%';
+  // gold trail that catches up half a second later - the size of the hit
+  $('rghost').style.width=Math.max(0,roomHp/roomMax*100)+'%';
   $('rprog').setAttribute('aria-valuenow',v);
   $('rprog').setAttribute('aria-valuemax',roomMax);
   if(isPlated()){
@@ -1208,7 +1273,62 @@ function scheduleNextArrival(){
   if(done||arrivalIdx>=ARRIVAL_ORDER.length)return;
   setTimeout(()=>{arriveNext();scheduleNextArrival();},5000+Math.random()*10000);
 }
-function commit(i){
+// ---- the d20 reveal: theatre only. rollFor() already decided the face from
+// the box score; this throws the die, lands it there, then the existing
+// commit math runs untouched. Tap (or Esc) skips. Reduced motion: no tumble,
+// no shake - the die just appears on its face.
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const TIER_LABEL={nat20:'NATURAL 20',nat1:'NATURAL 1'};
+let rolling=false,skipRoll=null;
+const miniDie=roll=>roll?`<span class="mini-d20 ${roll.tier}"><span class="vh">Rolled </span><b>${roll.face}</b></span>`:'';
+function countTo(el,to){
+  const from=parseInt(el.textContent,10);
+  cancelAnimationFrame(el._anim);
+  if(REDUCED||!Number.isFinite(from)||from===to){el.textContent=to;return;}
+  const t0=performance.now(),dur=650;
+  const step=t=>{const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
+    el.textContent=Math.round(from+(to-from)*e);if(k<1)el._anim=requestAnimationFrame(step);};
+  el._anim=requestAnimationFrame(step);
+}
+function rollStage(roll){
+  return new Promise(resolve=>{
+    const st=$('diceStage'),die=$('dieBody'),face=$('dieFace'),lab=$('dieLabel');
+    const big=roll.tier==='nat20'||roll.tier==='nat1';
+    const timers=[];let spin=null,landed=false,over=false;
+    const land=()=>{
+      if(landed)return;landed=true;clearInterval(spin);
+      die.classList.remove('tumble');die.classList.add(roll.tier);
+      face.textContent=roll.face;
+      lab.textContent=TIER_LABEL[roll.tier]||'';lab.className='die-label '+roll.tier;
+      if(big&&navigator.vibrate)try{navigator.vibrate(roll.tier==='nat20'?[30,40,30,40,140]:[260]);}catch{}
+      if(big&&!REDUCED){const w=$('p-week');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');}
+    };
+    const finish=()=>{
+      if(over)return;over=true;timers.forEach(clearTimeout);land();skipRoll=null;
+      st.classList.remove('on');st.onclick=null;
+      setTimeout(()=>{st.hidden=true;resolve();},REDUCED?0:180);
+    };
+    die.className='die';face.textContent='';lab.textContent='';
+    st.hidden=false;void st.offsetWidth;st.classList.add('on');
+    st.onclick=finish;skipRoll=finish;
+    if(REDUCED){land();timers.push(setTimeout(finish,big?1400:900));return;}
+    die.classList.add('tumble');
+    spin=setInterval(()=>{face.textContent=1+Math.floor(Math.random()*20);},70);
+    timers.push(setTimeout(land,900));
+    timers.push(setTimeout(finish,big?2400:1700));
+  });
+}
+document.addEventListener('keydown',e=>{if(skipRoll&&(e.key==='Escape'||e.key==='Enter'||e.key===' ')){e.preventDefault();skipRoll();}});
+async function commit(i){
+  if(done||rolling)return;
+  const u=party[i];
+  if(!u||u.state!=='arrived')return;
+  const r=RESULTS[i];
+  if(r&&r.roll){rolling=true;try{await rollStage(r.roll);}finally{rolling=false;}}
+  if(done||u.state!=='arrived')return;
+  applyCommit(i);
+}
+function applyCommit(i){
   // Once the floor's already fallen (or held), further taps on any
   // still-'arrived' card shouldn't keep dealing damage - without this,
   // a card tapped after finish() already fired would update the live
@@ -1217,6 +1337,7 @@ function commit(i){
   const u=party[i];
   if(u.state!=='arrived')return;
   const r=RESULTS[i];
+  if(r.roll)ev(`roll ${r.roll.tier}`,miniDie(r.roll),`<i>${r.rollLine}</i>`);
   const isBoss=CURRENT_FLOOR&&CURRENT_FLOOR.mechanic==='horde-mother';
   // Party HP effects (the Wall's soak, take, heal, every clamp) are
   // real physical wear from that week's games - they apply no matter
@@ -1301,6 +1422,7 @@ function renderStatCard(cleared,xp){
       <img class="sc-sig" src="${SIG[slot]}" alt="">
       <div class="sc-nm">${u.cls.toUpperCase()}</div>
       <div class="sc-stat">${statLine(slot)}</div>
+      ${r&&r.roll&&u.state==='spent'?miniDie(r.roll):''}
       ${amt}
     </div>`;
   }).join('');
@@ -1863,5 +1985,17 @@ TABS.forEach((t,i)=>{
 show('week');
 
 </script>
+<div class="dice-stage" id="diceStage" hidden aria-hidden="true">
+  <div class="die" id="dieBody">
+    <img src="/assets/d20.webp" alt="">
+    <svg class="crack" viewBox="0 0 150 168" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M58 18 L70 52 L60 70 L78 96 L66 122 L84 150" stroke="#0A0806" stroke-width="5"/>
+      <path d="M58 18 L70 52 L60 70 L78 96 L66 122 L84 150" stroke="#9A8C70" stroke-width="1.4"/>
+      <path d="M78 96 L104 104 L118 128" stroke="#0A0806" stroke-width="4"/>
+      <path d="M78 96 L104 104 L118 128" stroke="#9A8C70" stroke-width="1.2"/></g></svg>
+    <div class="face" id="dieFace"></div>
+  </div>
+  <div class="die-label" id="dieLabel"></div>
+</div>
 </body>
 </html>
