@@ -160,29 +160,34 @@ function bossTurnovers(r){ return (r.int||0) + (r.fumblesLost||0); }
 // was going to die anyway, most weeks) not to change who clears the
 // floor.
 //
-// Resolves one week's Horde Mother state from a starting {soldiers,
-// bossHp}. Only weekly-aggregate stats exist, not the real order events
-// happened in-game, so this nets the WHOLE week's turnovers and first
-// downs first (order-independent - a turnover and a first down from
-// different plays days apart can't be sequenced from this data anyway),
-// then checks the week's total touchdowns against that single resulting
-// soldier count. The alternative - resolving slot by slot - would make
-// a player's own touchdown depend on whether their OWN first down
-// happened to be processed before it, an artifact this data has no real
-// answer for either way, so the simpler, order-independent version is
-// the more honest one.
-export function resolveHordeMotherWeek(startState, weekReal){
-  let turnovers=0, firstDowns=0, touchdowns=0;
-  for(const slot of ['tactician','hunter','rogue']){
-    const r=weekReal[slot];
-    if(!r||!r.hasStats)continue;
-    turnovers+=bossTurnovers(r);
-    firstDowns+=r.firstDowns||0;
-    touchdowns+=r.td||0;
+// Resolves the week in the order it actually happened: each drive's own
+// turnovers and first downs, then its touchdowns against the soldiers
+// standing at that moment (resolveHordeMotherDrive), walked in kickoff
+// order. Same-game ties go Tactician, Hunter, Rogue - weekly totals
+// can't say which play came first inside one game.
+//
+// The live page applies these same per-slot effects whatever order the
+// cards get tapped in, so the live run and the season replay always
+// land on the same soldiers and hits. Later games never change an
+// earlier drive's effect, so a week that's still being played resolves
+// the same way it will when it's final.
+const HORDE_SLOTS_ORDER=['tactician','hunter','rogue'];
+export function resolveHordeMotherWeekSequence(startState, weekReal){
+  const ko=s=>Date.parse(weekReal[s].kickoff)||0;
+  const order=HORDE_SLOTS_ORDER.filter(s=>weekReal[s]&&weekReal[s].hasStats)
+    .sort((a,b)=>ko(a)-ko(b)||HORDE_SLOTS_ORDER.indexOf(a)-HORDE_SLOTS_ORDER.indexOf(b));
+  let state={soldiers:startState.soldiers,bossHp:startState.bossHp};
+  const perSlot={};
+  for(const s of order){
+    const d=resolveHordeMotherDrive(state,weekReal[s]);
+    perSlot[s]={bornSoldiers:d.bornSoldiers,killedSoldiers:d.killedSoldiers,bossDamage:d.bossDamage};
+    state={soldiers:d.soldiers,bossHp:d.bossHp};
   }
-  const soldiers=Math.max(0,startState.soldiers+turnovers-firstDowns);
-  const bossHp=soldiers===0?Math.max(0,startState.bossHp-touchdowns):startState.bossHp;
-  return {soldiers,bossHp,defeated:bossHp<=0};
+  return {perSlot,soldiers:state.soldiers,bossHp:state.bossHp,defeated:state.bossHp<=0};
+}
+export function resolveHordeMotherWeek(startState, weekReal){
+  const {soldiers,bossHp,defeated}=resolveHordeMotherWeekSequence(startState, weekReal);
+  return {soldiers,bossHp,defeated};
 }
 
 // Per-commit version for live play, where a real tap order exists (the
