@@ -1148,11 +1148,22 @@ const drives=[
 ];
 // Not called here: REAL is null until boot() below fetches it.
 
+// A member still traveling whose game has since gone final - the arrival
+// queue already walked past them (rolled before their game finished), so
+// they need a second pass. Without this the run was stuck for the whole
+// week: the queue is exhausted and saved, so later stats never arrived.
+const hasNewArrivals=()=>party.some(p=>p.state==='traveling'&&REAL[p.k].hasStats);
 function updateGoLabel(){
   if(done){$('go').textContent='WEEK COMPLETE';$('go').disabled=true;return;}
+  if(arrivalIdx>=ARRIVAL_ORDER.length&&hasNewArrivals()){
+    $('go').textContent='NEW STATS IN — ROLL AGAIN';
+    $('go').disabled=false;
+    return;
+  }
   if(arrivalIdx>=ARRIVAL_ORDER.length){
-    const anyArrived=party.some(p=>p.state!=='traveling');
-    $('go').textContent=anyArrived?'ALL ARRIVED — TAP CARDS TO COMMIT':'NOTHING FINAL YET';
+    const toCommit=party.some(p=>p.state==='arrived');
+    const anyIn=party.some(p=>p.state!=='traveling');
+    $('go').textContent=toCommit?'TAP CARDS TO COMMIT':anyIn?'WAITING ON LATER GAMES — CHECK BACK':'NOTHING FINAL YET';
     $('go').disabled=true;
     return;
   }
@@ -1164,7 +1175,9 @@ function updateGoLabel(){
 // otherwise it stays traveling and the log says so, but the queue still
 // advances so later slots (whose games may already be final) get their turn.
 function arriveNext(){
-  if(done||arrivalIdx>=ARRIVAL_ORDER.length)return;
+  // Skip anyone who already arrived or committed on an earlier pass.
+  while(arrivalIdx<ARRIVAL_ORDER.length&&party[ARRIVAL_ORDER[arrivalIdx]].state!=='traveling')arrivalIdx++;
+  if(done||arrivalIdx>=ARRIVAL_ORDER.length){updateGoLabel();saveRun();return;}
   const i=ARRIVAL_ORDER[arrivalIdx],u=party[i];
   arrivalIdx++;
   if(REAL[u.k].hasStats){
@@ -1529,8 +1542,11 @@ async function boot(){
     }
   }
   $('go').onclick=()=>{
-    if(done||arrivalIdx>0)return;
-    $('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
+    if(done)return;
+    const rerun=arrivalIdx>=ARRIVAL_ORDER.length&&hasNewArrivals();
+    if(arrivalIdx>0&&!rerun)return;
+    if(rerun)arrivalIdx=0;
+    if(!$('log'))$('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
     arriveNext();
     scheduleNextArrival();
   };
