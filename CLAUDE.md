@@ -83,6 +83,15 @@ lists starters who are ruled out or haven't played all season
 (`scripts/report-injuries.mjs`); who to bench stays a human call. It can be run by hand from
 the Actions tab.
 
+GitHub's cron is best-effort, so the Week tab never dead-ends on "waiting": once the arrival
+queue has run and someone is still traveling, the button reads **Check for scores**. A tap
+re-reads the week file (the page may predate the last deploy), then POSTs
+`/api/check-scores` (`netlify/functions/check-scores.mjs`), which dispatches `refresh.yml`
+only if no run has *succeeded* in the last 3 hours (`CHECK_EVERY_MS`) — the hourly cron
+counts, so in practice it only fires when the cron has stalled. The page then polls and
+reloads when the week file changes. Needs Netlify env var `HFF_GITHUB_TOKEN` (fine-grained
+PAT on this repo, Actions: read and write); without it the button says so and nothing breaks.
+
 ### Known data problem — do not paper over this
 
 **O-line has almost no public box-score data.** Pancakes aren't tracked; pressure rate

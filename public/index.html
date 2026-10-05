@@ -186,6 +186,8 @@
   .reset .chev{font-family:'Archivo Narrow',Arial,sans-serif;font-size:13px;transition:transform .2s}
   .reset[aria-expanded="true"] .chev{transform:rotate(180deg)}
   .go[hidden],.reset[hidden]{display:none}
+  .checknote{margin:-4px 4px 14px;text-align:center;color:var(--faint);font-size:15px}
+  .checknote[hidden]{display:none}
   .go:focus-visible,.reset:focus-visible{outline:3px solid #F3D892;outline-offset:3px}
   .plate-lore .reset:focus-visible{outline-color:#17120D}
 
@@ -631,6 +633,7 @@
   </details>
 
   <button class="go" id="go">ROLL FOR THE WEEK</button>
+  <p class="checknote" id="checkNote" role="status" aria-live="polite" hidden></p>
   <button class="reset" id="reset" hidden>Start the run over</button>
   <div id="logwrap"></div>
   <div id="verdict" role="status" aria-live="polite"></div>
@@ -1282,15 +1285,81 @@ function updateGoLabel(){
     return;
   }
   if(arrivalIdx>=ARRIVAL_ORDER.length){
-    const toCommit=party.some(p=>p.state==='arrived');
-    const anyIn=party.some(p=>p.state!=='traveling');
-    $('go').textContent=toCommit?'TAP CARDS TO COMMIT':anyIn?'WAITING ON LATER GAMES — CHECK BACK':'NOTHING FINAL YET';
+    if(waitingOnGames()){
+      $('go').textContent=checking?'CHECKING…':'CHECK FOR SCORES';
+      $('go').disabled=checking;
+      return;
+    }
+    $('go').textContent='TAP CARDS TO COMMIT';
     $('go').disabled=true;
     return;
   }
   if(arrivalIdx>0){$('go').textContent='ARRIVALS INCOMING…';$('go').disabled=true;return;}
   $('go').textContent='ROLL FOR THE WEEK';
   $('go').disabled=false;
+}
+// ---- "check for new scores": the waiting state is a button, not a dead end.
+// Stats reach the site only through the hourly refresh workflow, so a tap
+// (1) re-reads this week's file in case the page predates the last refresh,
+// then (2) asks /api/check-scores (netlify/functions/check-scores.mjs) to
+// run that workflow now - which it only does if no check has succeeded in
+// the last 3 hours. While one runs, poll the week file and reload the moment
+// it changes; the run checkpoint (saveRun) brings the page straight back to
+// "NEW STATS IN — ROLL AGAIN".
+let WEEK_URL=null,WEEK_TEXT=null,checking=false;
+const waitingOnGames=()=>!party.some(p=>p.state==='arrived')&&party.some(p=>p.state==='traveling');
+function checkNote(msg){const n=$('checkNote');n.hidden=!msg;n.textContent=msg||'';}
+function ago(iso){
+  const m=Math.round((Date.now()-new Date(iso).getTime())/60000);
+  return m<1?'just now':m<60?`${m} min ago`:`${Math.round(m/60*10)/10} hr ago`;
+}
+async function weekFileChanged(){
+  try{
+    const cw=await (await fetch('/data/current-week.json',{cache:'no-store'})).json();
+    if(`${cw.season}:${cw.week}`!==WEEK_SEED)return true;
+    const res=await fetch(WEEK_URL,{cache:'no-store'});
+    return res.ok&&(await res.text())!==WEEK_TEXT;
+  }catch{return false;}
+}
+async function scoreCheck(method){
+  try{const res=await fetch('/api/check-scores',{method,cache:'no-store'});return await res.json();}
+  catch{return {error:'offline'};}
+}
+async function checkScores(){
+  if(checking)return;
+  checking=true;updateGoLabel();
+  checkNote('Looking for new stats…');
+  if(await weekFileChanged()){checkNote('New stats are in. Loading…');location.reload();return;}
+  const r=await scoreCheck('POST');
+  if(r.running){
+    checkNote(r.started
+      ?'Fetching the latest box scores. New stats land here in a few minutes — this page picks them up on its own.'
+      :'A score check is already running. This page picks up anything new on its own.');
+    waitForCheck(Date.now());
+    return;
+  }
+  checking=false;updateGoLabel();
+  if(r.error){checkNote(`Couldn't reach the score check (${r.error}). Scores still refresh hourly on their own.`);return;}
+  checkNote(r.lastCheck
+    ?`Scores were checked ${ago(r.lastCheck)} and nothing new has posted for this party. Checks run hourly; this button forces one when none has run for ${Math.round(r.checkEveryMs/3600000)} hours.`
+    :'No score check has run yet. Try again in a minute.');
+}
+// The workflow finishing isn't the end - Netlify still has to deploy what
+// it committed - so keep watching the file a few minutes past that.
+function waitForCheck(startedAt){
+  const tick=async()=>{
+    if(await weekFileChanged()){checkNote('New stats are in. Loading…');location.reload();return;}
+    const r=await scoreCheck('GET');
+    const finishedAt=r.lastCheck?new Date(r.lastCheck).getTime():0;
+    const settled=!r.running&&finishedAt>startedAt&&Date.now()-finishedAt>4*60000;
+    if(settled||Date.now()-startedAt>15*60000){
+      checking=false;updateGoLabel();
+      checkNote('Check finished — the stats source hasn\'t posted anything new for this party yet. Scores still refresh hourly on their own.');
+      return;
+    }
+    setTimeout(tick,30000);
+  };
+  setTimeout(tick,30000);
 }
 // A slot only actually arrives once its game is final (REAL[k].hasStats) -
 // otherwise it stays traveling and the log says so, but the queue still
@@ -1613,9 +1682,11 @@ async function boot(){
     // Absolute (leading slash), not relative - this page can now be
     // reached at /ninth-circle etc. via a netlify.toml rewrite, and a
     // relative path would resolve differently there than at "/".
-    const res=await fetch(`/data/weeks/${season}/week-${weekStr}/${partyId}.json`);
+    WEEK_URL=`/data/weeks/${season}/week-${weekStr}/${partyId}.json`;
+    const res=await fetch(WEEK_URL);
     if(!res.ok)throw new Error(`HTTP ${res.status} for party "${partyId}"`);
-    data=await res.json();
+    WEEK_TEXT=await res.text();
+    data=JSON.parse(WEEK_TEXT);
     WEEK_SEED=`${data.season}:${data.week}`;
   }catch(err){
     renderFetchError(err.message);
@@ -1779,6 +1850,7 @@ async function boot(){
   }
   $('go').onclick=()=>{
     if(done)return;
+    if(arrivalIdx>=ARRIVAL_ORDER.length&&!hasNewArrivals()&&waitingOnGames()){checkScores();return;}
     const rerun=arrivalIdx>=ARRIVAL_ORDER.length&&hasNewArrivals();
     if(arrivalIdx>0&&!rerun)return;
     if(rerun)arrivalIdx=0;
