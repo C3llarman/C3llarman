@@ -1670,6 +1670,14 @@ async function boot(){
   // renderStatCard() reads it for the card's header line.
   runKey=`hff:run:${data.season}:${data.week}:${partyId}`;
   runApiUrl=`/api/run?party=${encodeURIComponent(partyId)}&season=${data.season}&week=${data.week}`;
+  // ?reset=1 wipes this party's run for this week (server + this device) so
+  // the whole reveal can be replayed - nothing else changes: the damage
+  // comes from the box score either way, and bench swaps live elsewhere.
+  if(new URLSearchParams(location.search).has('reset')){
+    try{await fetch(runApiUrl,{method:'DELETE'});}catch{}
+    try{localStorage.removeItem(runKey);}catch{}
+    history.replaceState(null,'',location.pathname);
+  }
   let savedRun=null;
   try{
     const runRes=await fetch(runApiUrl);
