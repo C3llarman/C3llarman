@@ -248,11 +248,13 @@
   .dice-stage[hidden]{display:none}
   .die{position:relative;width:180px;height:176px}
   .die img{width:100%;height:100%;display:block;filter:drop-shadow(0 12px 16px rgba(0,0,0,.75))}
-  .die .face{position:absolute;left:50%;top:53.4%;transform:translate(-50%,-50%);
-    width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle,rgba(10,8,6,.86) 62%,rgba(10,8,6,0) 72%);
-    font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:34px;color:#F3D892;
-    font-variant-numeric:tabular-nums;text-shadow:0 2px 3px #000}
+  /* engraved numeral, no backing disc: a 1.5px black-iron outline ring is
+     what the fill is measured against (check-contrast: die face), plus a
+     soft smoke shadow so it sits into the face rather than on top of it */
+  .die .face{position:absolute;left:50%;top:53.4%;transform:translate(-50%,-50%);line-height:1;
+    font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:38px;color:#F3D892;
+    font-variant-numeric:tabular-nums;
+    text-shadow:0 0 1px #0A0806,1.5px 0 0 #0A0806,-1.5px 0 0 #0A0806,0 1.5px 0 #0A0806,0 -1.5px 0 #0A0806,1.2px 1.2px 0 #0A0806,-1.2px -1.2px 0 #0A0806,1.2px -1.2px 0 #0A0806,-1.2px 1.2px 0 #0A0806,0 0 10px rgba(10,8,6,.95),0 3px 8px rgba(0,0,0,.9)}
   .die.tumble{animation:hff-tumble .9s cubic-bezier(.2,.75,.3,1)}
   @keyframes hff-tumble{0%{transform:translateY(-55vh) rotate(-620deg) scale(.55)}
     68%{transform:translateY(8px) rotate(14deg) scale(1.06)}84%{transform:translateY(-5px) rotate(-5deg) scale(.99)}
@@ -265,10 +267,24 @@
     background:radial-gradient(circle,rgba(255,200,90,.55),rgba(192,16,42,.25) 45%,rgba(0,0,0,0) 70%);
     animation:hff-burst .9s ease-out}
   @keyframes hff-burst{0%{transform:scale(.3);opacity:0}30%{opacity:1}100%{transform:scale(1.25);opacity:.85}}
-  .die.nat1 .face{color:#FF5A6E;width:50px;height:50px;font-size:28px}
+  .die.nat1 .face{color:#FF6B7D}
   .die-label{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:20px;letter-spacing:.1em;
     min-height:1px;padding:0 14px;border-radius:3px;background:rgba(10,8,6,.85);color:#F3D892}
   .die-label:empty{display:none}
+  .die-cap{font-family:'Archivo Narrow',Arial,sans-serif;font-size:15px;letter-spacing:.02em;
+    padding:2px 12px;border-radius:3px;background:rgba(10,8,6,.85);color:#C9BFA8;margin-top:-6px}
+  .die-cap:empty{display:none}
+  /* the key under the party row: what the die is, and what each band means */
+  .die-key{margin-top:12px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .die-key summary{min-height:56px;display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;
+    font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--gild)}
+  .die-key summary::-webkit-details-marker{display:none}
+  .die-key summary::after{content:'▾';margin-left:auto;font-family:'Archivo Narrow',Arial,sans-serif;transition:transform .2s}
+  .die-key[open] summary::after{transform:rotate(180deg)}
+  .die-key summary:focus-visible{outline:3px solid #F3D892;outline-offset:2px}
+  .die-key .kp{font-size:15.5px;margin:0 0 10px;color:var(--ink)}
+  .die-key .krow{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:15.5px;color:var(--ink)}
+  .die-key .krow .n{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;min-width:44px;color:var(--gild)}
   .die-label.nat1{color:#FF6B7D}
   .shake{animation:hff-shake .42s linear}
   @keyframes hff-shake{0%,100%{transform:none}15%{transform:translate(-7px,2px)}30%{transform:translate(6px,-3px)}
@@ -278,8 +294,8 @@
   .mini-d20{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:33px;
     vertical-align:middle;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:12px;color:#F3D892}
   .mini-d20::before{content:'';position:absolute;inset:0;background:url("/assets/d20.webp") center/contain no-repeat}
-  .mini-d20 b{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;
-    border-radius:50%;background:rgba(10,8,6,.85);margin-top:3px}
+  .mini-d20 b{position:relative;margin-top:3px;font-size:13px;line-height:1;
+    text-shadow:1px 0 0 #0A0806,-1px 0 0 #0A0806,0 1px 0 #0A0806,0 -1px 0 #0A0806,0 0 4px rgba(10,8,6,.95)}
   .mini-d20.nat20::before{background-image:url("/assets/d20-nat20.webp")}
   .mini-d20.nat20 b{color:#FFF4CC}
   .mini-d20.nat1::before{background-image:url("/assets/d20-nat1.webp")}
@@ -589,6 +605,16 @@
   <h3 class="sec">THE PARTY</h3>
   <div class="bar thin"></div>
   <div id="wkparty"></div>
+  <details class="die-key" id="dieKey">
+    <summary><span class="mini-d20" aria-hidden="true"><b>20</b></span>How the die works</summary>
+    <div class="kp">Every drive throws a d20, but <b>the die never changes the damage</b> — the box score already decided that. The die shows how this game stacked up against the player's <i>usual</i>: their own earlier games this season.</div>
+    <div class="krow"><span class="mini-d20 nat20" aria-hidden="true"><b>20</b></span><span class="n">20</span>A huge game, even for them</div>
+    <div class="krow"><span class="mini-d20 strong" aria-hidden="true"><b>16</b></span><span class="n">13–19</span>Better than their usual</div>
+    <div class="krow"><span class="mini-d20 par" aria-hidden="true"><b>10</b></span><span class="n">8–12</span>About their usual</div>
+    <div class="krow"><span class="mini-d20 weak" aria-hidden="true"><b>5</b></span><span class="n">2–7</span>Well short of their usual</div>
+    <div class="krow"><span class="mini-d20 nat1" aria-hidden="true"><b>1</b></span><span class="n">1</span>Nothing at all — not a single play that counts</div>
+    <div class="kp" style="margin-top:8px;color:var(--faint)">Natural 20s and 1s leave a mark on the party row for the rest of the week.</div>
+  </details>
 
   <button class="go" id="go">ROLL FOR THE WEEK</button>
   <button class="reset" id="reset" hidden>Start the run over</button>
@@ -610,6 +636,7 @@
     <figcaption>A rogue, mid-carry</figcaption>
   </figure>
   <div class="trait"><b>One of each.</b> Six classes, six slots. You cannot stack two hunters and hope.</div>
+  <div class="trait"><b>The die reads the box score.</b> Every drive throws a d20, but it never changes the damage. It shows how the game stacked up against the player's usual: 20 for a huge game, 1 for nothing at all.</div>
   <div class="trait"><b>The floor is revealed first.</b> You see the encounter before lineups lock. Starting the lower projection is sometimes correct.</div>
   <div class="trait"><b>The party persists.</b> Wounds carry between weeks. Experience accrues to the character, not the slot.</div>
   <div class="trait"><b>You play the dungeon, not a rival.</b> Everyone faces the same rooms, so every run is comparable.</div>
@@ -1277,12 +1304,15 @@ function scheduleNextArrival(){
 // commit math runs untouched. Tap (or Esc) skips. Reduced motion: no tumble,
 // no shake - the die just appears on its face.
 const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const TIER_LABEL={nat20:'NATURAL 20',nat1:'NATURAL 1'};
+const TIER_LABEL={nat20:'NATURAL 20',strong:'STRONG ROLL',par:'STEADY ROLL',weak:'POOR ROLL',nat1:'NATURAL 1'};
+// matches the "How the die works" key under the party row
+const TIER_CAPTION={nat20:'A huge game, even for them',strong:'Better than their usual game',
+  par:'About their usual game',weak:'Well short of their usual game',nat1:'Nothing at all'};
 const DIE_ART={nat20:'/assets/d20-nat20.webp',nat1:'/assets/d20-nat1.webp'};
 // warm the cache so the gilded/cracked die swaps in on the landing frame
 Object.values(DIE_ART).forEach(src=>{const im=new Image();im.src=src;});
 let rolling=false,skipRoll=null;
-const miniDie=roll=>roll?`<span class="mini-d20 ${roll.tier}"><span class="vh">Rolled </span><b>${roll.face}</b></span>`:'';
+const miniDie=roll=>roll?`<span class="mini-d20 ${roll.tier}" title="d20 ${roll.face}: ${TIER_CAPTION[roll.tier]}"><span class="vh">Rolled </span><b>${roll.face}</b><span class="vh">, ${TIER_CAPTION[roll.tier]}. </span></span>`:'';
 function countTo(el,to){
   const from=parseInt(el.textContent,10);
   cancelAnimationFrame(el._anim);
@@ -1303,6 +1333,7 @@ function rollStage(roll){
       if(DIE_ART[roll.tier])$('dieImg').src=DIE_ART[roll.tier];
       face.textContent=roll.face;
       lab.textContent=TIER_LABEL[roll.tier]||'';lab.className='die-label '+roll.tier;
+      $('dieCap').textContent=TIER_CAPTION[roll.tier]||'';
       if(big&&navigator.vibrate)try{navigator.vibrate(roll.tier==='nat20'?[30,40,30,40,140]:[260]);}catch{}
       if(big&&!REDUCED){const w=$('p-week');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');}
     };
@@ -1311,7 +1342,7 @@ function rollStage(roll){
       st.classList.remove('on');st.onclick=null;
       setTimeout(()=>{st.hidden=true;resolve();},REDUCED?0:180);
     };
-    die.className='die';face.textContent='';lab.textContent='';$('dieImg').src='/assets/d20.webp';
+    die.className='die';face.textContent='';lab.textContent='';$('dieCap').textContent='';$('dieImg').src='/assets/d20.webp';
     st.hidden=false;void st.offsetWidth;st.classList.add('on');
     st.onclick=finish;skipRoll=finish;
     if(REDUCED){land();timers.push(setTimeout(finish,big?1400:900));return;}
@@ -1994,6 +2025,7 @@ show('week');
     <div class="face" id="dieFace"></div>
   </div>
   <div class="die-label" id="dieLabel"></div>
+  <div class="die-cap" id="dieCap"></div>
 </div>
 </body>
 </html>

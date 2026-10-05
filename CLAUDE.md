@@ -249,6 +249,11 @@ counts down while a gold trail catches up. The log, the party row and the stat c
 small die. Tap or Esc skips; reduced motion shows the face with no tumble or shake. The gilded and cracked dice are their own art (`d20-nat20.webp`, `d20-nat1.webp`), cut in
 the same frame as `d20.webp` so the swap on landing doesn't jump. Sources are in
 `reference/assets/`.
+Die numbers are engraved numerals with a 1.5px black-iron outline (no backing disc). The
+outline is what the contrast check measures them against. Every roll is captioned on the
+stage (tier name plus "better than / about / well short of their usual game"). The
+"How the die works" key under the party row and a Tavern rule explain that the die never
+changes the damage.
 
 ## Guild comparison (decided)
 
