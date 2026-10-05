@@ -323,7 +323,8 @@ async function main() {
       seasonType,
       generatedAt: new Date().toISOString(),
       source: url,
-      scheduleSource: schedule ? schedulePath : null,
+      // repo-relative, so the file is identical whichever machine runs this
+      scheduleSource: schedule ? path.relative(ROOT, schedulePath) : null,
       party: { id: party.id, name: party.name },
       lockedAt: lockedAtFor(real),
       ...real,

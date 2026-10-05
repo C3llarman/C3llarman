@@ -2,9 +2,9 @@
   "season": 2026,
   "week": 4,
   "seasonType": "REG",
-  "generatedAt": "2026-10-05T05:53:36.257Z",
+  "generatedAt": "2026-10-05T05:54:00.213Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
-  "scheduleSource": "/home/runner/work/C3llarman/C3llarman/data/schedule/2026.json",
+  "scheduleSource": "data/schedule/2026.json",
   "party": {
     "id": "ashen-coalition",
     "name": "Ashen Coalition"
