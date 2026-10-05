@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 4,
   "seasonType": "REG",
-  "generatedAt": "2026-10-04T23:25:25.143Z",
+  "generatedAt": "2026-10-05T01:16:50.671Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "/home/user/C3llarman/data/schedule/2026.json",
   "party": {
@@ -313,9 +313,9 @@
     "homeAway": "away",
     "kickoff": "2026-10-04T16:25:00-04:00",
     "name": "Cameron Dicker",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 3,
+    "att": 3,
+    "hasStats": true,
     "form": {
       "games": 3,
       "lines": [
