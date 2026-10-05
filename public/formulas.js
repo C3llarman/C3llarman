@@ -237,3 +237,67 @@ export function projectSlot(k, lines, mechanic='swarm', armor=0){
     low:Math.min(...d), high:Math.max(...d),
     strips:lines.reduce((s,r)=>s+scaleStrips(k,r),0)/lines.length};
 }
+
+// The d20 - theatre, not chance. Every number was already decided by the
+// box score; the die only READS it, so the same stat line always lands
+// on the same face (reload, another device, the season replay - all
+// agree). The face answers one question: did this player hit their
+// number? It compares this game's raw production (dmgParts, no floor
+// scaling - the floor's rules show up in the damage, the die is about
+// the player) against what this player usually does.
+//
+// "Usually" = their own earlier games this season (the same form.lines
+// projections use), pulled toward a class baseline as if the baseline
+// were ROLL_PRIOR_GAMES extra games. Without that pull, a player with one
+// or two games of history makes nearly every week look like a new best
+// or a new worst. Baselines are 2026 weeks 1-4 means for these
+// rosters (stars, not league average).
+//
+// q = this game / usual, against that class's "big game" ratio (BIG):
+//   q >= BIG          20      a real outlier for this kind of player
+//   1.0 <= q < BIG    13-19   above usual
+//   0.6 <= q < 1.0    8-12    around it
+//   0   <  q < 0.6    2-7     well short
+//   nothing           1       0 production with chances to make some
+// BIG differs by class because volatility does: a quarterback's output
+// barely swings week to week (428 yards is only ~1.4x a usual star QB
+// week), while a pass rusher is 0 or 2 sacks.
+// The Wall is scored on sacks allowed (fewer is better); 6+ is a collapse.
+export const ROLL_BASELINE={tactician:200,hunter:170,rogue:120,breaker:90,mender:28,wall:2.3};
+export const ROLL_PRIOR_GAMES=2;
+export const ROLL_BIG={tactician:1.35,hunter:1.7,rogue:1.8,breaker:2.2,mender:2.0,wall:2.5};
+function rawProduction(k,r){const {volume,burst}=dmgParts(k,r);return volume+burst;}
+function usual(k,values){
+  const n=values.length,b=ROLL_BASELINE[k];
+  // floored at 90% of the baseline: one dud week shouldn't make the next
+  // ordinary game look like an outlier
+  return Math.max(0.9*b,(values.reduce((a,c)=>a+c,0)+b*ROLL_PRIOR_GAMES)/(n+ROLL_PRIOR_GAMES));
+}
+function faceFromRatio(q,big){
+  if(q>=big)return 20;
+  if(q>=1)return Math.min(19,13+Math.round(6*(q-1)/(big-1)));
+  if(q>=0.6)return Math.min(12,8+Math.round(4*(q-0.6)/0.4));
+  return Math.max(2,Math.min(7,2+Math.round(5*q/0.6)));
+}
+export function rollTier(face){
+  return face===20?'nat20':face>=13?'strong':face>=8?'par':face>=2?'weak':'nat1';
+}
+export function rollFor(k,r){
+  if(!r||!r.hasStats)return null;
+  const lines=(r.form&&r.form.lines)||[];
+  let face;
+  if(k==='wall'){
+    const u=usual('wall',lines.map(l=>l.sacksAllowed));
+    face=r.sacksAllowed>=6?1:faceFromRatio((u+1)/(r.sacksAllowed+1),ROLL_BIG.wall);
+  }else{
+    const v=rawProduction(k,r);
+    // a kicker never sent out isn't a botch - just a quiet day
+    if(v===0)face=k==='mender'&&!r.att?4:1;
+    else{
+      // a kicker's no-attempt weeks say nothing about the kicker
+      const played=k==='mender'?lines.filter(l=>l.att>0):lines;
+      face=faceFromRatio(v/usual(k,played.map(l=>rawProduction(k,l))),ROLL_BIG[k]);
+    }
+  }
+  return {face,tier:rollTier(face)};
+}

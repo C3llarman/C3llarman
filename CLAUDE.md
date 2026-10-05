@@ -229,6 +229,18 @@ adjustment. Injury tags come from nflverse's weekly injury report. Players on IR
 drop off that report rather than being listed as Out, so "No games yet this season"
 is what flags them.
 
+## The d20 (decided: theatre, not chance)
+
+Each drive gets a d20 face from `rollFor()` in `public/formulas.js`. It **reads** the box
+score and never changes a number, so the same stat line always lands on the same face.
+Raw production (no floor scaling) vs the player's usual: their own earlier games this
+season, pulled toward a class baseline as if it were 2 extra games, floored at 90% of the
+baseline. Fixed ratio bands, plus a per-class "big game" ratio for the 20 (`ROLL_BIG`:
+quarterback output barely swings, a pass rusher's is 0 or 2 sacks). 1 = zero production
+with chances to make some. Against 2026 weeks 1–4: 8 natural 20s and 3 natural 1s in
+61 games. Flavor text for each class and tier lives in `public/roll-copy.js`, picked
+deterministically per player and week.
+
 ## Guild comparison (decided)
 
 **Both, week first.** The Guild tab shows the last completed week's head-to-head
