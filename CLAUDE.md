@@ -73,6 +73,16 @@ Netlify, connected to this repo.
   A snake draft is real-time multiplayer and is most of the engineering — it does not
   test the thing worth testing (does reading the floor and setting a lineup feel good).
 
+### Automation (decided)
+
+`.github/workflows/refresh.yml` runs hourly on GitHub. It flattens the current week from
+nflverse, runs `scripts/advance-week.mjs` (a no-op until the week's last game is 6h past
+kickoff), and commits any change in `data/` to main, which Netlify deploys. It commits only
+real changes, since the flatten script skips timestamp-only rewrites. Each run's summary
+lists starters who are ruled out or haven't played all season
+(`scripts/report-injuries.mjs`); who to bench stays a human call. It can be run by hand from
+the Actions tab.
+
 ### Known data problem — do not paper over this
 
 **O-line has almost no public box-score data.** Pancakes aren't tracked; pressure rate

@@ -330,6 +330,15 @@ async function main() {
     };
 
     const file = path.join(dir, `${party.id}.json`);
+    // Skip the write when nothing but the timestamp would change, so an
+    // unattended hourly refresh doesn't commit (and redeploy) a no-op.
+    const strip = o => JSON.stringify({ ...o, generatedAt: null });
+    let previous = null;
+    try { previous = JSON.parse(await readFile(file, 'utf8')); } catch {}
+    if (previous && strip(previous) === strip(output)) {
+      console.log(`Unchanged ${file}`);
+      continue;
+    }
     await writeFile(file, JSON.stringify(output, null, 2) + '\n');
 
     const hasStatsCount = ['tactician', 'hunter', 'rogue', 'breaker', 'mender', 'wall']

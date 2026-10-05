@@ -1,0 +1,65 @@
+# Keeps the league live without anyone (or any chat) babysitting it.
+# Every hour: pull the current week's stats from nflverse, advance the
+# week once its last game is 6h past kickoff (scripts/advance-week.mjs is
+# a no-op until then), and commit any data change straight to main, which
+# Netlify deploys. Commits happen only when data actually changed - the
+# stats script skips timestamp-only rewrites.
+#
+# The one human step - who to bench - can't be automated, so each run's
+# summary lists starters who are ruled out or haven't played all season.
+# Run it by hand any time: Actions tab > "Refresh league data" > Run workflow.
+name: Refresh league data
+
+on:
+  schedule:
+    - cron: '23 * * * *'   # hourly, off the top of the hour (GitHub's busiest minute)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-league-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Refresh this week's stats, advance the week if it's over
+        run: |
+          SEASON=$(node -p "require('./data/current-week.json').season")
+          WEEK=$(node -p "require('./data/current-week.json').week")
+          echo "Season $SEASON, week $WEEK"
+          node scripts/flatten-player-stats.mjs --season "$SEASON" --week "$WEEK"
+          node scripts/advance-week.mjs --season "$SEASON"
+
+      - name: Commit and push data changes
+        run: |
+          if git diff --quiet -- data/; then
+            echo "No data changes."
+            exit 0
+          fi
+          OLD=$(git show HEAD:data/current-week.json | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).week")
+          NEW=$(node -p "require('./data/current-week.json').week")
+          if [ "$OLD" != "$NEW" ]; then MSG="Week $OLD final; advance to week $NEW"; else MSG="Week $NEW: stats refresh"; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "$MSG"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: Lineup check
+        if: always()
+        run: node scripts/report-injuries.mjs >> "$GITHUB_STEP_SUMMARY"
