@@ -275,6 +275,20 @@
     padding:2px 12px;border-radius:3px;background:rgba(10,8,6,.85);color:#C9BFA8;margin-top:-6px}
   .die-cap:empty{display:none}
   /* the key under the party row: what the die is, and what each band means */
+  /* campaign log pennant doubles as the "this week so far" toggle */
+  .logtoggle{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:44px;
+    font:inherit;letter-spacing:inherit;color:inherit}
+  .logtoggle .chev{font-family:'Archivo Narrow',Arial,sans-serif;font-size:13px;transition:transform .2s}
+  .logtoggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .logtoggle:focus-visible{outline:3px solid #F3D892;outline-offset:3px}
+  .recap{margin:4px 0 12px;padding:2px 10px;border:1px solid var(--hair);background:rgba(10,8,6,.35)}
+  .recap .rhead{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:14px;letter-spacing:.06em;color:var(--gild);padding:8px 0 4px}
+  .recap .rrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--hair);font-size:15.5px;color:var(--ink)}
+  .recap .rrow:last-child{border-bottom:0}
+  .recap .rnm{flex:1}
+  .recap .rst{font-size:14.5px;color:var(--faint);font-style:italic}
+  .recap .ramt{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;color:var(--rule);text-align:right}
+  .recap .rtot .ramt{color:var(--ink)}
   .die-key{margin-top:12px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
   .die-key summary{min-height:56px;display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;
     font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--gild)}
@@ -1362,6 +1376,44 @@ async function commit(i){
   if(done||u.state!=='arrived')return;
   applyCommit(i);
 }
+// Campaign log shell. The pennant is a button that opens "This week so far":
+// every drive already committed, rebuilt from RESULTS (deterministic from
+// the box score) - so it's complete even after a reload, when the live log
+// itself starts empty.
+function ensureLog(){
+  if($('log'))return;
+  $('logwrap').innerHTML='<h3 class="sec"><button class="logtoggle" id="logToggle" aria-expanded="false" aria-controls="logRecap">CAMPAIGN LOG <span class="chev" aria-hidden="true">▾</span></button></h3>'+
+    '<div class="bar"></div><div class="recap" id="logRecap" hidden></div><div id="log" aria-live="polite"></div>';
+  $('logToggle').onclick=()=>{
+    const open=$('logToggle').getAttribute('aria-expanded')!=='true';
+    $('logToggle').setAttribute('aria-expanded',String(open));
+    $('logRecap').hidden=!open;
+    if(open)renderRecap();
+  };
+}
+function recapAmt(slot,r){
+  const isBoss=CURRENT_FLOOR&&CURRENT_FLOOR.mechanic==='horde-mother';
+  if(isBoss)return ['tactician','rogue','hunter'].includes(slot)?`${REAL[slot].td||0} TD`:slot==='mender'?`+${r.heal}`:'—';
+  if(slot==='wall')return 'soak';
+  if(slot==='mender')return `${r.dmg?'−'+r.dmg+' · ':''}+${r.heal}`;
+  return r.dmg?`−${r.dmg}`:'—';
+}
+function renderRecap(){
+  const el=$('logRecap');if(!el)return;
+  const isBoss=CURRENT_FLOOR&&CURRENT_FLOOR.mechanic==='horde-mother';
+  const spent=ARRIVAL_ORDER.filter(i=>party[i].state==='spent');
+  const waiting=party.filter(u=>u.state==='arrived').length;
+  const rows=spent.map(i=>{const u=party[i],r=RESULTS[i];
+    return `<div class="rrow">${miniDie(r.roll)}<div class="rnm"><b>${u.cls}</b> · ${u.who||u.team}<div class="rst">${statLine(u.k)}</div></div><div class="ramt">${recapAmt(u.k,r)}</div></div>`;}).join('');
+  const total=spent.reduce((a,i)=>a+(RESULTS[i].dmg||0),0);
+  el.innerHTML=`<div class="rhead">This week so far</div>`+
+    (rows||'<div class="rst" style="padding:8px 0">No drives committed yet this week.</div>')+
+    (spent.length&&!isBoss?`<div class="rrow rtot"><div class="rnm"><b>Total damage</b></div><div class="ramt">−${total}</div></div>`:'')+
+    (spent.length&&isBoss?`<div class="rrow rtot"><div class="rnm"><b>The Horde Mother</b></div><div class="ramt">${Math.max(0,bossHp)} / ${CURRENT_FLOOR.maxHp} hits · ${soldiers} soldier${soldiers===1?'':'s'}</div></div>`:'')+
+    (waiting?`<div class="rst" style="padding:6px 0">${done
+      ?`The floor fell before ${waiting===1?'one more':waiting+' more'} could strike.`
+      :`${waiting} more arrived and waiting — tap their cards to commit.`}</div>`:'');
+}
 function applyCommit(i){
   // Once the floor's already fallen (or held), further taps on any
   // still-'arrived' card shouldn't keep dealing damage - without this,
@@ -1408,6 +1460,7 @@ function applyCommit(i){
     ev('take','−'+r.take,`Attrition. The Wall absorbs ${applied.soak}; ${u.cls} takes ${r.take-applied.soak}.`);
   }
   u.state='spent';
+  if($('logRecap')&&!$('logRecap').hidden)renderRecap();
   drawParty();drawCompactRow();drawRoom();
   checkFinish();
   saveRun();
@@ -1704,14 +1757,15 @@ async function boot(){
       renderVerdict(cleared,wounded,xp);
       renderStatCard(cleared,xp);
       $('reset').hidden=false;
+      ensureLog();
     } else if(arrivalIdx>0){
       // Picked back up mid-run: the log itself isn't replayed (only the
       // numbers a fresh commit() needs are checkpointed - see saveRun()),
       // but RESULTS is deterministic from REAL+subs, already recomputed
       // above, so remaining arrivals and any already-'arrived' card still
       // resolve to exactly the same numbers they would have originally.
-      $('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
-      ev('','','Picking back up this run where it left off.');
+      ensureLog();
+      ev('','','Picking back up this run where it left off. Tap Campaign Log above for the drives already committed.');
       scheduleNextArrival();
     }
   }
@@ -1720,7 +1774,7 @@ async function boot(){
     const rerun=arrivalIdx>=ARRIVAL_ORDER.length&&hasNewArrivals();
     if(arrivalIdx>0&&!rerun)return;
     if(rerun)arrivalIdx=0;
-    if(!$('log'))$('logwrap').innerHTML='<h3 class="sec">CAMPAIGN LOG</h3><div class="bar"></div><div id="log" aria-live="polite"></div>';
+    ensureLog();
     arriveNext();
     scheduleNextArrival();
   };
