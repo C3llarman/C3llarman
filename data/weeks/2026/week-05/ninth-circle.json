@@ -1,0 +1,403 @@
+{
+  "season": 2026,
+  "week": 5,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-06T09:12:32.436Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "ninth-circle",
+    "name": "Ninth Circle"
+  },
+  "lockedAt": "2026-10-11T13:00:00-04:00",
+  "tactician": {
+    "team": "BAL",
+    "opponent": "ATL",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T20:20:00-04:00",
+    "name": "Lamar Jackson",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "y": 324,
+          "td": 1,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 1,
+          "firstDowns": 11
+        },
+        {
+          "y": 235,
+          "td": 1,
+          "sk": 3,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 11
+        },
+        {
+          "y": 186,
+          "td": 2,
+          "sk": 0,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 11
+        },
+        {
+          "y": 222,
+          "td": 2,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 10
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "PHI",
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T09:30:00-04:00",
+        "name": "Jalen Hurts",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "y": 203,
+              "td": 3,
+              "sk": 3,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 6
+            },
+            {
+              "y": 264,
+              "td": 2,
+              "sk": 3,
+              "int": 2,
+              "fumblesLost": 0,
+              "firstDowns": 16
+            },
+            {
+              "y": 153,
+              "td": 0,
+              "sk": 2,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 6
+            },
+            {
+              "y": 93,
+              "td": 2,
+              "sk": 4,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "DET",
+    "opponent": "ARI",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T16:25:00-04:00",
+    "name": "Jahmyr Gibbs",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "y": 156,
+          "td": 2,
+          "car": 29,
+          "fumblesLost": 0,
+          "firstDowns": 14
+        },
+        {
+          "y": 52,
+          "td": 0,
+          "car": 16,
+          "fumblesLost": 0,
+          "firstDowns": 2
+        },
+        {
+          "y": 99,
+          "td": 2,
+          "car": 20,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 46,
+          "td": 1,
+          "car": 15,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "PHI",
+        "opponent": "JAX",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T09:30:00-04:00",
+        "name": "Saquon Barkley",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "y": 83,
+              "td": 0,
+              "car": 15,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 9,
+              "td": 0,
+              "car": 4,
+              "fumblesLost": 0,
+              "firstDowns": 0
+            },
+            {
+              "y": 82,
+              "td": 0,
+              "car": 15,
+              "fumblesLost": 0,
+              "firstDowns": 4
+            },
+            {
+              "y": 8,
+              "td": 0,
+              "car": 2,
+              "fumblesLost": 0,
+              "firstDowns": 0
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "CIN",
+    "opponent": "MIA",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T13:00:00-04:00",
+    "name": "Ja'Marr Chase",
+    "y": 0,
+    "c": 0,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "y": 12,
+          "c": 2,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 1
+        },
+        {
+          "y": 75,
+          "c": 7,
+          "td": 2,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 98,
+          "c": 9,
+          "td": 1,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 27,
+          "c": 3,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 1
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "HOU",
+        "opponent": "TEN",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T13:00:00-04:00",
+        "name": "Nico Collins",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "y": 75,
+              "c": 7,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            },
+            {
+              "y": 118,
+              "c": 7,
+              "td": 2,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "breaker": {
+    "team": "HOU",
+    "opponent": "TEN",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T13:00:00-04:00",
+    "name": "Will Anderson Jr.",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "sk": 0.5,
+          "tfl": 0
+        },
+        {
+          "sk": 1,
+          "tfl": 3
+        },
+        {
+          "sk": 2.5,
+          "tfl": 3
+        },
+        {
+          "sk": 0.5,
+          "tfl": 1
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "LA",
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-10-12T20:15:00-04:00",
+        "name": "Myles Garrett",
+        "sk": 0,
+        "tfl": 0,
+        "hasStats": false,
+        "form": {
+          "games": 0,
+          "lines": []
+        },
+        "injury": null
+      }
+    ]
+  },
+  "mender": {
+    "team": "LAC",
+    "opponent": "DEN",
+    "homeAway": "home",
+    "kickoff": "2026-10-11T16:05:00-04:00",
+    "name": "Cameron Dicker",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "fg": 0,
+          "att": 0
+        },
+        {
+          "fg": 0,
+          "att": 1
+        },
+        {
+          "fg": 3,
+          "att": 4
+        },
+        {
+          "fg": 3,
+          "att": 3
+        }
+      ]
+    },
+    "injury": null
+  },
+  "wall": {
+    "team": "DET",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "ARI",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T16:25:00-04:00",
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "sacksAllowed": 1
+        },
+        {
+          "sacksAllowed": 4
+        },
+        {
+          "sacksAllowed": 2
+        },
+        {
+          "sacksAllowed": 1
+        }
+      ]
+    }
+  }
+}

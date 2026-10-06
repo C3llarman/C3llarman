@@ -1,30 +1,30 @@
 {
   "season": 2026,
-  "week": 4,
+  "week": 5,
   "seasonType": "REG",
-  "generatedAt": "2026-10-06T09:12:31.520Z",
+  "generatedAt": "2026-10-06T09:12:32.430Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
     "id": "ashen-coalition",
     "name": "Ashen Coalition"
   },
-  "lockedAt": "2026-10-04T13:00:00-04:00",
+  "lockedAt": "2026-10-08T20:15:00-04:00",
   "tactician": {
     "team": "BUF",
-    "opponent": "NE",
-    "homeAway": "home",
-    "kickoff": "2026-10-04T13:00:00-04:00",
+    "opponent": "LA",
+    "homeAway": "away",
+    "kickoff": "2026-10-12T20:15:00-04:00",
     "name": "Josh Allen",
-    "y": 253,
-    "td": 1,
-    "sk": 1,
-    "int": 1,
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "int": 0,
     "fumblesLost": 0,
-    "firstDowns": 9,
-    "hasStats": true,
+    "firstDowns": 0,
+    "hasStats": false,
     "form": {
-      "games": 3,
+      "games": 4,
       "lines": [
         {
           "y": 334,
@@ -49,6 +49,14 @@
           "int": 2,
           "fumblesLost": 1,
           "firstDowns": 10
+        },
+        {
+          "y": 253,
+          "td": 1,
+          "sk": 1,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 9
         }
       ]
     },
@@ -56,19 +64,19 @@
     "bench": [
       {
         "team": "KC",
-        "opponent": "LV",
-        "homeAway": "away",
-        "kickoff": "2026-10-04T16:25:00-04:00",
+        "opponent": null,
+        "homeAway": null,
+        "kickoff": null,
         "name": "Patrick Mahomes",
-        "y": 225,
-        "td": 2,
-        "sk": 2,
+        "y": 0,
+        "td": 0,
+        "sk": 0,
         "int": 0,
         "fumblesLost": 0,
-        "firstDowns": 9,
-        "hasStats": true,
+        "firstDowns": 0,
+        "hasStats": false,
         "form": {
-          "games": 3,
+          "games": 4,
           "lines": [
             {
               "y": 184,
@@ -93,31 +101,35 @@
               "int": 1,
               "fumblesLost": 0,
               "firstDowns": 11
+            },
+            {
+              "y": 225,
+              "td": 2,
+              "sk": 2,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 9
             }
           ]
         },
-        "injury": {
-          "status": null,
-          "practice": "Full Participation in Practice",
-          "injury": "Knee"
-        }
+        "injury": null
       }
     ]
   },
   "rogue": {
     "team": "ATL",
-    "opponent": "NO",
-    "homeAway": "away",
-    "kickoff": "2026-10-05T20:15:00-04:00",
+    "opponent": "BAL",
+    "homeAway": "home",
+    "kickoff": "2026-10-11T20:20:00-04:00",
     "name": "Bijan Robinson",
-    "y": 145,
-    "td": 2,
-    "car": 19,
+    "y": 0,
+    "td": 0,
+    "car": 0,
     "fumblesLost": 0,
-    "firstDowns": 6,
-    "hasStats": true,
+    "firstDowns": 0,
+    "hasStats": false,
     "form": {
-      "games": 3,
+      "games": 4,
       "lines": [
         {
           "y": 83,
@@ -139,6 +151,13 @@
           "car": 29,
           "fumblesLost": 0,
           "firstDowns": 11
+        },
+        {
+          "y": 145,
+          "td": 2,
+          "car": 19,
+          "fumblesLost": 0,
+          "firstDowns": 6
         }
       ]
     },
@@ -146,9 +165,9 @@
     "bench": [
       {
         "team": "MIA",
-        "opponent": "MIN",
-        "homeAway": "away",
-        "kickoff": "2026-10-04T16:05:00-04:00",
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T13:00:00-04:00",
         "name": "De'Von Achane",
         "y": 0,
         "td": 0,
@@ -188,18 +207,18 @@
   },
   "hunter": {
     "team": "DET",
-    "opponent": "CAR",
+    "opponent": "ARI",
     "homeAway": "away",
-    "kickoff": "2026-10-04T20:20:00-04:00",
+    "kickoff": "2026-10-11T16:25:00-04:00",
     "name": "Amon-Ra St. Brown",
-    "y": 75,
-    "c": 8,
+    "y": 0,
+    "c": 0,
     "td": 0,
     "fumblesLost": 0,
-    "firstDowns": 4,
-    "hasStats": true,
+    "firstDowns": 0,
+    "hasStats": false,
     "form": {
-      "games": 3,
+      "games": 4,
       "lines": [
         {
           "y": 67,
@@ -221,6 +240,13 @@
           "td": 1,
           "fumblesLost": 0,
           "firstDowns": 2
+        },
+        {
+          "y": 75,
+          "c": 8,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 4
         }
       ]
     },
@@ -228,18 +254,18 @@
     "bench": [
       {
         "team": "LA",
-        "opponent": "PHI",
-        "homeAway": "away",
-        "kickoff": "2026-10-04T13:00:00-04:00",
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-10-12T20:15:00-04:00",
         "name": "Puka Nacua",
-        "y": 125,
-        "c": 9,
+        "y": 0,
+        "c": 0,
         "td": 0,
         "fumblesLost": 0,
-        "firstDowns": 5,
-        "hasStats": true,
+        "firstDowns": 0,
+        "hasStats": false,
         "form": {
-          "games": 1,
+          "games": 2,
           "lines": [
             {
               "y": 74,
@@ -247,28 +273,31 @@
               "td": 0,
               "fumblesLost": 0,
               "firstDowns": 2
+            },
+            {
+              "y": 125,
+              "c": 9,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 5
             }
           ]
         },
-        "injury": {
-          "status": null,
-          "practice": "Full Participation in Practice",
-          "injury": "Hip"
-        }
+        "injury": null
       }
     ]
   },
   "breaker": {
     "team": "BUF",
-    "opponent": "NE",
-    "homeAway": "home",
-    "kickoff": "2026-10-04T13:00:00-04:00",
+    "opponent": "LA",
+    "homeAway": "away",
+    "kickoff": "2026-10-12T20:15:00-04:00",
     "name": "Greg Rousseau",
     "sk": 0,
     "tfl": 0,
-    "hasStats": true,
+    "hasStats": false,
     "form": {
-      "games": 3,
+      "games": 4,
       "lines": [
         {
           "sk": 2,
@@ -281,6 +310,10 @@
         {
           "sk": 2,
           "tfl": 4
+        },
+        {
+          "sk": 0,
+          "tfl": 0
         }
       ]
     },
@@ -288,9 +321,9 @@
     "bench": [
       {
         "team": "GB",
-        "opponent": "TB",
-        "homeAway": "away",
-        "kickoff": "2026-10-04T13:00:00-04:00",
+        "opponent": "CHI",
+        "homeAway": "home",
+        "kickoff": "2026-10-11T16:25:00-04:00",
         "name": "Micah Parsons",
         "sk": 0,
         "tfl": 0,
@@ -305,15 +338,15 @@
   },
   "mender": {
     "team": "DAL",
-    "opponent": "HOU",
-    "homeAway": "away",
-    "kickoff": "2026-10-04T13:00:00-04:00",
+    "opponent": "TB",
+    "homeAway": "home",
+    "kickoff": "2026-10-08T20:15:00-04:00",
     "name": "Brandon Aubrey",
-    "fg": 2,
-    "att": 4,
-    "hasStats": true,
+    "fg": 0,
+    "att": 0,
+    "hasStats": false,
     "form": {
-      "games": 3,
+      "games": 4,
       "lines": [
         {
           "fg": 0,
@@ -326,6 +359,10 @@
         {
           "fg": 3,
           "att": 4
+        },
+        {
+          "fg": 2,
+          "att": 4
         }
       ]
     },
@@ -333,13 +370,13 @@
   },
   "wall": {
     "team": "PHI",
-    "sacksAllowed": 4,
-    "hasStats": true,
-    "opponent": "LA",
-    "homeAway": "home",
-    "kickoff": "2026-10-04T13:00:00-04:00",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "JAX",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T09:30:00-04:00",
     "form": {
-      "games": 3,
+      "games": 4,
       "lines": [
         {
           "sacksAllowed": 3
@@ -349,6 +386,9 @@
         },
         {
           "sacksAllowed": 2
+        },
+        {
+          "sacksAllowed": 4
         }
       ]
     }
