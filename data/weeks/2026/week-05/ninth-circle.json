@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 5,
   "seasonType": "REG",
-  "generatedAt": "2026-10-06T09:12:32.436Z",
+  "generatedAt": "2026-10-08T07:34:53.690Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -60,7 +60,11 @@
         }
       ]
     },
-    "injury": null,
+    "injury": {
+      "status": null,
+      "practice": "Did Not Participate In Practice",
+      "injury": "Ankle"
+    },
     "bench": [
       {
         "team": "PHI",
@@ -257,7 +261,11 @@
         }
       ]
     },
-    "injury": null,
+    "injury": {
+      "status": null,
+      "practice": "Did Not Participate In Practice",
+      "injury": "Concussion"
+    },
     "bench": [
       {
         "team": "HOU",
@@ -290,7 +298,11 @@
             }
           ]
         },
-        "injury": null
+        "injury": {
+          "status": null,
+          "practice": "Limited Participation in Practice",
+          "injury": "Not injury related - resting player"
+        }
       }
     ]
   },
@@ -324,7 +336,11 @@
         }
       ]
     },
-    "injury": null,
+    "injury": {
+      "status": null,
+      "practice": "Did Not Participate In Practice",
+      "injury": "Ankle"
+    },
     "bench": [
       {
         "team": "LA",
