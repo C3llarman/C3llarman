@@ -169,7 +169,13 @@ Mobile-first bottom tab bar, **four tabs: Week, Tavern, Dungeon, Guild — Week 
 (Sunday is when people open it). One continuous blackened-steel bar; the selected tab is
 a red enamel inset with brass edging.
 
-- **Week** — this Sunday only: encounter, party row, arrivals, log, result.
+- **Week** — this Sunday only: encounter, party row, arrivals, log, result. Once the week
+  is done, a **Week in review** card (`#review`, `renderReview()`) sits under the stat card:
+  damage by class as a share of the week (iron bars, numbers printed beside them), what the
+  floor cost or gave (Swarm/Sentinel halving and doubling, Scaleback's armor, scales pried
+  loose), one takeaway line read off those numbers, and party HP start → end with attrition
+  and healing. All of it goes through `explainDamage()`; on Horde Mother weeks it shows first
+  downs, turnovers, soldiers and hits instead. Only committed cards count.
 - **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
 
 **What wins this floor.** One plain headline, on the Week tab's encounter block (above the
