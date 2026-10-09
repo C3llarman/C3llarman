@@ -1094,7 +1094,7 @@ function benchCount(i){
 // current starter on this floor (formulas.js compareSlot - no math here),
 // what the gap is made of, and a floor still ahead that would reverse it
 // when the projections genuinely say so. Thin samples say so.
-const MECH_NAME={swarm:'Swarm',sentinel:'Sentinel'};
+const FLIP_MECH_NAME={swarm:'Swarm',sentinel:'Sentinel'};
 const signed=(v,dp=0)=>{const r=Number(v.toFixed(dp));return r?(r>0?'+':'\u2212')+Math.abs(r).toFixed(dp):'±0';};
 function swapLine(k,starter,b){
   if(b.injury&&b.injury.status==='Out')return '';
@@ -1113,7 +1113,7 @@ function swapLine(k,starter,b){
   }
   if(!c.delta)return `Even with your starter on this floor${thin}`;
   const why=c.source?` (${RATES[k].filter(t=>t[0]===c.source).map(t=>t[2]).join(' & ')})`:'';
-  const flip=c.flip&&MECH_NAME[c.flip.mechanic]?` · ${signed(c.flip.delta)} on a ${MECH_NAME[c.flip.mechanic]} floor`:'';
+  const flip=c.flip&&FLIP_MECH_NAME[c.flip.mechanic]?` · ${signed(c.flip.delta)} on a ${FLIP_MECH_NAME[c.flip.mechanic]} floor`:'';
   return `<span class="proj">${signed(c.delta)}</span> on this floor${why}${flip}${thin}`;
 }
 function renderBench(i){
@@ -1381,7 +1381,7 @@ const multWord=x=>MULT_WORD[x]||`count ×${x}`;
 const MULT_SHORT={0.5:'half',2:'double'};
 const clsName=k=>FLAVOR[k].cls.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
 const listAnd=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
-const MECH_NAME={swarm:'Swarm',sentinel:'Sentinel',plated:'Plated','horde-mother':'Shielded boss'};
+// MECH_NAME (display name per mechanic) is declared once, with the briefing below
 const floorMech=()=>CURRENT_FLOOR?CURRENT_FLOOR.mechanic:'swarm';
 function floorWins(){
   const mech=floorMech();
