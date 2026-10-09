@@ -160,8 +160,18 @@ Mobile-first bottom tab bar, **four tabs: Week, Tavern, Dungeon, Guild — Week 
 (Sunday is when people open it). One continuous blackened-steel bar; the selected tab is
 a red enamel inset with brass edging.
 
-- **Week** — this Sunday only: encounter, party row, arrivals, log, result.
+- **Week** — this Sunday only: a three-sentence "How this works" primer, then encounter,
+  party row, arrivals, log, result. The primer (`#primer`, a `<details>`) is open until the
+  viewer finishes a run or taps "Got it", then folds to a one-line toggle; the flag is
+  `hff:primer` in localStorage (per-viewer convenience only: it ships open, so blocked
+  storage just leaves it open). It stays general; per-floor rules belong elsewhere. Its link
+  goes to the Tavern rules (`#rules`).
 - **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
+  "Rules of the Delve" is a numbered list of plain rules in the order a player needs them
+  (party, damage, floor first, bench and lock, hits and heals, floor HP carryover, wounds and
+  15% recovery with no death, the die, the Guild comparison), lore art after it. Every rule
+  must be backed by `public/formulas.js` or a decided rule here — no XP claims, since XP
+  isn't saved or used.
 - **Dungeon** — floor progression from `data/floors.json` + `data/season-state.json`:
   cleared / current / sealed.
 
