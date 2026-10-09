@@ -312,6 +312,24 @@ once the gap is unbridgeable; the weekly comparison resets every Sunday.
 - Results appear once a week is final (the replay only runs on completed weeks), so a
   live Sunday run is never compared against someone else's.
 
+## New-rules briefing
+
+Seven floors share four rule sets (swarm, horde-mother, plated, sentinel). On the first
+floor of a rule set the party hasn't fought under, the Week tab opens with a parchment
+briefing above the encounter art (`renderBriefing()` in `public/index.html`). "Hasn't
+fought under" = no *other* floor in the party's `season-state.json` history has that
+mechanic, so Floor I counts and the briefing stays up for every week of that first floor.
+It says what changed in plain sentences, then runs this party's own starters through
+the old rules and the new ones: each starter's typical game (season averages, rounded,
+so the line shown deals exactly the number beside it) through `explainDamage`, showing
+the starter the new rules suit best and the one they hurt most. The comparison is the
+last swarm/sentinel floor (plated armor is gone once the bear falls; Floor I compares
+against face value). Horde Mother walks the Tactician, Hunter and Rogue through
+`resolveHordeMotherDrive` instead. No games yet → a labelled example line, still through
+formulas.js. "Got it" folds it to a one-line "New rules on this floor" button that
+reopens it; folded state is per viewer in localStorage (`hff:brief:<party>:<mechanic>`),
+and without storage it just starts open each load.
+
 ## Open questions — do not silently decide these
 
 None open right now.
