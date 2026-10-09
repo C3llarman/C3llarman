@@ -58,6 +58,13 @@ pairs.push(
   ['guild rank medallion','#F3D892',G.medaldark.worst,TEXT],
   ['guild rank medallion (you)','#F3D892',G.medalred.worst,TEXT],
   ['guild history bar vs plate','#C0102A',G.plate.worst,UI],
+  // wounds: Bloodied/Down chips reuse each ground's gold/red (page, iron and
+  // plate sets above); the Week row's arrived (.now) state adds its own ground
+  ['status chip bloodied on current row',dark.rule,'#231012',TEXT],
+  ['status chip down on current row',dark.live,'#231012',TEXT],
+  // the floor's strike die (HTML/CSS d6): gold pips on black iron, iron on plate
+  ['strike die pip','#F3D892','#1E1B18',UI],
+  ['strike die body vs plate','#1E1B18',G.plate.worst,UI],
 );
 let bad=0;
 for(const[l,f,b,m]of pairs){const r=ratio(f,b);if(r<m)bad++;

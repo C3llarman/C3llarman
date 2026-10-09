@@ -30,7 +30,11 @@ Three separate currencies. Keeping them separate is the whole design — do not 
 - **Yards → damage.** The grind that chips a room down.
 - **Touchdowns → critical hits.** Burst.
 - **Hit points → wear and availability**, NOT production. A player who was shut down
-  and a player who got hurt must look different on the card.
+  and a player who got hurt must look different on the card. HP never *becomes* damage,
+  but it gates it: below half max HP a member is **Bloodied** and deals ×0.75; at 0 HP
+  they are **Down** and deal nothing (a Down Mender heals nothing). Status is fixed for the
+  week right after the floor's strike (see Season-progression rules), and is shown as a
+  chip on the Week party row and on each Tavern card's iron strip.
 
 Conversion rates (from the prototype, tune freely):
 
@@ -43,7 +47,8 @@ Conversion rates (from the prototype, tune freely):
 | The Rogue | Rush yds · TD | 1.3/yd · 60 |
 | The Mender | Made kicks | 14 dmg · 7 heal (max 9 to one member per drive) |
 
-HP drain: Tactician −6 per sack taken. Rogue −0.7 per carry. Wall absorbs 40% first.
+HP drain: the floor's weekly strike (d6 × floor id × 2, split six ways). Tactician −6 per
+sack taken. Rogue −0.7 per carry. Wall absorbs 40% of every other member's hit first.
 
 **XP comes from clearing rooms, not from points.** Fantasy points are already yards plus
 TDs; granting XP for them pays twice for the same production and lets the best roster run
@@ -257,6 +262,28 @@ progression was actually scoped:
   `data/floors.json`), it reads the same damage formulas `public/index.html` uses
   live — not a second copy that can drift out of sync with a tuning change.
 
+- **The floor strikes back (decided by the owner, 2026-10-09).** At the start of every
+  week, after the 15% recovery (unchanged), the floor strikes the party once:
+  total = d6 face × floor id (1–7) × 2, split evenly across the six (each share rounded).
+  The Wall takes its own share; every other share goes through the Wall's 40% soak while
+  the Wall has HP, exactly as attrition does (`applyDrive`). HP clamps at 0. The face is
+  **seeded, not random**: `strikeFace()` hashes (season, week, floor id) with FNV-1a, so
+  every party on that floor that week takes the same strike, it's shown on the Week tab
+  before lineups lock (part of the floor reveal), and the replay reproduces it.
+- **Bloodied / Down (decided by the owner, 2026-10-09).** Status is read once, from HP
+  right after the strike, and fixed for the whole week (attrition and heals during the
+  week move HP, not status), like the plated armor, so commit order never matters.
+  Below half max HP: **Bloodied**, ×0.75 on that member's damage after the floor
+  mechanic's scaling and before plated armor. 0 HP: **Down**, deals nothing, a Down
+  Mender heals nothing, strips no scales. A Down member's own sacks/carries still cost
+  HP (it's the game they played). On the Horde Mother a Down member's turnovers, first
+  downs and TDs don't count, and Bloodied has no effect (whole events can't be scaled).
+  HP belongs to the **slot**: a bench swap inherits the slot's HP and status (the replay
+  tracks HP per slot and can't see swaps). Constants (`STRIKE_DIE`, `STRIKE_MULT`,
+  `BLOODIED_AT`, `BLOODIED_FACTOR`) live in `public/formulas.js`, threaded through
+  `resolveDrive`, `explainDamage`, `projectSlot`/`compareSlot`, `scaleStrips` and the
+  Horde Mother sequence; `scripts/compute-season-state.mjs` applies the same strike and
+  status and records each week's `strike` and any non-ok `status` in its history.
 - **Plated floor (Floor IV, Old Scaleback — a bear armored like a pangolin).**
   `mechanic: "plated"`, with `scales` and `armorPerScale` on the floor in
   `data/floors.json`. Every drive loses `scales × armorPerScale` off the top (flat damage
@@ -290,6 +317,11 @@ Mother it compares first downs / TD / turnovers a game instead; the Wall, and sl
 can't touch the floor, get no line.
 
 ## The d20 (decided: theatre, not chance)
+
+Not to be confused with the floor's **strike die** (a d6, see Season-progression rules):
+that one *does* change numbers (party HP, and through Bloodied/Down, damage), but it is
+seeded from (season, week, floor id) and shared by every party on that floor that week,
+never rolled at the table. The d20 below never changes a number.
 
 Each drive gets a d20 face from `rollFor()` in `public/formulas.js`. It **reads** the box
 score and never changes a number, so the same stat line always lands on the same face.
