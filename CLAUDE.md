@@ -239,6 +239,16 @@ adjustment. Injury tags come from nflverse's weekly injury report. Players on IR
 drop off that report rather than being listed as Out, so "No games yet this season"
 is what flags them.
 
+Each bench option in the Tavern carries one line from `compareSlot()` in
+`public/formulas.js`: its projection minus the current starter's **on this floor**
+("−29 on this floor"), the term the gap comes from when one term alone explains it
+("(pass yds)", labels from `RATES`), and a floor still ahead whose mechanic would reverse
+the sign ("· +5 on a Sentinel floor"), claimed only when `projectSlot` under that mechanic
+actually flips. Flips only consider Swarm and Sentinel (a plated floor's armor depends on
+scales not yet known). A comparison resting on 1–2 games says "thin". On the Horde
+Mother it compares first downs / TD / turnovers a game instead; the Wall, and slots that
+can't touch the floor, get no line.
+
 ## The d20 (decided: theatre, not chance)
 
 Each drive gets a d20 face from `rollFor()` in `public/formulas.js`. It **reads** the box

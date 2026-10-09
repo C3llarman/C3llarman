@@ -272,6 +272,49 @@ export function projectSlot(k, lines, mechanic='swarm', armor=0){
     strips:lines.reduce((s,r)=>s+scaleStrips(k,r),0)/lines.length};
 }
 
+// Bench swap, explained: a bench alternate's projection against the
+// current starter's on THIS floor, plus where the gap comes from and
+// whether another floor still ahead would reverse it - the "start the
+// lower projection" call CLAUDE.md wants to be possible, made legible.
+// Everything is projectSlot/explainDamage on the same form.lines, so a
+// delta shown here can't disagree with either projection on the card.
+//
+//   {kind:'none'}                                    slot can't be compared (Wall, Mender vs Horde Mother)
+//   {kind:'nodata', games}                           one side has no games yet
+//   {kind:'horde', games, firstDowns, td, turnovers} per-game differences (bench - starter)
+//   {kind:'dmg', games, delta, source, flip}
+//       games  = the thinner sample of the two (the delta is only as solid as that)
+//       source = 'volume'|'burst'|null - only when that term alone accounts for the
+//                gap's direction and outweighs the other term
+//       flip   = {mechanic, delta} - the other mechanic (from `others`) where the
+//                sign actually reverses, largest reversal first; null if none does
+export function compareSlot(k, starterLines, benchLines, mechanic='swarm', armor=0, others=[]){
+  const s=projectSlot(k,starterLines,mechanic,armor), b=projectSlot(k,benchLines,mechanic,armor);
+  if(s.kind==='none'||b.kind==='none')return {kind:'none'};
+  const games=Math.min(s.games,b.games);
+  if(!games)return {kind:'nodata', games};
+  if(s.kind==='horde')return {kind:'horde', games,
+    firstDowns:b.firstDowns-s.firstDowns, td:b.td-s.td, turnovers:b.turnovers-s.turnovers};
+  const delta=b.mean-s.mean;
+  // per-game volume and burst damage after this floor's multipliers
+  const split=lines=>{
+    const e=lines.map(r=>explainDamage(k,r,mechanic));
+    return {v:e.reduce((a,x)=>a+x.volume*x.volMult,0)/e.length, u:e.reduce((a,x)=>a+x.burst*x.burstMult,0)/e.length};
+  };
+  const sp=split(starterLines), bp=split(benchLines);
+  const dv=bp.v-sp.v, du=bp.u-sp.u;
+  let source=null;
+  if(delta&&Math.sign(dv)===Math.sign(delta)&&Math.abs(dv)>Math.abs(du))source='volume';
+  else if(delta&&Math.sign(du)===Math.sign(delta)&&Math.abs(du)>Math.abs(dv))source='burst';
+  let flip=null;
+  for(const m of others){
+    if(m===mechanic||!(m in FLOOR_MECHANICS)||m==='plated')continue;
+    const d=projectSlot(k,benchLines,m).mean-projectSlot(k,starterLines,m).mean;
+    if(d&&delta&&Math.sign(d)!==Math.sign(delta)&&(!flip||Math.abs(d)>Math.abs(flip.delta)))flip={mechanic:m,delta:d};
+  }
+  return {kind:'dmg', games, delta, source, flip};
+}
+
 // The d20 - theatre, not chance. Every number was already decided by the
 // box score; the die only READS it, so the same stat line always lands
 // on the same face (reload, another device, the season replay - all
