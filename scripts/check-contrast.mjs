@@ -46,6 +46,8 @@ pairs.push(
   ['roll row nat20',dark.ink,'#2A2110',TEXT],['roll row nat1',dark.ink,'#1A1716',TEXT],
   ['roll row nat1 faint',dark.faint,'#1A1716',TEXT],['roll row nat20 faint',dark.faint,'#2A2110',TEXT],
   ['crit row',dark.ink,'#231012',TEXT],['crit amount',dark.live,'#231012',TEXT],
+  // a crit line's receipt (zero rows + notes in faint, the open/close chevron in rule)
+  ['crit row receipt faint',dark.faint,'#231012',TEXT],['crit row receipt chevron',dark.rule,'#231012',UI],
   ['current floor row name',dark.live,'#231012',TEXT],
   ['your guild row',dark.ink,'#2B2518',TEXT],
   ['bench current row (lore)',light.ink,'#CDBE98',TEXT],

@@ -190,6 +190,24 @@
   .crit{background:#231012}
   .take .amt{color:var(--live)} .heal .amt{color:var(--mend)}
   .ev i{color:var(--faint)}
+  /* Receipts: a damage/heal/soldier line opens to show its working.
+     The whole line is the <summary>, so the tap target is the line itself
+     and adds no height while closed. Existing tokens only. */
+  details.ev{display:block}
+  details.ev>summary{display:flex;gap:11px;cursor:pointer;list-style:none}
+  details.ev>summary>div:nth-child(2){flex:1}
+  .rc-chev{font-family:'Archivo Narrow',Arial,sans-serif;font-size:13px;color:var(--rule);
+    align-self:center;transition:transform .2s}
+  details[open]>summary .rc-chev{transform:rotate(180deg)}
+  details.ev>summary::-webkit-details-marker,.sc-d>summary::-webkit-details-marker{display:none}
+  details.ev>summary:focus-visible,.sc-d>summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .rcpt{margin:4px 0 2px 63px;padding:6px 0 2px;border-top:1px dashed var(--hair);
+    font-size:15px;color:var(--ink)}
+  .rc-row{display:flex;justify-content:space-between;gap:12px;padding:1px 0}
+  .rc-row b{font-family:'Archivo Narrow',Arial,sans-serif;font-weight:700;white-space:nowrap}
+  .rc-row.rc-zero{color:var(--faint)}
+  .rc-row.rc-tot{border-top:1px solid var(--hair);margin-top:3px;padding-top:3px;font-weight:600}
+  .rc-note{font-size:14.5px;font-style:italic;color:var(--faint);padding-top:3px}
   .verdict{border:2px solid var(--rule);padding:14px;margin-top:16px;background:var(--card);
     box-shadow:0 0 0 5px var(--steel),0 0 0 6px var(--steel-hi),0 8px 18px rgba(0,0,0,.55)}
   .verdict h2{font-family:'Archivo Narrow';font-weight:700;font-size:23px}
@@ -204,8 +222,10 @@
   .statcard .sc-head{font-family:'Archivo Narrow';font-weight:600;font-size:12.5px;
     letter-spacing:.1em;color:var(--faint)}
   .statcard .sc-result{font-family:'Archivo Narrow';font-weight:700;font-size:22px;margin-top:4px}
-  .statcard .sc-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--hair)}
-  .statcard .sc-row:last-child{border-bottom:0}
+  .statcard .sc-d{border-bottom:1px solid var(--hair)}
+  .statcard .sc-d:last-child{border-bottom:0}
+  .statcard .sc-row{display:flex;align-items:center;gap:10px;padding:8px 0;min-height:44px;cursor:pointer;list-style:none}
+  .statcard .rcpt{margin:0 0 8px 36px}
   .statcard .sc-sig{width:26px;height:26px;object-fit:contain;flex:0 0 auto}
   .statcard .sc-nm{font-family:'Archivo Narrow';font-weight:700;font-size:12.5px;
     letter-spacing:.05em;flex:0 0 78px}
@@ -813,7 +833,7 @@
 </nav>
 
 <script type="module">
-import {MAX_HP, dmgFor, resolveDrive, applyDrive, SLOT_ORDER, HORDE_MOTHER_MAX_HP, resolveHordeMotherWeekSequence, projectSlot, compareSlot, plateArmor, scaleStrips, rollFor} from './formulas.js';
+import {MAX_HP, dmgFor, resolveDrive, hordeEvents, applyDrive, SLOT_ORDER, HORDE_MOTHER_MAX_HP, resolveHordeMotherWeekSequence, projectSlot, compareSlot, plateArmor, scaleStrips, rollFor} from './formulas.js';
 import {pickRollLine} from './roll-copy.js';
 import {RATES, FLOOR_MECHANICS, explainDamage, MENDER_HEAL, HEAL_CAP, WALL_SOAK, HORDE_SLOTS} from './formulas.js';
 import * as F from './formulas.js';
@@ -1498,8 +1518,105 @@ function drawRoom(){
       `<img src="/assets/${i<whole?'scale-full':'scale-cracked'}.webp" alt="">`).join('');
   }
 }
-function ev(c,a,t){const d=document.createElement('div');d.className='ev '+c;
-  d.innerHTML=`<div class="amt">${a}</div><div>${t}</div>`;$('log').appendChild(d);}
+// `rc` (optional) is a receipt - the working behind the line's number.
+// With one, the line becomes a <details> whose summary is the line itself.
+function ev(c,a,t,rc){
+  const d=document.createElement(rc?'details':'div');d.className='ev '+c;
+  d.innerHTML=rc
+    ?`<summary><div class="amt">${a}</div><div>${t}</div><span class="rc-chev" aria-hidden="true">▾</span></summary><div class="rcpt">${rc}</div>`
+    :`<div class="amt">${a}</div><div>${t}</div>`;
+  $('log').appendChild(d);}
+
+// --- Receipts --------------------------------------------------------
+// Every number here comes from formulas.js (explainDamage, applyDrive,
+// the Horde Mother sequence) - nothing below knows a rate.
+const rNum=v=>Number.isInteger(v)?String(v):String(Math.round(v*10)/10);
+const rSigned=v=>(v<0?'−':'+')+rNum(Math.abs(v));
+const multTxt=m=>m===0.5?'½':rNum(m);
+const rPlural=(n,w,ws=w+'s')=>`${rNum(n)} ${n===1?w:ws}`;
+const R_MECH_NAME={swarm:'Swarm',sentinel:'Sentinel',plated:'Plated'};
+const clsOf=k=>(party.find(p=>p.k===k)||{}).cls||k;
+const rcRow=(l,v,c='')=>`<div class="rc-row${c?' '+c:''}"><span>${l}</span><b>${v}</b></div>`;
+const rcNote=t=>`<div class="rc-note">${t}</div>`;
+// Yards-damage floors: each stat × its rate, the floor's multiplier on the
+// volume and big-play terms, a plated floor's armor, then the total.
+// '1 sacks' -> '1 sack'; yardage stays 'yds' at any count
+const one=(n,l)=>n!==1||/yds$/.test(l)?l:l.replace(/ches$/,'ch').replace(/s$/,'');
+function dmgReceipt(k){
+  const x=explainDamage(k,REAL[k],mech(),armorNow()),fl=R_MECH_NAME[mech()]||'This';
+  let h=x.terms.map(t=>rcRow(`${rNum(t.n)} ${one(t.n,t.label)} × ${t.rate}`,t.value,t.n?'':'rc-zero')).join('');
+  const labels=term=>x.terms.filter(t=>t.term===term).map(t=>t.label).join(' + ');
+  if(x.volMult!==1&&x.volume)h+=rcRow(`${labels('volume')} ×${multTxt(x.volMult)} on a ${fl} floor`,rSigned(x.volume*x.volMult-x.volume));
+  if(x.burstMult!==1&&x.burst)h+=rcRow(`${labels('burst')} ×${multTxt(x.burstMult)} on a ${fl} floor`,rSigned(x.burst*x.burstMult-x.burst));
+  const exact=x.volume*x.volMult+x.burst*x.burstMult;
+  if(x.armor)h+=rcRow(`Armor ate (${rPlural(scales,'scale')})`,'−'+x.armor);
+  h+=rcRow(`Damage${Number.isInteger(exact)?'':' (rounded)'}`,x.dmg,'rc-tot');
+  if(x.armor&&x.armor<armorNow())h+=rcNote(`Armor is ${armorNow()} a drive; it can only eat what the drive dealt.`);
+  return h;
+}
+// Horde Mother: no damage pool - turnovers raise soldiers, first downs cut
+// them down, a touchdown only lands once none stand.
+function hordeReceipt(k){
+  if(!['tactician','hunter','rogue'].includes(k))
+    return rcNote('The Horde Mother takes no yards damage. Only turnovers, first downs and touchdowns by the Tactician, Hunter and Rogue move this fight.');
+  const e=hordeEvents(REAL[k]),fx=HORDE_SEQ&&HORDE_SEQ.perSlot[k];
+  if(!fx)return rcNote('No final stats for this slot this week.');
+  let h=rcRow(rPlural(e.turnovers,'turnover'),fx.bornSoldiers?`+${rPlural(fx.bornSoldiers,'soldier')}`:'—',e.turnovers?'':'rc-zero')+
+    rcRow(rPlural(e.firstDowns,'first down'),fx.killedSoldiers?`−${rPlural(fx.killedSoldiers,'soldier')}`:'—',e.firstDowns?'':'rc-zero')+
+    rcRow(rPlural(e.td,'TD','TDs'),fx.bossDamage?`${rPlural(fx.bossDamage,'hit')} on her`:'—',e.td?'':'rc-zero')+
+    rcRow('Soldiers standing after',fx.soldiers,'rc-tot');
+  const notes=[];
+  if(fx.killedSoldiers<e.firstDowns)notes.push(fx.soldiersBefore+fx.bornSoldiers
+    ?`Only ${rPlural(fx.soldiersBefore+fx.bornSoldiers,'soldier')} stood to be cut down.`
+    :'No soldiers stood to be cut down.');
+  if(e.td>fx.bossDamage)notes.push(fx.bossHpBefore<=0?'She had already fallen.'
+    :fx.soldiers>0?`${fx.soldiers===1?'A soldier still stood':`${fx.soldiers} soldiers still stood`} between the party and her, so ${e.td-fx.bossDamage===1?'the touchdown was':'those touchdowns were'} blocked.`
+    :`She had only ${rPlural(fx.bossHpBefore,'hit')} left.`);
+  notes.push(`Resolved in kickoff order: ${fx.soldiersBefore} soldier${fx.soldiersBefore===1?'':'s'} and ${fx.bossHpBefore} hit${fx.bossHpBefore===1?'':'s'} on her when this drive began.`);
+  return h+notes.map(rcNote).join('');
+}
+// What each committed drive did to party HP: the Wall's soak, where a
+// Mender's heal landed. Recorded at commit (FX); a run restored from a
+// checkpoint has no record, so it's replayed through the same applyDrive
+// from the HP the week started at (WEEK_HP), in arrival order.
+const FX={};let WEEK_HP=null;
+// A heal drive takes no hit, so its HP change is exactly the heal given.
+function noteFx(before,applied,r){
+  const healed={};
+  if(r.heal)for(const s of SLOT_ORDER){const g=applied.hp[s]-before[s];if(g>0)healed[s]=g;}
+  return {soak:applied.soak,healed};
+}
+function fxFor(k){
+  if(!FX[k]&&WEEK_HP){
+    let hp={...WEEK_HP};
+    for(const i of ARRIVAL_ORDER){const u=party[i];if(u.state!=='spent')continue;
+      const a=applyDrive(hp,0,u.k,RESULTS[i]);if(!FX[u.k])FX[u.k]=noteFx(hp,a,RESULTS[i]);hp=a.hp;}
+  }
+  return FX[k]||null;
+}
+function healReceipt(k){
+  const r=RESULTS[party.findIndex(p=>p.k===k)],f=fxFor(k);
+  let h=rcRow(`${rPlural(REAL[k].fg,'made kick')} to share`,'+'+r.heal);
+  if(!f)return h;
+  let given=0;
+  for(const s of SLOT_ORDER)if(f.healed[s]){given+=f.healed[s];h+=rcRow(clsOf(s),'+'+f.healed[s]);}
+  if(r.heal-given>0)h+=rcRow('Unused — no one hurt enough to take it',r.heal-given,'rc-zero');
+  return h+rcNote('No member takes more than 9 from one drive; the rest passes down the line, Wall first.');
+}
+function takeReceipt(k,soak){
+  const r=RESULTS[party.findIndex(p=>p.k===k)],R=REAL[k];
+  const cause=k==='tactician'?rPlural(R.sk,'sack')+' taken':k==='rogue'?rPlural(R.car,'carry','carries'):'Hits taken';
+  return rcRow(cause,r.take)+rcRow('The Wall absorbs',soak?'−'+soak:'0')+
+    rcRow(`${clsOf(k)} loses`,`${r.take-soak} HP`,'rc-tot')+
+    (soak?'':rcNote('The Wall has no hit points left to absorb with.'));
+}
+// `week`: the stat card's end-of-week version, which always shows the total.
+const weekSoak=()=>SLOT_ORDER.reduce((a,s)=>{const f=party.some(p=>p.k===s&&p.state==='spent')&&fxFor(s);return a+(f?f.soak:0);},0);
+function wallReceipt(week){
+  const soaked=weekSoak();
+  return rcRow('Damage dealt','0')+(week||soaked?rcRow(week?'Absorbed for the party this week':'Absorbed for the party so far',soaked,'rc-tot'):'')+
+    rcNote(`The Wall soaks part of every hit the party takes — sacks on the Tactician, carries on the Rogue — while it has hit points. There's no blocking stat to deal damage from; ${rPlural(REAL.wall.sacksAllowed,'sack')} allowed is what the die reads.`);
+}
 
 // Numbers come from resolveDrive() (formulas.js) - only the flavor text
 // lives here, so a live commit and the season-state replay always land
@@ -1705,7 +1822,9 @@ function applyCommit(i){
   // threaded through as 0 and its returned value discarded - only .hp
   // and .soak matter here in that case.
   const hpBySlot=Object.fromEntries(party.map(p=>[p.k,p.hp]));
+  if(!WEEK_HP)WEEK_HP={...hpBySlot};
   const applied=applyDrive(hpBySlot,isBoss?0:roomHp,u.k,r);
+  FX[u.k]=noteFx(hpBySlot,applied,r);
   if(!isBoss)roomHp=applied.roomHp;
   party.forEach(p=>{p.hp=applied.hp[p.k];});
   if(isBoss){
@@ -1715,22 +1834,24 @@ function applyCommit(i){
     const fx=(HORDE_SEQ&&HORDE_SEQ.perSlot[u.k])||{bornSoldiers:0,killedSoldiers:0,bossDamage:0};
     soldiers=soldiers+fx.bornSoldiers-fx.killedSoldiers;bossHp=bossHp-fx.bossDamage;
     const boss={...fx,soldiers:Math.max(0,soldiers)};
-    ev(boss.bossDamage?'crit':'',boss.bossDamage?'−'+boss.bossDamage:'—',`${u.cls} — ${r.text}${boss.bossDamage?' <i>It reaches her.</i>':''}`);
+    ev(boss.bossDamage?'crit':'',boss.bossDamage?'−'+boss.bossDamage:'—',`${u.cls} — ${r.text}${boss.bossDamage?' <i>It reaches her.</i>':''}`,
+      u.k==='wall'?wallReceipt():hordeReceipt(u.k));
     if(boss.bornSoldiers)ev('take','+'+boss.bornSoldiers,`A turnover. ${boss.bornSoldiers} soldier${boss.bornSoldiers===1?'':'s'} rise${boss.bornSoldiers===1?'s':''} to guard her.`);
     if(boss.killedSoldiers)ev('heal','−'+boss.killedSoldiers,`A first down falls. ${boss.killedSoldiers} soldier${boss.killedSoldiers===1?'':'s'} cut down.`);
     if(!boss.bossDamage&&(REAL[u.k].td||0)>0)ev('take','—','<i>The shield holds — no touchdown reaches her while soldiers stand.</i>');
   }else{
-    ev(r.crit?'crit':(r.dmg?'dmg':''),r.dmg?'−'+r.dmg:'—',`${u.cls} — ${r.text}${r.crit?' <i>Critical hit.</i>':''}`);
+    ev(r.crit?'crit':(r.dmg?'dmg':''),r.dmg?'−'+r.dmg:'—',`${u.cls} — ${r.text}${r.crit?' <i>Critical hit.</i>':''}`,
+      u.k==='wall'?wallReceipt():dmgReceipt(u.k));
     if(r.blocked)ev('',`(${r.blocked})`,r.dmg?`<i>The scales turn aside ${r.blocked}.</i>`:`<i>All ${r.blocked} skitters off the scales.</i>`);
     const cracked=isPlated()?scaleStrips(u.k,REAL[u.k]):0;
     if(cracked)ev('crit','✕'+cracked,`${cracked===1?'A scale':`${cracked} scales`} pried loose. The hide is thinner next week.`);
   }
   if(r.heal){
-    ev('heal','+'+r.heal,`THE MENDER restores ${r.heal} hit points across the party.`);
+    ev('heal','+'+r.heal,`THE MENDER restores ${r.heal} hit points across the party.`,healReceipt(u.k));
     if(r.miss) ev('take','—','<i>One miss. That possession heals nothing.</i>');
   }
   if(r.take){
-    ev('take','−'+r.take,`Attrition. The Wall absorbs ${applied.soak}; ${u.cls} takes ${r.take-applied.soak}.`);
+    ev('take','−'+r.take,`Attrition. The Wall absorbs ${applied.soak}; ${u.cls} takes ${r.take-applied.soak}.`,takeReceipt(u.k,applied.soak));
   }
   u.state='spent';
   if($('logRecap')&&!$('logRecap').hidden)renderRecap();
@@ -1775,16 +1896,21 @@ function renderStatCard(cleared,wounded){
       ?(['tactician','rogue','hunter'].includes(slot)
         ?`<div class="sc-amt" style="color:${r.crit?'var(--live)':'var(--faint)'}">${REAL[slot].td||0} TD</div>`
         :`<div class="sc-amt" style="color:var(--faint)">—</div>`)
-      :slot==='wall'?`<div class="sc-amt" style="color:var(--faint)">soak</div>`
+      :slot==='wall'?`<div class="sc-amt" style="color:var(--faint)">soak${u.state==='spent'?' '+weekSoak():''}</div>`
       :slot==='mender'?`<div class="sc-amt" style="color:var(--mend)">+${r.heal}</div>`
       :`<div class="sc-amt" style="color:${r.crit?'var(--live)':'var(--rule)'}">−${r.dmg}</div>`;
-    return `<div class="sc-row">
-      <img class="sc-sig" src="${SIG[slot]}" alt="">
+    // Tap a row for its receipt - only for drives that were committed.
+    const spent=u.state==='spent';
+    const rc=!spent?'':slot==='wall'?wallReceipt(true)
+      :(isBoss?hordeReceipt(slot):dmgReceipt(slot))+(slot==='mender'?rcRow('Healing','','rc-tot')+healReceipt(slot):'');
+    const row=`<img class="sc-sig" src="${SIG[slot]}" alt="">
       <div class="sc-nm">${u.cls.toUpperCase()}</div>
       <div class="sc-stat">${statLine(slot)}</div>
-      ${r&&r.roll&&u.state==='spent'?miniDie(r.roll):''}
-      ${amt}
-    </div>`;
+      ${r&&r.roll&&spent?miniDie(r.roll):''}
+      ${amt}`;
+    return rc
+      ?`<details class="sc-d"><summary class="sc-row">${row}<span class="rc-chev" aria-hidden="true">▾</span></summary><div class="rcpt">${rc}</div></details>`
+      :`<div class="sc-d"><div class="sc-row">${row}</div></div>`;
   }).join('');
   const foot=isBoss
     ?`<div class="sc-hp">HORDE MOTHER <b>${Math.max(0,bossHp)}</b> / <b>${CURRENT_FLOOR.maxHp}</b> hits &middot; <b>${Math.max(0,soldiers)}</b> soldier${Math.max(0,soldiers)===1?'':'s'} standing</div>`
@@ -1793,7 +1919,7 @@ function renderStatCard(cleared,wounded){
     <div class="sc-head">${KICK.week}</div>
     <div class="sc-result" style="color:${cleared?'var(--mend)':'var(--live)'}">${cleared?'THE FLOOR FALLS':'HELD AT THE DOOR'}</div>
     <div class="bar thin" style="margin:10px 0"></div>
-    ${rows}
+    <div class="sc-rows">${rows}</div>
     <div class="sc-foot">
       ${foot}
       <div class="sc-out">${wounded?`${wounded} below half`:cleared?'Clean clear':'None below half'}</div>
@@ -2152,6 +2278,9 @@ async function boot(){
     try{savedRun=JSON.parse(localStorage.getItem(runKey)||'null');}catch{savedRun=null;}
   }
   if(savedRun){
+    // the HP this week started at, before the checkpoint overwrites it -
+    // fxFor() replays the soak/heal receipts from here
+    WEEK_HP=Object.fromEntries(party.map(p=>[p.k,p.hp]));
     roomHp=savedRun.roomHp;
     // ?? not || - an older checkpoint saved before Horde Mother existed
     // won't have these fields, and undefined here should keep whatever

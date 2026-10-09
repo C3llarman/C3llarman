@@ -315,6 +315,18 @@ stage (tier name plus "better than / about / well short of their usual game"). T
 "How the die works" key under the party row and a Tavern rule explain that the die never
 changes the damage.
 
+## Receipts (show the working)
+
+Every campaign-log line with a number, and every row of the end-of-week stat card, opens
+(a `<details>` whose summary is the line itself) to show how the number was reached:
+each stat × its rate, the floor's multiplier on the volume or big-play term, what a plated
+floor's armor ate, then the total. All of it comes from `explainDamage()` in
+`public/formulas.js`; index.html never knows a rate. The Wall shows what it soaked, the
+Mender where its heal landed (applyDrive's real per-member split), the Horde Mother floor
+shows turnovers → soldiers, first downs → soldiers cut down, and TDs that reached her or
+were blocked (from `resolveHordeMotherWeekSequence`'s per-slot before/after state). A run
+restored from a checkpoint replays soak/heal from the week's starting HP.
+
 ## Guild comparison (decided)
 
 **Both, week first.** The Guild tab shows the last completed week's head-to-head
