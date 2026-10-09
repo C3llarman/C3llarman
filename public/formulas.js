@@ -209,7 +209,10 @@ export function resolveHordeMotherWeekSequence(startState, weekReal){
   const perSlot={};
   for(const s of order){
     const d=resolveHordeMotherDrive(state,weekReal[s]);
-    perSlot[s]={bornSoldiers:d.bornSoldiers,killedSoldiers:d.killedSoldiers,bossDamage:d.bossDamage};
+    // before/after ride along so the UI's receipt can say WHY a touchdown
+    // was blocked (soldiers still standing) or fell short (she ran out of hits)
+    perSlot[s]={bornSoldiers:d.bornSoldiers,killedSoldiers:d.killedSoldiers,bossDamage:d.bossDamage,
+      soldiersBefore:state.soldiers,bossHpBefore:state.bossHp,soldiers:d.soldiers,bossHp:d.bossHp};
     state={soldiers:d.soldiers,bossHp:d.bossHp};
   }
   return {perSlot,soldiers:state.soldiers,bossHp:state.bossHp,defeated:state.bossHp<=0};
