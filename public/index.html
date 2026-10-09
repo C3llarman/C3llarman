@@ -402,6 +402,7 @@
      aria-label says so); the red plaque chip is the visible cue */
   .plate-lore .floorrow[data-swap-slot]{cursor:pointer;align-items:center}
   .plate-lore .floorrow[data-swap-slot]:focus-visible{outline:3px solid #17120D;outline-offset:2px}
+  .plate-lore .swapd{font-family:'Archivo Narrow',Arial,sans-serif;font-size:14.5px;color:var(--ink);margin-top:2px}
   .benchact{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
   .chip{display:inline-flex;align-items:center;justify-content:center;height:34px;min-width:96px;padding:0 2px;
     border-style:solid;border-width:0 24px;border-image:url("/assets/ui/btn-red.webp") 0 150 fill / 0 24px stretch;
@@ -723,7 +724,7 @@
 </nav>
 
 <script type="module">
-import {MAX_HP, RATES, FLOOR_MECHANICS, dmgFor, resolveDrive, applyDrive, SLOT_ORDER, HORDE_MOTHER_MAX_HP, resolveHordeMotherWeekSequence, projectSlot, plateArmor, scaleStrips, rollFor} from './formulas.js';
+import {MAX_HP, dmgFor, resolveDrive, applyDrive, SLOT_ORDER, HORDE_MOTHER_MAX_HP, resolveHordeMotherWeekSequence, projectSlot, compareSlot, plateArmor, scaleStrips, rollFor} from './formulas.js';
 import {pickRollLine} from './roll-copy.js';
 import {RATES, FLOOR_MECHANICS, explainDamage, MENDER_HEAL, HEAL_CAP, WALL_SOAK, HORDE_SLOTS} from './formulas.js';
 
@@ -872,6 +873,8 @@ const armorNow=()=>isPlated()?plateArmor(CURRENT_FLOOR,scales):0;
 // Scales pried loose by drives already committed this week.
 const crackedThisWeek=()=>party.reduce((s,p)=>s+(p.state==='spent'&&REAL[p.k].hasStats?scaleStrips(p.k,REAL[p.k]):0),0);
 let openBench=-1;
+// Mechanics of the floors still ahead (set in boot from data/floors.json).
+let AHEAD_MECHS=[];
 // Set from the fetched week file's lockedAt (the earliest real kickoff
 // among this party's six starters) once boot() resolves - unknown/false
 // until then, since nothing renders before that anyway. Substitution
@@ -997,6 +1000,32 @@ function benchCount(i){
   const real=REAL[party[i].k],bench=real.bench||[];
   return bench.filter(b=>(b.name||b.team)!==(real.name||real.team)).length;
 }
+// One line per bench option: what starting them changes against the
+// current starter on this floor (formulas.js compareSlot - no math here),
+// what the gap is made of, and a floor still ahead that would reverse it
+// when the projections genuinely say so. Thin samples say so.
+const MECH_NAME={swarm:'Swarm',sentinel:'Sentinel'};
+const signed=(v,dp=0)=>{const r=Number(v.toFixed(dp));return r?(r>0?'+':'\u2212')+Math.abs(r).toFixed(dp):'±0';};
+function swapLine(k,starter,b){
+  if(b.injury&&b.injury.status==='Out')return '';
+  if(starter.injury&&starter.injury.status==='Out')return 'Your starter is ruled out this week';
+  const mech=CURRENT_FLOOR?CURRENT_FLOOR.mechanic:'swarm';
+  const c=compareSlot(k,(starter.form&&starter.form.lines)||[],(b.form&&b.form.lines)||[],mech,armorNow(),AHEAD_MECHS);
+  if(c.kind==='none')return '';
+  // a bench option with no games already says so on its detail line
+  if(c.kind==='nodata')return (b.form&&b.form.lines&&b.form.lines.length)?'Your starter has no games yet to compare':'';
+  const thin=c.games<=2?` · thin: ${c.games} game${c.games===1?'':'s'}`:'';
+  if(c.kind==='horde'){
+    // first downs break the brood, TDs hit her, turnovers grow the brood
+    const parts=[[c.firstDowns,'first downs'],[c.td,'TD'],[c.turnovers,'turnovers']]
+      .filter(([v])=>signed(v,1)!=='±0').map(([v,w])=>`<span class="proj">${signed(v,1)}</span> ${w}`);
+    return (parts.length?`A game vs your starter: ${parts.join(', ')}`:'Same as your starter a game')+thin;
+  }
+  if(!c.delta)return `Even with your starter on this floor${thin}`;
+  const why=c.source?` (${RATES[k].filter(t=>t[0]===c.source).map(t=>t[2]).join(' & ')})`:'';
+  const flip=c.flip&&MECH_NAME[c.flip.mechanic]?` · ${signed(c.flip.delta)} on a ${MECH_NAME[c.flip.mechanic]} floor`:'';
+  return `<span class="proj">${signed(c.delta)}</span> on this floor${why}${flip}${thin}`;
+}
 function renderBench(i){
   const u=party[i], real=REAL[u.k], bench=real.bench||[];
   const items=bench
@@ -1005,11 +1034,13 @@ function renderBench(i){
   return items.map(({b,bi})=>{
     const pr=projectionFor(u.k,b),inj=injuryTag(b);
     const ko=kickoffText(b);
+    const sw=swapLine(u.k,real,b);
     return `<div class="floorrow" role="button" tabindex="0" style="min-height:56px"
-         data-swap-slot="${i}" data-swap-idx="${bi}" aria-label="Start ${b.name||b.team} instead. Projection ${pr.num}, ${pr.detail}">
+         data-swap-slot="${i}" data-swap-idx="${bi}" aria-label="Start ${b.name||b.team} instead. Projection ${pr.num}, ${pr.detail}${sw?`. ${sw.replace(/<[^>]+>/g,'').replace(/\u2212/g,'minus ')}`:''}">
       <div style="flex:1">
         <div class="nm">${b.name||b.team}</div>
         <div class="st">${teamName(b.team)} · ${pr.detail}</div>
+        ${sw?`<div class="swapd">${sw}</div>`:''}
         ${inj?`<div class="st">${inj}</div>`:''}
         ${ko?`<div class="st">${ko}</div>`:''}
       </div>
@@ -1792,6 +1823,8 @@ async function boot(){
       }
     }
     CURRENT_FLOOR=floors.find(f=>f.id===currentFloorId)||floors.find(f=>f.id===1)||null;
+    // mechanics still ahead of this party - what a bench swap's "would flip on" line may cite
+    AHEAD_MECHS=CURRENT_FLOOR?[...new Set(floors.filter(f=>f.id>CURRENT_FLOOR.id).map(f=>f.mechanic))]:[];
   }catch{}
   if(CURRENT_FLOOR){
     renderEncounter(CURRENT_FLOOR);
