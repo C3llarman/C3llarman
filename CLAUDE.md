@@ -171,6 +171,20 @@ a red enamel inset with brass edging.
 
 - **Week** — this Sunday only: encounter, party row, arrivals, log, result.
 - **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
+
+**What wins this floor.** One plain headline, on the Week tab's encounter block (above the
+trait lines) and at the top of the Tavern, says what this floor rewards: Swarm/Sentinel
+read each term's multiplier off `FLOOR_MECHANICS` ("Yards and catches count in full · TDs
+and sacks count half — start volume players"), Plated names this week's armor, the Horde
+Mother names its events and the three classes that make them. The Tavern's "How
+production becomes damage" table is generated from `RATES` under the current floor:
+base rate and this floor's rate per stat (changed ones in red, "half"/"double"), the
+Wall's soak and the Mender's heal from `WALL_SOAK`/`MENDER_HEAL`/`HEAL_CAP`, and on the
+Horde Mother her event table instead. Each class shows how much of its usual damage the
+floor "keeps" (this party's starters' and bench players' games so far through
+`explainDamage`), and is marked **favoured** when it keeps 3+ points more than the party
+does as a whole (damage-weighted). `renderFloorGuide()` in `public/index.html` builds
+all of it; no rate is written into the page.
 - **Dungeon** — floor progression from `data/floors.json` + `data/season-state.json`:
   cleared / current / sealed.
 
