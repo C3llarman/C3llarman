@@ -38,6 +38,10 @@ export const RATES={
   mender:[['volume','fg','made kicks',14]],
   wall:[],
 };
+// The non-damage rates, exported so the UI's rates table reads them too:
+// a made kick heals MENDER_HEAL, split so no one member gets more than
+// HEAL_CAP from one drive; the Wall soaks WALL_SOAK of a drive's `take`.
+export const MENDER_HEAL=7, HEAL_CAP=9, WALL_SOAK=0.4;
 function rateTerms(k,r){
   return (RATES[k]||[]).map(([term,field,label,rate])=>{
     const n=r[field]||0;
@@ -117,7 +121,7 @@ export function resolveDrive(slot, r, mechanic='swarm', armor=0){
     case 'hunter': return {dmg,blocked,crit:r.td>=1,take:0};
     case 'rogue': return {dmg,blocked,crit:r.td>=1,take:Math.round(r.car*0.7)};
     case 'breaker': return {dmg,blocked,crit:r.sk>=1,take:0};
-    case 'mender': return {dmg,blocked,crit:false,heal:r.fg*7,miss:r.att-r.fg};
+    case 'mender': return {dmg,blocked,crit:false,heal:r.fg*MENDER_HEAL,miss:r.att-r.fg};
     default: return {dmg,blocked,crit:false,take:0};
   }
 }
@@ -136,7 +140,7 @@ export function applyDrive(hp, roomHp, slot, result){
     for(const k of SLOT_ORDER){
       if(pool<=0)break;
       if(next[k]<MAX_HP[k]){
-        const g=Math.min(pool,MAX_HP[k]-next[k],9);
+        const g=Math.min(pool,MAX_HP[k]-next[k],HEAL_CAP);
         next[k]+=g;pool-=g;
       }
     }
@@ -145,7 +149,7 @@ export function applyDrive(hp, roomHp, slot, result){
   // summary) need "the Wall absorbed N" without recomputing it.
   let soak=0;
   if(result.take){
-    soak=Math.min(next.wall,Math.round(result.take*0.4));
+    soak=Math.min(next.wall,Math.round(result.take*WALL_SOAK));
     next.wall-=soak;
     next[slot]-=(result.take-soak);
   }
@@ -254,7 +258,7 @@ export function resolveHordeMotherDrive(state, r){
 export function hordeEvents(r){
   return {turnovers:bossTurnovers(r), firstDowns:r.firstDowns||0, td:r.td||0};
 }
-const HORDE_SLOTS=['tactician','hunter','rogue'];
+export const HORDE_SLOTS=['tactician','hunter','rogue'];
 // `armor` (plated floors only) comes off every past game the same way it
 // would come off this week's drive; `strips` is scales cracked a game.
 export function projectSlot(k, lines, mechanic='swarm', armor=0){
