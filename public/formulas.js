@@ -78,31 +78,44 @@ export const FLOOR_MECHANICS={
 export function plateArmor(floor, scales){
   return Math.max(0, scales) * (floor.armorPerScale || 0);
 }
-export function scaleStrips(slot, r){
+export function scaleStrips(slot, r, status='ok'){
+  if(status==='down') return 0;
   if(slot==='tactician'||slot==='hunter'||slot==='rogue') return r.td||0;
   // whole sacks only - a split sack doesn't pry a scale loose
   if(slot==='breaker') return Math.floor(r.sk||0);
   return 0;
 }
-export function dmgFor(k,r,mechanic='swarm'){
+// After the floor's mechanic, a member's own condition (memberStatus
+// below): Bloodied keeps BLOODIED_FACTOR of it, Down keeps none. Applied
+// before a plated floor's armor, so a Bloodied hitter's drive is smaller
+// when it reaches the scales.
+function afterStatus(raw,status){
+  return Math.round(raw*(STATUS_FACTOR[status]??1));
+}
+export function dmgFor(k,r,mechanic='swarm',status='ok'){
   const {volume,burst}=dmgParts(k,r);
   const m=FLOOR_MECHANICS[mechanic]||{vol:1,burst:1};
-  return Math.round(volume*m.vol+burst*m.burst);
+  return afterStatus(Math.round(volume*m.vol+burst*m.burst),status);
 }
 
 // The receipt for one drive: every stat that dealt damage, the floor's
 // multiplier on each term, and what a plated floor's armor ate - for the
 // UI to show the working ("146 rush yds x 1.3 = 190 ...") rather than a
 // bare number. Same arithmetic as dmgFor/resolveDrive by construction:
-// raw === dmgFor(k,r,mechanic) and dmg === resolveDrive(...).dmg.
+// raw === dmgFor(k,r,mechanic) (the floor's cut, before the member's
+// condition), scaled === dmgFor(k,r,mechanic,status), and
+// dmg === resolveDrive(...).dmg. statusCut is what being Bloodied (or
+// Down) took off raw; armor is what the scales then ate off scaled.
 // Horde Mother isn't damage at all - see hordeEvents for that floor.
-export function explainDamage(k,r,mechanic='swarm',armor=0){
+export function explainDamage(k,r,mechanic='swarm',armor=0,status='ok'){
   const m=FLOOR_MECHANICS[mechanic]||{vol:1,burst:1};
   const terms=rateTerms(k,r).map(t=>({...t,mult:t.term==='volume'?m.vol:m.burst}));
   const {volume,burst}=dmgParts(k,r);
   const raw=Math.round(volume*m.vol+burst*m.burst);
-  const dmg=Math.max(0,raw-armor);
-  return {terms,volume,burst,volMult:m.vol,burstMult:m.burst,raw,armor:raw-dmg,dmg};
+  const scaled=afterStatus(raw,status);
+  const dmg=Math.max(0,scaled-armor);
+  return {terms,volume,burst,volMult:m.vol,burstMult:m.burst,raw,
+    status,statusFactor:STATUS_FACTOR[status]??1,statusCut:raw-scaled,scaled,armor:scaled-dmg,dmg};
 }
 
 // The numeric half of one slot's drive - room damage, whether it crits,
@@ -110,18 +123,23 @@ export function explainDamage(k,r,mechanic='swarm',armor=0){
 // the Mender). Flavor text lives with the caller (index.html's `drives`)
 // since it's presentation, not a formula.
 // `armor` is a plated floor's flat per-drive reduction (0 everywhere
-// else); `blocked` is how much of the drive it ate.
-export function resolveDrive(slot, r, mechanic='swarm', armor=0){
-  const raw = dmgFor(slot, r, mechanic);
+// else); `blocked` is how much of the drive it ate. `status` is the
+// member's condition for the week (memberStatus): Bloodied deals
+// BLOODIED_FACTOR of it, Down deals nothing and - for the Mender - heals
+// nothing. A Down member's sacks and carries still wear on the party:
+// that's the real game they played, not damage they dealt.
+export function resolveDrive(slot, r, mechanic='swarm', armor=0, status='ok'){
+  const raw = dmgFor(slot, r, mechanic, status);
   const dmg = Math.max(0, raw - armor);
   const blocked = raw - dmg;
+  const down = status==='down';
   switch(slot){
     case 'wall': return {dmg,blocked,crit:false,take:0};
-    case 'tactician': return {dmg,blocked,crit:r.td>=1,take:r.sk*6};
-    case 'hunter': return {dmg,blocked,crit:r.td>=1,take:0};
-    case 'rogue': return {dmg,blocked,crit:r.td>=1,take:Math.round(r.car*0.7)};
-    case 'breaker': return {dmg,blocked,crit:r.sk>=1,take:0};
-    case 'mender': return {dmg,blocked,crit:false,heal:r.fg*MENDER_HEAL,miss:r.att-r.fg};
+    case 'tactician': return {dmg,blocked,crit:!down&&r.td>=1,take:r.sk*6};
+    case 'hunter': return {dmg,blocked,crit:!down&&r.td>=1,take:0};
+    case 'rogue': return {dmg,blocked,crit:!down&&r.td>=1,take:Math.round(r.car*0.7)};
+    case 'breaker': return {dmg,blocked,crit:!down&&r.sk>=1,take:0};
+    case 'mender': return {dmg,blocked,crit:false,heal:down?0:r.fg*MENDER_HEAL,miss:r.att-r.fg};
     default: return {dmg,blocked,crit:false,take:0};
   }
 }
@@ -167,6 +185,72 @@ export function regenHp(hp, pct=0.15){
   return next;
 }
 
+// ---- The floor's strike, and what wounds do (CLAUDE.md, decided
+// 2026-10-09). At the start of every week, after the 15% recovery, the
+// floor hits the party once: a d6 face x the floor's id x STRIKE_MULT,
+// split evenly across the six (each share rounded). Every non-Wall share
+// goes through the Wall's soak exactly as attrition does in applyDrive;
+// the Wall takes its own share first. HP clamps at 0.
+//
+// This is NOT the d20. The d20 (rollFor, below) is theatre: it reads a
+// box score and never changes a number. The strike die is a real die that
+// changes HP - but it is SEEDED, not random: the face comes from a stable
+// hash of (season, week, floor id), so every party on that floor that
+// week takes the same strike, it's known before lineups lock (part of
+// the floor reveal), and the season replay reproduces it exactly.
+export const STRIKE_DIE=6, STRIKE_MULT=2;
+// Below BLOODIED_AT of max HP a member is Bloodied and deals
+// BLOODIED_FACTOR of their damage; at 0 they are Down and deal nothing.
+export const BLOODIED_AT=0.5, BLOODIED_FACTOR=0.75;
+export const STATUS_FACTOR={ok:1, bloodied:BLOODIED_FACTOR, down:0};
+// FNV-1a, 32-bit: small, stable across engines, no dependencies.
+function stableHash(str){
+  let h=0x811c9dc5;
+  for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,0x01000193)>>>0; }
+  return h>>>0;
+}
+export function strikeFace(season, week, floorId){
+  return 1 + stableHash(`hff-strike:${season}:${week}:${floorId}`) % STRIKE_DIE;
+}
+// -> {face, floorId, total, share, hp, per:{slot:{share, soaked, lost}}, soaked}
+// `soaked` (per member) is what the Wall took off that member's share;
+// the Wall's own `lost` includes everything it soaked for the others.
+export function floorStrike(hp, season, week, floorId){
+  const face=strikeFace(season, week, floorId);
+  const total=face*floorId*STRIKE_MULT;
+  const share=Math.round(total/SLOT_ORDER.length);
+  let next={...hp};
+  const per={};
+  let soaked=0;
+  for(const k of SLOT_ORDER){
+    if(k==='wall'){
+      const before=next.wall;
+      next.wall=Math.max(0,next.wall-share);
+      per.wall={share,soaked:0,lost:before-next.wall};
+      continue;
+    }
+    const before=next[k];
+    const a=applyDrive(next,0,k,{dmg:0,take:share});
+    per[k]={share,soaked:a.soak,lost:before-a.hp[k]};
+    soaked+=a.soak;
+    per.wall.lost+=a.soak;
+    next=a.hp;
+  }
+  return {face,floorId,total,share,hp:next,per,soaked};
+}
+// A member's condition for the whole week, read once from HP right after
+// the strike and never updated mid-week (heals and attrition during the
+// week move HP, not status) - like the plated armor, so commit order
+// can't matter and the live run matches the replay.
+export function memberStatus(k, hpValue){
+  if(hpValue<=0) return 'down';
+  if(hpValue<MAX_HP[k]*BLOODIED_AT) return 'bloodied';
+  return 'ok';
+}
+export function partyStatus(hp){
+  return Object.fromEntries(SLOT_ORDER.map(k=>[k,memberStatus(k,hp[k])]));
+}
+
 // Floor II - The Horde Mother: a shielded boss, not a yards/TD damage
 // pool like Floor I's swarm/sentinel math. A turnover births a soldier;
 // a first down kills one; a touchdown only reaches the Horde Mother
@@ -205,9 +289,12 @@ function bossTurnovers(r){ return (r.int||0) + (r.fumblesLost||0); }
 // earlier drive's effect, so a week that's still being played resolves
 // the same way it will when it's final.
 const HORDE_SLOTS_ORDER=['tactician','hunter','rogue'];
-export function resolveHordeMotherWeekSequence(startState, weekReal){
+// `status` (partyStatus) drops a Down member's drive entirely - their
+// turnovers, first downs and touchdowns don't count. Bloodied has no
+// effect on this floor: whole events can't be scaled by 0.75.
+export function resolveHordeMotherWeekSequence(startState, weekReal, status={}){
   const ko=s=>Date.parse(weekReal[s].kickoff)||0;
-  const order=HORDE_SLOTS_ORDER.filter(s=>weekReal[s]&&weekReal[s].hasStats)
+  const order=HORDE_SLOTS_ORDER.filter(s=>weekReal[s]&&weekReal[s].hasStats&&status[s]!=='down')
     .sort((a,b)=>ko(a)-ko(b)||HORDE_SLOTS_ORDER.indexOf(a)-HORDE_SLOTS_ORDER.indexOf(b));
   let state={soldiers:startState.soldiers,bossHp:startState.bossHp};
   const perSlot={};
@@ -221,8 +308,8 @@ export function resolveHordeMotherWeekSequence(startState, weekReal){
   }
   return {perSlot,soldiers:state.soldiers,bossHp:state.bossHp,defeated:state.bossHp<=0};
 }
-export function resolveHordeMotherWeek(startState, weekReal){
-  const {soldiers,bossHp,defeated}=resolveHordeMotherWeekSequence(startState, weekReal);
+export function resolveHordeMotherWeek(startState, weekReal, status={}){
+  const {soldiers,bossHp,defeated}=resolveHordeMotherWeekSequence(startState, weekReal, status);
   return {soldiers,bossHp,defeated};
 }
 
@@ -264,19 +351,23 @@ export function hordeEvents(r){
 export const HORDE_SLOTS=['tactician','hunter','rogue'];
 // `armor` (plated floors only) comes off every past game the same way it
 // would come off this week's drive; `strips` is scales cracked a game.
-export function projectSlot(k, lines, mechanic='swarm', armor=0){
+// `status` is the slot's condition this week: every past game is run
+// through it exactly as this week's drive will be (Bloodied x0.75, Down
+// nothing - and on the Horde Mother, a Down member's events don't count).
+export function projectSlot(k, lines, mechanic='swarm', armor=0, status='ok'){
   lines=lines||[];
   if(k==='wall')return {kind:'none'};
+  const down=status==='down';
   if(mechanic==='horde-mother'){
     if(!HORDE_SLOTS.includes(k))return {kind:'none'};
-    const n=lines.length, avg=f=>n?lines.reduce((s,r)=>s+hordeEvents(r)[f],0)/n:0;
-    return {kind:'horde', games:n, firstDowns:avg('firstDowns'), td:avg('td'), turnovers:avg('turnovers')};
+    const n=lines.length, avg=f=>n&&!down?lines.reduce((s,r)=>s+hordeEvents(r)[f],0)/n:0;
+    return {kind:'horde', games:n, status, firstDowns:avg('firstDowns'), td:avg('td'), turnovers:avg('turnovers')};
   }
-  const d=lines.map(r=>Math.max(0,dmgFor(k,r,mechanic)-armor));
-  if(!d.length)return {kind:'dmg', games:0, mean:0, low:0, high:0, strips:0};
-  return {kind:'dmg', games:d.length, mean:Math.round(d.reduce((a,b)=>a+b,0)/d.length),
+  const d=lines.map(r=>Math.max(0,dmgFor(k,r,mechanic,status)-armor));
+  if(!d.length)return {kind:'dmg', games:0, status, mean:0, low:0, high:0, strips:0};
+  return {kind:'dmg', games:d.length, status, mean:Math.round(d.reduce((a,b)=>a+b,0)/d.length),
     low:Math.min(...d), high:Math.max(...d),
-    strips:lines.reduce((s,r)=>s+scaleStrips(k,r),0)/lines.length};
+    strips:lines.reduce((s,r)=>s+scaleStrips(k,r,status),0)/lines.length};
 }
 
 // Bench swap, explained: a bench alternate's projection against the
@@ -295,8 +386,11 @@ export function projectSlot(k, lines, mechanic='swarm', armor=0){
 //                gap's direction and outweighs the other term
 //       flip   = {mechanic, delta} - the other mechanic (from `others`) where the
 //                sign actually reverses, largest reversal first; null if none does
-export function compareSlot(k, starterLines, benchLines, mechanic='swarm', armor=0, others=[]){
-  const s=projectSlot(k,starterLines,mechanic,armor), b=projectSlot(k,benchLines,mechanic,armor);
+// `status` is the starter's condition this week; `benchStatus` the bench
+// player's, which defaults to the same - HP belongs to the slot, so
+// whoever starts there inherits it (see CLAUDE.md).
+export function compareSlot(k, starterLines, benchLines, mechanic='swarm', armor=0, others=[], status='ok', benchStatus=status){
+  const s=projectSlot(k,starterLines,mechanic,armor,status), b=projectSlot(k,benchLines,mechanic,armor,benchStatus);
   if(s.kind==='none'||b.kind==='none')return {kind:'none'};
   const games=Math.min(s.games,b.games);
   if(!games)return {kind:'nodata', games};
@@ -304,11 +398,11 @@ export function compareSlot(k, starterLines, benchLines, mechanic='swarm', armor
     firstDowns:b.firstDowns-s.firstDowns, td:b.td-s.td, turnovers:b.turnovers-s.turnovers};
   const delta=b.mean-s.mean;
   // per-game volume and burst damage after this floor's multipliers
-  const split=lines=>{
-    const e=lines.map(r=>explainDamage(k,r,mechanic));
-    return {v:e.reduce((a,x)=>a+x.volume*x.volMult,0)/e.length, u:e.reduce((a,x)=>a+x.burst*x.burstMult,0)/e.length};
+  const split=(lines,st)=>{
+    const e=lines.map(r=>explainDamage(k,r,mechanic,0,st)), f=STATUS_FACTOR[st]??1;
+    return {v:e.reduce((a,x)=>a+x.volume*x.volMult*f,0)/e.length, u:e.reduce((a,x)=>a+x.burst*x.burstMult*f,0)/e.length};
   };
-  const sp=split(starterLines), bp=split(benchLines);
+  const sp=split(starterLines,status), bp=split(benchLines,benchStatus);
   const dv=bp.v-sp.v, du=bp.u-sp.u;
   let source=null;
   if(delta&&Math.sign(dv)===Math.sign(delta)&&Math.abs(dv)>Math.abs(du))source='volume';
@@ -316,7 +410,7 @@ export function compareSlot(k, starterLines, benchLines, mechanic='swarm', armor
   let flip=null;
   for(const m of others){
     if(m===mechanic||!(m in FLOOR_MECHANICS)||m==='plated')continue;
-    const d=projectSlot(k,benchLines,m).mean-projectSlot(k,starterLines,m).mean;
+    const d=projectSlot(k,benchLines,m,0,benchStatus).mean-projectSlot(k,starterLines,m,0,status).mean;
     if(d&&delta&&Math.sign(d)!==Math.sign(delta)&&(!flip||Math.abs(d)>Math.abs(flip.delta)))flip={mechanic:m,delta:d};
   }
   return {kind:'dmg', games, delta, source, flip};
