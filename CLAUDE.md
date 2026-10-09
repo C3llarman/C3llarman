@@ -36,7 +36,7 @@ Conversion rates (from the prototype, tune freely):
 
 | Class | Reads | Rate |
 |---|---|---|
-| The Wall | Pressure allowed | soaks 40% of incoming party damage |
+| The Wall | Sacks allowed (team; shown, not scored) | soaks 40% of incoming party damage, flat |
 | The Breaker | Sacks · TFL | 70 · 22 |
 | The Tactician | Pass yds · TD | 0.55/yd · 45 |
 | The Hunter | Rec yds · catch · TD | 1.1/yd · 6 · 60 |
@@ -47,7 +47,14 @@ HP drain: Tactician −6 per sack taken. Rogue −0.7 per carry. Wall absorbs 40
 
 **XP comes from clearing rooms, not from points.** Fantasy points are already yards plus
 TDs; granting XP for them pays twice for the same production and lets the best roster run
-away with the season. Clean clear (nobody under half HP) pays more.
+away with the season. Clean clear (nobody under half HP) pays more. **Not built yet:** XP is
+never saved or spent, so the UI shows no XP number. The verdict and stat card say clean
+clear vs wounded in words until XP actually does something.
+
+**Only show a number if it's a mechanic.** No invented stats on screen: the old ability
+scores, AC and Speed (cards and encounter) were removed because nothing read them. Trait
+copy describes what `public/formulas.js` does; its numbers are read off `RATES`,
+`resolveDrive` and `applyDrive` (`HP_FX` in `public/index.html`), not restated.
 
 ## Floor modifiers
 
@@ -101,12 +108,14 @@ Material roles, keep them strict or the page turns to noise:
 - **Gold** = ornament / hierarchy (rules, labels, stat keys)
 - **Steel** = interface structure (card frames, tab bar)
 - **Parchment** = readable information (ability text, data notes)
-- **Black iron** = stats / game mechanics (HP + the six ability scores)
+- **Black iron** = stats / game mechanics (HP + the class's real rates)
 
 **Player card anatomy:** armour frame → pale identity plate (emblem overlapping the
 upper-left, class name in small caps, **position · player · team** with position in red,
-creature-type line italic, AC / Speed / Kickoff / Projection) → black-iron strip (Hit
-Points, red bar, six stats with brass separators) → parchment (bold-italic red trait name,
+creature-type line italic, Kickoff / Projection) → black-iron strip (Hit Points, red bar,
+then `mechCells()`: 2–4 cells with brass separators holding this class's real numbers on the
+current floor: damage per stat off `RATES` scaled by the floor's mechanic, and its HP effect,
+with HP costs in red; on the Horde Mother floor, her rules instead) → parchment (bold-italic red trait name,
 mechanics, then the NFL/data explanation smaller). Game numbers live on the iron, football
 facts on the plates. `data-k` on each card is the hook for per-class ornaments (spikes for
 the Breaker, filigree for the Tactician...) — use ornaments sparingly, as characterisation.
