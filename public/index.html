@@ -716,9 +716,9 @@
   <details class="die-key primer" id="primer" open>
     <summary>How this works</summary>
     <div class="kp">Your six real NFL players are a D&amp;D party, one in each class.</div>
-    <div class="kp">Every week their real box score becomes damage against the floor: yards chip it down, touchdowns and sacks hit hard.</div>
+    <div class="kp">Every week their real box score becomes damage against the floor: volume (yards, catches, tackles for loss, made kicks) chips it down, and big plays (touchdowns and sacks) hit hard.</div>
     <div class="kp">Each floor changes which of those counts for more, and you see it before lineups lock &mdash; so set your six in the Tavern.</div>
-    <div class="kp">The floor hits back every week. A member below half HP is <b>Bloodied</b> and deals three-quarters damage; at 0 HP they&rsquo;re <b>Down</b> and deal nothing that week.</div>
+    <div class="kp">The floor strikes back once a week. A member below half max HP is <b>Bloodied</b> and deals three-quarters damage (&times;0.75); at 0 HP they&rsquo;re <b>Down</b> and deal nothing that week.</div>
     <div class="primer-acts">
       <a href="#rules" id="primerRules">The full rules, in the Tavern</a>
       <button type="button" class="reset" id="primerDismiss">Got it</button>
@@ -745,7 +745,7 @@
     <div class="wins" id="encWins"></div>
     <div id="encRoomBlock">
       <div class="line"><b>Hit Points</b> <span class="cond" id="rhp">900</span> <span class="cond" style="color:var(--faint)">/ <span id="rmax">900</span></span></div>
-      <div class="hprow"><div class="hpbar" role="progressbar" aria-label="Horde hit points"
+      <div class="hprow"><div class="hpbar" role="progressbar" aria-label="Floor hit points"
         aria-valuemin="0" aria-valuemax="900" aria-valuenow="900" id="rprog">
         <div class="hpghost" id="rghost" style="width:100%"></div>
         <div class="hpfill" id="rfill" style="width:100%"></div></div></div>
@@ -754,7 +754,7 @@
         <div id="scaleIcons" class="iconrow" aria-hidden="true"></div>
       </div>
       <div class="bar thin" style="margin-top:10px"></div>
-      <div class="trait" id="encMechTrait"><b>Swarm.</b> Damage from a single big play is halved. Volume production is unreduced.</div>
+      <div class="trait" id="encMechTrait"><b>Swarm.</b> Big plays (touchdowns and sacks) deal half damage. Volume (yards, catches, tackles for loss, made kicks) counts in full.</div>
       <div class="trait" id="encAttrition"></div>
     </div>
     <div id="encBossBlock" hidden>
@@ -776,7 +776,7 @@
   <div id="wkparty"></div>
   <details class="die-key" id="dieKey">
     <summary><span class="mini-d20" aria-hidden="true"><b>20</b></span>How the die works</summary>
-    <div class="kp">Every drive throws a d20, but <b>the die never changes the damage</b> — the box score already decided that. The die shows how this game stacked up against the player's <i>usual</i>: their own earlier games this season.</div>
+    <div class="kp">Every game throws a d20, but <b>the die never changes the damage</b> — the box score already decided that. The die shows how this game stacked up against the player's <i>usual</i>: their own earlier games this season.</div>
     <div class="krow"><span class="mini-d20 nat20" aria-hidden="true"><b>20</b></span><span class="n">20</span>A huge game, even for them</div>
     <div class="krow"><span class="mini-d20 strong" aria-hidden="true"><b>16</b></span><span class="n">13–19</span>Better than their usual</div>
     <div class="krow"><span class="mini-d20 par" aria-hidden="true"><b>10</b></span><span class="n">8–12</span>About their usual</div>
@@ -805,12 +805,12 @@
   <div class="bar"></div>
   <ol class="rules">
     <li class="trait"><b>Your party.</b> Six real NFL players, one in each class: offensive line (The Wall), pass rusher (The Breaker), quarterback (The Tactician), receiver (The Hunter), running back (The Rogue) and kicker (The Mender). One of each, no doubling up.</li>
-    <li class="trait"><b>Real games, real damage.</b> Each week your players&rsquo; actual box scores become damage against the floor. Yards, catches and tackles for loss chip it down; touchdowns and sacks hit hard. The kicker&rsquo;s made field goals deal a little and heal the party. The rates are in the table below.</li>
+    <li class="trait"><b>Real games, real damage.</b> Each week your players&rsquo; actual box scores become damage against the floor. Volume (yards, catches, tackles for loss and made kicks) chips it down; big plays (touchdowns and sacks) hit hard. The kicker&rsquo;s made field goals also heal the party. The rates are in the table below.</li>
     <li class="trait"><b>See the floor, then set your six.</b> Each floor changes which of those counts for more, and you see it on the Week tab before lineups lock. The higher projection isn&rsquo;t always the right start.</li>
     <li class="trait"><b>Swap from the bench here.</b> A card with a bench shows &ldquo;View bench&rdquo; above; tap a player to start them instead. Your lineup locks at your party&rsquo;s first kickoff of the week.</li>
-    <li class="trait"><b>The party takes hits.</b> At the start of every week the floor strikes back: a six-sided die &times; the floor&rsquo;s number &times; 2, split evenly across all six members. Your quarterback also loses 6 HP for every sack he takes, and your running back loses HP on every carry. The Wall absorbs 40% of every other member&rsquo;s hit first, while it has HP left. Each made field goal heals 7, at most 9 to any one member a week.</li>
+    <li class="trait"><b>The party takes hits.</b> At the start of every week the floor strikes back: a six-sided die &times; the floor&rsquo;s number &times; 2, split evenly across all six members. Your quarterback also loses 6 HP for every sack he takes, and your running back loses HP on every carry. The Wall soaks 40% of every other member&rsquo;s hit first, while it has HP left. Each made field goal heals 7, at most 9 to any one member a week.</li>
     <li class="trait"><b>A floor holds until it falls.</b> Damage to a floor stays from week to week until its HP reaches 0. Then the party goes down to the next floor, which starts at full HP &mdash; damage past 0 doesn&rsquo;t carry over.</li>
-    <li class="trait"><b>Wounds cost damage. No one dies.</b> Your party&rsquo;s HP carries between weeks, and each member gets back 15% of their max HP every week, before the floor strikes. A member below half their max HP is <b>Bloodied</b> and deals three-quarters damage. At 0 HP they&rsquo;re <b>Down</b>: they deal nothing, a Down kicker heals nothing, and on the Horde Mother their plays don&rsquo;t count. Whoever you start in that slot takes over its HP. Status is set once the floor has struck and holds all week; heals during the week help next week. A bad week costs you a floor, never the party.</li>
+    <li class="trait"><b>Wounds cost damage. No one dies.</b> Your party&rsquo;s HP carries between weeks, and each member gets back 15% of their max HP every week, before the floor strikes. A member below half their max HP is <b>Bloodied</b> and deals three-quarters damage (&times;0.75). At 0 HP they&rsquo;re <b>Down</b>: they deal nothing, a Down kicker heals nothing, and on the Horde Mother their plays don&rsquo;t count. Whoever you start in that slot takes over its HP. Status is set once the floor has struck and holds all week; heals during the week help next week. A bad week costs you a floor, never the party.</li>
     <li class="trait"><b>Two dice, two jobs.</b> Every game throws a d20, but it never changes the damage. It shows how the game stacked up against the player&rsquo;s usual: 20 for a huge game, 1 for nothing at all. The floor&rsquo;s six-sided strike die is different: it does change HP. It&rsquo;s set by the season, week and floor, so every party on that floor that week takes the same strike, and you see it before lineups lock.</li>
     <li class="trait"><b>You play the dungeon, not a rival.</b> Every party climbs the same seven floors. The Guild tab compares each week by how much of its own floor a party took down, so being further ahead doesn&rsquo;t win the week by itself.</li>
   </ol>
@@ -892,7 +892,7 @@ let REAL=null;
 let STRIKE=null,STATUS={};
 const statusOf=k=>STATUS[k]||'ok';
 const STATUS_WORD={bloodied:'BLOODIED',down:'DOWN'};
-const STATUS_SAYS={bloodied:`below half HP: deals ×${F.BLOODIED_FACTOR} damage this week`,
+const STATUS_SAYS={bloodied:`below half max HP: deals ×${F.BLOODIED_FACTOR} damage this week`,
   down:'at 0 HP: deals nothing this week'};
 // `say` adds the short explanation as visible text; without it, it rides
 // along for screen readers only
@@ -924,22 +924,22 @@ const HP_FX=(()=>{
 // No invented numbers - nothing here that the game doesn't use.
 const FLAVOR={
   wall:{cls:'THE WALL',type:'Medium construct, lawful immovable',pos:'Offensive Line',max:MAX_HP.wall,
-    traits:[['Bulwark.',`Takes ${HP_FX.soakPct}% of every hit the party takes onto its own hit points, until it has none left. Deals no damage.`],
+    traits:[['Bulwark.',`Soaks ${HP_FX.soakPct}% of every other member's hit onto its own hit points, until it has none left. Deals no damage.`],
             [`The soak is a flat ${HP_FX.soakPct}% whatever this line did on Sunday.`,'']]},
   breaker:{cls:'THE BREAKER',type:'Medium fiend, chaotic violent',pos:'Edge Rusher',max:MAX_HP.breaker,
-    traits:[['Burst damage.',`Sacks hit for ${rateOf('breaker','sk')}, tackles for loss for ${rateOf('breaker','tfl')}. A quiet week deals nearly nothing.`],
+    traits:[['Pass rush.',`A sack is a big play and hits for ${rateOf('breaker','sk')}; a tackle for loss is volume and hits for ${rateOf('breaker','tfl')}. A quiet week deals nearly nothing.`],
             ['Hurt only by the floor\'s weekly strike.','']]},
   tactician:{cls:'THE TACTICIAN',type:'Medium humanoid, lawful calculating',pos:'Quarterback',max:MAX_HP.tactician,
-    traits:[['Field general.',`Pass yards and touchdown throws hit the room directly. A touchdown lands as a critical hit.`],
+    traits:[['Field general.',`Pass yards wear the floor down. A touchdown throw lands as a critical hit.`],
             [`Loses ${HP_FX.sack} hit points per sack he takes; the Wall soaks ${HP_FX.soakPct}% of each.`,'']]},
   hunter:{cls:'THE HUNTER',type:'Medium humanoid, chaotic explosive',pos:'Wide Receiver',max:MAX_HP.hunter,
-    traits:[['Volume.','Yards and catches deal steady damage, unreduced against swarms. A touchdown lands as a critical hit.'],
+    traits:[['Volume.','Yards and catches deal steady damage, in full against swarms. A touchdown lands as a critical hit.'],
             ['Hurt only by the floor\'s weekly strike.','']]},
   rogue:{cls:'THE ROGUE',type:'Medium humanoid, chaotic hungry',pos:'Running Back',max:MAX_HP.rogue,
     traits:[['Breakaway.','Any touchdown run lands as a critical hit.'],
             [`Loses ${HP_FX.carry} hit points per carry; the Wall soaks ${HP_FX.soakPct}%. A heavy workload wears him down.`,'']]},
   mender:{cls:'THE MENDER',type:'Medium humanoid, neutral steady',pos:'Kicker',max:MAX_HP.mender,
-    traits:[['Restoration.',`Each made kick deals ${HP_FX.kickDmg} damage and restores ${HP_FX.kickHeal} hit points, shared out from the Wall down, at most ${HP_FX.mendCap} to any one member.`],
+    traits:[['Restoration.',`Each made kick deals ${HP_FX.kickDmg} damage and restores ${HP_FX.kickHeal} hit points, shared out from the Wall down, at most ${HP_FX.mendCap} to any one member a week.`],
             ['Hurt only by the floor\'s weekly strike. Misses heal nothing; a Down Mender heals nothing at all.','']]},
 };
 const TEAM_NAMES={ARI:'Arizona',ATL:'Atlanta',BAL:'Baltimore',BUF:'Buffalo',CAR:'Carolina',
@@ -1155,7 +1155,7 @@ function projectionSummary(){
   if(mech==='plated'){
     const cracks=ps.reduce((s,p)=>s+(p.strips||0),0);
     const next=Math.max(0,WEEK_START.scales-Math.floor(cracks));
-    return head+`<div class="trait"><span class="proj">~${dmg} damage</span> gets through ${armorNow()} armor a drive, against ${left} of ${CURRENT_FLOOR.maxHp} HP left — ${dmg>=left?'projected to clear it.':`about ${Math.round(dmg/left*100)}% of what's left.`} <span class="proj">~${cracks.toFixed(1)} scales</span> should crack, leaving ${next} of ${CURRENT_FLOOR.scales} (${plateArmor(CURRENT_FLOOR,next)} armor) next week.</div>`+foot;
+    return head+`<div class="trait"><span class="proj">~${dmg} damage</span> gets through ${armorNow()} armor a game, against ${left} of ${CURRENT_FLOOR.maxHp} HP left — ${dmg>=left?'projected to clear it.':`about ${Math.round(dmg/left*100)}% of what's left.`} <span class="proj">~${cracks.toFixed(1)} scales</span> should crack, leaving ${next} of ${CURRENT_FLOOR.scales} (${plateArmor(CURRENT_FLOOR,next)} armor) next week.</div>`+foot;
   }
   return head+`<div class="trait"><span class="proj">~${dmg} damage</span> against ${left} of ${CURRENT_FLOOR.maxHp} HP left on this floor — ${dmg>=left?'projected to clear it.':`about ${Math.round(dmg/left*100)}% of what's left.`}</div>`+foot;
 }
@@ -1382,7 +1382,7 @@ function drawCompactRow(){
     const traveling=u.state==='traveling', arrived=u.state==='arrived';
     const spent=u.state==='spent',roll=RESULTS[i]&&RESULTS[i].roll;
     const rowCls=(arrived?' now':'')+(traveling?' sealed':'')+(spent&&roll?' t-'+roll.tier:'');
-    const tapAttrs=arrived?` role="button" tabindex="0" aria-label="Commit ${u.cls}'s drive"`:'';
+    const tapAttrs=arrived?` role="button" tabindex="0" aria-label="Commit ${u.cls}'s game"`:'';
     const r=RESULTS[i];
     const dmgText=traveling?'—':(r.dmg?'−'+r.dmg:'—');
     const ko=kickoffText(REAL[u.k]);
@@ -1447,11 +1447,11 @@ function renderEncounter(floor){
   const plated=floor.mechanic==='plated';
   $('encPos').textContent=isBoss?'Solitary boss':sentinel?'Solitary sentinel':plated?'Solitary beast':'Large swarm';
   $('encMechTrait').innerHTML=sentinel
-    ?'<b>Sentinel.</b> Volume production is halved. Damage from a single big play is doubled.'
+    ?'<b>Sentinel.</b> Volume (yards, catches, tackles for loss, made kicks) counts half. Big plays (touchdowns and sacks) deal double damage.'
     :plated
-    ?`<b>Plated.</b> Every drive loses the bear's armor off the top — ${floor.armorPerScale} per scale still on it. Small drives glance off entirely. Each touchdown, and each whole sack, pries one scale loose; it falls away before next week, never mid-fight.`
-    :'<b>Swarm.</b> Damage from a single big play is halved. Volume production is unreduced.';
-  $('encAttrition').innerHTML=`<b>Attrition.</b> The floor strikes the whole party once a week (below). The Tactician also loses ${HP_FX.sack} hit points per sack he takes, the Rogue ${HP_FX.carry} per carry. The Wall soaks ${HP_FX.soakPct}% of every other member's hit first. <b>Bloodied</b> below half HP: ×${F.BLOODIED_FACTOR} damage. <b>Down</b> at 0: deals nothing. Status is set once the floor has struck and holds all week.`;
+    ?`<b>Plated.</b> Every game loses the bear's armor off the top — ${floor.armorPerScale} per scale still on it. Small games glance off entirely. Each touchdown, and each whole sack, pries one scale loose; it falls away before next week, never mid-fight.`
+    :'<b>Swarm.</b> Big plays (touchdowns and sacks) deal half damage. Volume (yards, catches, tackles for loss, made kicks) counts in full.';
+  $('encAttrition').innerHTML=`<b>Attrition.</b> The floor strikes the whole party once a week (below). The Tactician also loses ${HP_FX.sack} hit points per sack he takes, the Rogue ${HP_FX.carry} per carry. The Wall soaks ${HP_FX.soakPct}% of every other member's hit first. <b>Bloodied</b> below half max HP: ×${F.BLOODIED_FACTOR} damage. <b>Down</b> at 0: deals nothing. Status is set once the floor has struck and holds all week.`;
   $('encScales').hidden=!plated;
   $('encRoomBlock').hidden=isBoss;
   $('encBossBlock').hidden=!isBoss;
@@ -1507,10 +1507,10 @@ function floorWins(){
   if(mech==='horde-mother')
     return `First downs kill her soldiers, turnovers add more, and a TD only hits her once none are standing — only ${listAnd(HORDE_SLOTS.map(clsName))} count here.`;
   if(mech==='plated')
-    return `Every drive loses ${armorNow()} damage off the top, so one big game beats several small ones — start players who break out. TDs and whole sacks pry scales loose for next week.`;
+    return `Every game loses ${armorNow()} damage off the top, so one big game beats several small ones — start players who break out. TDs and whole sacks pry scales loose for next week.`;
   const m=FLOOR_MECHANICS[mech]||{vol:1,burst:1};
   const advice=m.vol>m.burst?'start volume players':m.burst>m.vol?'start players who score':'volume and scoring weigh the same';
-  return `Yards and catches ${multWord(m.vol)} · TDs and sacks ${multWord(m.burst)} — ${advice}.`;
+  return `Volume (yards, catches, TFL, kicks) ${multWord(m.vol).replace(/^count/,'counts')} · big plays (TDs, sacks) ${multWord(m.burst)} — ${advice}.`;
 }
 // How much of a class's damage survives this floor: every game this
 // season of the starter and the bench in this week's file, through
@@ -1528,8 +1528,8 @@ function renderRates(){
   const mech=floorMech(), F=CURRENT_FLOOR;
   const where=F?`Floor ${floorNumeral(F.id)}, ${F.name} (${MECH_NAME[mech]||mech})`:'this floor';
   const cl=(k,extra='')=>`<tr><th class="cl" scope="rowgroup" colspan="3">${clsName(k)}${extra}</th></tr>`;
-  const wallRow=`${cl('wall')}<tr><th class="st" scope="row">sacks allowed</th><td class="note" colspan="2">soaks ${Math.round(WALL_SOAK*100)}% of party damage, deals no damage</td></tr>`;
-  const healRow=`<tr><th class="st" scope="row">heal per made kick</th><td class="note" colspan="2">${MENDER_HEAL}, max ${HEAL_CAP} to one member</td></tr>`;
+  const wallRow=`${cl('wall')}<tr><th class="st" scope="row">sacks allowed</th><td class="note" colspan="2">soaks ${Math.round(WALL_SOAK*100)}% of every other member's hit, deals no damage</td></tr>`;
+  const healRow=`<tr><th class="st" scope="row">heal per made kick</th><td class="note" colspan="2">${MENDER_HEAL}, at most ${HEAL_CAP} to any one member a week</td></tr>`;
   // Hit points: the floor's strike and what wounds do - read off formulas.js
   const isBossT=mech==='horde-mother',cs=isBossT?1:2;
   const hpRow=(st,note)=>`<tr><th class="st" scope="row">${st}</th><td class="note" colspan="${cs}">${note}</td></tr>`;
@@ -1538,7 +1538,7 @@ function renderRates(){
     ${hpRow('sack taken (Tactician)',`−${HP_FX.sack}`)}
     ${hpRow('carry (Rogue)',`−${HP_FX.carry}`)}
     ${hpRow('Bloodied (below half max HP)',isBossT?'no effect on this floor: whole events can\'t be scaled':`deals ×${BLOODIED_FACTOR} damage, before any armor`)}
-    ${hpRow('Down (0 HP)',isBossT?'their turnovers, first downs and TDs don\'t count':'deals nothing; a Down Mender heals nothing')}
+    ${hpRow('Down (0 HP)',isBossT?'deals nothing: their turnovers, first downs and TDs don\'t count':'deals nothing; a Down Mender heals nothing')}
     ${hpRow('recovery',`+15% of max HP each week, before the strike`)}</tbody>`;
   if(mech==='horde-mother'){
     const hits=F?F.maxHp:HORDE_MOTHER_MAX_HP;
@@ -1552,8 +1552,8 @@ function renderRates(){
         ${ev('touchdown',`one hit on her, only with no soldiers standing — ${hits} hits kill her`)}</tbody>
       <tbody><tr><th class="cl" scope="rowgroup" colspan="2">Everyone else</th></tr>
         ${ev(clsName('breaker'),'nothing on this floor')}
-        ${ev(clsName('mender'),`heals ${MENDER_HEAL} per made kick, max ${HEAL_CAP} to one member`)}
-        ${ev(clsName('wall'),`soaks ${Math.round(WALL_SOAK*100)}% of party damage`)}</tbody>
+        ${ev(clsName('mender'),`heals ${MENDER_HEAL} per made kick, at most ${HEAL_CAP} to any one member a week`)}
+        ${ev(clsName('wall'),`soaks ${Math.round(WALL_SOAK*100)}% of every other member's hit`)}</tbody>
       ${hpBody}
     </table>
     <p class="rates-foot">Status is set once the floor has struck and holds all week.</p>`;
@@ -1581,7 +1581,7 @@ function renderRates(){
     return `<tbody>${cl(k,extra)}${rows}${k==='mender'?healRow:''}</tbody>`;
   }).join('');
   $('rates').innerHTML=`<table class="rates">
-    <caption>Damage for each one, on ${where}${armor?` — then <b>${armor} armor</b> comes off every drive, for every class`:''}</caption>
+    <caption>Damage for each one, on ${where}${armor?` — then <b>${armor} armor</b> comes off every game, for every class`:''}</caption>
     <thead><tr><th scope="col">Stat</th><th scope="col">Base</th><th scope="col">This floor</th></tr></thead>
     ${body}<tbody>${wallRow}</tbody>
     ${hpBody}
@@ -1621,7 +1621,7 @@ function drawRoom(){
   $('rprog').setAttribute('aria-valuemax',roomMax);
   if(isPlated()){
     const c=crackedThisWeek();
-    $('rscales').textContent=`${scales} / ${CURRENT_FLOOR.scales} · armor ${armorNow()} a drive`+
+    $('rscales').textContent=`${scales} / ${CURRENT_FLOOR.scales} · armor ${armorNow()} a game`+
       (c?` · ${c} cracked this week, gone by next`:'');
     // Decorative (aria-hidden) - the text above is the source of truth.
     // Cracked = lost in an earlier week or pried loose by a drive this week.
@@ -1661,11 +1661,11 @@ function dmgReceipt(k){
   if(x.volMult!==1&&x.volume)h+=rcRow(`${labels('volume')} ×${multTxt(x.volMult)} on a ${fl} floor`,rSigned(x.volume*x.volMult-x.volume));
   if(x.burstMult!==1&&x.burst)h+=rcRow(`${labels('burst')} ×${multTxt(x.burstMult)} on a ${fl} floor`,rSigned(x.burst*x.burstMult-x.burst));
   const exact=x.volume*x.volMult+x.burst*x.burstMult;
-  if(x.status==='bloodied')h+=rcRow(`Bloodied ×${x.statusFactor} (below half HP)`,x.statusCut?'−'+x.statusCut:'0');
+  if(x.status==='bloodied')h+=rcRow(`Bloodied ×${x.statusFactor} (below half max HP)`,x.statusCut?'−'+x.statusCut:'0');
   if(x.status==='down')h+=rcRow('Down (0 HP when the week began)',x.statusCut?'−'+x.statusCut:'0');
   if(x.armor)h+=rcRow(`Armor ate (${rPlural(scales,'scale')})`,'−'+x.armor);
   h+=rcRow(`Damage${Number.isInteger(exact)&&x.status!=='bloodied'?'':' (rounded)'}`,x.dmg,'rc-tot');
-  if(x.armor&&x.armor<armorNow())h+=rcNote(`Armor is ${armorNow()} a drive; it can only eat what the drive dealt.`);
+  if(x.armor&&x.armor<armorNow())h+=rcNote(`Armor is ${armorNow()} a game; it can only eat what the game dealt.`);
   if(x.status!=='ok')h+=rcNote(`Status is set once the floor has struck and holds all week.`);
   return h;
 }
@@ -1676,7 +1676,7 @@ function hordeReceipt(k){
     return rcNote('The Horde Mother takes no yards damage. Only turnovers, first downs and touchdowns by the Tactician, Hunter and Rogue move this fight.');
   const e=hordeEvents(REAL[k]),fx=HORDE_SEQ&&HORDE_SEQ.perSlot[k];
   if(statusOf(k)==='down')return rcRow(`${rPlural(e.turnovers,'turnover')}, ${rPlural(e.firstDowns,'first down')}, ${rPlural(e.td,'TD','TDs')}`,'—','rc-zero')+
-    rcNote('Down at 0 HP when the week began: none of this drive counts against the Horde Mother.');
+    rcNote('Down at 0 HP when the week began: none of this game counts against the Horde Mother.');
   if(!fx)return rcNote('No final stats for this slot this week.');
   let h=rcRow(rPlural(e.turnovers,'turnover'),fx.bornSoldiers?`+${rPlural(fx.bornSoldiers,'soldier')}`:'—',e.turnovers?'':'rc-zero')+
     rcRow(rPlural(e.firstDowns,'first down'),fx.killedSoldiers?`−${rPlural(fx.killedSoldiers,'soldier')}`:'—',e.firstDowns?'':'rc-zero')+
@@ -1689,7 +1689,7 @@ function hordeReceipt(k){
   if(e.td>fx.bossDamage)notes.push(fx.bossHpBefore<=0?'She had already fallen.'
     :fx.soldiers>0?`${fx.soldiers===1?'A soldier still stood':`${fx.soldiers} soldiers still stood`} between the party and her, so ${e.td-fx.bossDamage===1?'the touchdown was':'those touchdowns were'} blocked.`
     :`She had only ${rPlural(fx.bossHpBefore,'hit')} left.`);
-  notes.push(`Resolved in kickoff order: ${fx.soldiersBefore} soldier${fx.soldiersBefore===1?'':'s'} and ${fx.bossHpBefore} hit${fx.bossHpBefore===1?'':'s'} on her when this drive began.`);
+  notes.push(`Resolved in kickoff order: ${fx.soldiersBefore} soldier${fx.soldiersBefore===1?'':'s'} standing and ${fx.bossHpBefore} hit${fx.bossHpBefore===1?'':'s'} left on her before this game counted.`);
   return h+notes.map(rcNote).join('');
 }
 // What each committed drive did to party HP: the Wall's soak, where a
@@ -1719,21 +1719,21 @@ function healReceipt(k){
   let given=0;
   for(const s of SLOT_ORDER)if(f.healed[s]){given+=f.healed[s];h+=rcRow(clsOf(s),'+'+f.healed[s]);}
   if(r.heal-given>0)h+=rcRow('Unused — no one hurt enough to take it',r.heal-given,'rc-zero');
-  return h+rcNote('No member takes more than 9 from one drive; the rest passes down the line, Wall first.');
+  return h+rcNote(`No member gets more than ${HEAL_CAP} in a week; the rest passes down the line, Wall first.`);
 }
 function takeReceipt(k,soak){
   const r=RESULTS[party.findIndex(p=>p.k===k)],R=REAL[k];
   const cause=k==='tactician'?rPlural(R.sk,'sack')+' taken':k==='rogue'?rPlural(R.car,'carry','carries'):'Hits taken';
-  return rcRow(cause,r.take)+rcRow('The Wall absorbs',soak?'−'+soak:'0')+
+  return rcRow(cause,r.take)+rcRow('The Wall soaks',soak?'−'+soak:'0')+
     rcRow(`${clsOf(k)} loses`,`${r.take-soak} HP`,'rc-tot')+
-    (soak?'':rcNote('The Wall has no hit points left to absorb with.'));
+    (soak?'':rcNote('The Wall has no hit points left to soak with.'));
 }
 // `week`: the stat card's end-of-week version, which always shows the total.
 const weekSoak=()=>SLOT_ORDER.reduce((a,s)=>{const f=party.some(p=>p.k===s&&p.state==='spent')&&fxFor(s);return a+(f?f.soak:0);},0);
 function wallReceipt(week){
   const soaked=weekSoak();
-  return rcRow('Damage dealt','0')+(week||soaked?rcRow(week?'Absorbed for the party this week':'Absorbed for the party so far',soaked,'rc-tot'):'')+
-    rcNote(`The Wall soaks part of every hit the party takes — sacks on the Tactician, carries on the Rogue — while it has hit points. There's no blocking stat to deal damage from; ${rPlural(REAL.wall.sacksAllowed,'sack')} allowed is what the die reads.`);
+  return rcRow('Damage dealt','0')+(week||soaked?rcRow(week?'Soaked from sacks and carries this week':'Soaked from sacks and carries so far',soaked,'rc-tot'):'')+
+    rcNote(`The Wall soaks ${Math.round(WALL_SOAK*100)}% of every other member's hit while it has hit points: sacks on the Tactician, carries on the Rogue, and every share of the floor's strike (that soak is listed with the strike). There's no blocking stat to deal damage from; ${rPlural(REAL.wall.sacksAllowed,'sack')} allowed is what the die reads.`);
 }
 
 // Numbers come from resolveDrive() (formulas.js) - only the flavor text
@@ -1747,18 +1747,18 @@ const mech=()=>CURRENT_FLOOR?CURRENT_FLOOR.mechanic:'swarm';
 const drives=[
  {i:0,roll:()=>{
    return{...resolveDrive('wall',REAL.wall,mech(),armorNow(),statusOf('wall')),
-   text:`<b>Held the pocket.</b> No horde damage — the Wall prevents it, it doesn't deal it.`};}},
+   text:`<b>Held the pocket.</b> No damage dealt — the Wall prevents it, it doesn't deal it.`};}},
  {i:2,roll:()=>{const {y,td,sk}=REAL.tactician;
    return{...resolveDrive('tactician',REAL.tactician,mech(),armorNow(),statusOf('tactician')),
-   text:`<b>${y} passing yards, ${td} TD.</b> Marks targets across the floor; the party swings true. Sacked ${sk} time${sk===1?'':'s'}.`};}},
+   text:`<b>${y} passing yards, ${td} TD.</b> Reads the coverage and puts the ball where it hurts. Sacked ${sk} time${sk===1?'':'s'}.`};}},
  {i:3,roll:()=>{const {y,c,td}=REAL.hunter;
    return{...resolveDrive('hunter',REAL.hunter,mech(),armorNow(),statusOf('hunter')),
    text:`<b>${c} receptions, ${y} yards${td?`, ${td} TD`:''}.</b> ${td
-     ?'He looses volley after volley into the swarm. Most fall short. The last one finds the end zone and stays.'
-     :'Picks the swarm apart one body at a time. Unreduced.'}`};}},
- {i:4,roll:()=>{const {y,car}=REAL.rogue;
+     ?'He looses volley after volley. Most fall short. The last one finds the end zone and stays.'
+     :'Picks the floor apart one catch at a time.'}`};}},
+ {i:4,roll:()=>{const {y,car,td}=REAL.rogue;
    return{...resolveDrive('rogue',REAL.rogue,mech(),armorNow(),statusOf('rogue')),
-   text:`<b>${car} carries, ${y} yards.</b> Every touch costs him.`};}},
+   text:`<b>${car} carries, ${y} yards${td?`, ${td} TD`:''}.</b> Every touch costs him.`};}},
  {i:1,roll:()=>{const {sk,tfl}=REAL.breaker;
    return{...resolveDrive('breaker',REAL.breaker,mech(),armorNow(),statusOf('breaker')),
    text:sk?`<b>${sk} sack${sk===1?'':'s'}, ${tfl} for loss.</b> Straight through the line.`
@@ -1914,7 +1914,7 @@ function renderRecap(){
     return `<div class="rrow">${miniDie(r.roll)}<div class="rnm"><b>${u.cls}</b> · ${u.who||u.team}<div class="rst">${statLine(u.k)}</div></div><div class="ramt">${recapAmt(u.k,r)}</div></div>`;}).join('');
   const total=spent.reduce((a,i)=>a+(RESULTS[i].dmg||0),0);
   el.innerHTML=`<div class="rhead">This week so far</div>`+
-    (rows||'<div class="rst" style="padding:8px 0">No drives committed yet this week.</div>')+
+    (rows||'<div class="rst" style="padding:8px 0">No games committed yet this week.</div>')+
     (spent.length&&!isBoss?`<div class="rrow rtot"><div class="rnm"><b>Total damage</b></div><div class="ramt">−${total}</div></div>`:'')+
     (spent.length&&isBoss?`<div class="rrow rtot"><div class="rnm"><b>The Horde Mother</b></div><div class="ramt">${Math.max(0,bossHp)} / ${CURRENT_FLOOR.maxHp} hits · ${Math.max(0,soldiers)} soldier${Math.max(0,soldiers)===1?'':'s'}</div></div>`:'')+
     (waiting?`<div class="rst" style="padding:6px 0">${done
@@ -1956,23 +1956,23 @@ function applyCommit(i){
       u.k==='wall'?wallReceipt():hordeReceipt(u.k));
     if(boss.bornSoldiers)ev('take','+'+boss.bornSoldiers,`A turnover. ${boss.bornSoldiers} soldier${boss.bornSoldiers===1?'':'s'} rise${boss.bornSoldiers===1?'s':''} to guard her.`);
     if(boss.killedSoldiers)ev('heal','−'+boss.killedSoldiers,`A first down falls. ${boss.killedSoldiers} soldier${boss.killedSoldiers===1?'':'s'} cut down.`);
-    if(!boss.bossDamage&&(REAL[u.k].td||0)>0)ev('take','—','<i>The shield holds — no touchdown reaches her while soldiers stand.</i>');
+    if(!boss.bossDamage&&(REAL[u.k].td||0)>0&&statusOf(u.k)!=='down')ev('take','—','<i>The shield holds — no touchdown reaches her while soldiers stand.</i>');
   }else{
     ev(r.crit?'crit':(r.dmg?'dmg':''),r.dmg?'−'+r.dmg:'—',`${u.cls} — ${r.text}${r.crit?' <i>Critical hit.</i>':''}`,
       u.k==='wall'?wallReceipt():dmgReceipt(u.k));
     if(r.blocked)ev('',`(${r.blocked})`,r.dmg?`<i>The scales turn aside ${r.blocked}.</i>`:`<i>All ${r.blocked} skitters off the scales.</i>`);
-    const cracked=isPlated()?scaleStrips(u.k,REAL[u.k]):0;
+    const cracked=isPlated()?scaleStrips(u.k,REAL[u.k],statusOf(u.k)):0;
     if(cracked)ev('crit','✕'+cracked,`${cracked===1?'A scale':`${cracked} scales`} pried loose. The hide is thinner next week.`);
   }
   if(r.heal){
     ev('heal','+'+r.heal,`THE MENDER restores ${r.heal} hit points across the party.`,healReceipt(u.k));
-    if(r.miss) ev('take','—','<i>One miss. That possession heals nothing.</i>');
+    if(r.miss) ev('take','—',`<i>${r.miss===1?'One miss. That kick heals':`${r.miss} misses. Those kicks heal`} nothing.</i>`);
   }
   if(r.take){
-    ev('take','−'+r.take,`Attrition. The Wall absorbs ${applied.soak}; ${u.cls} takes ${r.take-applied.soak}.`,takeReceipt(u.k,applied.soak));
+    ev('take','−'+r.take,`Attrition. The Wall soaks ${applied.soak}; ${u.cls} takes ${r.take-applied.soak}.`,takeReceipt(u.k,applied.soak));
   }
   const st=statusOf(u.k);
-  if(st==='down'&&u.k!=='wall')ev('take','—',`<i>${u.cls} is Down — ${isBoss?'none of this drive counts':u.k==='mender'?'deals and heals nothing':'deals nothing'} this week.</i>`);
+  if(st==='down'&&u.k!=='wall')ev('take','—',`<i>${u.cls} is Down — ${isBoss?'none of this game counts':u.k==='mender'?'deals and heals nothing':'deals nothing'} this week.</i>`);
   else if(st==='bloodied'&&!isBoss&&u.k!=='wall')ev('take',`×${F.BLOODIED_FACTOR}`,`<i>${u.cls} is Bloodied — three-quarters damage this week.</i>`);
   u.state='spent';
   if($('logRecap')&&!$('logRecap').hidden)renderRecap();
@@ -2019,7 +2019,7 @@ function renderStatCard(cleared,wounded){
         :`<div class="sc-amt" style="color:var(--faint)">—</div>`)
       :slot==='wall'?`<div class="sc-amt" style="color:var(--faint)">soak${u.state==='spent'?' '+weekSoak():''}</div>`
       :slot==='mender'?`<div class="sc-amt" style="color:var(--mend)">+${r.heal}</div>`
-      :`<div class="sc-amt" style="color:${r.crit?'var(--live)':'var(--rule)'}">−${r.dmg}</div>`;
+      :`<div class="sc-amt" style="color:${r.crit?'var(--live)':'var(--rule)'}">${r.dmg?'−'+r.dmg:'—'}</div>`;
     // Tap a row for its receipt - only for drives that were committed.
     const spent=u.state==='spent';
     const rc=!spent?'':slot==='wall'?wallReceipt(true)
@@ -2035,7 +2035,7 @@ function renderStatCard(cleared,wounded){
   }).join('');
   const foot=isBoss
     ?`<div class="sc-hp">HORDE MOTHER <b>${Math.max(0,bossHp)}</b> / <b>${CURRENT_FLOOR.maxHp}</b> hits &middot; <b>${Math.max(0,soldiers)}</b> soldier${Math.max(0,soldiers)===1?'':'s'} standing</div>`
-    :`<div class="sc-hp">ROOM <b>${Math.max(0,Math.round(roomHp))}</b> / <b>${roomMax}</b> HP${isPlated()?` &middot; <b>${Math.max(0,scales-crackedThisWeek())}</b> scale${scales-crackedThisWeek()===1?'':'s'} left`:''}</div>`;
+    :`<div class="sc-hp">FLOOR <b>${Math.max(0,Math.round(roomHp))}</b> / <b>${roomMax}</b> HP${isPlated()?` &middot; <b>${Math.max(0,scales-crackedThisWeek())}</b> scale${scales-crackedThisWeek()===1?'':'s'} left`:''}</div>`;
   $('statcard').innerHTML=`<div class="statcard">
     <div class="sc-head">${KICK.week}</div>
     <div class="sc-result" style="color:${cleared?'var(--mend)':'var(--live)'}">${cleared?'THE FLOOR FALLS':'HELD AT THE DOOR'}</div>
@@ -2184,13 +2184,13 @@ function renderReview(){
     if(burstD<0)cost(`${MECH} halved your big plays (${list(burstN)})`,`−${-burstD}`,'live');
     if(volD<0)cost(`${MECH} halved your volume (${list(volN)})`,`−${-volD}`,'live');
     if(burstD>0)cost(`${MECH} doubled your big plays (${list(burstN)})`,`+${burstD}`,'mend');
-    if(m==='swarm'&&!burstD)cost('No touchdowns or sacks for the Swarm to halve','0','faint');
-    if(m==='sentinel'&&!burstD)cost('No touchdowns or sacks for the Sentinel to double','0','faint');
+    if(m==='swarm'&&!burstD)cost('No big plays (touchdowns or sacks) for the Swarm to halve','0','faint');
+    if(m==='sentinel'&&!burstD)cost('No big plays (touchdowns or sacks) for the Sentinel to double','0','faint');
     if(cut.bloodied.amt)cost(`Wounds: ${capFirst(listAnd(cut.bloodied.n.map(e=>midCls(e.k))))} ${cut.bloodied.n.length===1?'was':'were'} Bloodied, ×${F.BLOODIED_FACTOR}`,`−${cut.bloodied.amt}`,'live');
     if(cut.down.amt)cost(`Wounds: ${capFirst(listAnd(cut.down.n.map(e=>midCls(e.k))))} ${cut.down.n.length===1?'was':'were'} Down and dealt nothing`,`−${cut.down.amt}`,'live');
-    if(ate)cost(`${CURRENT_FLOOR.name}’s armor ate ${ate} across ${plural(glanced,'drive')}`,`−${ate}`,'live');
+    if(ate)cost(`${CURRENT_FLOOR.name}’s armor ate ${ate} across ${plural(glanced,'game')}`,`−${ate}`,'live');
     if(isPlated()){const c=crackedThisWeek();
-      if(c)cost(`${plural(c,'scale')} pried loose: ${c*(CURRENT_FLOOR.armorPerScale||0)} less armor a drive next week`,`✕${c}`,'mend');}
+      if(c)cost(`${plural(c,'scale')} pried loose: ${c*(CURRENT_FLOOR.armorPerScale||0)} less armor a game next week`,`✕${c}`,'mend');}
     // the bottom line; its net only adds anything once two effects pull
     const net=dealt-unscaled,effects=[burstD,volD,ate,cut.bloodied.amt,cut.down.amt].filter(Boolean).length;
     costs.push(`<div class="wr-cost wr-sum"><span><b>Hit for ${unscaled} before the floor${cut.bloodied.amt||cut.down.amt?' and wounds':''}; ${dealt} got through.</b></span>`+
@@ -2198,9 +2198,9 @@ function renderReview(){
     const volShare=rawTot?volRaw/rawTot:0,p=n=>Math.round(n*100);
     take=!unscaled?'Nothing landed this week.'
       :m==='swarm'?(volShare>=0.6?'Volume carried this week; on a Swarm floor that’s the plan.'
-        :`Big plays did ${p(1-volShare)}% of the work even at half value; a Swarm floor pays steady yardage in full.`)
-      :m==='sentinel'?(volShare<=0.5?'Touchdowns and sacks carried this week at double value; that’s how a Sentinel floor falls.'
-        :`Yardage did ${p(volShare)}% of the work at half value; a Sentinel floor pays double for touchdowns and sacks.`)
+        :`Big plays did ${p(1-volShare)}% of the work even at half value; a Swarm floor pays volume in full.`)
+      :m==='sentinel'?(volShare<=0.5?'Big plays carried this week at double value; that’s how a Sentinel floor falls.'
+        :`Volume did ${p(volShare)}% of the work at half value; a Sentinel floor pays double for big plays.`)
       :m==='plated'?(ate/rawTot>=0.3?`The armor ate ${p(ate/rawTot)}% of what the party hit for. Small games glance off; only big ones count here.`
         :`${p(dealt/rawTot)}% punched through the armor. Big games are what this floor rewards.`)
       :'';
@@ -2334,7 +2334,7 @@ async function boot(){
         ?`<b>The stair opens.</b> Floor ${floorNumeral(CURRENT_FLOOR.id-1)} has fallen behind you. Ahead: ${CURRENT_FLOOR.name}, not yet engaged — the party arrives wounded, but arrives.`
         :CURRENT_FLOOR.mechanic==='horde-mother'
         ?`<b>Carried over.</b> ${soldiers} soldier${soldiers===1?'':'s'} still standing, ${bossHp} of ${CURRENT_FLOOR.maxHp} hits left on the Horde Mother, after ${carried.weeksOnFloor} week${carried.weeksOnFloor===1?'':'s'} on this floor.`
-        :`<b>Carried over.</b> ${Math.round(roomMax-roomHp)} damage already dealt across ${carried.weeksOnFloor} week${carried.weeksOnFloor===1?'':'s'} of siege — the room hasn't recovered between weeks, only the party has.${isPlated()?` ${scales} of ${CURRENT_FLOOR.scales} scales still on it.`:''}`;
+        :`<b>Carried over.</b> ${Math.round(roomMax-roomHp)} damage already dealt across ${carried.weeksOnFloor} week${carried.weeksOnFloor===1?'':'s'} of siege — the floor hasn't recovered between weeks, only the party has.${isPlated()?` ${scales} of ${CURRENT_FLOOR.scales} scales still on it.`:''}`;
     }
   }
   // The floor strikes once, at the start of the week (after the recovery
@@ -2393,7 +2393,7 @@ async function boot(){
     ?`${partyLabel} · TAVERN LOCKS ${clockText(new Date(LOCKED_AT)).toUpperCase()}`
     :`${partyLabel} · TAVERN LOCK TIME UNKNOWN`;
   KICK.dungeon=CURRENT_FLOOR
-    ?`${partyLabel} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)} OF 6`
+    ?`${partyLabel} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)}${BRIEF&&BRIEF.floors.length?` OF ${BRIEF.floors.length}`:''}`
     :`${partyLabel} · THE DUNGEON`;
   KICK.guild=`${partyLabel} · THE GUILD`;
   document.querySelector('header .kick').textContent=KICK[currentTab];
@@ -2453,7 +2453,7 @@ async function boot(){
       // above, so remaining arrivals and any already-'arrived' card still
       // resolve to exactly the same numbers they would have originally.
       ensureLog();
-      ev('','','Picking back up this run where it left off. Tap Campaign Log above for the drives already committed.');
+      ev('','','Picking back up this run where it left off. Tap Campaign Log above for the games already committed.');
       scheduleNextArrival();
     }
   }
@@ -2529,11 +2529,11 @@ function prevRules(past){
 }
 function briefCopy(mech,prev,first){
   const was=prev?` on ${prev.floor.name}`:'';
-  if(mech==='swarm')return `${first?'Every floor bends the same box score its own way, and this is the first.':'The rules change here.'} A swarm doesn't care about highlights: every yard, catch, tackle for loss and made kick hits at full value, but a touchdown or a sack, one big blow, counts half. The steady player clears this floor, not the one with the long touchdown.`;
-  if(mech==='sentinel')return `The rules change here: a sentinel shrugs off the grind. Yards, catches, tackles for loss and made kicks count half; touchdowns and sacks count double. Whoever carried the party${was} may not be the one who carries it now.`;
+  if(mech==='swarm')return `${first?'Every floor bends the same box score its own way, and this is the first.':'The rules change here.'} A swarm doesn't care about highlights: volume (every yard, catch, tackle for loss and made kick) hits at full value, but a big play (a touchdown or a sack) counts half. The steady player clears this floor, not the one with the long touchdown.`;
+  if(mech==='sentinel')return `The rules change here: a sentinel shrugs off the grind. Volume (yards, catches, tackles for loss and made kicks) counts half; big plays (touchdowns and sacks) count double. Whoever carried the party${was} may not be the one who carries it now.`;
   if(mech==='plated'){
     const s=WEEK_START&&WEEK_START.scales!=null?WEEK_START.scales:CURRENT_FLOOR.scales;
-    return `The rules change here: the bear is armored. Every drive loses ${F.plateArmor(CURRENT_FLOOR,s)} damage off the top (${s} scales at ${CURRENT_FLOOR.armorPerScale} each), so a quiet game glances off and does nothing. Big plays aren't halved here, and every touchdown or whole sack pries a scale loose for next week, so the armor only gets thinner.`;
+    return `The rules change here: the bear is armored. Every game loses ${F.plateArmor(CURRENT_FLOOR,s)} damage off the top (${s} scales at ${CURRENT_FLOOR.armorPerScale} each), so a quiet game glances off and does nothing. Big plays aren't halved here, and every touchdown or whole sack pries a scale loose for next week, so the armor only gets thinner.`;
   }
   if(mech==='horde-mother')return `The rules change here: yards stop counting. The Horde Mother falls to ${CURRENT_FLOOR.maxHp} touchdowns, and a touchdown only reaches her when no soldiers stand in the way. Every turnover (an interception or a lost fumble) adds a soldier; every first down kills one. Only the Tactician, Hunter and Rogue can touch this fight.`;
   return '';
@@ -2898,7 +2898,7 @@ renderDungeon();
 // party name and real lock time (computed from the actual schedule).
 const KICK={week:'WEEK 1 · FLOOR I · THE SUNKEN VAULT',
             lineup:'WEEK 1 · TAVERN LOCKS AT FIRST KICKOFF',
-            dungeon:'THE DUNGEON · SIX FLOORS, ONE PARTY',
+            dungeon:'THE DUNGEON · ONE STAIR DOWN',
             guild:'THE GUILD · EVERY PARTY, SAME FLOORS'};
 const TABS=['week','lineup','dungeon','guild'];
 let currentTab='week';

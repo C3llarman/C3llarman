@@ -27,7 +27,7 @@ One of each. No duplicates, no bench.
 
 Three separate currencies. Keeping them separate is the whole design — do not collapse them.
 
-- **Yards → damage.** The grind that chips a room down.
+- **Yards → damage.** The grind that chips a floor down.
 - **Touchdowns → critical hits.** Burst.
 - **Hit points → wear and availability**, NOT production. A player who was shut down
   and a player who got hurt must look different on the card. HP never *becomes* damage,
@@ -45,12 +45,12 @@ Conversion rates (from the prototype, tune freely):
 | The Tactician | Pass yds · TD | 0.55/yd · 45 |
 | The Hunter | Rec yds · catch · TD | 1.1/yd · 6 · 60 |
 | The Rogue | Rush yds · TD | 1.3/yd · 60 |
-| The Mender | Made kicks | 14 dmg · 7 heal (max 9 to one member per drive) |
+| The Mender | Made kicks | 14 dmg · 7 heal (max 9 to one member a week) |
 
 HP drain: the floor's weekly strike (d6 × floor id × 2, split six ways). Tactician −6 per
-sack taken. Rogue −0.7 per carry. Wall absorbs 40% of every other member's hit first.
+sack taken. Rogue −0.7 per carry. Wall soaks 40% of every other member's hit first.
 
-**XP comes from clearing rooms, not from points.** Fantasy points are already yards plus
+**XP comes from clearing floors, not from points.** Fantasy points are already yards plus
 TDs; granting XP for them pays twice for the same production and lets the best roster run
 away with the season. Clean clear (nobody under half HP) pays more. **Not built yet:** XP is
 never saved or spent, so the UI shows no XP number. The verdict and stat card say clean
@@ -60,6 +60,17 @@ clear vs wounded in words until XP actually does something.
 scores, AC and Speed (cards and encounter) were removed because nothing read them. Trait
 copy describes what `public/formulas.js` does; its numbers are read off `RATES`,
 `resolveDrive` and `applyDrive` (`HP_FX` in `public/index.html`), not restated.
+
+**Copy vocabulary (player-facing).** A player's whole week is a **game**, never a "drive"
+(football fans read a drive as one possession; "drive" survives only in football senses,
+like the Horde Mother's "drive that dies at the sticks", and in code names such as
+`resolveDrive`). The thing with HP that you clear is the **floor** ("the floor falls",
+floor HP), never a "room"; **encounter** is only the monster's presentation. Damage terms:
+**volume** = yards, catches, tackles for loss, made kicks; **big plays** = touchdowns and
+sacks. Wounds: the floor's **strike**, **Bloodied** (below half max HP, ×0.75 damage),
+**Down** (0 HP, deals nothing). The Wall **soaks** 40% of every other member's hit. Keep the
+primer, Rules of the Delve, rates table, card and encounter traits, receipts, review and
+briefing saying the same rule the same way.
 
 ## Floor modifiers
 
@@ -79,7 +90,7 @@ Netlify, connected to this repo.
   A build-time script flattens one season into compact per-week JSON committed as
   static files. **Play completed weeks, not live ones** — the season is over, every stat
   already exists. This removes live polling, rate limits, and mid-game state entirely.
-- **"Next drive"** is a paced reveal of a result already computed, not a fetch.
+- **"Next game"** (each arriving player) is a paced reveal of a result already computed, not a fetch.
 - **Guild:** Netlify Blobs behind a serverless function. Guild code + party + result.
 - **v1 scope:** no live draft. Each person picks six independently; duplicates allowed.
   A snake draft is real-time multiplayer and is most of the engineering — it does not
@@ -286,8 +297,8 @@ progression was actually scoped:
   status and records each week's `strike` and any non-ok `status` in its history.
 - **Plated floor (Floor IV, Old Scaleback — a bear armored like a pangolin).**
   `mechanic: "plated"`, with `scales` and `armorPerScale` on the floor in
-  `data/floors.json`. Every drive loses `scales × armorPerScale` off the top (flat damage
-  reduction, no swarm/sentinel scaling), so small drives glance off and a two-kick Mender
+  `data/floors.json`. Every game loses `scales × armorPerScale` off the top (flat damage
+  reduction, no swarm/sentinel scaling), so small games glance off and a two-kick Mender
   deals nothing. Each TD (Tactician/Hunter/Rogue) or whole sack (Breaker) strips one
   scale, **effective next week**. Armor is fixed for the whole week, so commit order never
   matters and the live run matches the replay. Tuned to 8 scales × 8 and 1250 HP: against
@@ -323,7 +334,7 @@ that one *does* change numbers (party HP, and through Bloodied/Down, damage), bu
 seeded from (season, week, floor id) and shared by every party on that floor that week,
 never rolled at the table. The d20 below never changes a number.
 
-Each drive gets a d20 face from `rollFor()` in `public/formulas.js`. It **reads** the box
+Each player's game gets a d20 face from `rollFor()` in `public/formulas.js`. It **reads** the box
 score and never changes a number, so the same stat line always lands on the same face.
 Raw production (no floor scaling) vs the player's usual: their own earlier games this
 season, pulled toward a class baseline as if it were 2 extra games, floored at 90% of the
@@ -336,7 +347,7 @@ deterministically per player and week.
 The reveal (`commit()` → `rollStage()` in `public/index.html`): tapping an arrived card
 throws `public/assets/d20.webp` center-screen. It tumbles about 0.9s while random faces
 flicker, then lands on the real face. A natural 20 gilds and bursts, a natural 1 goes gray,
-cracks and shakes, and both buzz on Android. Then the unchanged commit math runs. Room HP
+cracks and shakes, and both buzz on Android. Then the unchanged commit math runs. Floor HP
 counts down while a gold trail catches up. The log, the party row and the stat card keep a
 small die. Tap or Esc skips; reduced motion shows the face with no tumble or shake. The gilded and cracked dice are their own art (`d20-nat20.webp`, `d20-nat1.webp`), cut in
 the same frame as `d20.webp` so the swap on landing doesn't jump. Sources are in

@@ -11,13 +11,13 @@ export const ROLL_COPY = {
   tactician: {
     nat20:  ['{who} sees the whole field at once. Every throw lands where the party needed it.',
              'The commands ring out and the dungeon itself seems to obey. {who} is untouchable.'],
-    strong: ['{who} marks the targets and the party swings true.',
+    strong: ['{who} finds the open man, again and again.',
              'Clean reads, clean throws. {who} keeps the party moving.'],
     par:    ['{who} manages the game. Nothing more, nothing less.',
              'A workmanlike day from {who}. The party advances, slowly.'],
     weak:   ['{who} squints into the dark and throws to where someone used to be.',
              'Hesitation. {who} holds the ball too long and the moment passes.'],
-    nat1:   ['{who} fumbles the orders. The party scatters in four directions.',
+    nat1:   ['{who} fumbles the call. Every throw goes where nobody is.',
              'Nothing connects. {who} walks off the field to silence.'],
   },
   hunter: {
@@ -53,7 +53,7 @@ export const ROLL_COPY = {
              'A day of hand-fighting. {who} wins some, loses some.'],
     weak:   ['{who} swings at shadows. The ball is always gone.',
              'Double-teamed and smothered. {who} barely gets a hand on anyone.'],
-    nat1:   ['{who} swings at nothing. The swarm doesn\'t even notice.',
+    nat1:   ['{who} swings at nothing. The enemy doesn\'t even notice.',
              'Not a sack, not a stop. {who} might as well be a statue in the trenches.'],
   },
   mender: {
