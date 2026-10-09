@@ -25,15 +25,29 @@ export const SLOT_ORDER = ['wall','breaker','tactician','hunter','rogue','mender
 // variance. Mender still has no burst term - a made kick has no
 // explosive-play concept to isolate. Wall stays 0/0 - no O-line dmg
 // formula exists (CLAUDE.md's known data problem).
+// The conversion table itself - the one place a rate lives. Each row is
+// [term, stat field, label, rate]; a term's value is round(stat * rate),
+// so yardage rounds per stat exactly as it always has. dmgParts and
+// explainDamage both read this, so a breakdown shown to the player can
+// never disagree with the damage actually dealt.
+export const RATES={
+  tactician:[['volume','y','pass yds',0.55],['burst','td','TD',45]],
+  hunter:[['volume','y','rec yds',1.1],['volume','c','catches',6],['burst','td','TD',60]],
+  rogue:[['volume','y','rush yds',1.3],['burst','td','TD',60]],
+  breaker:[['volume','tfl','TFL',22],['burst','sk','sacks',70]],
+  mender:[['volume','fg','made kicks',14]],
+  wall:[],
+};
+function rateTerms(k,r){
+  return (RATES[k]||[]).map(([term,field,label,rate])=>{
+    const n=r[field]||0;
+    return {term,field,label,n,rate,value:Math.round(n*rate)};
+  });
+}
 export function dmgParts(k,r){
-  switch(k){
-    case 'tactician': return {volume:Math.round(r.y*0.55),burst:r.td*45};
-    case 'hunter': return {volume:Math.round(r.y*1.1)+r.c*6,burst:r.td*60};
-    case 'rogue': return {volume:Math.round(r.y*1.3),burst:r.td*60};
-    case 'breaker': return {volume:r.tfl*22,burst:r.sk*70};
-    case 'mender': return {volume:r.fg*14,burst:0};
-    default: return {volume:0,burst:0};
-  }
+  let volume=0,burst=0;
+  for(const t of rateTerms(k,r)){ if(t.term==='volume')volume+=t.value; else burst+=t.value; }
+  return {volume,burst};
 }
 // Floor modifiers (CLAUDE.md): Swarm halves the big-play term and leaves
 // volume unreduced; Sentinel halves volume and doubles burst. Defaults
@@ -70,6 +84,21 @@ export function dmgFor(k,r,mechanic='swarm'){
   const {volume,burst}=dmgParts(k,r);
   const m=FLOOR_MECHANICS[mechanic]||{vol:1,burst:1};
   return Math.round(volume*m.vol+burst*m.burst);
+}
+
+// The receipt for one drive: every stat that dealt damage, the floor's
+// multiplier on each term, and what a plated floor's armor ate - for the
+// UI to show the working ("146 rush yds x 1.3 = 190 ...") rather than a
+// bare number. Same arithmetic as dmgFor/resolveDrive by construction:
+// raw === dmgFor(k,r,mechanic) and dmg === resolveDrive(...).dmg.
+// Horde Mother isn't damage at all - see hordeEvents for that floor.
+export function explainDamage(k,r,mechanic='swarm',armor=0){
+  const m=FLOOR_MECHANICS[mechanic]||{vol:1,burst:1};
+  const terms=rateTerms(k,r).map(t=>({...t,mult:t.term==='volume'?m.vol:m.burst}));
+  const {volume,burst}=dmgParts(k,r);
+  const raw=Math.round(volume*m.vol+burst*m.burst);
+  const dmg=Math.max(0,raw-armor);
+  return {terms,volume,burst,volMult:m.vol,burstMult:m.burst,raw,armor:raw-dmg,dmg};
 }
 
 // The numeric half of one slot's drive - room damage, whether it crits,
