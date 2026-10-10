@@ -7,7 +7,13 @@
 // floor's own pool (room HP for a yards-damage floor, soldiers/boss HP
 // for a Horde Mother-style floor), and each party member's HP after
 // that week's attrition and the 15%/week off-week recovery (CLAUDE.md,
-// decided).
+// decided). Each week opens with the floor's strike (formulas.js
+// floorStrike - seeded from season/week/floor, the same strike the live
+// page shows), and each member's status (Bloodied/Down) is fixed from HP
+// right after it, for that whole week.
+//
+// The stored `hp` is where the NEXT week starts BEFORE its strike: the
+// live page applies that week's strike itself, from the same function.
 //
 // Floor advancement happens on week boundaries only, never mid-week: if
 // a floor clears from a given week's damage, the NEXT week starts fresh
@@ -28,7 +34,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MAX_HP, resolveDrive, applyDrive, regenHp, resolveHordeMotherWeek, plateArmor, scaleStrips } from '../public/formulas.js';
+import { MAX_HP, SLOT_ORDER, resolveDrive, applyDrive, regenHp, resolveHordeMotherWeek, plateArmor, scaleStrips, floorStrike, partyStatus } from '../public/formulas.js';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
@@ -70,12 +76,13 @@ function isFloorCleared(floor, pool) {
 // against, so it runs every week regardless of the current floor's
 // mechanic. Only the FLOOR's own pool (room HP, or soldiers/boss HP)
 // depends on which kind of floor is live.
-function applyWeekToParty(hp, weekData, floor) {
+function applyWeekToParty(hp, weekData, floor, status) {
   let next = { ...hp };
   for (const slot of DRIVE_ORDER) {
     const r = weekData[slot];
     if (!r || !r.hasStats) continue;
-    const result = resolveDrive(slot, r, floor.mechanic);
+    // status matters here too: a Down Mender heals nothing
+    const result = resolveDrive(slot, r, floor.mechanic, 0, status[slot]);
     // roomHp threaded through as 0 and discarded here on purpose - this
     // call is only for its hp side effects (soak/take/heal/clamp) below;
     // the floor's own pool (if this is a yards-damage floor) is tracked
@@ -86,9 +93,9 @@ function applyWeekToParty(hp, weekData, floor) {
   return next;
 }
 
-function applyWeekToFloor(floor, pool, weekData) {
+function applyWeekToFloor(floor, pool, weekData, status) {
   if (floor.mechanic === 'horde-mother') {
-    return resolveHordeMotherWeek(pool, weekData);
+    return resolveHordeMotherWeek(pool, weekData, status);
   }
   // Plated: armor is fixed for the week at the scales it started with;
   // scales cracked this week fall away for NEXT week (formulas.js).
@@ -99,9 +106,9 @@ function applyWeekToFloor(floor, pool, weekData) {
   for (const slot of DRIVE_ORDER) {
     const r = weekData[slot];
     if (!r || !r.hasStats) continue;
-    const result = resolveDrive(slot, r, floor.mechanic, armor);
+    const result = resolveDrive(slot, r, floor.mechanic, armor, status[slot]);
     roomHp -= result.dmg;
-    strips += scaleStrips(slot, r);
+    strips += scaleStrips(slot, r, status[slot]);
   }
   return plated ? { roomHp, scales: Math.max(0, pool.scales - strips) } : { roomHp };
 }
@@ -138,11 +145,19 @@ async function replayParty(partyId, season, throughWeek, floors) {
     totalWeeksPlayed++;
     weeksOnFloor++;
 
-    hp = applyWeekToParty(hp, weekData, floor);
+    // The floor strikes first (after last week's recovery), then status is
+    // fixed for the week from the HP it leaves.
+    const strike = floorStrike(hp, season, week, floor.id);
+    hp = strike.hp;
+    const status = partyStatus(hp);
+    hp = applyWeekToParty(hp, weekData, floor, status);
     const before = pool;
-    pool = applyWeekToFloor(floor, pool, weekData);
+    pool = applyWeekToFloor(floor, pool, weekData, status);
     const clearedThisWeek = isFloorCleared(floor, pool);
     const entry = { week, floorId: floor.id, cleared: clearedThisWeek };
+    entry.strike = { face: strike.face, total: strike.total, share: strike.share };
+    const hurt = Object.fromEntries(SLOT_ORDER.filter(k => status[k] !== 'ok').map(k => [k, status[k]]));
+    if (Object.keys(hurt).length) entry.status = hurt;
     if (floor.mechanic === 'horde-mother') {
       entry.hits = before.bossHp - pool.bossHp;
       entry.soldiers = pool.soldiers;

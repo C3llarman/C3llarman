@@ -27,27 +27,50 @@ One of each. No duplicates, no bench.
 
 Three separate currencies. Keeping them separate is the whole design — do not collapse them.
 
-- **Yards → damage.** The grind that chips a room down.
+- **Yards → damage.** The grind that chips a floor down.
 - **Touchdowns → critical hits.** Burst.
 - **Hit points → wear and availability**, NOT production. A player who was shut down
-  and a player who got hurt must look different on the card.
+  and a player who got hurt must look different on the card. HP never *becomes* damage,
+  but it gates it: below half max HP a member is **Bloodied** and deals ×0.75; at 0 HP
+  they are **Down** and deal nothing (a Down Mender heals nothing). Status is fixed for the
+  week right after the floor's strike (see Season-progression rules), and is shown as a
+  chip on the Week party row and on each Tavern card's iron strip.
 
 Conversion rates (from the prototype, tune freely):
 
 | Class | Reads | Rate |
 |---|---|---|
-| The Wall | Pressure allowed | soaks 40% of incoming party damage |
+| The Wall | Sacks allowed (team; shown, not scored) | soaks 40% of incoming party damage, flat |
 | The Breaker | Sacks · TFL | 70 · 22 |
 | The Tactician | Pass yds · TD | 0.55/yd · 45 |
 | The Hunter | Rec yds · catch · TD | 1.1/yd · 6 · 60 |
 | The Rogue | Rush yds · TD | 1.3/yd · 60 |
-| The Mender | Made kicks | 14 dmg · 7 heal (max 9 to one member per drive) |
+| The Mender | Made kicks | 14 dmg · 7 heal (max 9 to one member a week) |
 
-HP drain: Tactician −6 per sack taken. Rogue −0.7 per carry. Wall absorbs 40% first.
+HP drain: the floor's weekly strike (d6 × floor id × 2, split six ways). Tactician −6 per
+sack taken. Rogue −0.7 per carry. Wall soaks 40% of every other member's hit first.
 
-**XP comes from clearing rooms, not from points.** Fantasy points are already yards plus
+**XP comes from clearing floors, not from points.** Fantasy points are already yards plus
 TDs; granting XP for them pays twice for the same production and lets the best roster run
-away with the season. Clean clear (nobody under half HP) pays more.
+away with the season. Clean clear (nobody under half HP) pays more. **Not built yet:** XP is
+never saved or spent, so the UI shows no XP number. The verdict and stat card say clean
+clear vs wounded in words until XP actually does something.
+
+**Only show a number if it's a mechanic.** No invented stats on screen: the old ability
+scores, AC and Speed (cards and encounter) were removed because nothing read them. Trait
+copy describes what `public/formulas.js` does; its numbers are read off `RATES`,
+`resolveDrive` and `applyDrive` (`HP_FX` in `public/index.html`), not restated.
+
+**Copy vocabulary (player-facing).** A player's whole week is a **game**, never a "drive"
+(football fans read a drive as one possession; "drive" survives only in football senses,
+like the Horde Mother's "drive that dies at the sticks", and in code names such as
+`resolveDrive`). The thing with HP that you clear is the **floor** ("the floor falls",
+floor HP), never a "room"; **encounter** is only the monster's presentation. Damage terms:
+**volume** = yards, catches, tackles for loss, made kicks; **big plays** = touchdowns and
+sacks. Wounds: the floor's **strike**, **Bloodied** (below half max HP, ×0.75 damage),
+**Down** (0 HP, deals nothing). The Wall **soaks** 40% of every other member's hit. Keep the
+primer, Rules of the Delve, rates table, card and encounter traits, receipts, review and
+briefing saying the same rule the same way.
 
 ## Floor modifiers
 
@@ -67,7 +90,7 @@ Netlify, connected to this repo.
   A build-time script flattens one season into compact per-week JSON committed as
   static files. **Play completed weeks, not live ones** — the season is over, every stat
   already exists. This removes live polling, rate limits, and mid-game state entirely.
-- **"Next drive"** is a paced reveal of a result already computed, not a fetch.
+- **"Next game"** (each arriving player) is a paced reveal of a result already computed, not a fetch.
 - **Guild:** Netlify Blobs behind a serverless function. Guild code + party + result.
 - **v1 scope:** no live draft. Each person picks six independently; duplicates allowed.
   A snake draft is real-time multiplayer and is most of the engineering — it does not
@@ -101,12 +124,14 @@ Material roles, keep them strict or the page turns to noise:
 - **Gold** = ornament / hierarchy (rules, labels, stat keys)
 - **Steel** = interface structure (card frames, tab bar)
 - **Parchment** = readable information (ability text, data notes)
-- **Black iron** = stats / game mechanics (HP + the six ability scores)
+- **Black iron** = stats / game mechanics (HP + the class's real rates)
 
 **Player card anatomy:** armour frame → pale identity plate (emblem overlapping the
 upper-left, class name in small caps, **position · player · team** with position in red,
-creature-type line italic, AC / Speed / Kickoff / Projection) → black-iron strip (Hit
-Points, red bar, six stats with brass separators) → parchment (bold-italic red trait name,
+creature-type line italic, Kickoff / Projection) → black-iron strip (Hit Points, red bar,
+then `mechCells()`: 2–4 cells with brass separators holding this class's real numbers on the
+current floor: damage per stat off `RATES` scaled by the floor's mechanic, and its HP effect,
+with HP costs in red; on the Horde Mother floor, her rules instead) → parchment (bold-italic red trait name,
 mechanics, then the NFL/data explanation smaller). Game numbers live on the iron, football
 facts on the plates. `data-k` on each card is the hook for per-class ornaments (spikes for
 the Breaker, filigree for the Tactician...) — use ornaments sparingly, as characterisation.
@@ -160,8 +185,39 @@ Mobile-first bottom tab bar, **four tabs: Week, Tavern, Dungeon, Guild — Week 
 (Sunday is when people open it). One continuous blackened-steel bar; the selected tab is
 a red enamel inset with brass edging.
 
-- **Week** — this Sunday only: encounter, party row, arrivals, log, result.
+- **Week** — this Sunday only: a three-sentence "How this works" primer, then encounter,
+  party row, arrivals, log, result. Once the week is done, a **Week in review** card
+  (`#review`, `renderReview()`) sits under the stat card:
+  damage by class as a share of the week (iron bars, numbers printed beside them), what the
+  floor cost or gave (Swarm/Sentinel halving and doubling, Scaleback's armor, scales pried
+  loose), one takeaway line read off those numbers, and party HP start → end with attrition
+  and healing. All of it goes through `explainDamage()`; on Horde Mother weeks it shows first
+  downs, turnovers, soldiers and hits instead. Only committed cards count.
+  The primer (`#primer`, a `<details>`) is open until the
+  viewer finishes a run or taps "Got it", then folds to a one-line toggle; the flag is
+  `hff:primer` in localStorage (per-viewer convenience only: it ships open, so blocked
+  storage just leaves it open). It stays general; per-floor rules belong elsewhere. Its link
+  goes to the Tavern rules (`#rules`).
 - **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
+  "Rules of the Delve" is a numbered list of plain rules in the order a player needs them
+  (party, damage, floor first, bench and lock, hits and heals, floor HP carryover, wounds and
+  15% recovery with no death, the die, the Guild comparison), lore art after it. Every rule
+  must be backed by `public/formulas.js` or a decided rule here — no XP claims, since XP
+  isn't saved or used.
+
+**What wins this floor.** One plain headline, on the Week tab's encounter block (above the
+trait lines) and at the top of the Tavern, says what this floor rewards: Swarm/Sentinel
+read each term's multiplier off `FLOOR_MECHANICS` ("Yards and catches count in full · TDs
+and sacks count half — start volume players"), Plated names this week's armor, the Horde
+Mother names its events and the three classes that make them. The Tavern's "How
+production becomes damage" table is generated from `RATES` under the current floor:
+base rate and this floor's rate per stat (changed ones in red, "half"/"double"), the
+Wall's soak and the Mender's heal from `WALL_SOAK`/`MENDER_HEAL`/`HEAL_CAP`, and on the
+Horde Mother her event table instead. Each class shows how much of its usual damage the
+floor "keeps" (this party's starters' and bench players' games so far through
+`explainDamage`), and is marked **favoured** when it keeps 3+ points more than the party
+does as a whole (damage-weighted). `renderFloorGuide()` in `public/index.html` builds
+all of it; no rate is written into the page.
 - **Dungeon** — floor progression from `data/floors.json` + `data/season-state.json`:
   cleared / current / sealed.
 
@@ -217,10 +273,32 @@ progression was actually scoped:
   `data/floors.json`), it reads the same damage formulas `public/index.html` uses
   live — not a second copy that can drift out of sync with a tuning change.
 
+- **The floor strikes back (decided by the owner, 2026-10-09).** At the start of every
+  week, after the 15% recovery (unchanged), the floor strikes the party once:
+  total = d6 face × floor id (1–7) × 2, split evenly across the six (each share rounded).
+  The Wall takes its own share; every other share goes through the Wall's 40% soak while
+  the Wall has HP, exactly as attrition does (`applyDrive`). HP clamps at 0. The face is
+  **seeded, not random**: `strikeFace()` hashes (season, week, floor id) with FNV-1a, so
+  every party on that floor that week takes the same strike, it's shown on the Week tab
+  before lineups lock (part of the floor reveal), and the replay reproduces it.
+- **Bloodied / Down (decided by the owner, 2026-10-09).** Status is read once, from HP
+  right after the strike, and fixed for the whole week (attrition and heals during the
+  week move HP, not status), like the plated armor, so commit order never matters.
+  Below half max HP: **Bloodied**, ×0.75 on that member's damage after the floor
+  mechanic's scaling and before plated armor. 0 HP: **Down**, deals nothing, a Down
+  Mender heals nothing, strips no scales. A Down member's own sacks/carries still cost
+  HP (it's the game they played). On the Horde Mother a Down member's turnovers, first
+  downs and TDs don't count, and Bloodied has no effect (whole events can't be scaled).
+  HP belongs to the **slot**: a bench swap inherits the slot's HP and status (the replay
+  tracks HP per slot and can't see swaps). Constants (`STRIKE_DIE`, `STRIKE_MULT`,
+  `BLOODIED_AT`, `BLOODIED_FACTOR`) live in `public/formulas.js`, threaded through
+  `resolveDrive`, `explainDamage`, `projectSlot`/`compareSlot`, `scaleStrips` and the
+  Horde Mother sequence; `scripts/compute-season-state.mjs` applies the same strike and
+  status and records each week's `strike` and any non-ok `status` in its history.
 - **Plated floor (Floor IV, Old Scaleback — a bear armored like a pangolin).**
   `mechanic: "plated"`, with `scales` and `armorPerScale` on the floor in
-  `data/floors.json`. Every drive loses `scales × armorPerScale` off the top (flat damage
-  reduction, no swarm/sentinel scaling), so small drives glance off and a two-kick Mender
+  `data/floors.json`. Every game loses `scales × armorPerScale` off the top (flat damage
+  reduction, no swarm/sentinel scaling), so small games glance off and a two-kick Mender
   deals nothing. Each TD (Tactician/Hunter/Rogue) or whole sack (Breaker) strips one
   scale, **effective next week**. Armor is fixed for the whole week, so commit order never
   matters and the live run matches the replay. Tuned to 8 scales × 8 and 1250 HP: against
@@ -239,9 +317,24 @@ adjustment. Injury tags come from nflverse's weekly injury report. Players on IR
 drop off that report rather than being listed as Out, so "No games yet this season"
 is what flags them.
 
+Each bench option in the Tavern carries one line from `compareSlot()` in
+`public/formulas.js`: its projection minus the current starter's **on this floor**
+("−29 on this floor"), the term the gap comes from when one term alone explains it
+("(pass yds)", labels from `RATES`), and a floor still ahead whose mechanic would reverse
+the sign ("· +5 on a Sentinel floor"), claimed only when `projectSlot` under that mechanic
+actually flips. Flips only consider Swarm and Sentinel (a plated floor's armor depends on
+scales not yet known). A comparison resting on 1–2 games says "thin". On the Horde
+Mother it compares first downs / TD / turnovers a game instead; the Wall, and slots that
+can't touch the floor, get no line.
+
 ## The d20 (decided: theatre, not chance)
 
-Each drive gets a d20 face from `rollFor()` in `public/formulas.js`. It **reads** the box
+Not to be confused with the floor's **strike die** (a d6, see Season-progression rules):
+that one *does* change numbers (party HP, and through Bloodied/Down, damage), but it is
+seeded from (season, week, floor id) and shared by every party on that floor that week,
+never rolled at the table. The d20 below never changes a number.
+
+Each player's game gets a d20 face from `rollFor()` in `public/formulas.js`. It **reads** the box
 score and never changes a number, so the same stat line always lands on the same face.
 Raw production (no floor scaling) vs the player's usual: their own earlier games this
 season, pulled toward a class baseline as if it were 2 extra games, floored at 90% of the
@@ -254,7 +347,7 @@ deterministically per player and week.
 The reveal (`commit()` → `rollStage()` in `public/index.html`): tapping an arrived card
 throws `public/assets/d20.webp` center-screen. It tumbles about 0.9s while random faces
 flicker, then lands on the real face. A natural 20 gilds and bursts, a natural 1 goes gray,
-cracks and shakes, and both buzz on Android. Then the unchanged commit math runs. Room HP
+cracks and shakes, and both buzz on Android. Then the unchanged commit math runs. Floor HP
 counts down while a gold trail catches up. The log, the party row and the stat card keep a
 small die. Tap or Esc skips; reduced motion shows the face with no tumble or shake. The gilded and cracked dice are their own art (`d20-nat20.webp`, `d20-nat1.webp`), cut in
 the same frame as `d20.webp` so the swap on landing doesn't jump. Sources are in
@@ -264,6 +357,18 @@ outline is what the contrast check measures them against. Every roll is captione
 stage (tier name plus "better than / about / well short of their usual game"). The
 "How the die works" key under the party row and a Tavern rule explain that the die never
 changes the damage.
+
+## Receipts (show the working)
+
+Every campaign-log line with a number, and every row of the end-of-week stat card, opens
+(a `<details>` whose summary is the line itself) to show how the number was reached:
+each stat × its rate, the floor's multiplier on the volume or big-play term, what a plated
+floor's armor ate, then the total. All of it comes from `explainDamage()` in
+`public/formulas.js`; index.html never knows a rate. The Wall shows what it soaked, the
+Mender where its heal landed (applyDrive's real per-member split), the Horde Mother floor
+shows turnovers → soldiers, first downs → soldiers cut down, and TDs that reached her or
+were blocked (from `resolveHordeMotherWeekSequence`'s per-slot before/after state). A run
+restored from a checkpoint replays soak/heal from the week's starting HP.
 
 ## Guild comparison (decided)
 
@@ -278,6 +383,24 @@ once the gap is unbridgeable; the weekly comparison resets every Sunday.
   only orders a true tie, and a tie shares its rank.
 - Results appear once a week is final (the replay only runs on completed weeks), so a
   live Sunday run is never compared against someone else's.
+
+## New-rules briefing
+
+Seven floors share four rule sets (swarm, horde-mother, plated, sentinel). On the first
+floor of a rule set the party hasn't fought under, the Week tab opens with a parchment
+briefing above the encounter art (`renderBriefing()` in `public/index.html`). "Hasn't
+fought under" = no *other* floor in the party's `season-state.json` history has that
+mechanic, so Floor I counts and the briefing stays up for every week of that first floor.
+It says what changed in plain sentences, then runs this party's own starters through
+the old rules and the new ones: each starter's typical game (season averages, rounded,
+so the line shown deals exactly the number beside it) through `explainDamage`, showing
+the starter the new rules suit best and the one they hurt most. The comparison is the
+last swarm/sentinel floor (plated armor is gone once the bear falls; Floor I compares
+against face value). Horde Mother walks the Tactician, Hunter and Rogue through
+`resolveHordeMotherDrive` instead. No games yet → a labelled example line, still through
+formulas.js. "Got it" folds it to a one-line "New rules on this floor" button that
+reopens it; folded state is per viewer in localStorage (`hff:brief:<party>:<mechanic>`),
+and without storage it just starts open each load.
 
 ## Open questions — do not silently decide these
 

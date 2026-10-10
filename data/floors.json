@@ -22,7 +22,7 @@
   { "id": 5, "name": "The Keeper of Tides", "place": "The Drowned Gallery",
     "mechanic": "sentinel", "maxHp": 1300,
     "tagline": "429: Too Many Requests. This one wasn't.",
-    "flavor": "Waist-deep and unbothered, it has been letting the water in for a long time. Small hurts close over before they land. Only the strike that changes the shape of the room registers at all." },
+    "flavor": "Waist-deep and unbothered, it has been letting the water in for a long time. Small hurts close over before they land. Only the blow that changes the shape of the fight registers at all." },
 
   { "id": 6, "name": "The Gnawing Choir", "place": "The Bone Orchard",
     "mechanic": "swarm", "maxHp": 1450,
