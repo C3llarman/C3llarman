@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 5,
   "seasonType": "REG",
-  "generatedAt": "2026-10-06T09:12:32.430Z",
+  "generatedAt": "2026-10-09T09:22:13.046Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -342,9 +342,9 @@
     "homeAway": "home",
     "kickoff": "2026-10-08T20:15:00-04:00",
     "name": "Brandon Aubrey",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 1,
+    "att": 1,
+    "hasStats": true,
     "form": {
       "games": 4,
       "lines": [
