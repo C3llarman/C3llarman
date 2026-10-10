@@ -85,12 +85,14 @@ the Actions tab.
 
 GitHub's cron is best-effort, so the Week tab never dead-ends on "waiting": once the arrival
 queue has run and someone is still traveling, the button reads **Check for scores**. A tap
-re-reads the week file (the page may predate the last deploy), then POSTs
-`/api/check-scores` (`netlify/functions/check-scores.mjs`), which dispatches `refresh.yml`
-only if no run has *succeeded* in the last 3 hours (`CHECK_EVERY_MS`) — the hourly cron
-counts, so in practice it only fires when the cron has stalled. The page then polls and
-reloads when the week file changes. Needs Netlify env var `HFF_GITHUB_TOKEN` (fine-grained
-PAT on this repo, Actions: read and write); without it the button says so and nothing breaks.
+re-reads the deployed week file (the page may predate the last deploy), then POSTs
+`/api/check-scores` (`netlify/functions/check-scores.mjs`). That function runs the same
+`flattenWeek()` the hourly script uses (exported from `scripts/flatten-player-stats.mjs`,
+reading the deployed `data/`), straight from nflverse, for every party at once, and stores the
+results in Netlify Blobs (`scores` store). No GitHub token, commit or deploy. At most one real
+check per 3 hours for the whole guild (`CHECK_EVERY_MS`). `boot()` loads whichever copy is
+newer by `generatedAt`, the committed file or the Blobs one, and the next hourly commit
+catches the repo up.
 
 ### Known data problem — do not paper over this
 

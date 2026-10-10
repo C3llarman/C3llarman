@@ -27,7 +27,7 @@
 
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sourceUrl = season =>
@@ -247,6 +247,73 @@ function lockedAtFor(real) {
   return kickoffs.reduce((min, k) => (new Date(k) < new Date(min) ? k : min));
 }
 
+// Every slot can have a bench alternate now, Wall included - a second
+// team's O-line, not a second player, which public/index.html's bench
+// UI already rendered generically for (renderBench()'s u.k==='wall'
+// branches were already there, just never fed real data).
+const SWAPPABLE = ['tactician', 'rogue', 'hunter', 'breaker', 'mender', 'wall'];
+
+// Fetch + resolve, no file I/O - returns { [partyId]: weekFile }. Shared by
+// main() below and netlify/functions/check-scores.mjs (the Week tab's
+// "Check for scores" button), so a button check and the hourly refresh
+// produce byte-for-byte the same week file from the same nflverse data.
+export async function flattenWeek({ season, week, seasonType = 'REG', parties, schedule = null, scheduleSource = null, log = () => {} }) {
+  const url = sourceUrl(season);
+  log(`Fetching nflverse player stats for season=${season} week=${week} (${seasonType})...`);
+  log(`  ${url}`);
+  let allRows = [];
+  try {
+    allRows = await fetchCsv(url, 'stats_player');
+  } catch (err) {
+    // A season with no games played yet may not have this file at all
+    // (404), not just zero rows within it - either way, that's the
+    // expected shape of "nothing has happened yet", not a build failure.
+    log(`${err.message} - treating as zero rows (season/week not played yet).`);
+  }
+  const rows = filterWeek(allRows, season, week, seasonType);
+  const priorWeeks = [];
+  for (let w = 1; w < week; w++) priorWeeks.push(filterWeek(allRows, season, w, seasonType));
+
+  let injuries = null;
+  try {
+    injuries = (await fetchCsv(injuriesUrl(season), 'injuries'))
+      .filter(r => Number(r.week) === week && r.season_type === seasonType);
+    log(`${injuries.length} injury-report rows for week ${week}.`);
+  } catch (err) {
+    log(`${err.message} - no injury tags this run.`);
+  }
+  log(`${rows.length} rows found for season=${season} week=${week}` +
+    (rows.length === 0 ? ' - writing empty stat lines for every roster entry, not erroring.' : '.'));
+
+  const outputs = {};
+  for (const party of parties) {
+    const real = {};
+    for (const [slot, rosterEntry] of Object.entries(party.roster)) {
+      real[slot] = slot === 'wall'
+        ? resolveWall(rosterEntry, rows, schedule, week, priorWeeks)
+        : resolveEntry(slot, rosterEntry, rows, schedule, week, priorWeeks, injuries);
+      if (SWAPPABLE.includes(slot) && party.bench?.[slot]) {
+        real[slot].bench = [slot === 'wall'
+          ? resolveWall(party.bench[slot], rows, schedule, week, priorWeeks)
+          : resolveEntry(slot, party.bench[slot], rows, schedule, week, priorWeeks, injuries)];
+      }
+    }
+    outputs[party.id] = {
+      season,
+      week,
+      seasonType,
+      generatedAt: new Date().toISOString(),
+      source: url,
+      // repo-relative, so the file is identical whichever machine runs this
+      scheduleSource,
+      party: { id: party.id, name: party.name },
+      lockedAt: lockedAtFor(real),
+      ...real,
+    };
+  }
+  return outputs;
+}
+
 async function main() {
   const { season, week, seasonType, outDir, scheduleDir, party: partyId } = parseArgs(process.argv.slice(2));
 
@@ -268,69 +335,18 @@ async function main() {
     console.log(`No schedule at ${schedulePath} - run scripts/fetch-schedule.mjs first. Continuing with kickoff=null.`);
   }
 
-  const url = sourceUrl(season);
-  console.log(`Fetching nflverse player stats for season=${season} week=${week} (${seasonType})...`);
-  console.log(`  ${url}`);
-  let allRows = [];
-  try {
-    allRows = await fetchCsv(url, 'stats_player');
-  } catch (err) {
-    // A season with no games played yet may not have this file at all
-    // (404), not just zero rows within it - either way, that's the
-    // expected shape of "nothing has happened yet", not a build failure.
-    console.log(`${err.message} - treating as zero rows (season/week not played yet).`);
-  }
-  const rows = filterWeek(allRows, season, week, seasonType);
-  const priorWeeks = [];
-  for (let w = 1; w < week; w++) priorWeeks.push(filterWeek(allRows, season, w, seasonType));
+  const outputs = await flattenWeek({
+    season, week, seasonType, parties, schedule,
+    scheduleSource: schedule ? path.relative(ROOT, schedulePath) : null,
+    log: console.log,
+  });
 
-  let injuries = null;
-  try {
-    injuries = (await fetchCsv(injuriesUrl(season), 'injuries'))
-      .filter(r => Number(r.week) === week && r.season_type === seasonType);
-    console.log(`${injuries.length} injury-report rows for week ${week}.`);
-  } catch (err) {
-    console.log(`${err.message} - no injury tags this run.`);
-  }
-  console.log(`${rows.length} rows found for season=${season} week=${week}` +
-    (rows.length === 0 ? ' - writing empty stat lines for every roster entry, not erroring.' : '.'));
-
-  // Every slot can have a bench alternate now, Wall included - a second
-  // team's O-line, not a second player, which public/index.html's bench
-  // UI already rendered generically for (renderBench()'s u.k==='wall'
-  // branches were already there, just never fed real data).
-  const SWAPPABLE = ['tactician', 'rogue', 'hunter', 'breaker', 'mender', 'wall'];
   const weekStr = String(week).padStart(2, '0');
   const dir = path.join(outDir, String(season), `week-${weekStr}`);
   await mkdir(dir, { recursive: true });
 
-  for (const party of parties) {
-    const real = {};
-    for (const [slot, rosterEntry] of Object.entries(party.roster)) {
-      real[slot] = slot === 'wall'
-        ? resolveWall(rosterEntry, rows, schedule, week, priorWeeks)
-        : resolveEntry(slot, rosterEntry, rows, schedule, week, priorWeeks, injuries);
-      if (SWAPPABLE.includes(slot) && party.bench?.[slot]) {
-        real[slot].bench = [slot === 'wall'
-          ? resolveWall(party.bench[slot], rows, schedule, week, priorWeeks)
-          : resolveEntry(slot, party.bench[slot], rows, schedule, week, priorWeeks, injuries)];
-      }
-    }
-
-    const output = {
-      season,
-      week,
-      seasonType,
-      generatedAt: new Date().toISOString(),
-      source: url,
-      // repo-relative, so the file is identical whichever machine runs this
-      scheduleSource: schedule ? path.relative(ROOT, schedulePath) : null,
-      party: { id: party.id, name: party.name },
-      lockedAt: lockedAtFor(real),
-      ...real,
-    };
-
-    const file = path.join(dir, `${party.id}.json`);
+  for (const [id, output] of Object.entries(outputs)) {
+    const file = path.join(dir, `${id}.json`);
     // Skip the write when nothing but the timestamp would change, so an
     // unattended hourly refresh doesn't commit (and redeploy) a no-op.
     const strip = o => JSON.stringify({ ...o, generatedAt: null });
@@ -343,13 +359,16 @@ async function main() {
     await writeFile(file, JSON.stringify(output, null, 2) + '\n');
 
     const hasStatsCount = ['tactician', 'hunter', 'rogue', 'breaker', 'mender', 'wall']
-      .filter(slot => real[slot]?.hasStats).length;
+      .filter(slot => output[slot]?.hasStats).length;
     console.log(`Wrote ${file}`);
-    console.log(`  party=${party.name}  rows=${rows.length}  slots with real stats: ${hasStatsCount}/6  lockedAt=${output.lockedAt}`);
+    console.log(`  party=${output.party.name}  slots with real stats: ${hasStatsCount}/6  lockedAt=${output.lockedAt}`);
   }
 }
 
-main().catch(err => {
-  console.error(err.message);
-  process.exit(1);
-});
+// Only when run as a script - check-scores.mjs imports flattenWeek().
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch(err => {
+    console.error(err.message);
+    process.exit(1);
+  });
+}

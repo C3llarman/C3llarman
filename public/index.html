@@ -1299,67 +1299,45 @@ function updateGoLabel(){
   $('go').disabled=false;
 }
 // ---- "check for new scores": the waiting state is a button, not a dead end.
-// Stats reach the site only through the hourly refresh workflow, so a tap
-// (1) re-reads this week's file in case the page predates the last refresh,
-// then (2) asks /api/check-scores (netlify/functions/check-scores.mjs) to
-// run that workflow now - which it only does if no check has succeeded in
-// the last 3 hours. While one runs, poll the week file and reload the moment
-// it changes; the run checkpoint (saveRun) brings the page straight back to
-// "NEW STATS IN — ROLL AGAIN".
-let WEEK_URL=null,WEEK_TEXT=null,checking=false;
+// Stats normally arrive through the hourly refresh workflow (a commit + a
+// deploy). A tap (1) re-reads the deployed week file in case this page
+// predates the last deploy, then (2) POSTs /api/check-scores
+// (netlify/functions/check-scores.mjs), which pulls nflverse itself - at
+// most once per 3 hours for the whole guild - and keeps the result in
+// Blobs. boot() loads whichever copy is newer, so after a reload the run
+// checkpoint (saveRun) lands straight on "NEW STATS IN — ROLL AGAIN".
+let WEEK_URL=null,WEEK_SIG=null,WEEK_GEN=null,CHECK_PARTY=null,checking=false;
+// generatedAt/source paths change on every flatten; only the stats matter.
+const weekSig=o=>JSON.stringify({...o,generatedAt:null,source:null,scheduleSource:null});
+const isNewer=o=>!!o&&new Date(o.generatedAt)>new Date(WEEK_GEN)&&weekSig(o)!==WEEK_SIG;
 const waitingOnGames=()=>!party.some(p=>p.state==='arrived')&&party.some(p=>p.state==='traveling');
 function checkNote(msg){const n=$('checkNote');n.hidden=!msg;n.textContent=msg||'';}
 function ago(iso){
   const m=Math.round((Date.now()-new Date(iso).getTime())/60000);
   return m<1?'just now':m<60?`${m} min ago`:`${Math.round(m/60*10)/10} hr ago`;
 }
-async function weekFileChanged(){
+async function deployedIsNewer(){
   try{
     const cw=await (await fetch('/data/current-week.json',{cache:'no-store'})).json();
     if(`${cw.season}:${cw.week}`!==WEEK_SEED)return true;
     const res=await fetch(WEEK_URL,{cache:'no-store'});
-    return res.ok&&(await res.text())!==WEEK_TEXT;
+    return res.ok&&isNewer(await res.json());
   }catch{return false;}
-}
-async function scoreCheck(method){
-  try{const res=await fetch('/api/check-scores',{method,cache:'no-store'});return await res.json();}
-  catch{return {error:'offline'};}
 }
 async function checkScores(){
   if(checking)return;
   checking=true;updateGoLabel();
-  checkNote('Looking for new stats…');
-  if(await weekFileChanged()){checkNote('New stats are in. Loading…');location.reload();return;}
-  const r=await scoreCheck('POST');
-  if(r.running){
-    checkNote(r.started
-      ?'Fetching the latest box scores. New stats land here in a few minutes — this page picks them up on its own.'
-      :'A score check is already running. This page picks up anything new on its own.');
-    waitForCheck(Date.now());
-    return;
-  }
+  checkNote('Checking the box scores…');
+  if(await deployedIsNewer()){checkNote('New stats are in. Loading…');location.reload();return;}
+  let r;
+  try{r=await (await fetch(`/api/check-scores?party=${encodeURIComponent(CHECK_PARTY)}`,{method:'POST',cache:'no-store'})).json();}
+  catch{r={error:'offline'};}
+  if(isNewer(r.data)){checkNote('New stats are in. Loading…');location.reload();return;}
   checking=false;updateGoLabel();
-  if(r.error){checkNote(`Couldn't reach the score check (${r.error}). Scores still refresh hourly on their own.`);return;}
-  checkNote(r.lastCheck
-    ?`Scores were checked ${ago(r.lastCheck)} and nothing new has posted for this party. Checks run hourly; this button forces one when none has run for ${Math.round(r.checkEveryMs/3600000)} hours.`
-    :'No score check has run yet. Try again in a minute.');
-}
-// The workflow finishing isn't the end - Netlify still has to deploy what
-// it committed - so keep watching the file a few minutes past that.
-function waitForCheck(startedAt){
-  const tick=async()=>{
-    if(await weekFileChanged()){checkNote('New stats are in. Loading…');location.reload();return;}
-    const r=await scoreCheck('GET');
-    const finishedAt=r.lastCheck?new Date(r.lastCheck).getTime():0;
-    const settled=!r.running&&finishedAt>startedAt&&Date.now()-finishedAt>4*60000;
-    if(settled||Date.now()-startedAt>15*60000){
-      checking=false;updateGoLabel();
-      checkNote('Check finished — the stats source hasn\'t posted anything new for this party yet. Scores still refresh hourly on their own.');
-      return;
-    }
-    setTimeout(tick,30000);
-  };
-  setTimeout(tick,30000);
+  const hrs=Math.round((r.checkEveryMs||0)/3600000);
+  checkNote(r.checked?'Checked just now — the stats source hasn\'t posted anything new for this party yet.'
+    :r.checkedAt&&!r.error?`Checked ${ago(r.checkedAt)} with nothing new for this party. The button checks at most once every ${hrs} hours; the hourly refresh keeps running regardless.`
+    :`Couldn't run the check${r.error?` (${r.error})`:''}. The hourly refresh keeps running regardless.`);
 }
 // A slot only actually arrives once its game is final (REAL[k].hasStats) -
 // otherwise it stays traveling and the log says so, but the queue still
@@ -1683,10 +1661,15 @@ async function boot(){
     // reached at /ninth-circle etc. via a netlify.toml rewrite, and a
     // relative path would resolve differently there than at "/".
     WEEK_URL=`/data/weeks/${season}/week-${weekStr}/${partyId}.json`;
-    const res=await fetch(WEEK_URL);
+    CHECK_PARTY=partyId;
+    const [res,chk]=await Promise.all([fetch(WEEK_URL),
+      fetch(`/api/check-scores?party=${encodeURIComponent(partyId)}&season=${season}&week=${week}`,{cache:'no-store'})
+        .then(r=>r.ok?r.json():null).catch(()=>null)]);
     if(!res.ok)throw new Error(`HTTP ${res.status} for party "${partyId}"`);
-    WEEK_TEXT=await res.text();
-    data=JSON.parse(WEEK_TEXT);
+    data=await res.json();
+    // A "Check for scores" tap may have pulled newer stats than the last deploy.
+    if(chk&&chk.data&&new Date(chk.data.generatedAt)>new Date(data.generatedAt))data=chk.data;
+    WEEK_SIG=weekSig(data);WEEK_GEN=data.generatedAt;
     WEEK_SEED=`${data.season}:${data.week}`;
   }catch(err){
     renderFetchError(err.message);

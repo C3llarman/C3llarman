@@ -1,19 +1,21 @@
-// The "check for new scores" button on the Week tab. Stats only ever reach
-// the site through .github/workflows/refresh.yml (hourly cron: flatten from
-// nflverse, commit data/, Netlify deploys). GitHub's cron is best-effort -
-// runs get delayed or dropped - so this lets anyone with the page kick that
-// same workflow by hand, but only when no successful check has run in the
-// last CHECK_EVERY_MS. The workflow is the one rate limit: the hourly cron
-// counts as a check, and so does a run someone else's tap started.
+// The Week tab's "Check for scores" button. Stats normally reach the site
+// through .github/workflows/refresh.yml (hourly: flatten from nflverse,
+// commit data/, Netlify deploys), but GitHub's cron is best-effort. This
+// runs the same flatten itself - flattenWeek() from
+// scripts/flatten-player-stats.mjs, same nflverse files, same output shape -
+// and keeps the result in Netlify Blobs. No GitHub token, no commit, no
+// deploy. public/index.html loads whichever is newer: the committed week
+// file or the copy here (by generatedAt).
 //
-// GET  -> state of the latest check, never starts one (the page polls this).
-// POST -> same, but starts a check first if the last good one is stale.
+// At most one real check per CHECK_EVERY_MS across the whole guild: a check
+// flattens every party at once, so one person's tap freshens everyone's.
 //
-// Needs two Netlify env vars (Functions scope):
-//   HFF_GITHUB_TOKEN  fine-grained PAT, this repo only, "Actions: read and write"
-//   HFF_GITHUB_REPO   optional, defaults to C3llarman/C3llarman
+// GET  ?party&season&week -> { checkedAt, data } stored for that party (data may be null)
+// POST ?party             -> same, after running a check if the last is stale
+import { getStore } from '@netlify/blobs';
+import { flattenWeek } from '../../scripts/flatten-player-stats.mjs';
+
 const CHECK_EVERY_MS = 3 * 60 * 60 * 1000;
-const WORKFLOW = 'refresh.yml';
 
 const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status,
@@ -21,37 +23,48 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
 });
 
 export default async (req) => {
-  if (req.method !== 'GET' && req.method !== 'POST') return new Response('Method not allowed', { status: 405 });
-  const token = process.env.HFF_GITHUB_TOKEN;
-  const repo = process.env.HFF_GITHUB_REPO || 'C3llarman/C3llarman';
-  if (!token) return json({ error: 'not configured' }, 503);
+  const url = new URL(req.url);
+  const party = url.searchParams.get('party');
+  if (!party) return json({ error: 'party is required' }, 400);
+  const store = getStore('scores');
+  const last = await store.get('last', { type: 'json' });
+  const base = { checkedAt: last ? last.checkedAt : null, checkEveryMs: CHECK_EVERY_MS };
 
-  const gh = (path, init = {}) => fetch(`https://api.github.com/repos/${repo}/actions/workflows/${WORKFLOW}${path}`, {
-    ...init,
-    headers: {
-      authorization: `Bearer ${token}`,
-      accept: 'application/vnd.github+json',
-      'x-github-api-version': '2022-11-28',
-      'user-agent': 'high-fantasy-football',
-      ...(init.body ? { 'content-type': 'application/json' } : {}),
-    },
+  if (req.method === 'GET') {
+    const season = url.searchParams.get('season');
+    const week = url.searchParams.get('week');
+    if (!season || !week) return json({ error: 'season and week are required' }, 400);
+    return json({ ...base, data: await store.get(`${season}:${week}:${party}`, { type: 'json' }) });
+  }
+  if (req.method !== 'POST') return new Response('Method not allowed', { status: 405 });
+
+  // Which week, which rosters, which schedule: the deployed copies of data/.
+  const site = (p) => fetch(new URL(p, url.origin)).then((r) => {
+    if (!r.ok) throw new Error(`HTTP ${r.status} for ${p}`);
+    return r.json();
   });
+  const { season, week } = await site('/data/current-week.json');
+  const key = `${season}:${week}:${party}`;
 
-  const runsRes = await gh('/runs?per_page=20');
-  if (!runsRes.ok) return json({ error: `GitHub ${runsRes.status}` }, 502);
-  const { workflow_runs: runs = [] } = await runsRes.json();
-  // A failed run didn't check anything, so it doesn't reset the clock.
-  const running = runs.find((r) => r.status !== 'completed');
-  const lastGood = runs.find((r) => r.status === 'completed' && r.conclusion === 'success');
-  const lastCheck = lastGood ? lastGood.updated_at : null;
-  const state = { running: !!running, lastCheck, checkEveryMs: CHECK_EVERY_MS, started: false };
+  if (last && last.season === season && last.week === week
+      && Date.now() - new Date(last.checkedAt).getTime() < CHECK_EVERY_MS) {
+    return json({ ...base, checked: false, data: await store.get(key, { type: 'json' }) });
+  }
 
-  if (req.method === 'GET' || running) return json(state);
-  if (lastCheck && Date.now() - new Date(lastCheck).getTime() < CHECK_EVERY_MS) return json(state);
-
-  const dispatch = await gh('/dispatches', { method: 'POST', body: JSON.stringify({ ref: 'main' }) });
-  if (!dispatch.ok) return json({ ...state, error: `GitHub ${dispatch.status}` }, 502);
-  return json({ ...state, running: true, started: true });
+  try {
+    const { parties } = await site('/data/parties.json');
+    const schedulePath = `data/schedule/${season}.json`;
+    const schedule = await site(`/${schedulePath}`).catch(() => null);
+    const outputs = await flattenWeek({
+      season, week, parties, schedule, scheduleSource: schedule ? schedulePath : null,
+    });
+    await Promise.all(Object.entries(outputs).map(([id, out]) => store.setJSON(`${season}:${week}:${id}`, out)));
+    const checkedAt = new Date().toISOString();
+    await store.setJSON('last', { checkedAt, season, week });
+    return json({ checkedAt, checkEveryMs: CHECK_EVERY_MS, checked: true, data: outputs[party] || null });
+  } catch (err) {
+    return json({ ...base, error: err.message }, 502);
+  }
 };
 
 export const config = { path: '/api/check-scores' };
