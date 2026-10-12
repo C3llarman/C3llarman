@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 5,
   "seasonType": "REG",
-  "generatedAt": "2026-10-11T22:09:49.579Z",
+  "generatedAt": "2026-10-12T01:26:15.723Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -211,12 +211,12 @@
     "homeAway": "away",
     "kickoff": "2026-10-11T16:25:00-04:00",
     "name": "Amon-Ra St. Brown",
-    "y": 0,
-    "c": 0,
+    "y": 69,
+    "c": 6,
     "td": 0,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 4,
+    "hasStats": true,
     "form": {
       "games": 4,
       "lines": [
