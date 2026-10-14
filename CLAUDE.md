@@ -164,6 +164,12 @@ under 4.5:1).
   Encounter art per floor is `FLOOR_ART` in `public/index.html` (II Horde Mother,
   III Ash Rooks, IV Old Scaleback, V Keeper of Tides, VI Gnawing Choir, VII Warden); sources live in `reference/assets/`. Landscape art
   (wider than 1.25:1) gets the full-width `.plate.wide` treatment automatically.
+- **Party crests:** sources are `reference/assets/crest-<id>-source.png`;
+  `scripts/cut-crests.py` writes the full crest (`crest-<id>.webp`, landing banner only —
+  its painted name scroll is mush when small) and a round helmet medallion
+  (`helm-<id>.webp`) for every small placement. The Dungeon tab's map
+  (`dungeon-map.webp`) stands each party's helmet at the stair door of its current floor
+  (`FLOOR_DOOR` in `public/index.html`).
 
 ## Navigation
 
