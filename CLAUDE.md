@@ -154,7 +154,7 @@ re-declared on `.block`/`.verdict`/`.statcard`/`.plate-id`/`.plate-lore`, and th
 `.plate-iron`. Every pair is checked by **`node scripts/check-contrast.mjs`** — run it after
 any colour change and keep its pair list in step with the tokens. Notable results: red
 text needs a different value on each ground (`#FF6B7D` stone page, `#8E0A1E` light plates,
-`#FF5A6E` iron, `#F72446` masthead); dim rows by colour, never `opacity` (opacity drops text
+`#FF5A6E` iron); dim rows by colour, never `opacity` (opacity drops text
 under 4.5:1).
 
 - **Type:** Cinzel (class names, section pennants, tab labels) + EB Garamond (body) +
@@ -165,12 +165,16 @@ under 4.5:1).
   III Ash Rooks, IV Old Scaleback, V Keeper of Tides, VI Gnawing Choir, VII Warden); sources live in `reference/assets/`. Landscape art
   (wider than 1.25:1) gets the full-width `.plate.wide` treatment automatically.
 - **Party crests:** sources are `reference/assets/crest-<id>-source.png`;
-  `scripts/cut-crests.py` writes the full crest (`crest-<id>.webp`, landing banner only —
+  `scripts/cut-crests.py` writes the full crest (`crest-<id>.webp`, Tavern only —
   its painted name scroll is mush when small) and a round helmet medallion
   (`helm-<id>.webp`) for every small placement. The Tavern hangs the full crest large over a
-  glow in the party's colour (`.tavern-crest[data-party]`), and hides the header copy there. The Dungeon tab's map
+  glow in the party's colour (`.tavern-crest[data-party]`). The Dungeon tab's map
   (`dungeon-map.webp`) stands each party's helmet at the stair door of its current floor
   (`FLOOR_DOOR` in `public/index.html`).
+- **Masthead:** one slim bar on the page stone — party helm, party name (Cinzel, gold), the
+  tab's kicker, and a small gold duotone HFF mark (`masthead-mark.webp`, made by
+  `scripts/tint-masthead.py` so it doesn't read as a fourth team). The party colour
+  (`header[data-party]`) haloes the helm and glows on the brass rod beneath.
 
 ## Navigation
 
