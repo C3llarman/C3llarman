@@ -175,8 +175,12 @@ under 4.5:1).
   tab's kicker, and a small gold duotone HFF mark (`masthead-mark.webp`, made by
   `scripts/tint-masthead.py` so it doesn't read as a fourth team). The party colour
   (`body[data-party]` sets `--party-glow`) haloes the helm and glows on the brass rod beneath.
-- **Party backlight:** the party's own cards (`.card`) glow in its colour behind the iron
-  frame (`--party-backlight`: Ashen Coalition gold, Emberwatch red, Ninth Circle green).
+- **Party backlight:** the party's own cards (`.card`) are backlit in its colour (Ashen
+  Coalition gold, Emberwatch red, Ninth Circle green) by a light pool on `.card::before`:
+  dark at the top, hottest at the foot (`--party-backlight` → `--party-backlight-hot`),
+  spilling under the card and fading out before the next one, so a dark band separates
+  every card. Not a box-shadow: the frames span nearly the full phone width, so a
+  shadow only floods the gutters.
 
 ## Navigation
 

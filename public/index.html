@@ -84,10 +84,10 @@
   body[data-party=ninth-circle]{--party-glow:rgba(70,230,90,.38)}
   body[data-party=ashen-coalition]{--party-glow:rgba(225,180,80,.40)}
   /* same hues, softer, for the halo behind the party cards */
-  body{--party-backlight:rgba(210,168,90,.22)}
-  body[data-party=emberwatch]{--party-backlight:rgba(255,60,25,.28)}
-  body[data-party=ninth-circle]{--party-backlight:rgba(60,220,80,.22)}
-  body[data-party=ashen-coalition]{--party-backlight:rgba(255,190,60,.26)}
+  body{--party-backlight:rgba(210,168,90,.45);--party-backlight-hot:rgba(230,190,110,.85)}
+  body[data-party=emberwatch]{--party-backlight:rgba(255,60,25,.55);--party-backlight-hot:rgba(255,80,40,.95)}
+  body[data-party=ninth-circle]{--party-backlight:rgba(60,220,80,.45);--party-backlight-hot:rgba(80,240,100,.85)}
+  body[data-party=ashen-coalition]{--party-backlight:rgba(255,190,60,.50);--party-backlight-hot:rgba(255,200,80,.90)}
   header{padding:14px 16px 0;color:var(--ink)}
   .mast{display:flex;align-items:center;gap:12px;min-height:64px}
   .mast-helm{flex:0 0 56px;height:56px;border-radius:50%;position:relative}
@@ -130,9 +130,15 @@
     pointer-events:none;z-index:2;
     border-style:solid;border-width:52px 64px;
     border-image:url("/assets/ui/frame.webp") 186 234 / 52px 64px stretch}
-  /* party cards are backlit in the party's colour; the spread clears the
-     iron frame, which overhangs the card by 18px */
-  .card{box-shadow:0 0 26px 12px var(--party-backlight),0 12px 24px rgba(0,0,0,.6)}
+  /* Party cards are backlit in the party's colour: a light pool behind each
+     card, dark at the top and strongest at the foot, spilling a little
+     below it. The next card's top edge starts dark again, so a dark band
+     separates every card. (The iron frame overhangs the card by 18px.) */
+  .card{margin-bottom:58px}
+  .card::before{content:'';position:absolute;z-index:-1;pointer-events:none;
+    inset:-4px -30px -36px;border-radius:30px;filter:blur(8px);
+    background:linear-gradient(to bottom,transparent 0%,var(--party-backlight) 55%,
+      var(--party-backlight-hot) 88%,transparent 100%)}
   .block,.verdict,.statcard{
     background:linear-gradient(rgba(222,214,196,.75),rgba(222,214,196,.75)),url("/assets/ui/plate-metal.webp") center/cover,#D8D0BE;
     background-clip:padding-box}
