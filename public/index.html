@@ -78,11 +78,17 @@
 
   /* Masthead: one slim bar on the page's own stone - party helm, party name,
      this tab's kicker, and the gold HFF mark. The party colour (--party-glow,
-     set per party below) haloes the helm and glows along the brass rod. */
-  header{padding:14px 16px 0;color:var(--ink);--party-glow:rgba(210,168,90,.35)}
-  header[data-party=emberwatch]{--party-glow:rgba(255,70,30,.45)}
-  header[data-party=ninth-circle]{--party-glow:rgba(70,230,90,.38)}
-  header[data-party=ashen-coalition]{--party-glow:rgba(225,180,80,.40)}
+     set per party on body) haloes the helm and glows along the brass rod. */
+  body{--party-glow:rgba(210,168,90,.35)}
+  body[data-party=emberwatch]{--party-glow:rgba(255,70,30,.45)}
+  body[data-party=ninth-circle]{--party-glow:rgba(70,230,90,.38)}
+  body[data-party=ashen-coalition]{--party-glow:rgba(225,180,80,.40)}
+  /* same hues, softer, for the halo behind the party cards */
+  body{--party-backlight:rgba(210,168,90,.22)}
+  body[data-party=emberwatch]{--party-backlight:rgba(255,60,25,.28)}
+  body[data-party=ninth-circle]{--party-backlight:rgba(60,220,80,.22)}
+  body[data-party=ashen-coalition]{--party-backlight:rgba(255,190,60,.26)}
+  header{padding:14px 16px 0;color:var(--ink)}
   .mast{display:flex;align-items:center;gap:12px;min-height:64px}
   .mast-helm{flex:0 0 56px;height:56px;border-radius:50%;position:relative}
   .mast-helm:has(img[hidden]){display:none}
@@ -124,6 +130,9 @@
     pointer-events:none;z-index:2;
     border-style:solid;border-width:52px 64px;
     border-image:url("/assets/ui/frame.webp") 186 234 / 52px 64px stretch}
+  /* party cards are backlit in the party's colour; the spread clears the
+     iron frame, which overhangs the card by 18px */
+  .card{box-shadow:0 0 26px 12px var(--party-backlight),0 12px 24px rgba(0,0,0,.6)}
   .block,.verdict,.statcard{
     background:linear-gradient(rgba(222,214,196,.75),rgba(222,214,196,.75)),url("/assets/ui/plate-metal.webp") center/cover,#D8D0BE;
     background-clip:padding-box}
@@ -445,10 +454,6 @@
     right:4px;bottom:6px;width:34px;height:56px;opacity:.9}
   .card[data-k="breaker"] .plate-id::after{background-image:url("/assets/ui/spike.webp");
     right:-30px;top:30%;width:26px;height:46px;transform:rotate(90deg)}
-  .card[data-k="rogue"] .plate-id::after{background-image:url("/assets/ui/bracket-tall.webp");
-    right:-10px;top:44px;width:28px;height:54px;transform:scaleX(-1)}
-  .card[data-k="hunter"] .plate-id::after{background-image:url("/assets/ui/bracket-wing.webp");
-    right:-8px;bottom:-8px;width:40px;height:38px;transform:scaleY(-1) scaleX(-1)}
   .card[data-k="mender"] .plate-id::after{background-image:url("/assets/ui/fleur.webp");
     right:6px;bottom:8px;width:28px;height:42px;opacity:.85}
   @media (max-width:400px){
@@ -1809,9 +1814,9 @@ async function boot(){
   LOCKED_AT=data.lockedAt;
   locked=LOCKED_AT?Date.now()>=new Date(LOCKED_AT).getTime():false;
   // Masthead: this party's name and helm (a party without art just shows
-  // its name), and its colour on the rod via header[data-party].
+  // its name), and its colour (body[data-party]) on the rod and behind the party cards.
   $('partyName').textContent=data.party.name;
-  $('mast').dataset.party=partyId;
+  document.body.dataset.party=partyId;
   if(HELM[partyId]){$('partyHelm').src=HELM[partyId];$('partyHelm').hidden=false;}
   if(CREST[partyId]){
     // The Tavern is the party's own hall, so it hangs there big.

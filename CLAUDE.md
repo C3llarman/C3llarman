@@ -134,7 +134,7 @@ rusty edges stay put, the centre is the texture under a flat tint. The tab-bar p
 are stitched from the plain metal either side of the sheet's painted icons — icons and
 labels stay HTML. Per-class ornaments hang off `.card[data-k=...] .plate-id::after`.
 `reference/assets/ui/concept-sheet.png` (also true alpha) supplies the brass divider rod
-(`.bar`) and the angular steel brackets (Rogue, Hunter); its finished frames bake the
+(`.bar`); its finished frames bake the
 shield and cloth into the corner, so they can't 9-slice and stay reference only.
 `reference/assets/ui/button-sheet.png` supplies the plaque buttons (spiked caps 9-slice,
 body stretches): **red = the primary action** (Roll for the week, bench "Start" chips),
@@ -174,7 +174,9 @@ under 4.5:1).
 - **Masthead:** one slim bar on the page stone — party helm, party name (Cinzel, gold), the
   tab's kicker, and a small gold duotone HFF mark (`masthead-mark.webp`, made by
   `scripts/tint-masthead.py` so it doesn't read as a fourth team). The party colour
-  (`header[data-party]`) haloes the helm and glows on the brass rod beneath.
+  (`body[data-party]` sets `--party-glow`) haloes the helm and glows on the brass rod beneath.
+- **Party backlight:** the party's own cards (`.card`) glow in its colour behind the iron
+  frame (`--party-backlight`: Ashen Coalition gold, Emberwatch red, Ninth Circle green).
 
 ## Navigation
 
