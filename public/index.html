@@ -20,7 +20,7 @@
     --page:#14110D;                       /* blackened stone */
     --ink:#EAE0C8;   --faint:#B5A684;
     --rule:#D2A85A;  /* gold */             --hair:#9A8C70;  /* 1.4.11 on stone */
-    --live:#FF6B7D;  /* 4.7:1 on worst stone */ --live-dark:#F72446;
+    --live:#FF6B7D;  /* 4.7:1 on worst stone */
     --gild:#D9B460;  --mend:#7CC48B;
     --card:#DCCFAF;                        /* warm parchment */
     --plate:#D8D0BE;                       /* pale distressed metal */
@@ -76,25 +76,28 @@
     background-clip:border-box,border-box,border-box,content-box}
   .bar.thin{height:12px;margin:3px 0 8px}
 
-  header{background-color:#17120D;border-bottom:2px solid var(--brass);background-image:url("/assets/header-grain.webp");
-    background-repeat:repeat;background-size:256px 256px;
-    color:#E4D9BE;padding:16px 18px 15px}
-  header .kick{font-family:'Archivo Narrow';font-size:12.5px;letter-spacing:.14em;
-    color:#C9B893;font-weight:600}
-  header h1{font-family:'Archivo Narrow';font-weight:700;font-size:34px;line-height:.98;margin:10px 0 0;text-align:center}
-  header h1 em{font-style:normal;color:var(--live-dark)}
-  header h1 .logo-mark{display:block;height:168px;width:auto;margin:0 auto}
-  header{position:relative}
-  header .hang{position:absolute;right:12px;top:40px;width:52px;height:auto;pointer-events:none;
-    filter:drop-shadow(0 6px 6px rgba(0,0,0,.6))}
-  header .sub{font-size:15.5px;font-style:italic;color:#C9B893;margin-top:5px}
-  /* Party crest banner - the landing-screen "hype" treatment: this
-     party's own emblem plus its name, emboldened, above the fold. */
-  .party-banner{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:14px;text-align:center;
-    padding-top:14px;border-top:1px solid rgba(228,217,190,.28)}
-  .party-banner img{width:min(200px,56%);height:auto;filter:drop-shadow(0 8px 10px rgba(0,0,0,.7))}
+  /* Masthead: one slim bar on the page's own stone - party helm, party name,
+     this tab's kicker, and the gold HFF mark. The party colour (--party-glow,
+     set per party below) haloes the helm and glows along the brass rod. */
+  header{padding:14px 16px 0;color:var(--ink);--party-glow:rgba(210,168,90,.35)}
+  header[data-party=emberwatch]{--party-glow:rgba(255,70,30,.45)}
+  header[data-party=ninth-circle]{--party-glow:rgba(70,230,90,.38)}
+  header[data-party=ashen-coalition]{--party-glow:rgba(225,180,80,.40)}
+  .mast{display:flex;align-items:center;gap:12px;min-height:64px}
+  .mast-helm{flex:0 0 56px;height:56px;border-radius:50%;position:relative}
+  .mast-helm:has(img[hidden]){display:none}
+  .mast-helm::before{content:'';position:absolute;inset:-14px;border-radius:50%;
+    background:radial-gradient(closest-side,var(--party-glow),transparent)}
+  .mast-helm img{position:relative;display:block;width:100%;height:100%;border-radius:50%;
+    box-shadow:0 0 0 2px var(--brass),0 4px 8px rgba(0,0,0,.7)}
+  .mast-id{flex:1;min-width:0}
+  header h1{font-family:'Cinzel','Archivo Narrow',Georgia,serif;font-weight:700;font-size:clamp(17px,5.2vw,22px);
+    line-height:1.1;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;color:var(--rule);margin:0}
+  header .kick{font-family:'Archivo Narrow';font-size:12.5px;letter-spacing:.08em;line-height:1.3;
+    color:var(--faint);font-weight:600;margin-top:3px}
+  .mast-mark{flex:0 0 auto;height:54px;width:auto;filter:drop-shadow(0 3px 5px rgba(0,0,0,.7))}
+  .mast-rod{margin:10px 0 0;filter:drop-shadow(0 0 6px var(--party-glow))}
   /* The Tavern hangs the crest big, so the header doesn't repeat it there. */
-  body[data-tab=lineup] .party-banner img{display:none}
   .tavern-crest{margin:0 0 26px;text-align:center;position:relative}
   .tavern-crest img{display:block;width:min(400px,94%);height:auto;margin:0 auto;position:relative;
     filter:drop-shadow(0 10px 14px rgba(0,0,0,.75))}
@@ -107,8 +110,6 @@
   .tavern-crest[data-party=ashen-coalition]{--crest-glow:rgba(225,180,80,.30)}
   .tavern-crest figcaption{position:relative;margin-top:8px}
   .tavern-crest .tc-sub{display:block;font-style:italic;font-size:15px;color:var(--faint)}
-  .party-banner .party-name{font-family:'Archivo Narrow';font-weight:800;
-    font-size:27px;letter-spacing:.015em;line-height:1.05;color:var(--live-dark)}
 
   /* ---- the armour frame (cut kit: public/assets/ui, see scripts/cut-ui-kit.py) ----
      frame.webp is a 9-slice: corners fixed, rails stretch. It sits on ::after
@@ -589,15 +590,16 @@
 </defs>
 </svg>
 
-<header>
-  <div class="kick">WEEK 1 &middot; FLOOR I &middot; THE SUNKEN VAULT</div>
-  <img class="hang" src="/assets/ui/banner-lion.webp" alt="" aria-hidden="true">
-  <h1><img src="/assets/masthead.webp" alt="High Fantasy Football" class="logo-mark"></h1>
-  <div class="sub">Six classes. One party. The dungeon doesn&rsquo;t care about your bye week.</div>
-  <div class="party-banner" id="partyBanner" hidden>
-    <img id="partyCrest" src="" alt="">
-    <div class="party-name" id="partyNameBanner"></div>
+<header id="mast">
+  <div class="mast">
+    <span class="mast-helm" aria-hidden="true"><img id="partyHelm" src="" alt="" hidden></span>
+    <div class="mast-id">
+      <h1 id="partyName">High Fantasy Football</h1>
+      <div class="kick">WEEK 1 &middot; FLOOR I &middot; THE SUNKEN VAULT</div>
+    </div>
+    <img class="mast-mark" src="/assets/masthead-mark.webp" alt="High Fantasy Football" width="159" height="160">
   </div>
+  <div class="bar mast-rod" aria-hidden="true"></div>
 </header>
 <div class="frame">
   <svg class="corner tl" viewBox="0 0 64 64" aria-hidden="true"><use href="#fil"/></svg>
@@ -1798,17 +1800,13 @@ async function boot(){
   // hand-typed, so it can't land on a day with no game in it.
   LOCKED_AT=data.lockedAt;
   locked=LOCKED_AT?Date.now()>=new Date(LOCKED_AT).getTime():false;
-  const partyLabel=(data.party&&data.party.name||'').toUpperCase();
-  // Landing-screen hype: this party's own crest, not a generic one - only
-  // exists for the three parties actually in data/parties.json today
-  // (public/assets/crest-<id>.webp), so a party without one just doesn't
-  // show the banner rather than showing a wrong or blank crest.
+  // Masthead: this party's name and helm (a party without art just shows
+  // its name), and its colour on the rod via header[data-party].
+  $('partyName').textContent=data.party.name;
+  $('mast').dataset.party=partyId;
+  if(HELM[partyId]){$('partyHelm').src=HELM[partyId];$('partyHelm').hidden=false;}
   if(CREST[partyId]){
-    $('partyCrest').src=CREST[partyId];
-    $('partyCrest').alt=`${data.party.name} crest`;
-    $('partyNameBanner').textContent=partyLabel;
-    $('partyBanner').hidden=false;
-    // ...and the Tavern is the party's own hall, so it hangs there big.
+    // The Tavern is the party's own hall, so it hangs there big.
     const tc=$('tavernCrest');
     tc.querySelector('img').src=CREST[partyId];
     tc.querySelector('img').alt=`${data.party.name} crest`;
@@ -1816,15 +1814,15 @@ async function boot(){
     $('partyHead').style.marginTop='';
   }
   KICK.week=CURRENT_FLOOR
-    ?`${partyLabel} · WEEK ${data.week} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)} · ${CURRENT_FLOOR.place.toUpperCase()}`
-    :`${partyLabel} · WEEK ${data.week}`;
+    ?`WEEK ${data.week} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)} · ${CURRENT_FLOOR.place.toUpperCase()}`
+    :`WEEK ${data.week}`;
   KICK.lineup=LOCKED_AT
-    ?`${partyLabel} · TAVERN LOCKS ${clockText(new Date(LOCKED_AT)).toUpperCase()}`
-    :`${partyLabel} · TAVERN LOCK TIME UNKNOWN`;
+    ?`TAVERN LOCKS ${clockText(new Date(LOCKED_AT)).toUpperCase()}`
+    :`TAVERN LOCK TIME UNKNOWN`;
   KICK.dungeon=CURRENT_FLOOR
-    ?`${partyLabel} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)} OF 6`
-    :`${partyLabel} · THE DUNGEON`;
-  KICK.guild=`${partyLabel} · THE GUILD`;
+    ?`FLOOR ${floorNumeral(CURRENT_FLOOR.id)} OF 7 · THE DUNGEON`
+    :`THE DUNGEON`;
+  KICK.guild=`THE GUILD · EVERY PARTY, SAME FLOORS`;
   document.querySelector('header .kick').textContent=KICK[currentTab];
   // Restore this week's run - arrivals landed, cards committed, room/party
   // HP - whether it finished or was left mid-run. Same server-first,
