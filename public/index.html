@@ -93,6 +93,20 @@
   .party-banner{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:14px;text-align:center;
     padding-top:14px;border-top:1px solid rgba(228,217,190,.28)}
   .party-banner img{width:min(200px,56%);height:auto;filter:drop-shadow(0 8px 10px rgba(0,0,0,.7))}
+  /* The Tavern hangs the crest big, so the header doesn't repeat it there. */
+  body[data-tab=lineup] .party-banner img{display:none}
+  .tavern-crest{margin:0 0 26px;text-align:center;position:relative}
+  .tavern-crest img{display:block;width:min(400px,94%);height:auto;margin:0 auto;position:relative;
+    filter:drop-shadow(0 10px 14px rgba(0,0,0,.75))}
+  /* each party's own colour as a glow behind its crest */
+  .tavern-crest::before{content:'';position:absolute;left:50%;top:38%;width:86%;aspect-ratio:1;
+    transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+    background:radial-gradient(closest-side,var(--crest-glow,rgba(210,168,90,.32)),transparent)}
+  .tavern-crest[data-party=emberwatch]{--crest-glow:rgba(255,70,30,.36)}
+  .tavern-crest[data-party=ninth-circle]{--crest-glow:rgba(70,230,90,.30)}
+  .tavern-crest[data-party=ashen-coalition]{--crest-glow:rgba(225,180,80,.30)}
+  .tavern-crest figcaption{position:relative;margin-top:8px}
+  .tavern-crest .tc-sub{display:block;font-style:italic;font-size:15px;color:var(--faint)}
   .party-banner .party-name{font-family:'Archivo Narrow';font-weight:800;
     font-size:27px;letter-spacing:.015em;line-height:1.05;color:var(--live-dark)}
 
@@ -659,7 +673,11 @@
 
 <!-- ============ LINEUP ============ -->
 <section class="pad" id="p-lineup" role="tabpanel" aria-labelledby="t-lineup" tabindex="0" hidden>
-  <h3 class="sec" style="margin-top:0">YOUR PARTY</h3>
+  <figure class="tavern-crest" id="tavernCrest" hidden>
+    <img src="" alt="" width="480">
+    <figcaption><span class="tc-sub">Hall of the party · the six who answer the call</span></figcaption>
+  </figure>
+  <h3 class="sec" id="partyHead" style="margin-top:0">YOUR PARTY</h3>
   <div class="bar"></div>
   <div id="party"></div>
 
@@ -1790,6 +1808,12 @@ async function boot(){
     $('partyCrest').alt=`${data.party.name} crest`;
     $('partyNameBanner').textContent=partyLabel;
     $('partyBanner').hidden=false;
+    // ...and the Tavern is the party's own hall, so it hangs there big.
+    const tc=$('tavernCrest');
+    tc.querySelector('img').src=CREST[partyId];
+    tc.querySelector('img').alt=`${data.party.name} crest`;
+    tc.dataset.party=partyId;tc.hidden=false;
+    $('partyHead').style.marginTop='';
   }
   KICK.week=CURRENT_FLOOR
     ?`${partyLabel} · WEEK ${data.week} · FLOOR ${floorNumeral(CURRENT_FLOOR.id)} · ${CURRENT_FLOOR.place.toUpperCase()}`
@@ -2177,6 +2201,7 @@ const TABS=['week','lineup','dungeon','guild'];
 let currentTab='week';
 function show(name,focus){
   currentTab=name;
+  document.body.dataset.tab=name;
   TABS.forEach(t=>{
     const btn=document.getElementById('t-'+t), pan=document.getElementById('p-'+t), on=(t===name);
     btn.setAttribute('aria-selected',on); btn.tabIndex=on?0:-1;

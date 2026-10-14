@@ -167,7 +167,8 @@ under 4.5:1).
 - **Party crests:** sources are `reference/assets/crest-<id>-source.png`;
   `scripts/cut-crests.py` writes the full crest (`crest-<id>.webp`, landing banner only —
   its painted name scroll is mush when small) and a round helmet medallion
-  (`helm-<id>.webp`) for every small placement. The Dungeon tab's map
+  (`helm-<id>.webp`) for every small placement. The Tavern hangs the full crest large over a
+  glow in the party's colour (`.tavern-crest[data-party]`), and hides the header copy there. The Dungeon tab's map
   (`dungeon-map.webp`) stands each party's helmet at the stair door of its current floor
   (`FLOOR_DOOR` in `public/index.html`).
 

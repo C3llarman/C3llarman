@@ -14,9 +14,9 @@ from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent
 HELM = {
-    'emberwatch':      (370, 20, 830, 480),
-    'ninth-circle':    (420, 160, 880, 620),
-    'ashen-coalition': (470, 160, 950, 640),
+    'emberwatch':      (440, 0, 900, 460),
+    'ninth-circle':    (420, 100, 880, 560),
+    'ashen-coalition': (440, 40, 940, 540),
 }
 CREST_W, HELM_PX = 480, 192
 
