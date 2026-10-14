@@ -181,6 +181,10 @@ under 4.5:1).
 Mobile-first bottom tab bar, **four tabs: Week, Tavern, Dungeon, Guild — Week is default**
 (Sunday is when people open it). One continuous blackened-steel bar; the selected tab is
 a red enamel inset with brass edging.
+Swiping sideways across the middle of the screen steps through the tabs in bar order
+(no wrap-around): a clear flick only (≥60px, at least twice as sideways as vertical), never
+from within 28px of an edge (the phone's own back gesture) and never mid-roll. The page sets
+`overscroll-behavior-x:none` so Chrome doesn't treat the swipe as history navigation.
 
 - **Week** — this Sunday only: encounter, party row, arrivals, log, result.
 - **Tavern** — the party, substitution, the Floor reveal banner, rules, conversion table.
