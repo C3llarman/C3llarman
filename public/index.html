@@ -503,6 +503,21 @@
   .lsub{font-family:'Archivo Narrow',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;
     text-transform:uppercase;color:var(--live);border:1px solid currentColor;padding:0 4px;margin-left:4px}
   /* ---- compact rows (Week party row, Tavern bench picker) ---- */
+  /* Dungeon map: each party's crest stands at the stair door of the floor
+     it's on (FLOOR_DOOR), fanning into the chamber when floors are shared. */
+  .dmap{position:relative;max-width:440px;margin:12px auto}
+  .dmap>img{display:block;width:100%;height:auto}
+  .dmark{position:absolute;width:13%;aspect-ratio:1;transform:translate(-50%,-50%);
+    filter:drop-shadow(0 3px 4px rgba(0,0,0,.85))}
+  .dmark img,.dmark .nocrest{display:block;width:100%;height:100%;object-fit:contain}
+  .dmark .nocrest{border-radius:50%;background:var(--iron);box-shadow:inset 0 0 0 2px var(--brass)}
+  .dmark.mine{z-index:1;filter:drop-shadow(0 0 2px var(--live)) drop-shadow(0 0 5px var(--live)) drop-shadow(0 3px 4px rgba(0,0,0,.85))}
+  .dkey{list-style:none;margin:4px 0 14px;padding:0}
+  .dkey li{display:flex;align-items:center;gap:10px;padding:6px 0}
+  .dkey img,.dkey .nocrest{width:34px;height:34px;flex:0 0 34px;object-fit:contain}
+  .dkey .nm{font-family:'Archivo Narrow';font-weight:600;font-size:16.5px}
+  .dkey .st{font-size:14.5px;color:var(--faint);font-style:italic}
+  .dkey .mine .nm{color:var(--live)}
   .floorrow{display:flex;gap:11px;align-items:flex-start;padding:10px 0;
     border-bottom:1px solid var(--hair)}
   .floorrow .num{font-family:'Archivo Narrow';font-weight:700;font-size:19px;
@@ -698,7 +713,11 @@
   <h3 class="sec" style="margin-top:0">THE DUNGEON</h3>
   <div class="bar"></div>
   <p>Seven floors, one stair down. Every party in the guild faces the same climb — what's cleared stays cleared, what's ahead stays sealed until you reach it.</p>
-  <img src="/assets/dungeon-tower.webp" alt="The dungeon, floor by floor" style="display:block;width:100%;max-width:320px;margin:12px auto">
+  <div class="dmap">
+    <img src="/assets/dungeon-map.webp" width="880" height="1320" alt="The dungeon: seven chambers stacked down one stair, Floor I at the top and the Warden at the bottom">
+    <div id="dungeonmarkers" aria-hidden="true"></div>
+  </div>
+  <ul class="dkey" id="dungeonkey" aria-label="Where each party is"></ul>
   <div class="bar thin"></div>
   <div id="dungeonrows"></div>
 </section>
@@ -2110,13 +2129,44 @@ async function renderDungeon(){
   }catch{}
 }
 renderDungeon();
+// Where each floor's stair door sits on public/assets/dungeon-map.webp, as a
+// share of the image (x, y). Floor I is the top chamber, VII the bottom.
+const FLOOR_DOOR={1:[.255,.153],2:[.255,.257],3:[.255,.378],4:[.255,.499],
+  5:[.255,.622],6:[.255,.749],7:[.255,.872]};
+async function renderDungeonMap(){
+  try{
+    const [partiesRes,floorsRes,seasonRes]=await Promise.all(
+      [fetch('/data/parties.json'),fetch('/data/floors.json'),fetch('/data/season-state.json')]);
+    if(!partiesRes.ok||!floorsRes.ok||!seasonRes.ok)return;
+    const parties=(await partiesRes.json()).parties||[];
+    const floors=await floorsRes.json(),season=await seasonRes.json();
+    const me=location.pathname.replace(/^\/+|\/+$/g,'')||'ashen-coalition';
+    const rows=parties.map(p=>({p,s:season.parties&&season.parties[p.id]})).filter(r=>r.s)
+      // your party first, so it gets the door and the others fan out past it
+      .sort((a,b)=>(b.p.id===me)-(a.p.id===me));
+    const crest=p=>CREST[p.id]?`<img src="${CREST[p.id]}" alt="">`:'<span class="nocrest"></span>';
+    const seen={};
+    $('dungeonmarkers').innerHTML=rows.map(r=>{
+      const door=FLOOR_DOOR[r.s.floorId];if(!door)return '';
+      const i=seen[r.s.floorId]=(seen[r.s.floorId]??-1)+1;
+      return `<div class="dmark${r.p.id===me?' mine':''}" style="left:${((door[0]+i*.11)*100).toFixed(1)}%;top:${(door[1]*100).toFixed(1)}%">${crest(r.p)}</div>`;
+    }).join('');
+    $('dungeonkey').innerHTML=rows.map(r=>{
+      const f=floors.find(x=>x.id===r.s.floorId);
+      return `<li class="${r.p.id===me?'mine':''}">${crest(r.p)}<div>
+        <div class="nm">${r.p.name}${r.p.id===me?' (you)':''}</div>
+        <div class="st">${f?`Floor ${floorNumeral(f.id)} · ${f.name}`:''}${r.s.cleared?' · cleared':''}</div></div></li>`;
+    }).join('');
+  }catch{}
+}
+renderDungeonMap();
 
 /* ---- tab navigation ---- */
 // Placeholder text shown until boot() resolves and fills in the real
 // party name and real lock time (computed from the actual schedule).
 const KICK={week:'WEEK 1 · FLOOR I · THE SUNKEN VAULT',
             lineup:'WEEK 1 · TAVERN LOCKS AT FIRST KICKOFF',
-            dungeon:'THE DUNGEON · SIX FLOORS, ONE PARTY',
+            dungeon:'THE DUNGEON · SEVEN FLOORS, ONE STAIR',
             guild:'THE GUILD · EVERY PARTY, SAME FLOORS'};
 const TABS=['week','lineup','dungeon','guild'];
 let currentTab='week';
