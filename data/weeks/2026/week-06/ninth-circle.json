@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 6,
   "seasonType": "REG",
-  "generatedAt": "2026-10-15T07:35:24.114Z",
+  "generatedAt": "2026-10-16T07:21:54.191Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -126,7 +126,7 @@
         },
         "injury": {
           "status": null,
-          "practice": "Full Participation in Practice",
+          "practice": "Did Not Participate In Practice",
           "injury": "Calf"
         }
       }
