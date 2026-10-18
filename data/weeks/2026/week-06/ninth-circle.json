@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 6,
   "seasonType": "REG",
-  "generatedAt": "2026-10-17T10:59:13.593Z",
+  "generatedAt": "2026-10-18T21:37:18.376Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -299,12 +299,12 @@
         "homeAway": "away",
         "kickoff": "2026-10-18T09:30:00-04:00",
         "name": "Nico Collins",
-        "y": 0,
-        "c": 0,
+        "y": 74,
+        "c": 3,
         "td": 0,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 3,
+        "hasStats": true,
         "form": {
           "games": 3,
           "lines": [
@@ -347,7 +347,7 @@
     "name": "Will Anderson Jr.",
     "sk": 0,
     "tfl": 0,
-    "hasStats": false,
+    "hasStats": true,
     "form": {
       "games": 5,
       "lines": [
