@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 6,
   "seasonType": "REG",
-  "generatedAt": "2026-10-18T21:37:18.370Z",
+  "generatedAt": "2026-10-19T00:16:27.018Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "away",
     "kickoff": "2026-10-18T16:25:00-04:00",
     "name": "Josh Allen",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
+    "y": 255,
+    "td": 2,
+    "sk": 2,
     "int": 0,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 13,
+    "hasStats": true,
     "form": {
       "games": 5,
       "lines": [
@@ -76,13 +76,13 @@
         "homeAway": "home",
         "kickoff": "2026-10-18T16:25:00-04:00",
         "name": "Patrick Mahomes",
-        "y": 0,
+        "y": 272,
         "td": 0,
         "sk": 0,
-        "int": 0,
+        "int": 1,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 11,
+        "hasStats": true,
         "form": {
           "games": 4,
           "lines": [
@@ -284,12 +284,12 @@
         "homeAway": "home",
         "kickoff": "2026-10-18T16:05:00-04:00",
         "name": "Puka Nacua",
-        "y": 0,
-        "c": 0,
+        "y": 80,
+        "c": 6,
         "td": 0,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 2,
+        "hasStats": true,
         "form": {
           "games": 3,
           "lines": [
@@ -328,7 +328,7 @@
     "name": "Greg Rousseau",
     "sk": 0,
     "tfl": 0,
-    "hasStats": false,
+    "hasStats": true,
     "form": {
       "games": 5,
       "lines": [

@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 6,
   "seasonType": "REG",
-  "generatedAt": "2026-10-18T21:37:18.380Z",
+  "generatedAt": "2026-10-19T00:16:27.024Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -184,12 +184,12 @@
         "homeAway": "home",
         "kickoff": "2026-10-18T16:25:00-04:00",
         "name": "Ashton Jeanty",
-        "y": 0,
-        "td": 0,
-        "car": 0,
+        "y": 22,
+        "td": 1,
+        "car": 10,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 2,
+        "hasStats": true,
         "form": {
           "games": 5,
           "lines": [
@@ -427,7 +427,7 @@
   "wall": {
     "team": "KC",
     "sacksAllowed": 0,
-    "hasStats": false,
+    "hasStats": true,
     "opponent": "LAC",
     "homeAway": "home",
     "kickoff": "2026-10-18T16:25:00-04:00",
