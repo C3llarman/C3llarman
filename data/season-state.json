@@ -1,12 +1,12 @@
 {
   "season": 2026,
-  "computedThroughWeek": 5,
-  "generatedAt": "2026-10-13T09:34:49.095Z",
+  "computedThroughWeek": 6,
+  "generatedAt": "2026-10-20T07:46:31.710Z",
   "parties": {
     "ashen-coalition": {
       "floorId": 3,
       "cleared": false,
-      "roomHp": 773,
+      "roomHp": 509,
       "hp": {
         "wall": 74,
         "breaker": 44,
@@ -15,8 +15,8 @@
         "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 1,
-      "totalWeeksPlayed": 5,
+      "weeksOnFloor": 2,
+      "totalWeeksPlayed": 6,
       "floorsCleared": 2,
       "history": [
         {
@@ -59,23 +59,31 @@
           "dmg": 377,
           "progress": 0.328,
           "hpPct": 0.963
+        },
+        {
+          "week": 6,
+          "floorId": 3,
+          "cleared": false,
+          "dmg": 264,
+          "progress": 0.23,
+          "hpPct": 0.94
         }
       ]
     },
     "ninth-circle": {
       "floorId": 3,
       "cleared": false,
-      "roomHp": 558,
+      "roomHp": 530,
       "hp": {
         "wall": 74,
         "breaker": 44,
         "tactician": 52,
         "hunter": 48,
-        "rogue": 42,
+        "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 1,
-      "totalWeeksPlayed": 5,
+      "weeksOnFloor": 2,
+      "totalWeeksPlayed": 6,
       "floorsCleared": 2,
       "history": [
         {
@@ -118,13 +126,22 @@
           "dmg": 592,
           "progress": 0.515,
           "hpPct": 0.963
+        },
+        {
+          "week": 6,
+          "floorId": 3,
+          "cleared": false,
+          "dmg": 28,
+          "progress": 0.024,
+          "hpPct": 1
         }
       ]
     },
     "emberwatch": {
-      "floorId": 3,
+      "floorId": 4,
       "cleared": false,
-      "roomHp": 74,
+      "roomHp": 1250,
+      "scales": 8,
       "hp": {
         "wall": 74,
         "breaker": 44,
@@ -133,9 +150,9 @@
         "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 2,
-      "totalWeeksPlayed": 5,
-      "floorsCleared": 2,
+      "weeksOnFloor": 0,
+      "totalWeeksPlayed": 6,
+      "floorsCleared": 3,
       "history": [
         {
           "week": 1,
@@ -176,6 +193,14 @@
           "cleared": false,
           "dmg": 513,
           "progress": 0.446,
+          "hpPct": 1
+        },
+        {
+          "week": 6,
+          "floorId": 3,
+          "cleared": true,
+          "dmg": 418,
+          "progress": 0.363,
           "hpPct": 1
         }
       ]
