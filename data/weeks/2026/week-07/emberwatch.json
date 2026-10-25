@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "seasonType": "REG",
-  "generatedAt": "2026-10-24T07:26:38.433Z",
+  "generatedAt": "2026-10-25T22:40:34.411Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "away",
     "kickoff": "2026-10-25T13:00:00-04:00",
     "name": "Joe Burrow",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
+    "y": 292,
+    "td": 4,
+    "sk": 1,
     "int": 0,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 12,
+    "hasStats": true,
     "form": {
       "games": 5,
       "lines": [
@@ -130,12 +130,12 @@
     "homeAway": "away",
     "kickoff": "2026-10-25T13:00:00-04:00",
     "name": "Christian McCaffrey",
-    "y": 0,
-    "td": 0,
-    "car": 0,
+    "y": 39,
+    "td": 1,
+    "car": 7,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 2,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [
@@ -315,12 +315,12 @@
         "homeAway": "away",
         "kickoff": "2026-10-25T13:00:00-04:00",
         "name": "Malik Nabers",
-        "y": 0,
-        "c": 0,
+        "y": 111,
+        "c": 7,
         "td": 0,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 4,
+        "hasStats": true,
         "form": {
           "games": 6,
           "lines": [
@@ -378,9 +378,9 @@
     "homeAway": "away",
     "kickoff": "2026-10-25T09:30:00-04:00",
     "name": "T.J. Watt",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false,
+    "sk": 1,
+    "tfl": 1,
+    "hasStats": true,
     "form": {
       "games": 5,
       "lines": [
@@ -418,9 +418,9 @@
     "homeAway": "away",
     "kickoff": "2026-10-25T09:30:00-04:00",
     "name": "Chris Boswell",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 3,
+    "att": 3,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [

@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "seasonType": "REG",
-  "generatedAt": "2026-10-24T07:26:38.425Z",
+  "generatedAt": "2026-10-25T22:40:34.400Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -150,12 +150,12 @@
     "homeAway": "home",
     "kickoff": "2026-10-25T13:00:00-04:00",
     "name": "Bijan Robinson",
-    "y": 0,
+    "y": 63,
     "td": 0,
-    "car": 0,
+    "car": 20,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 5,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [

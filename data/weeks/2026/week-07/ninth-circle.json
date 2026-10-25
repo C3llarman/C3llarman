@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "seasonType": "REG",
-  "generatedAt": "2026-10-25T06:26:15.875Z",
+  "generatedAt": "2026-10-25T22:40:34.407Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -241,12 +241,12 @@
     "homeAway": "away",
     "kickoff": "2026-10-25T13:00:00-04:00",
     "name": "Ja'Marr Chase",
-    "y": 0,
-    "c": 0,
-    "td": 0,
+    "y": 62,
+    "c": 5,
+    "td": 1,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 4,
+    "hasStats": true,
     "form": {
       "games": 5,
       "lines": [
@@ -295,12 +295,12 @@
         "homeAway": "home",
         "kickoff": "2026-10-25T13:00:00-04:00",
         "name": "Nico Collins",
-        "y": 0,
-        "c": 0,
+        "y": 6,
+        "c": 2,
         "td": 0,
         "fumblesLost": 0,
         "firstDowns": 0,
-        "hasStats": false,
+        "hasStats": true,
         "form": {
           "games": 4,
           "lines": [
@@ -350,7 +350,7 @@
     "name": "Will Anderson Jr.",
     "sk": 0,
     "tfl": 0,
-    "hasStats": false,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [
