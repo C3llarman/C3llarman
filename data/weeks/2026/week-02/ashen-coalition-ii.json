@@ -1,0 +1,262 @@
+{
+  "season": 2026,
+  "week": 2,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-25T22:16:54.431Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "ashen-coalition-ii",
+    "name": "Ashen Coalition",
+    "crest": "ashen-coalition"
+  },
+  "lockedAt": "2026-09-20T13:00:00-04:00",
+  "tactician": {
+    "team": "LA",
+    "opponent": "NYG",
+    "homeAway": "home",
+    "kickoff": "2026-09-21T20:15:00-04:00",
+    "name": "Matthew Stafford",
+    "y": 327,
+    "td": 4,
+    "sk": 1,
+    "int": 1,
+    "fumblesLost": 0,
+    "firstDowns": 15,
+    "hasStats": true,
+    "form": {
+      "games": 1,
+      "lines": [
+        {
+          "y": 155,
+          "td": 0,
+          "sk": 0,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "DAL",
+        "opponent": "WAS",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T16:25:00-04:00",
+        "name": "Dak Prescott",
+        "y": 279,
+        "td": 4,
+        "sk": 2,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 16,
+        "hasStats": true,
+        "form": {
+          "games": 1,
+          "lines": [
+            {
+              "y": 175,
+              "td": 2,
+              "sk": 0,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 12
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "KC",
+    "opponent": "IND",
+    "homeAway": "home",
+    "kickoff": "2026-09-20T20:20:00-04:00",
+    "name": "Kenneth Walker III",
+    "y": 117,
+    "td": 0,
+    "car": 24,
+    "fumblesLost": 0,
+    "firstDowns": 7,
+    "hasStats": true,
+    "form": {
+      "games": 1,
+      "lines": [
+        {
+          "y": 173,
+          "td": 1,
+          "car": 23,
+          "fumblesLost": 0,
+          "firstDowns": 8
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "LA",
+        "opponent": "NYG",
+        "homeAway": "home",
+        "kickoff": "2026-09-21T20:15:00-04:00",
+        "name": "Kyren Williams",
+        "y": 85,
+        "td": 0,
+        "car": 12,
+        "fumblesLost": 1,
+        "firstDowns": 3,
+        "hasStats": true,
+        "form": {
+          "games": 1,
+          "lines": [
+            {
+              "y": 41,
+              "td": 1,
+              "car": 11,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "CIN",
+    "opponent": "HOU",
+    "homeAway": "away",
+    "kickoff": "2026-09-20T13:00:00-04:00",
+    "name": "Tee Higgins",
+    "y": 95,
+    "c": 5,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 5,
+    "hasStats": true,
+    "form": {
+      "games": 1,
+      "lines": [
+        {
+          "y": 59,
+          "c": 3,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "BAL",
+        "opponent": "NO",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00",
+        "name": "Zay Flowers",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 1,
+          "lines": [
+            {
+              "y": 150,
+              "c": 5,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            }
+          ]
+        },
+        "injury": {
+          "status": "Doubtful",
+          "practice": "Limited Participation in Practice",
+          "injury": "Hamstring"
+        }
+      }
+    ]
+  },
+  "breaker": {
+    "team": "MIN",
+    "opponent": "CHI",
+    "homeAway": "away",
+    "kickoff": "2026-09-20T13:00:00-04:00",
+    "name": "Dallas Turner",
+    "sk": 2,
+    "tfl": 2,
+    "hasStats": true,
+    "form": {
+      "games": 1,
+      "lines": [
+        {
+          "sk": 1,
+          "tfl": 0
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "HOU",
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-09-20T13:00:00-04:00",
+        "name": "Danielle Hunter",
+        "sk": 1,
+        "tfl": 1,
+        "hasStats": true,
+        "form": {
+          "games": 1,
+          "lines": [
+            {
+              "sk": 0,
+              "tfl": 0
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "mender": {
+    "team": "MIN",
+    "opponent": "CHI",
+    "homeAway": "away",
+    "kickoff": "2026-09-20T13:00:00-04:00",
+    "name": "Will Reichard",
+    "fg": 3,
+    "att": 3,
+    "hasStats": true,
+    "form": {
+      "games": 1,
+      "lines": [
+        {
+          "fg": 1,
+          "att": 1
+        }
+      ]
+    },
+    "injury": null
+  },
+  "wall": {
+    "team": "TB",
+    "sacksAllowed": 3,
+    "hasStats": true,
+    "opponent": "CLE",
+    "homeAway": "home",
+    "kickoff": "2026-09-20T13:00:00-04:00",
+    "form": {
+      "games": 1,
+      "lines": [
+        {
+          "sacksAllowed": 4
+        }
+      ]
+    }
+  }
+}

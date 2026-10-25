@@ -1,7 +1,7 @@
 {
   "season": 2026,
   "computedThroughWeek": 6,
-  "generatedAt": "2026-10-25T22:14:46.250Z",
+  "generatedAt": "2026-10-25T22:17:23.345Z",
   "parties": {
     "ashen-coalition": {
       "floorId": 3,
@@ -206,9 +206,10 @@
       ]
     },
     "emberwatch-ii": {
-      "floorId": 1,
+      "floorId": 4,
       "cleared": false,
-      "roomHp": 900,
+      "roomHp": 863,
+      "scales": 4,
       "hp": {
         "wall": 74,
         "breaker": 44,
@@ -217,15 +218,66 @@
         "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 0,
-      "totalWeeksPlayed": 0,
-      "floorsCleared": 0,
-      "history": []
+      "weeksOnFloor": 1,
+      "totalWeeksPlayed": 6,
+      "floorsCleared": 3,
+      "history": [
+        {
+          "week": 1,
+          "floorId": 1,
+          "cleared": false,
+          "dmg": 686,
+          "progress": 0.762,
+          "hpPct": 0.947
+        },
+        {
+          "week": 2,
+          "floorId": 1,
+          "cleared": true,
+          "dmg": 851,
+          "progress": 0.946,
+          "hpPct": 0.93
+        },
+        {
+          "week": 3,
+          "floorId": 2,
+          "cleared": true,
+          "hits": 3,
+          "soldiers": 0,
+          "progress": 1,
+          "hpPct": 0.977
+        },
+        {
+          "week": 4,
+          "floorId": 3,
+          "cleared": false,
+          "dmg": 760,
+          "progress": 0.661,
+          "hpPct": 1
+        },
+        {
+          "week": 5,
+          "floorId": 3,
+          "cleared": true,
+          "dmg": 892,
+          "progress": 0.776,
+          "hpPct": 0.993
+        },
+        {
+          "week": 6,
+          "floorId": 4,
+          "cleared": false,
+          "dmg": 387,
+          "scales": 4,
+          "progress": 0.31,
+          "hpPct": 0.997
+        }
+      ]
     },
     "ninth-circle-ii": {
-      "floorId": 1,
+      "floorId": 3,
       "cleared": false,
-      "roomHp": 900,
+      "roomHp": 113,
       "hp": {
         "wall": 74,
         "breaker": 44,
@@ -234,32 +286,136 @@
         "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 0,
-      "totalWeeksPlayed": 0,
-      "floorsCleared": 0,
-      "history": []
+      "weeksOnFloor": 2,
+      "totalWeeksPlayed": 6,
+      "floorsCleared": 2,
+      "history": [
+        {
+          "week": 1,
+          "floorId": 1,
+          "cleared": false,
+          "dmg": 681,
+          "progress": 0.757,
+          "hpPct": 0.92
+        },
+        {
+          "week": 2,
+          "floorId": 1,
+          "cleared": true,
+          "dmg": 557,
+          "progress": 0.619,
+          "hpPct": 0.897
+        },
+        {
+          "week": 3,
+          "floorId": 2,
+          "cleared": false,
+          "hits": 1,
+          "soldiers": 0,
+          "progress": 0.333,
+          "hpPct": 0.883
+        },
+        {
+          "week": 4,
+          "floorId": 2,
+          "cleared": true,
+          "hits": 2,
+          "soldiers": 0,
+          "progress": 0.667,
+          "hpPct": 0.937
+        },
+        {
+          "week": 5,
+          "floorId": 3,
+          "cleared": false,
+          "dmg": 472,
+          "progress": 0.41,
+          "hpPct": 0.99
+        },
+        {
+          "week": 6,
+          "floorId": 3,
+          "cleared": false,
+          "dmg": 565,
+          "progress": 0.491,
+          "hpPct": 0.997
+        }
+      ]
     },
     "ashen-coalition-ii": {
-      "floorId": 1,
+      "floorId": 4,
       "cleared": false,
-      "roomHp": 900,
+      "roomHp": 835,
+      "scales": 4,
       "hp": {
-        "wall": 74,
+        "wall": 73,
         "breaker": 44,
-        "tactician": 52,
+        "tactician": 49,
         "hunter": 48,
-        "rogue": 46,
+        "rogue": 45,
         "mender": 36
       },
-      "weeksOnFloor": 0,
-      "totalWeeksPlayed": 0,
-      "floorsCleared": 0,
-      "history": []
+      "weeksOnFloor": 1,
+      "totalWeeksPlayed": 6,
+      "floorsCleared": 3,
+      "history": [
+        {
+          "week": 1,
+          "floorId": 1,
+          "cleared": false,
+          "dmg": 670,
+          "progress": 0.744,
+          "hpPct": 0.97
+        },
+        {
+          "week": 2,
+          "floorId": 1,
+          "cleared": true,
+          "dmg": 713,
+          "progress": 0.792,
+          "hpPct": 0.987
+        },
+        {
+          "week": 3,
+          "floorId": 2,
+          "cleared": true,
+          "hits": 3,
+          "soldiers": 0,
+          "progress": 1,
+          "hpPct": 0.947
+        },
+        {
+          "week": 4,
+          "floorId": 3,
+          "cleared": false,
+          "dmg": 898,
+          "progress": 0.781,
+          "hpPct": 0.98
+        },
+        {
+          "week": 5,
+          "floorId": 3,
+          "cleared": true,
+          "dmg": 578,
+          "progress": 0.503,
+          "hpPct": 1
+        },
+        {
+          "week": 6,
+          "floorId": 4,
+          "cleared": false,
+          "dmg": 415,
+          "scales": 4,
+          "progress": 0.332,
+          "hpPct": 0.897
+        }
+      ]
     },
     "rimeguard": {
-      "floorId": 1,
+      "floorId": 4,
       "cleared": false,
-      "roomHp": 900,
+      "roomHp": 1021,
+      "scales": 5,
       "hp": {
         "wall": 74,
         "breaker": 44,
@@ -268,10 +424,61 @@
         "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 0,
-      "totalWeeksPlayed": 0,
-      "floorsCleared": 0,
-      "history": []
+      "weeksOnFloor": 1,
+      "totalWeeksPlayed": 6,
+      "floorsCleared": 3,
+      "history": [
+        {
+          "week": 1,
+          "floorId": 1,
+          "cleared": false,
+          "dmg": 710,
+          "progress": 0.789,
+          "hpPct": 0.947
+        },
+        {
+          "week": 2,
+          "floorId": 1,
+          "cleared": true,
+          "dmg": 605,
+          "progress": 0.672,
+          "hpPct": 1
+        },
+        {
+          "week": 3,
+          "floorId": 2,
+          "cleared": true,
+          "hits": 3,
+          "soldiers": 0,
+          "progress": 1,
+          "hpPct": 1
+        },
+        {
+          "week": 4,
+          "floorId": 3,
+          "cleared": false,
+          "dmg": 462,
+          "progress": 0.402,
+          "hpPct": 0.96
+        },
+        {
+          "week": 5,
+          "floorId": 3,
+          "cleared": true,
+          "dmg": 803,
+          "progress": 0.698,
+          "hpPct": 0.933
+        },
+        {
+          "week": 6,
+          "floorId": 4,
+          "cleared": false,
+          "dmg": 229,
+          "scales": 5,
+          "progress": 0.183,
+          "hpPct": 0.987
+        }
+      ]
     }
   }
 }

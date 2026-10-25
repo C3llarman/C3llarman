@@ -1,0 +1,443 @@
+{
+  "season": 2026,
+  "week": 5,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-25T22:16:44.313Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "emberwatch-ii",
+    "name": "Emberwatch",
+    "crest": "emberwatch"
+  },
+  "lockedAt": "2026-10-08T20:15:00-04:00",
+  "tactician": {
+    "team": "NE",
+    "opponent": "LV",
+    "homeAway": "home",
+    "kickoff": "2026-10-11T13:00:00-04:00",
+    "name": "Drake Maye",
+    "y": 374,
+    "td": 4,
+    "sk": 1,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 17,
+    "hasStats": true,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "y": 178,
+          "td": 1,
+          "sk": 3,
+          "int": 3,
+          "fumblesLost": 0,
+          "firstDowns": 9
+        },
+        {
+          "y": 208,
+          "td": 0,
+          "sk": 3,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 199,
+          "td": 0,
+          "sk": 3,
+          "int": 2,
+          "fumblesLost": 1,
+          "firstDowns": 6
+        },
+        {
+          "y": 269,
+          "td": 3,
+          "sk": 1,
+          "int": 1,
+          "fumblesLost": 1,
+          "firstDowns": 15
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Shoulder"
+    },
+    "bench": [
+      {
+        "team": "DET",
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T16:25:00-04:00",
+        "name": "Jared Goff",
+        "y": 271,
+        "td": 3,
+        "sk": 3,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 12,
+        "hasStats": true,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "y": 206,
+              "td": 2,
+              "sk": 1,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 10
+            },
+            {
+              "y": 327,
+              "td": 4,
+              "sk": 4,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 19
+            },
+            {
+              "y": 269,
+              "td": 2,
+              "sk": 2,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 14
+            },
+            {
+              "y": 412,
+              "td": 1,
+              "sk": 1,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 19
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "BUF",
+    "opponent": "LA",
+    "homeAway": "away",
+    "kickoff": "2026-10-12T20:15:00-04:00",
+    "name": "James Cook",
+    "y": 111,
+    "td": 2,
+    "car": 25,
+    "fumblesLost": 1,
+    "firstDowns": 7,
+    "hasStats": true,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "y": 57,
+          "td": 0,
+          "car": 13,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 135,
+          "td": 1,
+          "car": 21,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 154,
+          "td": 1,
+          "car": 24,
+          "fumblesLost": 1,
+          "firstDowns": 8
+        },
+        {
+          "y": 75,
+          "td": 1,
+          "car": 12,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "BAL",
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T20:20:00-04:00",
+        "name": "Derrick Henry",
+        "y": 102,
+        "td": 0,
+        "car": 24,
+        "fumblesLost": 0,
+        "firstDowns": 3,
+        "hasStats": true,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "y": 144,
+              "td": 3,
+              "car": 24,
+              "fumblesLost": 0,
+              "firstDowns": 7
+            },
+            {
+              "y": 68,
+              "td": 1,
+              "car": 16,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 89,
+              "td": 2,
+              "car": 26,
+              "fumblesLost": 0,
+              "firstDowns": 4
+            },
+            {
+              "y": 73,
+              "td": 1,
+              "car": 23,
+              "fumblesLost": 0,
+              "firstDowns": 7
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "NYJ",
+    "opponent": "CLE",
+    "homeAway": "home",
+    "kickoff": "2026-10-11T13:00:00-04:00",
+    "name": "Garrett Wilson",
+    "y": 104,
+    "c": 7,
+    "td": 1,
+    "fumblesLost": 0,
+    "firstDowns": 4,
+    "hasStats": true,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "y": 79,
+          "c": 6,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 57,
+          "c": 5,
+          "td": 1,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        },
+        {
+          "y": 107,
+          "c": 10,
+          "td": 1,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 27,
+          "c": 3,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 1
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "DAL",
+        "opponent": "TB",
+        "homeAway": "home",
+        "kickoff": "2026-10-08T20:15:00-04:00",
+        "name": "CeeDee Lamb",
+        "y": 9,
+        "c": 2,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": true,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "y": 44,
+              "c": 5,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 153,
+              "c": 8,
+              "td": 2,
+              "fumblesLost": 0,
+              "firstDowns": 7
+            },
+            {
+              "y": 112,
+              "c": 7,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 189,
+              "c": 17,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 11
+            }
+          ]
+        },
+        "injury": {
+          "status": null,
+          "practice": "Full Participation in Practice",
+          "injury": "Thigh"
+        }
+      }
+    ]
+  },
+  "breaker": {
+    "team": "DEN",
+    "opponent": "LAC",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T16:05:00-04:00",
+    "name": "Nik Bonitto",
+    "sk": 2,
+    "tfl": 3,
+    "hasStats": true,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 1,
+          "tfl": 1
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "DET",
+        "opponent": "ARI",
+        "homeAway": "away",
+        "kickoff": "2026-10-11T16:25:00-04:00",
+        "name": "Aidan Hutchinson",
+        "sk": 0.5,
+        "tfl": 0,
+        "hasStats": true,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "sk": 2,
+              "tfl": 2
+            },
+            {
+              "sk": 1,
+              "tfl": 1
+            },
+            {
+              "sk": 0.5,
+              "tfl": 0
+            },
+            {
+              "sk": 0,
+              "tfl": 0
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "mender": {
+    "team": "IND",
+    "opponent": "PIT",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T13:00:00-04:00",
+    "name": "Spencer Shrader",
+    "fg": 5,
+    "att": 5,
+    "hasStats": true,
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "fg": 1,
+          "att": 1
+        },
+        {
+          "fg": 3,
+          "att": 3
+        },
+        {
+          "fg": 4,
+          "att": 4
+        },
+        {
+          "fg": 3,
+          "att": 3
+        }
+      ]
+    },
+    "injury": null
+  },
+  "wall": {
+    "team": "BAL",
+    "sacksAllowed": 3,
+    "hasStats": true,
+    "opponent": "ATL",
+    "homeAway": "away",
+    "kickoff": "2026-10-11T20:20:00-04:00",
+    "form": {
+      "games": 4,
+      "lines": [
+        {
+          "sacksAllowed": 2
+        },
+        {
+          "sacksAllowed": 3
+        },
+        {
+          "sacksAllowed": 0
+        },
+        {
+          "sacksAllowed": 2
+        }
+      ]
+    }
+  }
+}

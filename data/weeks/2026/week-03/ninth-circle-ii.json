@@ -1,0 +1,325 @@
+{
+  "season": 2026,
+  "week": 3,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-25T22:16:48.828Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "ninth-circle-ii",
+    "name": "Ninth Circle",
+    "crest": "ninth-circle"
+  },
+  "lockedAt": "2026-09-24T20:15:00-04:00",
+  "tactician": {
+    "team": "HOU",
+    "opponent": "IND",
+    "homeAway": "away",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "C.J. Stroud",
+    "y": 167,
+    "td": 1,
+    "sk": 3,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 8,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "y": 274,
+          "td": 2,
+          "sk": 3,
+          "int": 0,
+          "fumblesLost": 2,
+          "firstDowns": 11
+        },
+        {
+          "y": 353,
+          "td": 0,
+          "sk": 4,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 15
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "LAC",
+        "opponent": "BUF",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00",
+        "name": "Justin Herbert",
+        "y": 226,
+        "td": 1,
+        "sk": 2,
+        "int": 1,
+        "fumblesLost": 0,
+        "firstDowns": 11,
+        "hasStats": true,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "y": 209,
+              "td": 1,
+              "sk": 3,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 9
+            },
+            {
+              "y": 192,
+              "td": 1,
+              "sk": 3,
+              "int": 2,
+              "fumblesLost": 0,
+              "firstDowns": 8
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "IND",
+    "opponent": "HOU",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Jonathan Taylor",
+    "y": 68,
+    "td": 0,
+    "car": 23,
+    "fumblesLost": 0,
+    "firstDowns": 3,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "y": 98,
+          "td": 2,
+          "car": 19,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 92,
+          "td": 2,
+          "car": 24,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Not injury related - resting player"
+    },
+    "bench": [
+      {
+        "team": "CIN",
+        "opponent": "PIT",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T13:00:00-04:00",
+        "name": "Chase Brown",
+        "y": 61,
+        "td": 0,
+        "car": 13,
+        "fumblesLost": 0,
+        "firstDowns": 3,
+        "hasStats": true,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "y": 56,
+              "td": 1,
+              "car": 16,
+              "fumblesLost": 0,
+              "firstDowns": 4
+            },
+            {
+              "y": 80,
+              "td": 0,
+              "car": 20,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "ATL",
+    "opponent": "GB",
+    "homeAway": "away",
+    "kickoff": "2026-09-24T20:15:00-04:00",
+    "name": "Drake London",
+    "y": 194,
+    "c": 9,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 5,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "y": 29,
+          "c": 2,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 1
+        },
+        {
+          "y": 51,
+          "c": 4,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "MIN",
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:05:00-04:00",
+        "name": "Justin Jefferson",
+        "y": 32,
+        "c": 2,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 1,
+        "hasStats": true,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "y": 92,
+              "c": 8,
+              "td": 2,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 55,
+              "c": 3,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "breaker": {
+    "team": "NO",
+    "opponent": "LV",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T16:25:00-04:00",
+    "name": "Chase Young",
+    "sk": 2,
+    "tfl": 2,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 1.5,
+          "tfl": 1
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Calf"
+    },
+    "bench": [
+      {
+        "team": "LV",
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:25:00-04:00",
+        "name": "Maxx Crosby",
+        "sk": 0,
+        "tfl": 0,
+        "hasStats": true,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "sk": 1.5,
+              "tfl": 1
+            },
+            {
+              "sk": 0,
+              "tfl": 0
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "mender": {
+    "team": "HOU",
+    "opponent": "IND",
+    "homeAway": "away",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Ka'imi Fairbairn",
+    "fg": 1,
+    "att": 1,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "fg": 1,
+          "att": 1
+        },
+        {
+          "fg": 2,
+          "att": 3
+        }
+      ]
+    },
+    "injury": null
+  },
+  "wall": {
+    "team": "DEN",
+    "sacksAllowed": 1,
+    "hasStats": true,
+    "opponent": "LA",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T20:20:00-04:00",
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "sacksAllowed": 4
+        },
+        {
+          "sacksAllowed": 0
+        }
+      ]
+    }
+  }
+}

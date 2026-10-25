@@ -1,0 +1,495 @@
+{
+  "season": 2026,
+  "week": 6,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-25T22:16:52.193Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "ninth-circle-ii",
+    "name": "Ninth Circle",
+    "crest": "ninth-circle"
+  },
+  "lockedAt": "2026-10-15T20:15:00-04:00",
+  "tactician": {
+    "team": "HOU",
+    "opponent": "JAX",
+    "homeAway": "away",
+    "kickoff": "2026-10-18T09:30:00-04:00",
+    "name": "C.J. Stroud",
+    "y": 312,
+    "td": 3,
+    "sk": 0,
+    "int": 1,
+    "fumblesLost": 0,
+    "firstDowns": 16,
+    "hasStats": true,
+    "form": {
+      "games": 5,
+      "lines": [
+        {
+          "y": 274,
+          "td": 2,
+          "sk": 3,
+          "int": 0,
+          "fumblesLost": 2,
+          "firstDowns": 11
+        },
+        {
+          "y": 353,
+          "td": 0,
+          "sk": 4,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 15
+        },
+        {
+          "y": 167,
+          "td": 1,
+          "sk": 3,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 8
+        },
+        {
+          "y": 347,
+          "td": 2,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 14
+        },
+        {
+          "y": 261,
+          "td": 1,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 12
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "LAC",
+        "opponent": "KC",
+        "homeAway": "away",
+        "kickoff": "2026-10-18T16:25:00-04:00",
+        "name": "Justin Herbert",
+        "y": 204,
+        "td": 0,
+        "sk": 4,
+        "int": 1,
+        "fumblesLost": 0,
+        "firstDowns": 9,
+        "hasStats": true,
+        "form": {
+          "games": 5,
+          "lines": [
+            {
+              "y": 209,
+              "td": 1,
+              "sk": 3,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 9
+            },
+            {
+              "y": 192,
+              "td": 1,
+              "sk": 3,
+              "int": 2,
+              "fumblesLost": 0,
+              "firstDowns": 8
+            },
+            {
+              "y": 226,
+              "td": 1,
+              "sk": 2,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 11
+            },
+            {
+              "y": 189,
+              "td": 1,
+              "sk": 4,
+              "int": 2,
+              "fumblesLost": 1,
+              "firstDowns": 9
+            },
+            {
+              "y": 121,
+              "td": 1,
+              "sk": 5,
+              "int": 1,
+              "fumblesLost": 1,
+              "firstDowns": 7
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "IND",
+    "opponent": "TEN",
+    "homeAway": "home",
+    "kickoff": "2026-10-18T13:00:00-04:00",
+    "name": "Jonathan Taylor",
+    "y": 94,
+    "td": 1,
+    "car": 21,
+    "fumblesLost": 1,
+    "firstDowns": 6,
+    "hasStats": true,
+    "form": {
+      "games": 5,
+      "lines": [
+        {
+          "y": 98,
+          "td": 2,
+          "car": 19,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 92,
+          "td": 2,
+          "car": 24,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 68,
+          "td": 0,
+          "car": 23,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 95,
+          "td": 2,
+          "car": 20,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 45,
+          "td": 0,
+          "car": 15,
+          "fumblesLost": 0,
+          "firstDowns": 2
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Not injury related - resting player"
+    },
+    "bench": [
+      {
+        "team": "CIN",
+        "opponent": null,
+        "homeAway": null,
+        "kickoff": null,
+        "name": "Chase Brown",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 5,
+          "lines": [
+            {
+              "y": 56,
+              "td": 1,
+              "car": 16,
+              "fumblesLost": 0,
+              "firstDowns": 4
+            },
+            {
+              "y": 80,
+              "td": 0,
+              "car": 20,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            },
+            {
+              "y": 61,
+              "td": 0,
+              "car": 13,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            },
+            {
+              "y": 10,
+              "td": 0,
+              "car": 9,
+              "fumblesLost": 0,
+              "firstDowns": 0
+            },
+            {
+              "y": 39,
+              "td": 0,
+              "car": 13,
+              "fumblesLost": 0,
+              "firstDowns": 1
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "ATL",
+    "opponent": "CHI",
+    "homeAway": "home",
+    "kickoff": "2026-10-18T13:00:00-04:00",
+    "name": "Drake London",
+    "y": 62,
+    "c": 4,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 2,
+    "hasStats": true,
+    "form": {
+      "games": 5,
+      "lines": [
+        {
+          "y": 29,
+          "c": 2,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 1
+        },
+        {
+          "y": 51,
+          "c": 4,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        },
+        {
+          "y": 194,
+          "c": 9,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        },
+        {
+          "y": 96,
+          "c": 5,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        },
+        {
+          "y": 118,
+          "c": 7,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Limited Participation in Practice",
+      "injury": "Hip"
+    },
+    "bench": [
+      {
+        "team": "MIN",
+        "opponent": null,
+        "homeAway": null,
+        "kickoff": null,
+        "name": "Justin Jefferson",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "y": 92,
+              "c": 8,
+              "td": 2,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 55,
+              "c": 3,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 32,
+              "c": 2,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 1
+            },
+            {
+              "y": 79,
+              "c": 6,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "breaker": {
+    "team": "NO",
+    "opponent": "NYG",
+    "homeAway": "away",
+    "kickoff": "2026-10-18T13:00:00-04:00",
+    "name": "Chase Young",
+    "sk": 1.5,
+    "tfl": 0,
+    "hasStats": true,
+    "form": {
+      "games": 5,
+      "lines": [
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 1.5,
+          "tfl": 1
+        },
+        {
+          "sk": 2,
+          "tfl": 2
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 0.5,
+          "tfl": 0
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "LV",
+        "opponent": "BUF",
+        "homeAway": "home",
+        "kickoff": "2026-10-18T16:25:00-04:00",
+        "name": "Maxx Crosby",
+        "sk": 0,
+        "tfl": 1,
+        "hasStats": true,
+        "form": {
+          "games": 5,
+          "lines": [
+            {
+              "sk": 1.5,
+              "tfl": 1
+            },
+            {
+              "sk": 0,
+              "tfl": 0
+            },
+            {
+              "sk": 0,
+              "tfl": 0
+            },
+            {
+              "sk": 0.5,
+              "tfl": 0
+            },
+            {
+              "sk": 0,
+              "tfl": 0
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "mender": {
+    "team": "HOU",
+    "opponent": "JAX",
+    "homeAway": "away",
+    "kickoff": "2026-10-18T09:30:00-04:00",
+    "name": "Ka'imi Fairbairn",
+    "fg": 2,
+    "att": 2,
+    "hasStats": true,
+    "form": {
+      "games": 5,
+      "lines": [
+        {
+          "fg": 1,
+          "att": 1
+        },
+        {
+          "fg": 2,
+          "att": 3
+        },
+        {
+          "fg": 1,
+          "att": 1
+        },
+        {
+          "fg": 3,
+          "att": 3
+        },
+        {
+          "fg": 4,
+          "att": 4
+        }
+      ]
+    },
+    "injury": null
+  },
+  "wall": {
+    "team": "DEN",
+    "sacksAllowed": 2,
+    "hasStats": true,
+    "opponent": "SEA",
+    "homeAway": "home",
+    "kickoff": "2026-10-15T20:15:00-04:00",
+    "form": {
+      "games": 5,
+      "lines": [
+        {
+          "sacksAllowed": 4
+        },
+        {
+          "sacksAllowed": 0
+        },
+        {
+          "sacksAllowed": 1
+        },
+        {
+          "sacksAllowed": 0
+        },
+        {
+          "sacksAllowed": 1
+        }
+      ]
+    }
+  }
+}

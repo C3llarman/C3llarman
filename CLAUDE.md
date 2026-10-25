@@ -212,8 +212,10 @@ The Guild tab needs no accounts: every party in `data/parties.json` is replayed 
 the same static data for everyone; rival lineups read each party's week file plus its
 `/api/subs`. Parties are grouped by `guild` in `data/parties.json` (the original three
 have none; the second beta group is `"ii"`), and the Guild tab and Dungeon map only show
-the viewer's own guild. Guild II joined at week 7: the replay skips the weeks before a
-party's first week file, so it starts fresh on Floor I. Real guilds — sign-in, guild codes, joining, private leagues — are still
+the viewer's own guild. Guild II joined at week 7 with weeks 1–6 backfilled from real
+stats, each slot each week starting whichever of starter/bench hit harder on the floor the
+party was on (their best-case lineup), so they arrived at mid-season. The replay skips any
+week before a party's first week file. Real guilds — sign-in, guild codes, joining, private leagues — are still
 deferred until authentication exists (today a party's identity is just its URL). Live
 Sunday progress of rivals is deliberately not shown (see Guild comparison below).
 

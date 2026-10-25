@@ -1,0 +1,314 @@
+{
+  "season": 2026,
+  "week": 3,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-25T22:16:55.422Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "ashen-coalition-ii",
+    "name": "Ashen Coalition",
+    "crest": "ashen-coalition"
+  },
+  "lockedAt": "2026-09-27T13:00:00-04:00",
+  "tactician": {
+    "team": "LA",
+    "opponent": "DEN",
+    "homeAway": "away",
+    "kickoff": "2026-09-27T20:20:00-04:00",
+    "name": "Matthew Stafford",
+    "y": 390,
+    "td": 2,
+    "sk": 4,
+    "int": 2,
+    "fumblesLost": 0,
+    "firstDowns": 19,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "y": 155,
+          "td": 0,
+          "sk": 0,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        },
+        {
+          "y": 327,
+          "td": 4,
+          "sk": 1,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 15
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "DAL",
+        "opponent": "BAL",
+        "homeAway": "home",
+        "kickoff": "2026-09-27T16:25:00-04:00",
+        "name": "Dak Prescott",
+        "y": 276,
+        "td": 1,
+        "sk": 1,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 14,
+        "hasStats": true,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "y": 175,
+              "td": 2,
+              "sk": 0,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 12
+            },
+            {
+              "y": 279,
+              "td": 4,
+              "sk": 2,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 16
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "KC",
+    "opponent": "MIA",
+    "homeAway": "away",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Kenneth Walker III",
+    "y": 70,
+    "td": 1,
+    "car": 18,
+    "fumblesLost": 0,
+    "firstDowns": 4,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "y": 173,
+          "td": 1,
+          "car": 23,
+          "fumblesLost": 0,
+          "firstDowns": 8
+        },
+        {
+          "y": 117,
+          "td": 0,
+          "car": 24,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "LA",
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T20:20:00-04:00",
+        "name": "Kyren Williams",
+        "y": 88,
+        "td": 0,
+        "car": 15,
+        "fumblesLost": 0,
+        "firstDowns": 4,
+        "hasStats": true,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "y": 41,
+              "td": 1,
+              "car": 11,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            },
+            {
+              "y": 85,
+              "td": 0,
+              "car": 12,
+              "fumblesLost": 1,
+              "firstDowns": 3
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "CIN",
+    "opponent": "PIT",
+    "homeAway": "away",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Tee Higgins",
+    "y": 90,
+    "c": 6,
+    "td": 1,
+    "fumblesLost": 0,
+    "firstDowns": 4,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "y": 59,
+          "c": 3,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 95,
+          "c": 5,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "BAL",
+        "opponent": "DAL",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:25:00-04:00",
+        "name": "Zay Flowers",
+        "y": 84,
+        "c": 5,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 5,
+        "hasStats": true,
+        "form": {
+          "games": 1,
+          "lines": [
+            {
+              "y": 150,
+              "c": 5,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            }
+          ]
+        },
+        "injury": {
+          "status": "Questionable",
+          "practice": "Limited Participation in Practice",
+          "injury": "Hamstring"
+        }
+      }
+    ]
+  },
+  "breaker": {
+    "team": "HOU",
+    "opponent": "IND",
+    "homeAway": "away",
+    "kickoff": "2026-09-27T13:00:00-04:00",
+    "name": "Danielle Hunter",
+    "sk": 0.5,
+    "tfl": 0,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 1,
+          "tfl": 1
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "MIN",
+        "opponent": "TB",
+        "homeAway": "away",
+        "kickoff": "2026-09-27T16:05:00-04:00",
+        "name": "Dallas Turner",
+        "sk": 0.5,
+        "tfl": 0,
+        "hasStats": true,
+        "form": {
+          "games": 2,
+          "lines": [
+            {
+              "sk": 1,
+              "tfl": 0
+            },
+            {
+              "sk": 2,
+              "tfl": 2
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "mender": {
+    "team": "MIN",
+    "opponent": "TB",
+    "homeAway": "away",
+    "kickoff": "2026-09-27T16:05:00-04:00",
+    "name": "Will Reichard",
+    "fg": 3,
+    "att": 3,
+    "hasStats": true,
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "fg": 1,
+          "att": 1
+        },
+        {
+          "fg": 3,
+          "att": 3
+        }
+      ]
+    },
+    "injury": null
+  },
+  "wall": {
+    "team": "TB",
+    "sacksAllowed": 6,
+    "hasStats": true,
+    "opponent": "MIN",
+    "homeAway": "home",
+    "kickoff": "2026-09-27T16:05:00-04:00",
+    "form": {
+      "games": 2,
+      "lines": [
+        {
+          "sacksAllowed": 4
+        },
+        {
+          "sacksAllowed": 3
+        }
+      ]
+    }
+  }
+}
