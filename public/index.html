@@ -83,11 +83,13 @@
   body[data-party=emberwatch]{--party-glow:rgba(255,70,30,.45)}
   body[data-party=ninth-circle]{--party-glow:rgba(70,230,90,.38)}
   body[data-party=ashen-coalition]{--party-glow:rgba(225,180,80,.40)}
+  body[data-party=rimeguard]{--party-glow:rgba(80,180,255,.42)}
   /* same hues, softer, for the halo behind the party cards */
   body{--party-backlight:rgba(210,168,90,.45);--party-backlight-hot:rgba(230,190,110,.85)}
   body[data-party=emberwatch]{--party-backlight:rgba(255,60,25,.55);--party-backlight-hot:rgba(255,80,40,.95)}
   body[data-party=ninth-circle]{--party-backlight:rgba(60,220,80,.45);--party-backlight-hot:rgba(80,240,100,.85)}
   body[data-party=ashen-coalition]{--party-backlight:rgba(255,190,60,.50);--party-backlight-hot:rgba(255,200,80,.90)}
+  body[data-party=rimeguard]{--party-backlight:rgba(60,160,255,.48);--party-backlight-hot:rgba(110,200,255,.88)}
   header{padding:14px 16px 0;color:var(--ink)}
   .mast{display:flex;align-items:center;gap:12px;min-height:64px}
   .mast-helm{flex:0 0 56px;height:56px;border-radius:50%;position:relative}
@@ -114,6 +116,9 @@
   .tavern-crest[data-party=emberwatch]{--crest-glow:rgba(255,70,30,.36)}
   .tavern-crest[data-party=ninth-circle]{--crest-glow:rgba(70,230,90,.30)}
   .tavern-crest[data-party=ashen-coalition]{--crest-glow:rgba(225,180,80,.30)}
+  .tavern-crest[data-party=rimeguard]{--crest-glow:rgba(80,180,255,.32)}
+  /* Rimeguard has no painted crest yet, only its helm medallion (scripts/cut-crests.py) */
+  .tavern-crest[data-party=rimeguard] img{width:min(240px,62%);border-radius:50%}
   .tavern-crest figcaption{position:relative;margin-top:8px}
   .tavern-crest .tc-sub{display:block;font-style:italic;font-size:15px;color:var(--faint)}
 
@@ -825,16 +830,21 @@ const TEAM_NAMES={ARI:'Arizona',ATL:'Atlanta',BAL:'Baltimore',BUF:'Buffalo',CAR:
   NO:'New Orleans',NYG:'New York Giants',NYJ:'New York Jets',PHI:'Philadelphia',
   PIT:'Pittsburgh',SEA:'Seattle',SF:'San Francisco',TB:'Tampa Bay',TEN:'Tennessee',WAS:'Washington'};
 const teamName=code=>TEAM_NAMES[code]||code;
-// Party crests - only the parties actually in data/parties.json today
-// have one (public/assets/crest-<id>.webp); a party without one shows no
-// crest rather than a wrong or blank one. Used by the masthead banner
-// and the Tavern's guild view.
+// Party crests (public/assets/crest-<id>.webp) - a party wears the crest
+// named by its `crest` in data/parties.json (guild II reuses guild I's names
+// and art), else its own id's; one with no art shows no crest rather than a
+// wrong or blank one. Used by the masthead banner and the Tavern's guild view.
 // CREST is the full coat of arms (landing banner only - its painted name
 // scroll is mush when small); HELM is the round helmet medallion cut from
 // it for every small placement. Both come from scripts/cut-crests.py.
-const PARTY_IDS=['ashen-coalition','ninth-circle','emberwatch'];
-const CREST=Object.fromEntries(PARTY_IDS.map(id=>[id,`/assets/crest-${id}.webp`]));
-const HELM=Object.fromEntries(PARTY_IDS.map(id=>[id,`/assets/helm-${id}.webp`]));
+const CREST_IDS=['ashen-coalition','ninth-circle','emberwatch','rimeguard'];
+const CREST=Object.fromEntries(CREST_IDS.map(id=>[id,`/assets/crest-${id}.webp`]));
+const HELM=Object.fromEntries(CREST_IDS.map(id=>[id,`/assets/helm-${id}.webp`]));
+const lookOf=p=>p.crest||p.id;
+const helmOf=p=>HELM[lookOf(p)];
+// Each party sees only its own guild: data/parties.json's `guild` (the
+// original three have none, which is a guild of its own).
+const guildOf=(parties,me)=>{const g=(parties.find(p=>p.id===me)||{}).guild;return parties.filter(p=>p.guild===g);};
 // Damage/HP formulas live in formulas.js now (imported above), shared
 // with scripts/compute-season-state.mjs - see that file for the volume/
 // burst/mechanic rationale. dmgFor here is only ever called with the
@@ -1762,7 +1772,8 @@ async function boot(){
     if(seasonRes.ok){
       const seasonState=await seasonRes.json();
       const c=seasonState.parties&&seasonState.parties[partyId];
-      if(c&&seasonState.season===data.season&&seasonState.computedThroughWeek===data.week-1){
+      // totalWeeksPlayed 0 = a party that joined this week: nothing carried yet
+      if(c&&c.totalWeeksPlayed>0&&seasonState.season===data.season&&seasonState.computedThroughWeek===data.week-1){
         currentFloorId=c.floorId;
         carried=c;
       }
@@ -1822,14 +1833,15 @@ async function boot(){
   // Masthead: this party's name and helm (a party without art just shows
   // its name), and its colour (body[data-party]) on the rod and behind the party cards.
   $('partyName').textContent=data.party.name;
-  document.body.dataset.party=partyId;
-  if(HELM[partyId]){$('partyHelm').src=HELM[partyId];$('partyHelm').hidden=false;}
-  if(CREST[partyId]){
+  const look=lookOf(data.party);
+  document.body.dataset.party=look;
+  if(HELM[look]){$('partyHelm').src=HELM[look];$('partyHelm').hidden=false;}
+  if(CREST[look]){
     // The Tavern is the party's own hall, so it hangs there big.
     const tc=$('tavernCrest');
-    tc.querySelector('img').src=CREST[partyId];
+    tc.querySelector('img').src=CREST[look];
     tc.querySelector('img').alt=`${data.party.name} crest`;
-    tc.dataset.party=partyId;tc.hidden=false;
+    tc.dataset.party=look;tc.hidden=false;
     $('partyHead').style.marginTop='';
   }
   KICK.week=CURRENT_FLOOR
@@ -1970,10 +1982,10 @@ async function renderGuild(){
     const [partiesRes,floorsRes,seasonRes]=await Promise.all(
       [fetch('/data/parties.json'),fetch('/data/floors.json'),fetch('/data/season-state.json')]);
     if(!partiesRes.ok||!floorsRes.ok||!seasonRes.ok)return;
-    const parties=(await partiesRes.json()).parties||[];
+    const me=location.pathname.replace(/^\/+|\/+$/g,'')||'ashen-coalition';
+    const parties=guildOf((await partiesRes.json()).parties||[],me);
     const floors=await floorsRes.json();
     const season=await seasonRes.json();
-    const me=location.pathname.replace(/^\/+|\/+$/g,'')||'ashen-coalition';
     const floorOf=id=>floors.find(f=>f.id===id);
     const hpPct=hp=>{const t=Object.keys(MAX_HP).reduce((a,k)=>a+Math.max(0,hp[k]||0),0),
       m=Object.values(MAX_HP).reduce((a,b)=>a+b,0);return Math.round(t/m*100);};
@@ -1986,7 +1998,7 @@ async function renderGuild(){
     const row=(r,main,sub,right,label,bar)=>`
       <li class="grow${r.p.id===me?' you':''}">
         <span class="rk">${r.rank}</span>
-        ${HELM[r.p.id]?`<img src="${HELM[r.p.id]}" alt="">`:'<span class="nocrest"></span>'}
+        ${helmOf(r.p)?`<img src="${helmOf(r.p)}" alt="">`:'<span class="nocrest"></span>'}
         <div class="gmain">
           <div class="gnm">${r.p.name}${r.p.id===me?' <span class="youtag">you</span>':''}</div>
           ${sub.map(t=>`<div class="gst">${t}</div>`).join('')}
@@ -2026,7 +2038,7 @@ async function renderGuild(){
       ${weekHtml?`<h4 class="gsub">Week ${wk} <span>· how hard each party hit its own floor</span></h4>
       <ol class="grows" aria-label="Week ${wk} results">${weekHtml}</ol>
       <div class="bar thin"></div>`:''}
-      <h4 class="gsub">The season <span>· through week ${wk}</span></h4>
+      <h4 class="gsub">The season <span>· ${rows.some(r=>r.s.totalWeeksPlayed)?`through week ${wk}`:'no weeks played yet'}</span></h4>
       <ol class="grows" aria-label="Season standings">${seasonHtml}</ol>
       <p class="gnote">Results land once a week is final, the same for every party.</p>
     </div>`;
@@ -2055,7 +2067,7 @@ function renderGuildHistory(rows,floorOf,me){
       const last=hs[hs.length-1];
       const label=`${r.p.name}: `+hs.map(say).join('; ');
       return `<div class="hrow${r.p.id===me?' you':''}">
-        <div class="hhead">${HELM[r.p.id]?`<img src="${HELM[r.p.id]}" alt="">`:''}
+        <div class="hhead">${helmOf(r.p)?`<img src="${helmOf(r.p)}" alt="">`:''}
           <span class="hnm">${r.p.name}${r.p.id===me?' <span class="youtag">you</span>':''}</span>
           ${last?`<span class="hlast">${Math.round(last.progress*100)}%<small> wk ${last.week}</small></span>`:''}</div>
         <div class="hplot" role="img" aria-label="${label.replace(/"/g,'&quot;')}">
@@ -2105,7 +2117,7 @@ async function renderRivalLineups(rows,me){
     $('guildlineups').innerHTML=`<div class="block glineups">${files.filter(Boolean).map(({r,wk,subs,subsKnown},n)=>{
       const opensAt=Math.max(t(wk.lockedAt),t(myLock));
       if(!(Date.now()>=opensAt))return `<div class="lparty"><div class="lhead lsealed">
-          ${HELM[r.p.id]?`<img src="${HELM[r.p.id]}" alt="">`:''}<span>${r.p.name}</span>
+          ${helmOf(r.p)?`<img src="${helmOf(r.p)}" alt="">`:''}<span>${r.p.name}</span>
           <span class="lwhen">Sealed until ${Number.isFinite(opensAt)?clockText(new Date(opensAt)):'both parties lock'}</span></div></div>`;
       const six=SLOT_ORDER.map(k=>{
         const slot=wk[k]||{},swapped=subs[k]&&slot.bench&&slot.bench[0];
@@ -2114,7 +2126,7 @@ async function renderRivalLineups(rows,me){
           <span class="lwho">${k==='wall'?`${teamName(who.team)} line`:(who.name||'—')}${k!=='wall'&&who.team?` <span class="lteam">· ${who.team}</span>`:''}${swapped?' <span class="lsub">bench swap</span>':''}</span></li>`;}).join('');
       return `<div class="lparty">
         <button class="lhead" aria-expanded="false" aria-controls="lu${n}">
-          ${HELM[r.p.id]?`<img src="${HELM[r.p.id]}" alt="">`:''}<span>${r.p.name}</span><span class="chev" aria-hidden="true">▼</span></button>
+          ${helmOf(r.p)?`<img src="${helmOf(r.p)}" alt="">`:''}<span>${r.p.name}</span><span class="chev" aria-hidden="true">▼</span></button>
         <ul class="lsix" id="lu${n}" hidden>${six}</ul>
         ${subsKnown?'':`<p class="gnote" hidden data-for="lu${n}">Couldn't reach their saved swaps — showing their roster starters.</p>`}
       </div>`;}).join('')}</div>`;
@@ -2184,13 +2196,13 @@ async function renderDungeonMap(){
     const [partiesRes,floorsRes,seasonRes]=await Promise.all(
       [fetch('/data/parties.json'),fetch('/data/floors.json'),fetch('/data/season-state.json')]);
     if(!partiesRes.ok||!floorsRes.ok||!seasonRes.ok)return;
-    const parties=(await partiesRes.json()).parties||[];
-    const floors=await floorsRes.json(),season=await seasonRes.json();
     const me=location.pathname.replace(/^\/+|\/+$/g,'')||'ashen-coalition';
+    const parties=guildOf((await partiesRes.json()).parties||[],me);
+    const floors=await floorsRes.json(),season=await seasonRes.json();
     const rows=parties.map(p=>({p,s:season.parties&&season.parties[p.id]})).filter(r=>r.s)
       // your party first, so it gets the door and the others fan out past it
       .sort((a,b)=>(b.p.id===me)-(a.p.id===me));
-    const crest=p=>HELM[p.id]?`<img src="${HELM[p.id]}" alt="">`:'<span class="nocrest"></span>';
+    const crest=p=>helmOf(p)?`<img src="${helmOf(p)}" alt="">`:'<span class="nocrest"></span>';
     const seen={};
     $('dungeonmarkers').innerHTML=rows.map(r=>{
       const door=FLOOR_DOOR[r.s.floorId];if(!door)return '';

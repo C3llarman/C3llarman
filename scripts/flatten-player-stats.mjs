@@ -306,7 +306,9 @@ export async function flattenWeek({ season, week, seasonType = 'REG', parties, s
       source: url,
       // repo-relative, so the file is identical whichever machine runs this
       scheduleSource,
-      party: { id: party.id, name: party.name },
+      // crest: which party's name/art this one wears (a guild II Emberwatch
+      // wears Emberwatch's); absent means its own id
+      party: { id: party.id, name: party.name, ...(party.crest && { crest: party.crest }) },
       lockedAt: lockedAtFor(real),
       ...real,
     };

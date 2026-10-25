@@ -57,6 +57,90 @@
         "rogue":     { "name": "Ashton Jeanty", "team": "LV", "pos": "RB" },
         "hunter":    { "name": "Malik Nabers", "team": "NYG", "pos": "WR" }
       }
+    },
+    {
+      "id": "emberwatch-ii",
+      "name": "Emberwatch",
+      "owner": "TBD",
+      "guild": "ii",
+      "crest": "emberwatch",
+      "roster": {
+        "tactician": { "name": "Drake Maye", "team": "NE", "pos": "QB" },
+        "rogue":     { "name": "Derrick Henry", "team": "BAL", "pos": "RB" },
+        "hunter":    { "name": "CeeDee Lamb", "team": "DAL", "pos": "WR" },
+        "breaker":   { "name": "Aidan Hutchinson", "team": "DET", "pos": "EDGE" },
+        "mender":    { "name": "Spencer Shrader", "team": "IND", "pos": "K" },
+        "wall":      { "team": "BAL" }
+      },
+      "bench": {
+        "tactician": { "name": "Jared Goff", "team": "DET", "pos": "QB" },
+        "rogue":     { "name": "James Cook", "team": "BUF", "pos": "RB" },
+        "hunter":    { "name": "Garrett Wilson", "team": "NYJ", "pos": "WR" },
+        "breaker":   { "name": "Nik Bonitto", "team": "DEN", "pos": "EDGE" }
+      }
+    },
+    {
+      "id": "ninth-circle-ii",
+      "name": "Ninth Circle",
+      "owner": "TBD",
+      "guild": "ii",
+      "crest": "ninth-circle",
+      "roster": {
+        "tactician": { "name": "C.J. Stroud", "team": "HOU", "pos": "QB" },
+        "rogue":     { "name": "Jonathan Taylor", "team": "IND", "pos": "RB" },
+        "hunter":    { "name": "Drake London", "team": "ATL", "pos": "WR" },
+        "breaker":   { "name": "Chase Young", "team": "NO", "pos": "EDGE" },
+        "mender":    { "name": "Ka'imi Fairbairn", "team": "HOU", "pos": "K" },
+        "wall":      { "team": "DEN" }
+      },
+      "bench": {
+        "tactician": { "name": "Justin Herbert", "team": "LAC", "pos": "QB" },
+        "rogue":     { "name": "Chase Brown", "team": "CIN", "pos": "RB" },
+        "hunter":    { "name": "Justin Jefferson", "team": "MIN", "pos": "WR" },
+        "breaker":   { "name": "Maxx Crosby", "team": "LV", "pos": "EDGE" }
+      }
+    },
+    {
+      "id": "ashen-coalition-ii",
+      "name": "Ashen Coalition",
+      "owner": "TBD",
+      "guild": "ii",
+      "crest": "ashen-coalition",
+      "roster": {
+        "tactician": { "name": "Matthew Stafford", "team": "LAR", "pos": "QB" },
+        "rogue":     { "name": "Kenneth Walker III", "team": "KC", "pos": "RB" },
+        "hunter":    { "name": "Zay Flowers", "team": "BAL", "pos": "WR" },
+        "breaker":   { "name": "Danielle Hunter", "team": "HOU", "pos": "EDGE" },
+        "mender":    { "name": "Will Reichard", "team": "MIN", "pos": "K" },
+        "wall":      { "team": "TB" }
+      },
+      "bench": {
+        "tactician": { "name": "Dak Prescott", "team": "DAL", "pos": "QB" },
+        "rogue":     { "name": "Kyren Williams", "team": "LAR", "pos": "RB" },
+        "hunter":    { "name": "Tee Higgins", "team": "CIN", "pos": "WR" },
+        "breaker":   { "name": "Dallas Turner", "team": "MIN", "pos": "EDGE" }
+      }
+    },
+    {
+      "id": "rimeguard",
+      "name": "Rimeguard",
+      "owner": "TBD",
+      "guild": "ii",
+      "crest": "rimeguard",
+      "roster": {
+        "tactician": { "name": "Jordan Love", "team": "GB", "pos": "QB" },
+        "rogue":     { "name": "Bucky Irving", "team": "TB", "pos": "RB" },
+        "hunter":    { "name": "Chris Olave", "team": "NO", "pos": "WR" },
+        "breaker":   { "name": "Josh Hines-Allen", "team": "JAX", "pos": "EDGE" },
+        "mender":    { "name": "Chase McLaughlin", "team": "TB", "pos": "K" },
+        "wall":      { "team": "GB" }
+      },
+      "bench": {
+        "tactician": { "name": "Brock Purdy", "team": "SF", "pos": "QB" },
+        "rogue":     { "name": "Jaylen Warren", "team": "PIT", "pos": "RB" },
+        "hunter":    { "name": "Christian Watson", "team": "GB", "pos": "WR" },
+        "breaker":   { "name": "Trey Hendrickson", "team": "BAL", "pos": "EDGE" }
+      }
     }
   ]
 }

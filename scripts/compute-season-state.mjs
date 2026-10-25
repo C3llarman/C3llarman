@@ -132,7 +132,8 @@ async function replayParty(partyId, season, throughWeek, floors) {
     try {
       weekData = JSON.parse(await readFile(file, 'utf8'));
     } catch {
-      console.warn(`${partyId}: no data for week ${week} (${file}) - skipping.`);
+      // weeks before a party joined (guild II started mid-season) are expected
+      if (totalWeeksPlayed) console.warn(`${partyId}: no data for week ${week} (${file}) - skipping.`);
       continue;
     }
     totalWeeksPlayed++;

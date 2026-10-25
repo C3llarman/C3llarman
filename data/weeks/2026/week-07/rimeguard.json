@@ -1,0 +1,565 @@
+{
+  "season": 2026,
+  "week": 7,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-25T22:14:47.857Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "rimeguard",
+    "name": "Rimeguard",
+    "crest": "rimeguard"
+  },
+  "lockedAt": "2026-10-25T09:30:00-04:00",
+  "tactician": {
+    "team": "GB",
+    "opponent": "DET",
+    "homeAway": "away",
+    "kickoff": "2026-10-25T16:25:00-04:00",
+    "name": "Jordan Love",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "y": 387,
+          "td": 2,
+          "sk": 4,
+          "int": 1,
+          "fumblesLost": 1,
+          "firstDowns": 16
+        },
+        {
+          "y": 145,
+          "td": 2,
+          "sk": 3,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 8
+        },
+        {
+          "y": 312,
+          "td": 2,
+          "sk": 1,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 15
+        },
+        {
+          "y": 197,
+          "td": 2,
+          "sk": 0,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 9
+        },
+        {
+          "y": 367,
+          "td": 2,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 11
+        },
+        {
+          "y": 276,
+          "td": 1,
+          "sk": 3,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 13
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Back"
+    },
+    "bench": [
+      {
+        "team": "SF",
+        "opponent": "ATL",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T13:00:00-04:00",
+        "name": "Brock Purdy",
+        "y": 288,
+        "td": 1,
+        "sk": 2,
+        "int": 2,
+        "fumblesLost": 0,
+        "firstDowns": 17,
+        "hasStats": true,
+        "form": {
+          "games": 6,
+          "lines": [
+            {
+              "y": 205,
+              "td": 3,
+              "sk": 0,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 12
+            },
+            {
+              "y": 287,
+              "td": 2,
+              "sk": 0,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 16
+            },
+            {
+              "y": 297,
+              "td": 4,
+              "sk": 0,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 14
+            },
+            {
+              "y": 218,
+              "td": 2,
+              "sk": 0,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 8
+            },
+            {
+              "y": 189,
+              "td": 2,
+              "sk": 3,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 9
+            },
+            {
+              "y": 264,
+              "td": 1,
+              "sk": 2,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 9
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "TB",
+    "opponent": "CAR",
+    "homeAway": "away",
+    "kickoff": "2026-10-25T13:00:00-04:00",
+    "name": "Bucky Irving",
+    "y": 106,
+    "td": 2,
+    "car": 24,
+    "fumblesLost": 0,
+    "firstDowns": 10,
+    "hasStats": true,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "y": 45,
+          "td": 1,
+          "car": 8,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 89,
+          "td": 0,
+          "car": 17,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 46,
+          "td": 0,
+          "car": 15,
+          "fumblesLost": 0,
+          "firstDowns": 1
+        },
+        {
+          "y": 61,
+          "td": 0,
+          "car": 16,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 165,
+          "td": 1,
+          "car": 21,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 46,
+          "td": 0,
+          "car": 19,
+          "fumblesLost": 0,
+          "firstDowns": 2
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Illness"
+    },
+    "bench": [
+      {
+        "team": "PIT",
+        "opponent": "NO",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T09:30:00-04:00",
+        "name": "Jaylen Warren",
+        "y": 101,
+        "td": 0,
+        "car": 18,
+        "fumblesLost": 0,
+        "firstDowns": 7,
+        "hasStats": true,
+        "form": {
+          "games": 6,
+          "lines": [
+            {
+              "y": 46,
+              "td": 0,
+              "car": 10,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            },
+            {
+              "y": 43,
+              "td": 0,
+              "car": 11,
+              "fumblesLost": 0,
+              "firstDowns": 1
+            },
+            {
+              "y": 127,
+              "td": 0,
+              "car": 17,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 93,
+              "td": 0,
+              "car": 17,
+              "fumblesLost": 0,
+              "firstDowns": 7
+            },
+            {
+              "y": 101,
+              "td": 1,
+              "car": 15,
+              "fumblesLost": 0,
+              "firstDowns": 4
+            },
+            {
+              "y": 50,
+              "td": 0,
+              "car": 14,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "NO",
+    "opponent": "PIT",
+    "homeAway": "home",
+    "kickoff": "2026-10-25T09:30:00-04:00",
+    "name": "Chris Olave",
+    "y": 56,
+    "c": 6,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 4,
+    "hasStats": true,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "y": 182,
+          "c": 10,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 86,
+          "c": 8,
+          "td": 1,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 107,
+          "c": 9,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 116,
+          "c": 8,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        },
+        {
+          "y": 46,
+          "c": 4,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        },
+        {
+          "y": 43,
+          "c": 4,
+          "td": 1,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "GB",
+        "opponent": "DET",
+        "homeAway": "away",
+        "kickoff": "2026-10-25T16:25:00-04:00",
+        "name": "Christian Watson",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 6,
+          "lines": [
+            {
+              "y": 147,
+              "c": 6,
+              "td": 2,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 41,
+              "c": 4,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 96,
+              "c": 7,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 47,
+              "c": 3,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 143,
+              "c": 6,
+              "td": 2,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            },
+            {
+              "y": 64,
+              "c": 3,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            }
+          ]
+        },
+        "injury": {
+          "status": null,
+          "practice": "Limited Participation in Practice",
+          "injury": "Ankle"
+        }
+      }
+    ]
+  },
+  "breaker": {
+    "team": "JAX",
+    "opponent": null,
+    "homeAway": null,
+    "kickoff": null,
+    "name": "Josh Hines-Allen",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "sk": 1.5,
+          "tfl": 1
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 0,
+          "tfl": 2
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "BAL",
+        "opponent": "CIN",
+        "homeAway": "home",
+        "kickoff": "2026-10-25T13:00:00-04:00",
+        "name": "Trey Hendrickson",
+        "sk": 0,
+        "tfl": 0,
+        "hasStats": true,
+        "form": {
+          "games": 4,
+          "lines": [
+            {
+              "sk": 0,
+              "tfl": 0
+            },
+            {
+              "sk": 1,
+              "tfl": 1
+            },
+            {
+              "sk": 0,
+              "tfl": 0
+            },
+            {
+              "sk": 1,
+              "tfl": 1
+            }
+          ]
+        },
+        "injury": {
+          "status": null,
+          "practice": "Full Participation in Practice",
+          "injury": "Finger"
+        }
+      }
+    ]
+  },
+  "mender": {
+    "team": "TB",
+    "opponent": "CAR",
+    "homeAway": "away",
+    "kickoff": "2026-10-25T13:00:00-04:00",
+    "name": "Chase McLaughlin",
+    "fg": 2,
+    "att": 2,
+    "hasStats": true,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "fg": 2,
+          "att": 2
+        },
+        {
+          "fg": 4,
+          "att": 4
+        },
+        {
+          "fg": 3,
+          "att": 3
+        },
+        {
+          "fg": 0,
+          "att": 0
+        },
+        {
+          "fg": 1,
+          "att": 1
+        },
+        {
+          "fg": 4,
+          "att": 4
+        }
+      ]
+    },
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Illness"
+    }
+  },
+  "wall": {
+    "team": "GB",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "DET",
+    "homeAway": "away",
+    "kickoff": "2026-10-25T16:25:00-04:00",
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "sacksAllowed": 4
+        },
+        {
+          "sacksAllowed": 3
+        },
+        {
+          "sacksAllowed": 1
+        },
+        {
+          "sacksAllowed": 0
+        },
+        {
+          "sacksAllowed": 2
+        },
+        {
+          "sacksAllowed": 3
+        }
+      ]
+    }
+  }
+}

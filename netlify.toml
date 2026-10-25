@@ -18,3 +18,23 @@
   from = "/emberwatch"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/emberwatch-ii"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ninth-circle-ii"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ashen-coalition-ii"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/rimeguard"
+  to = "/index.html"
+  status = 200

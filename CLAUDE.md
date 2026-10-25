@@ -171,6 +171,10 @@ under 4.5:1).
   glow in the party's colour (`.tavern-crest[data-party]`). The Dungeon tab's map
   (`dungeon-map.webp`) stands each party's helmet at the stair door of its current floor
   (`FLOOR_DOOR` in `public/index.html`).
+  Art is keyed by a party's `crest` in `data/parties.json` (default: its id), so guild II's
+  Emberwatch wears Emberwatch's. **Rimeguard** (guild II's fourth party, ice blue) has no
+  painted crest yet: the cut script mirrors the Ninth Circle helmet and shifts its green to
+  ice, and the Tavern hangs that helm medallion instead of a full crest. Replace with real art.
 - **Masthead:** one slim bar on the page stone — party helm, party name (Cinzel, gold), the
   tab's kicker, and a small gold duotone HFF mark (`masthead-mark.webp`, made by
   `scripts/tint-masthead.py` so it doesn't read as a fourth team). The party colour
@@ -206,7 +210,10 @@ from within 28px of an edge (the phone's own back gesture) and never mid-roll. T
 The Guild tab needs no accounts: every party in `data/parties.json` is replayed into
 `data/season-state.json` (each party's `history`, one entry per completed week), so it's
 the same static data for everyone; rival lineups read each party's week file plus its
-`/api/subs`. Real guilds — sign-in, guild codes, joining, private leagues — are still
+`/api/subs`. Parties are grouped by `guild` in `data/parties.json` (the original three
+have none; the second beta group is `"ii"`), and the Guild tab and Dungeon map only show
+the viewer's own guild. Guild II joined at week 7: the replay skips the weeks before a
+party's first week file, so it starts fresh on Floor I. Real guilds — sign-in, guild codes, joining, private leagues — are still
 deferred until authentication exists (today a party's identity is just its URL). Live
 Sunday progress of rivals is deliberately not shown (see Guild comparison below).
 
