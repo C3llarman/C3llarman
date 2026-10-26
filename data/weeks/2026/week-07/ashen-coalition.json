@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "seasonType": "REG",
-  "generatedAt": "2026-10-26T01:23:08.200Z",
+  "generatedAt": "2026-10-26T06:44:02.071Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -84,13 +84,13 @@
         "homeAway": "away",
         "kickoff": "2026-10-25T20:20:00-04:00",
         "name": "Patrick Mahomes",
-        "y": 0,
+        "y": 165,
         "td": 0,
-        "sk": 0,
-        "int": 0,
+        "sk": 1,
+        "int": 1,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 8,
+        "hasStats": true,
         "form": {
           "games": 5,
           "lines": [
