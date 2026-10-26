@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "seasonType": "REG",
-  "generatedAt": "2026-10-25T22:40:34.407Z",
+  "generatedAt": "2026-10-26T01:23:08.210Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -134,12 +134,12 @@
     "homeAway": "home",
     "kickoff": "2026-10-25T16:25:00-04:00",
     "name": "Jahmyr Gibbs",
-    "y": 0,
+    "y": 116,
     "td": 0,
-    "car": 0,
-    "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "car": 29,
+    "fumblesLost": 1,
+    "firstDowns": 7,
+    "hasStats": true,
     "form": {
       "games": 5,
       "lines": [
@@ -445,8 +445,8 @@
   },
   "wall": {
     "team": "DET",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 1,
+    "hasStats": true,
     "opponent": "GB",
     "homeAway": "home",
     "kickoff": "2026-10-25T16:25:00-04:00",
