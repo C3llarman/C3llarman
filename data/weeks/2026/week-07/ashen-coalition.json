@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "seasonType": "REG",
-  "generatedAt": "2026-10-26T06:44:02.071Z",
+  "generatedAt": "2026-10-27T06:27:27.572Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -417,9 +417,9 @@
     "homeAway": "away",
     "kickoff": "2026-10-26T20:15:00-04:00",
     "name": "Brandon Aubrey",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 3,
+    "att": 3,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [
@@ -453,8 +453,8 @@
   },
   "wall": {
     "team": "PHI",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 2,
+    "hasStats": true,
     "opponent": "DAL",
     "homeAway": "home",
     "kickoff": "2026-10-26T20:15:00-04:00",

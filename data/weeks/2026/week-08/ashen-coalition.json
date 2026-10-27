@@ -1,0 +1,513 @@
+{
+  "season": 2026,
+  "week": 8,
+  "seasonType": "REG",
+  "generatedAt": "2026-10-27T06:27:29.229Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "scheduleSource": "data/schedule/2026.json",
+  "party": {
+    "id": "ashen-coalition",
+    "name": "Ashen Coalition"
+  },
+  "lockedAt": "2026-11-01T13:00:00-05:00",
+  "tactician": {
+    "team": "BUF",
+    "opponent": "BAL",
+    "homeAway": "home",
+    "kickoff": "2026-11-01T13:00:00-05:00",
+    "name": "Josh Allen",
+    "y": 0,
+    "td": 0,
+    "sk": 0,
+    "int": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "y": 334,
+          "td": 2,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 13
+        },
+        {
+          "y": 248,
+          "td": 3,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 14
+        },
+        {
+          "y": 204,
+          "td": 0,
+          "sk": 4,
+          "int": 2,
+          "fumblesLost": 1,
+          "firstDowns": 10
+        },
+        {
+          "y": 253,
+          "td": 1,
+          "sk": 1,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 9
+        },
+        {
+          "y": 210,
+          "td": 1,
+          "sk": 1,
+          "int": 1,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 255,
+          "td": 2,
+          "sk": 2,
+          "int": 0,
+          "fumblesLost": 0,
+          "firstDowns": 13
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "KC",
+        "opponent": "DEN",
+        "homeAway": "away",
+        "kickoff": "2026-11-01T16:25:00-05:00",
+        "name": "Patrick Mahomes",
+        "y": 0,
+        "td": 0,
+        "sk": 0,
+        "int": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 6,
+          "lines": [
+            {
+              "y": 184,
+              "td": 2,
+              "sk": 2,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 7
+            },
+            {
+              "y": 382,
+              "td": 3,
+              "sk": 2,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 19
+            },
+            {
+              "y": 246,
+              "td": 2,
+              "sk": 0,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 11
+            },
+            {
+              "y": 225,
+              "td": 2,
+              "sk": 2,
+              "int": 0,
+              "fumblesLost": 0,
+              "firstDowns": 9
+            },
+            {
+              "y": 272,
+              "td": 0,
+              "sk": 0,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 11
+            },
+            {
+              "y": 165,
+              "td": 0,
+              "sk": 1,
+              "int": 1,
+              "fumblesLost": 0,
+              "firstDowns": 8
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "rogue": {
+    "team": "ATL",
+    "opponent": "TB",
+    "homeAway": "away",
+    "kickoff": "2026-11-01T13:00:00-05:00",
+    "name": "Bijan Robinson",
+    "y": 0,
+    "td": 0,
+    "car": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "form": {
+      "games": 7,
+      "lines": [
+        {
+          "y": 83,
+          "td": 0,
+          "car": 21,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 72,
+          "td": 0,
+          "car": 16,
+          "fumblesLost": 0,
+          "firstDowns": 2
+        },
+        {
+          "y": 194,
+          "td": 2,
+          "car": 29,
+          "fumblesLost": 0,
+          "firstDowns": 11
+        },
+        {
+          "y": 145,
+          "td": 2,
+          "car": 19,
+          "fumblesLost": 0,
+          "firstDowns": 6
+        },
+        {
+          "y": 86,
+          "td": 0,
+          "car": 17,
+          "fumblesLost": 0,
+          "firstDowns": 3
+        },
+        {
+          "y": 61,
+          "td": 0,
+          "car": 9,
+          "fumblesLost": 0,
+          "firstDowns": 1
+        },
+        {
+          "y": 63,
+          "td": 0,
+          "car": 20,
+          "fumblesLost": 0,
+          "firstDowns": 5
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "MIA",
+        "opponent": "NE",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T16:25:00-05:00",
+        "name": "De'Von Achane",
+        "y": 0,
+        "td": 0,
+        "car": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 3,
+          "lines": [
+            {
+              "y": 36,
+              "td": 0,
+              "car": 11,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 74,
+              "td": 0,
+              "car": 20,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 17,
+              "td": 0,
+              "car": 3,
+              "fumblesLost": 0,
+              "firstDowns": 1
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "hunter": {
+    "team": "DET",
+    "opponent": "MIN",
+    "homeAway": "home",
+    "kickoff": "2026-11-01T13:00:00-05:00",
+    "name": "Amon-Ra St. Brown",
+    "y": 0,
+    "c": 0,
+    "td": 0,
+    "fumblesLost": 0,
+    "firstDowns": 0,
+    "hasStats": false,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "y": 67,
+          "c": 10,
+          "td": 2,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        },
+        {
+          "y": 142,
+          "c": 9,
+          "td": 2,
+          "fumblesLost": 0,
+          "firstDowns": 7
+        },
+        {
+          "y": 19,
+          "c": 4,
+          "td": 1,
+          "fumblesLost": 0,
+          "firstDowns": 2
+        },
+        {
+          "y": 75,
+          "c": 8,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        },
+        {
+          "y": 69,
+          "c": 6,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 4
+        },
+        {
+          "y": 153,
+          "c": 9,
+          "td": 0,
+          "fumblesLost": 0,
+          "firstDowns": 8
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "LA",
+        "opponent": "LAC",
+        "homeAway": "home",
+        "kickoff": "2026-11-01T16:05:00-05:00",
+        "name": "Puka Nacua",
+        "y": 0,
+        "c": 0,
+        "td": 0,
+        "fumblesLost": 0,
+        "firstDowns": 0,
+        "hasStats": false,
+        "form": {
+          "games": 5,
+          "lines": [
+            {
+              "y": 74,
+              "c": 5,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 125,
+              "c": 9,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 5
+            },
+            {
+              "y": 138,
+              "c": 17,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 10
+            },
+            {
+              "y": 80,
+              "c": 6,
+              "td": 0,
+              "fumblesLost": 0,
+              "firstDowns": 2
+            },
+            {
+              "y": 68,
+              "c": 8,
+              "td": 1,
+              "fumblesLost": 0,
+              "firstDowns": 3
+            }
+          ]
+        },
+        "injury": null
+      }
+    ]
+  },
+  "breaker": {
+    "team": "BUF",
+    "opponent": "BAL",
+    "homeAway": "home",
+    "kickoff": "2026-11-01T13:00:00-05:00",
+    "name": "Greg Rousseau",
+    "sk": 0,
+    "tfl": 0,
+    "hasStats": false,
+    "form": {
+      "games": 6,
+      "lines": [
+        {
+          "sk": 2,
+          "tfl": 2
+        },
+        {
+          "sk": 2,
+          "tfl": 2
+        },
+        {
+          "sk": 2,
+          "tfl": 4
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        },
+        {
+          "sk": 0,
+          "tfl": 0
+        }
+      ]
+    },
+    "injury": null,
+    "bench": [
+      {
+        "team": "GB",
+        "opponent": "CAR",
+        "homeAway": "home",
+        "kickoff": "2026-10-29T20:15:00-04:00",
+        "name": "Micah Parsons",
+        "sk": 0,
+        "tfl": 0,
+        "hasStats": false,
+        "form": {
+          "games": 0,
+          "lines": []
+        },
+        "injury": null
+      }
+    ]
+  },
+  "mender": {
+    "team": "DAL",
+    "opponent": "ARI",
+    "homeAway": "home",
+    "kickoff": "2026-11-01T13:00:00-05:00",
+    "name": "Brandon Aubrey",
+    "fg": 0,
+    "att": 0,
+    "hasStats": false,
+    "form": {
+      "games": 7,
+      "lines": [
+        {
+          "fg": 0,
+          "att": 0
+        },
+        {
+          "fg": 3,
+          "att": 3
+        },
+        {
+          "fg": 3,
+          "att": 4
+        },
+        {
+          "fg": 2,
+          "att": 4
+        },
+        {
+          "fg": 1,
+          "att": 1
+        },
+        {
+          "fg": 0,
+          "att": 0
+        },
+        {
+          "fg": 3,
+          "att": 3
+        }
+      ]
+    },
+    "injury": null
+  },
+  "wall": {
+    "team": "PHI",
+    "sacksAllowed": 0,
+    "hasStats": false,
+    "opponent": "WAS",
+    "homeAway": "away",
+    "kickoff": "2026-11-01T20:20:00-05:00",
+    "form": {
+      "games": 7,
+      "lines": [
+        {
+          "sacksAllowed": 3
+        },
+        {
+          "sacksAllowed": 3
+        },
+        {
+          "sacksAllowed": 2
+        },
+        {
+          "sacksAllowed": 4
+        },
+        {
+          "sacksAllowed": 1
+        },
+        {
+          "sacksAllowed": 3
+        },
+        {
+          "sacksAllowed": 2
+        }
+      ]
+    }
+  }
+}
