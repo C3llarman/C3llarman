@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 8,
   "seasonType": "REG",
-  "generatedAt": "2026-10-29T16:59:40.089Z",
+  "generatedAt": "2026-10-30T08:47:28.169Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -189,7 +189,7 @@
     },
     "injury": {
       "status": null,
-      "practice": "Did Not Participate In Practice",
+      "practice": "Full Participation in Practice",
       "injury": "Shoulder"
     },
     "bench": [
@@ -314,7 +314,7 @@
     },
     "injury": {
       "status": null,
-      "practice": "Did Not Participate In Practice",
+      "practice": "Full Participation in Practice",
       "injury": "Not injury related - resting player"
     },
     "bench": [
