@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 8,
   "seasonType": "REG",
-  "generatedAt": "2026-10-31T07:07:49.422Z",
+  "generatedAt": "2026-11-02T07:48:21.243Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -22,7 +22,7 @@
     "int": 0,
     "fumblesLost": 0,
     "firstDowns": 0,
-    "hasStats": false,
+    "hasStats": true,
     "form": {
       "games": 4,
       "lines": [
@@ -134,12 +134,12 @@
     "homeAway": "home",
     "kickoff": "2026-11-01T13:00:00-05:00",
     "name": "Jahmyr Gibbs",
-    "y": 0,
-    "td": 0,
-    "car": 0,
+    "y": 153,
+    "td": 1,
+    "car": 23,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 8,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [
@@ -199,12 +199,12 @@
         "homeAway": "away",
         "kickoff": "2026-11-01T20:20:00-05:00",
         "name": "Saquon Barkley",
-        "y": 0,
-        "td": 0,
-        "car": 0,
+        "y": 30,
+        "td": 1,
+        "car": 13,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 1,
+        "hasStats": true,
         "form": {
           "games": 5,
           "lines": [
@@ -259,12 +259,12 @@
     "homeAway": "home",
     "kickoff": "2026-11-01T13:00:00-05:00",
     "name": "Ja'Marr Chase",
-    "y": 0,
-    "c": 0,
-    "td": 0,
+    "y": 141,
+    "c": 11,
+    "td": 1,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 7,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [
@@ -441,9 +441,9 @@
     "homeAway": "away",
     "kickoff": "2026-11-01T16:05:00-05:00",
     "name": "Cameron Dicker",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 3,
+    "att": 3,
+    "hasStats": true,
     "form": {
       "games": 6,
       "lines": [
@@ -477,8 +477,8 @@
   },
   "wall": {
     "team": "DET",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 4,
+    "hasStats": true,
     "opponent": "MIN",
     "homeAway": "home",
     "kickoff": "2026-11-01T13:00:00-05:00",
