@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 9,
   "seasonType": "REG",
-  "generatedAt": "2026-11-03T09:45:34.526Z",
+  "generatedAt": "2026-11-04T15:35:16.834Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -68,7 +68,11 @@
         }
       ]
     },
-    "injury": null,
+    "injury": {
+      "status": null,
+      "practice": "Did Not Participate In Practice",
+      "injury": "Thumb"
+    },
     "bench": [
       {
         "team": "PHI",
