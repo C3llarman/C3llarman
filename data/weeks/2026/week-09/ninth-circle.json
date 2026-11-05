@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 9,
   "seasonType": "REG",
-  "generatedAt": "2026-11-04T15:35:16.834Z",
+  "generatedAt": "2026-11-05T11:15:07.915Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -69,7 +69,7 @@
       ]
     },
     "injury": {
-      "status": null,
+      "status": "Out",
       "practice": "Did Not Participate In Practice",
       "injury": "Thumb"
     },
@@ -263,7 +263,11 @@
             }
           ]
         },
-        "injury": null
+        "injury": {
+          "status": null,
+          "practice": "Did Not Participate In Practice",
+          "injury": "Hamstring"
+        }
       }
     ]
   },
@@ -448,7 +452,11 @@
           "games": 0,
           "lines": []
         },
-        "injury": null
+        "injury": {
+          "status": null,
+          "practice": "Limited Participation in Practice",
+          "injury": "Knee"
+        }
       }
     ]
   },
