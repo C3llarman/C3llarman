@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 9,
   "seasonType": "REG",
-  "generatedAt": "2026-11-08T22:58:18.742Z",
+  "generatedAt": "2026-11-09T02:46:39.151Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -345,12 +345,12 @@
         "homeAway": "away",
         "kickoff": "2026-11-08T16:05:00-05:00",
         "name": "Nico Collins",
-        "y": 0,
-        "c": 0,
-        "td": 0,
+        "y": 55,
+        "c": 4,
+        "td": 1,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 3,
+        "hasStats": true,
         "form": {
           "games": 5,
           "lines": [
@@ -401,9 +401,9 @@
     "homeAway": "away",
     "kickoff": "2026-11-08T16:05:00-05:00",
     "name": "Will Anderson Jr.",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false,
+    "sk": 2,
+    "tfl": 2,
+    "hasStats": true,
     "form": {
       "games": 7,
       "lines": [
@@ -466,9 +466,9 @@
     "homeAway": "home",
     "kickoff": "2026-11-08T16:05:00-05:00",
     "name": "Cameron Dicker",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 3,
+    "att": 3,
+    "hasStats": true,
     "form": {
       "games": 7,
       "lines": [
