@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 9,
   "seasonType": "REG",
-  "generatedAt": "2026-11-08T22:58:18.725Z",
+  "generatedAt": "2026-11-10T13:38:15.795Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "away",
     "kickoff": "2026-11-09T20:15:00-05:00",
     "name": "Josh Allen",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
-    "int": 0,
+    "y": 234,
+    "td": 1,
+    "sk": 4,
+    "int": 1,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 14,
+    "hasStats": true,
     "form": {
       "games": 7,
       "lines": [
@@ -430,9 +430,9 @@
     "homeAway": "away",
     "kickoff": "2026-11-09T20:15:00-05:00",
     "name": "Greg Rousseau",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false,
+    "sk": 1,
+    "tfl": 1,
+    "hasStats": true,
     "form": {
       "games": 7,
       "lines": [
