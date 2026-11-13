@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 10,
   "seasonType": "REG",
-  "generatedAt": "2026-11-12T16:55:05.455Z",
+  "generatedAt": "2026-11-13T12:24:42.408Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -100,13 +100,13 @@
         "homeAway": "away",
         "kickoff": "2026-11-12T20:15:00-05:00",
         "name": "Jayden Daniels",
-        "y": 0,
-        "td": 0,
-        "sk": 0,
-        "int": 0,
+        "y": 249,
+        "td": 3,
+        "sk": 1,
+        "int": 2,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 9,
+        "hasStats": true,
         "form": {
           "games": 6,
           "lines": [
@@ -423,12 +423,12 @@
         "homeAway": "home",
         "kickoff": "2026-11-12T20:15:00-05:00",
         "name": "Malik Nabers",
-        "y": 0,
-        "c": 0,
+        "y": 44,
+        "c": 5,
         "td": 0,
-        "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "fumblesLost": 1,
+        "firstDowns": 1,
+        "hasStats": true,
         "form": {
           "games": 8,
           "lines": [
@@ -542,7 +542,7 @@
     },
     "injury": {
       "status": null,
-      "practice": "Did Not Participate In Practice",
+      "practice": "Limited Participation in Practice",
       "injury": "Not injury related - resting player"
     }
   },
