@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 10,
   "seasonType": "REG",
-  "generatedAt": "2026-11-12T07:27:18.492Z",
+  "generatedAt": "2026-11-13T20:32:58.380Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -461,7 +461,11 @@
         }
       ]
     },
-    "injury": null,
+    "injury": {
+      "status": null,
+      "practice": "Limited Participation in Practice",
+      "injury": "Ankle"
+    },
     "bench": [
       {
         "team": "LA",
