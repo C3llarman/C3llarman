@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 10,
   "seasonType": "REG",
-  "generatedAt": "2026-11-16T01:10:50.982Z",
+  "generatedAt": "2026-11-16T08:06:11.299Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -283,12 +283,12 @@
     "homeAway": "home",
     "kickoff": "2026-11-15T20:20:00-05:00",
     "name": "Ja'Marr Chase",
-    "y": 0,
-    "c": 0,
+    "y": 231,
+    "c": 11,
     "td": 0,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 9,
+    "hasStats": true,
     "form": {
       "games": 8,
       "lines": [

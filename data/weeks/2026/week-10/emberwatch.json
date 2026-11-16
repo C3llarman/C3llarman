@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 10,
   "seasonType": "REG",
-  "generatedAt": "2026-11-16T01:10:50.986Z",
+  "generatedAt": "2026-11-16T08:06:11.305Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "home",
     "kickoff": "2026-11-15T20:20:00-05:00",
     "name": "Joe Burrow",
-    "y": 0,
-    "td": 0,
-    "sk": 0,
+    "y": 409,
+    "td": 4,
+    "sk": 1,
     "int": 0,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 23,
+    "hasStats": true,
     "form": {
       "games": 8,
       "lines": [
@@ -506,7 +506,7 @@
     "name": "T.J. Watt",
     "sk": 0,
     "tfl": 0,
-    "hasStats": false,
+    "hasStats": true,
     "form": {
       "games": 7,
       "lines": [
@@ -552,9 +552,9 @@
     "homeAway": "away",
     "kickoff": "2026-11-15T20:20:00-05:00",
     "name": "Chris Boswell",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 1,
+    "att": 1,
+    "hasStats": true,
     "form": {
       "games": 8,
       "lines": [
