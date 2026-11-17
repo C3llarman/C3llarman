@@ -1,23 +1,23 @@
 {
   "season": 2026,
-  "computedThroughWeek": 9,
-  "generatedAt": "2026-11-10T13:38:16.515Z",
+  "computedThroughWeek": 10,
+  "generatedAt": "2026-11-17T12:08:27.338Z",
   "parties": {
     "ashen-coalition": {
       "floorId": 4,
       "cleared": false,
-      "roomHp": 907,
-      "scales": 5,
+      "roomHp": 470,
+      "scales": 1,
       "hp": {
         "wall": 74,
         "breaker": 44,
-        "tactician": 51,
+        "tactician": 52,
         "hunter": 48,
-        "rogue": 45,
+        "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 1,
-      "totalWeeksPlayed": 9,
+      "weeksOnFloor": 2,
+      "totalWeeksPlayed": 10,
       "floorsCleared": 3,
       "history": [
         {
@@ -93,14 +93,23 @@
           "scales": 5,
           "progress": 0.274,
           "hpPct": 0.923
+        },
+        {
+          "week": 10,
+          "floorId": 4,
+          "cleared": false,
+          "dmg": 437,
+          "scales": 1,
+          "progress": 0.35,
+          "hpPct": 0.983
         }
       ]
     },
     "ninth-circle": {
       "floorId": 4,
       "cleared": false,
-      "roomHp": 811,
-      "scales": 4,
+      "roomHp": 166,
+      "scales": 1,
       "hp": {
         "wall": 74,
         "breaker": 44,
@@ -109,8 +118,8 @@
         "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 1,
-      "totalWeeksPlayed": 9,
+      "weeksOnFloor": 2,
+      "totalWeeksPlayed": 10,
       "floorsCleared": 3,
       "history": [
         {
@@ -186,24 +195,33 @@
           "scales": 4,
           "progress": 0.351,
           "hpPct": 1
+        },
+        {
+          "week": 10,
+          "floorId": 4,
+          "cleared": false,
+          "dmg": 645,
+          "scales": 1,
+          "progress": 0.516,
+          "hpPct": 1
         }
       ]
     },
     "emberwatch": {
-      "floorId": 5,
+      "floorId": 6,
       "cleared": false,
-      "roomHp": 742,
+      "roomHp": 1450,
       "hp": {
         "wall": 74,
         "breaker": 44,
         "tactician": 52,
         "hunter": 48,
-        "rogue": 45,
+        "rogue": 46,
         "mender": 36
       },
-      "weeksOnFloor": 1,
-      "totalWeeksPlayed": 9,
-      "floorsCleared": 4,
+      "weeksOnFloor": 0,
+      "totalWeeksPlayed": 10,
+      "floorsCleared": 5,
       "history": [
         {
           "week": 1,
@@ -279,6 +297,14 @@
           "dmg": 558,
           "progress": 0.429,
           "hpPct": 0.917
+        },
+        {
+          "week": 10,
+          "floorId": 5,
+          "cleared": true,
+          "dmg": 879,
+          "progress": 0.676,
+          "hpPct": 0.97
         }
       ]
     }
