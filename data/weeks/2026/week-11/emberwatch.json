@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 11,
   "seasonType": "REG",
-  "generatedAt": "2026-11-22T22:36:30.667Z",
+  "generatedAt": "2026-11-23T03:49:54.919Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -280,12 +280,12 @@
         "homeAway": "away",
         "kickoff": "2026-11-22T16:25:00-05:00",
         "name": "Ashton Jeanty",
-        "y": 0,
+        "y": 79,
         "td": 0,
-        "car": 0,
+        "car": 11,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 1,
+        "hasStats": true,
         "form": {
           "games": 10,
           "lines": [
@@ -460,12 +460,12 @@
         "homeAway": "home",
         "kickoff": "2026-11-22T13:00:00-05:00",
         "name": "Malik Nabers",
-        "y": 0,
-        "c": 0,
-        "td": 0,
+        "y": 55,
+        "c": 7,
+        "td": 1,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 4,
+        "hasStats": true,
         "form": {
           "games": 9,
           "lines": [
