@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 12,
   "seasonType": "REG",
-  "generatedAt": "2026-11-24T13:59:50.628Z",
+  "generatedAt": "2026-11-25T08:54:15.120Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -208,7 +208,11 @@
             }
           ]
         },
-        "injury": null
+        "injury": {
+          "status": null,
+          "practice": "Full Participation in Practice",
+          "injury": "Knee"
+        }
       }
     ]
   },
@@ -556,7 +560,11 @@
         }
       ]
     },
-    "injury": null,
+    "injury": {
+      "status": null,
+      "practice": "Full Participation in Practice",
+      "injury": "Back"
+    },
     "bench": [
       {
         "team": "GB",
@@ -571,7 +579,11 @@
           "games": 0,
           "lines": []
         },
-        "injury": null
+        "injury": {
+          "status": "Questionable",
+          "practice": "Limited Participation in Practice",
+          "injury": "Knee"
+        }
       }
     ]
   },
