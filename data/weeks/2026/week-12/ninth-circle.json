@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 12,
   "seasonType": "REG",
-  "generatedAt": "2026-11-25T08:54:15.133Z",
+  "generatedAt": "2026-11-26T12:54:50.178Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -531,8 +531,8 @@
         "kickoff": "2026-11-25T20:00:00-05:00",
         "name": "Myles Garrett",
         "sk": 0,
-        "tfl": 0,
-        "hasStats": false,
+        "tfl": 1,
+        "hasStats": true,
         "form": {
           "games": 2,
           "lines": [
