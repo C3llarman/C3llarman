@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 12,
   "seasonType": "REG",
-  "generatedAt": "2026-11-26T12:54:50.178Z",
+  "generatedAt": "2026-11-26T22:27:44.036Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -138,12 +138,12 @@
     "homeAway": "home",
     "kickoff": "2026-11-26T13:00:00-05:00",
     "name": "Jahmyr Gibbs",
-    "y": 0,
-    "td": 0,
-    "car": 0,
+    "y": 205,
+    "td": 3,
+    "car": 21,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 8,
+    "hasStats": true,
     "form": {
       "games": 10,
       "lines": [
@@ -612,8 +612,8 @@
   },
   "wall": {
     "team": "DET",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 1,
+    "hasStats": true,
     "opponent": "CHI",
     "homeAway": "home",
     "kickoff": "2026-11-26T13:00:00-05:00",
