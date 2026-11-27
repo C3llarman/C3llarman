@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 12,
   "seasonType": "REG",
-  "generatedAt": "2026-11-26T22:27:44.042Z",
+  "generatedAt": "2026-11-27T15:22:32.887Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -289,7 +289,7 @@
     },
     "injury": {
       "status": null,
-      "practice": "Did Not Participate In Practice",
+      "practice": "Full Participation in Practice",
       "injury": "Not injury related - resting player"
     },
     "bench": [
@@ -685,8 +685,8 @@
   },
   "wall": {
     "team": "KC",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 1,
+    "hasStats": true,
     "opponent": "BUF",
     "homeAway": "away",
     "kickoff": "2026-11-26T20:20:00-05:00",

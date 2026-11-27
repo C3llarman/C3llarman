@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 12,
   "seasonType": "REG",
-  "generatedAt": "2026-11-26T22:27:44.036Z",
+  "generatedAt": "2026-11-27T15:22:32.883Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -227,12 +227,12 @@
         "homeAway": "away",
         "kickoff": "2026-11-26T16:30:00-05:00",
         "name": "Saquon Barkley",
-        "y": 0,
+        "y": 7,
         "td": 0,
-        "car": 0,
+        "car": 5,
         "fumblesLost": 0,
         "firstDowns": 0,
-        "hasStats": false,
+        "hasStats": true,
         "form": {
           "games": 8,
           "lines": [

@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 12,
   "seasonType": "REG",
-  "generatedAt": "2026-11-26T22:27:44.022Z",
+  "generatedAt": "2026-11-27T15:22:32.876Z",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
   "scheduleSource": "data/schedule/2026.json",
   "party": {
@@ -16,13 +16,13 @@
     "homeAway": "home",
     "kickoff": "2026-11-26T20:20:00-05:00",
     "name": "Josh Allen",
-    "y": 0,
+    "y": 81,
     "td": 0,
-    "sk": 0,
-    "int": 0,
+    "sk": 2,
+    "int": 2,
     "fumblesLost": 0,
-    "firstDowns": 0,
-    "hasStats": false,
+    "firstDowns": 3,
+    "hasStats": true,
     "form": {
       "games": 10,
       "lines": [
@@ -116,13 +116,13 @@
         "homeAway": "away",
         "kickoff": "2026-11-26T20:20:00-05:00",
         "name": "Patrick Mahomes",
-        "y": 0,
+        "y": 174,
         "td": 0,
-        "sk": 0,
+        "sk": 1,
         "int": 0,
         "fumblesLost": 0,
-        "firstDowns": 0,
-        "hasStats": false,
+        "firstDowns": 8,
+        "hasStats": true,
         "form": {
           "games": 10,
           "lines": [
@@ -512,9 +512,9 @@
     "homeAway": "home",
     "kickoff": "2026-11-26T20:20:00-05:00",
     "name": "Greg Rousseau",
-    "sk": 0,
-    "tfl": 0,
-    "hasStats": false,
+    "sk": 1,
+    "tfl": 1,
+    "hasStats": true,
     "form": {
       "games": 10,
       "lines": [
@@ -593,9 +593,9 @@
     "homeAway": "home",
     "kickoff": "2026-11-26T16:30:00-05:00",
     "name": "Brandon Aubrey",
-    "fg": 0,
-    "att": 0,
-    "hasStats": false,
+    "fg": 1,
+    "att": 2,
+    "hasStats": true,
     "form": {
       "games": 11,
       "lines": [
@@ -649,8 +649,8 @@
   },
   "wall": {
     "team": "PHI",
-    "sacksAllowed": 0,
-    "hasStats": false,
+    "sacksAllowed": 5,
+    "hasStats": true,
     "opponent": "DAL",
     "homeAway": "away",
     "kickoff": "2026-11-26T16:30:00-05:00",
